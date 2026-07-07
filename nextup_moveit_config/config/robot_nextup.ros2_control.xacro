@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file vendor:=innovance product:=robot1">
+    <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
+    <xacro:property name="slave_config_dir" value="$(find nextup_moveit_config)/config/${vendor}/${product}"/>
+
+    <ros2_control name="RobotReal" type="system">
+      <hardware>
+        <plugin>ethercat_driver/EthercatDriver</plugin>
+        <param name="master_id">0</param>
+        <param name="control_frequency">200</param>
+      </hardware>
+
+      <joint name="joint1">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">0</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint1.yaml</param>
+        </ec_module>
+      </joint>
+
+      <joint name="joint2">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">1</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint2.yaml</param>
+        </ec_module>
+      </joint>
+
+      <joint name="joint3">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">2</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint3.yaml</param>
+        </ec_module>
+      </joint>
+
+      <joint name="joint4">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">3</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint4.yaml</param>
+        </ec_module>
+      </joint>
+
+      <joint name="joint5">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">4</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint5.yaml</param>
+        </ec_module>
+      </joint>
+
+
+      <joint name="joint6">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <state_interface name="modeofoperation"/>
+        <state_interface name="statusword"/>
+        <state_interface name="lasterror"/>
+        <state_interface name="dinput"/>
+
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <command_interface name="modeofoperation"/>
+        <command_interface name="controlword"/>
+        <command_interface name="reset_fault"/>
+        <command_interface name="jogvelocity"/>
+        <command_interface name="dos"/>
+        <command_interface name="emergency_trigger"/>
+
+        <ec_module name="ZeroErr">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">5</param>
+          <param name="mode_of_operation">9</param>
+          <param name="slave_config">${slave_config_dir}/joint6.yaml</param>
+        </ec_module>
+      </joint>
+
+    </ros2_control>
+</xacro:macro>
+</robot>

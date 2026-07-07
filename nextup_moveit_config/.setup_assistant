@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: nextup_moveit_config
+    relative_path: urdf/nextuRobot.urdf.xacro
+  srdf:
+    relative_path: config/robot_nextup.srdf
+  package_settings:
+    author_name: adnan
+    author_email: adnan.alvi@nextuprobotics.tech
+    generated_timestamp: 1731218822
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

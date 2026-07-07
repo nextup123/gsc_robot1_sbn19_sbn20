@@ -1,0 +1,16 @@
+from moveit_configs_utils import MoveItConfigsBuilder
+from moveit_configs_utils.launches import generate_demo_launch
+
+
+def generate_launch_description():
+    moveit_config = (
+        MoveItConfigsBuilder(
+            "robot_nextup",
+            package_name="nextup_moveit_config"
+        )
+        .planning_pipelines(
+            pipelines=["ompl", "pilz_industrial_motion_planner", "pilz_blend"]
+        )
+        .to_moveit_configs()
+    )
+    return generate_demo_launch(moveit_config)

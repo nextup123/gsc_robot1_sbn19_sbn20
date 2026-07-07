@@ -1,0 +1,131 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    robot_manipulator_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    robot_manipulator_velocity_controller:
+      type: nextup_manaul_velocity_controller/NextupManaulVelocityController
+    
+    joint_state_broadcaster:
+      type: nextup_joint_state_broadcaster/NextupJointStateBroadcaster
+    
+    controlword_command_controller:
+      type: nextup_controlword_controller/NextupControlwordController
+
+    modeofoperation_command_controller:
+      type: nextup_modeofoperation_controller/NextupModeofoperationController
+
+    maxvelocity_command_controller:
+      type: velocity_controllers/JointGroupVelocityController
+    
+    nextup_digital_output_controller_1:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+    
+    nextup_digital_output_controller_2:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+    
+    nextup_digital_output_controller_3:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_4:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_5:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_6:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+robot_manipulator_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+robot_manipulator_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+controlword_command_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+modeofoperation_command_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  
+maxvelocity_command_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+nextup_digital_output_controller_1:
+  ros__parameters:
+    joints:
+      - joint1
+    interface_name: dos
+
+nextup_digital_output_controller_2:
+  ros__parameters:
+    joints:
+      - joint2
+    interface_name: dos
+
+nextup_digital_output_controller_3:
+  ros__parameters:
+    joints:
+      - joint3
+    interface_name: dos
+
+nextup_digital_output_controller_4:
+  ros__parameters:
+    joints:
+      - joint4
+    interface_name: dos
+
+nextup_digital_output_controller_5:
+  ros__parameters:
+    joints:
+      - joint5
+    interface_name: dos
+
+nextup_digital_output_controller_6:
+  ros__parameters:
+    joints:
+      - joint6
+    interface_name: dos

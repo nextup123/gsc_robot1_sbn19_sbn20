@@ -1,0 +1,58 @@
+default_velocity_scaling_factor: 1.0
+default_acceleration_scaling_factor: 1.0
+
+joint_limits:
+  joint1:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 10.0      # was 20 - gentler start/stop
+    has_deceleration_limits: true
+    max_deceleration: -10.0
+    has_jerk_limits: true
+    max_jerk: 8.0               # was 35 - much softer corners & transitions
+  joint2:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 8.0       # was 15
+    has_deceleration_limits: true
+    max_deceleration: -8.0
+    has_jerk_limits: true
+    max_jerk: 7.0               # was 35
+  joint3:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 8.0       # was 15
+    has_deceleration_limits: true
+    max_deceleration: -8.0
+    has_jerk_limits: true
+    max_jerk: 7.0               # was 35
+  joint4:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 8.0       # was 15
+    has_deceleration_limits: true
+    max_deceleration: -8.0
+    has_jerk_limits: true
+    max_jerk: 7.0               # was 35
+  joint5:
+    has_velocity_limits: true
+    max_velocity: 8.0
+    has_acceleration_limits: true
+    max_acceleration: 10.0      # was 20
+    has_deceleration_limits: true
+    max_deceleration: -10.0
+    has_jerk_limits: true
+    max_jerk: 10.0              # was 55
+  joint6:
+    has_velocity_limits: true
+    max_velocity: 8.0
+    has_acceleration_limits: true
+    max_acceleration: 15.0      # was 30
+    has_deceleration_limits: true
+    max_deceleration: -15.0
+    has_jerk_limits: true
+    max_jerk: 14.0              # was 84

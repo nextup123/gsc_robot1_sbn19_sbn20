@@ -1,0 +1,5 @@
+planning_pipelines:
+  pipeline_names:
+    - pilz_industrial_motion_planner
+
+default_planning_pipeline: 

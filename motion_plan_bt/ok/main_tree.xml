@@ -1,0 +1,9 @@
+<root main_tree_to_execute="MainTree" BTCPP_format="4">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <CopyFields points_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml" paths_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml"/>
+      <CopyFile copy_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml" backup_dir="/home/nextup/user_config_files/backup_files_bt/points"/>
+      <CleanFile clean_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

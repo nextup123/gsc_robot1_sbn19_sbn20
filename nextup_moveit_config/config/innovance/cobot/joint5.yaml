@@ -1,0 +1,81 @@
+# Configuration file for EL7400F drive
+vendor_id: 0x00100000
+product_id: 0x000c010d
+assign_activate: 0x0300  # DC Synch register
+auto_fault_reset: false  # true = automatic fault reset, false = fault reset on rising edge command interface "reset_fault"
+
+rpdo:  # RxPDO = receive PDO Mapping
+  - index: 0x1600
+    channels:
+      - {index: 0x6040, sub_index: 0, type: uint16,  default: 0}  # Control word
+      - {
+          index: 0x60ff,
+          sub_index: 0,
+          type: int32,
+          command_interface: jogvelocity,
+          factor: 159154.94309189533576888375, #  ( gear_ratio * 10000 ) / (2 * Pi) ---> gear ratio : (100) joint5
+          default: 0}  # Target velocity
+      - {
+          index: 0x607a,
+          sub_index: 0,
+          type: int32,
+          command_interface: position,
+          factor: 159154.94309189533576888375, # ( gear_ratio * 10000 ) / (2 * Pi)  ---> gear_ratio (100) for joint5
+          default: .nan}  # Target position
+      - {index: 0x6060, sub_index: 0, type: int8, command_interface: modeofoperation, default: 9}  # Mode of operation
+      - {index: 0x200D, sub_index: 0x06, type: int16, command_interface: emergency_trigger, default: 0}  # Mode of operation
+      - {index: 0x60fe, sub_index: 1, type: int32, command_interface: dos, default: 0}  # digital output  de//65536-on  //0-off  17 th bit for D01 -- 60fe 01
+      - {index: 0x60fe, sub_index: 2, type: int32, default: 67567616}  # digital output  de//65536-on  //0-off  17 th bit for D01 -- 60fe 01
+tpdo:  # TxPDO = transmit PDO Mapping
+  - index: 0x1a00
+    channels:
+      - {
+          index: 0x6064,
+          sub_index: 0,
+          type: int32,
+          state_interface: position,
+          factor: 0.000006283185307179586477 # (2 * Pi) / (gear_ratio * 10000)
+        }  # Position actual value
+      - {
+          index: 0x606c,
+          sub_index: 0,
+          type: int32,
+          state_interface: velocity,
+          factor: 0.000006283185307179586477 # (2 * Pi) / (gear_ratio * 10000)
+        }  # Velocity actual value
+      - {
+          index: 0x6077,
+          sub_index: 0,
+          type: int16,
+          state_interface: effort
+        }  # Torque actual value
+      - {
+          index: 0x6041, 
+          sub_index: 0, 
+          type: uint16,
+          state_interface: statusword
+        }  # Status word
+      - {
+          index: 0x6061, 
+          sub_index: 0, 
+          type: int8,
+          state_interface: modeofoperation
+        }  # Mode of operation display
+      - {
+          index: 0x603f, 
+          sub_index: 0, 
+          type: uint16,
+          state_interface: lasterror
+        } # motor driver last error
+      - {
+          index: 0x60fd, 
+          sub_index: 0, 
+          type: int32, 
+          state_interface: dinput
+        } # digital input
+
+sm:  # Sync Manager
+  - {index: 0, type: output, pdo: ~, watchdog: disable}
+  - {index: 1, type: input, pdo: ~, watchdog: disable}
+  - {index: 2, type: output, pdo: rpdo, watchdog: enable}
+  - {index: 3, type: input, pdo: tpdo, watchdog: disable}

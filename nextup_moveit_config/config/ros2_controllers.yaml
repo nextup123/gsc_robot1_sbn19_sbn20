@@ -1,0 +1,195 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 200  # Hz
+
+    robot_manipulator_controller:
+      type: nextup_joint_trajectory_controller/NextupJointTrajectoryController
+
+    robot_manipulator_velocity_controller:
+      type: nextup_manaul_velocity_controller/NextupManaulVelocityController
+    
+    joint_state_broadcaster:
+      type: nextup_joint_state_broadcaster/NextupJointStateBroadcaster
+    
+    modeofoperation_command_controller:
+      type: nextup_modeofoperation_controller/NextupModeofoperationController
+
+    nextup_digital_input_broadcaster:
+      type: nextup_digital_input_broadcaster/NextupDigitalInputBroadcaster
+    
+    nextup_reset_fault_controller:
+      type: nextup_reset_fault_controller/NextupResetFaultController
+
+    nextup_driver_status_broadcaster:
+      type: nextup_driver_status_broadcaster/NextupDriverStatusBroadcaster
+
+    nextup_emergency_trigger_controller:
+      type: nextup_emergency_trigger_controller/NextupEmergencyTriggerController
+
+    nextup_digital_output_controller_1:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+    
+    nextup_digital_output_controller_2:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+    
+    nextup_digital_output_controller_3:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_4:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_5:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+    nextup_digital_output_controller_6:
+      type: nextup_digital_output_controller/NextupDigitalOutputController
+
+
+joint_state_broadcaster:
+  ros__parameters:
+    update_rate: 100
+
+robot_manipulator_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    open_loop_control: false
+    allow_nonzero_velocity_at_trajectory_end: false
+    constraints:
+      stopped_velocity_tolerance: 0.21
+      goal_time: 0.0
+      joint1: { trajectory: 0.21, goal: 0.1 }
+      joint2: { trajectory: 0.21, goal: 0.1 }
+      joint3: { trajectory: 0.21, goal: 0.1 }
+      joint4: { trajectory: 0.21, goal: 0.1 }
+      joint5: { trajectory: 0.21, goal: 0.1 }
+      joint6: { trajectory: 0.21, goal: 0.1 }
+
+    trajectory_execution:
+      allowed_execution_duration_scaling: 1.2
+      allowed_goal_duration_margin: 10000
+      allowed_start_tolerance: 0.1
+      execution_duration_monitoring: false 
+
+robot_manipulator_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+
+modeofoperation_command_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+nextup_reset_fault_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    interface_name: reset_fault
+
+nextup_emergency_trigger_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    interface_name: emergency_trigger
+
+
+nextup_driver_status_broadcaster:
+  ros__parameters:
+    use_local_topics: false
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    
+    update_rate: 100
+    
+
+nextup_digital_input_broadcaster:
+  ros__parameters:
+    use_local_topics: false   
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+
+    update_rate: 100
+
+
+nextup_digital_output_controller_1:
+  ros__parameters:
+    joints:
+      - joint1
+    interface_name: dos
+
+nextup_digital_output_controller_2:
+  ros__parameters:
+    joints:
+      - joint2
+    interface_name: dos
+
+nextup_digital_output_controller_3:
+  ros__parameters:
+    joints:
+      - joint3
+    interface_name: dos
+
+nextup_digital_output_controller_4:
+  ros__parameters:
+    joints:
+      - joint4
+    interface_name: dos
+
+nextup_digital_output_controller_5:
+  ros__parameters:
+    joints:
+      - joint5
+    interface_name: dos
+
+nextup_digital_output_controller_6:
+  ros__parameters:
+    joints:
+      - joint6
+    interface_name: dos

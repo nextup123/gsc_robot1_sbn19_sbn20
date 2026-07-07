@@ -1,0 +1,26 @@
+# MoveIt controller manager configuration.
+moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControllerManager
+
+trajectory_execution:
+  allowed_execution_duration_scaling: 1.2
+  allowed_goal_duration_margin: 0.5
+  allowed_start_tolerance: 0.1
+  # Re-enabled: aborts if execution runs far longer than planned (catches stuck
+  # controllers). Set false again only if you get spurious "took too long" aborts.
+  execution_duration_monitoring: true
+
+moveit_simple_controller_manager:
+  controller_names:
+    - robot_manipulator_controller
+
+  robot_manipulator_controller:
+    type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: true
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6

@@ -1,0 +1,71 @@
+rules:
+  - name: error_stop
+    inputs:
+      - {topic: "/error_signal", type: "std_msgs/msg/Bool"}
+    condition: "error_signal == true"
+
+    output_topic: "/motor_command"
+    output_type: "std_msgs/msg/Float64"
+    publish_value: 0.0
+
+    start_delay_sec: 2
+    duration_sec: -1
+    rate_hz: -1
+    stop_condition_topic: "/stop_signal"
+    stop_condition: "data == true"
+
+  - name: error_alert
+    inputs:
+      - {topic: "/error_signal", type: "std_msgs/msg/Bool"}
+    condition: "error_signal == true"
+
+    output_topic: "/alert"
+    output_type: "std_msgs/msg/String"
+    publish_value: "FAULT DETECTED"
+
+    start_delay_sec: 0
+    duration_sec: 5
+    rate_hz: 1
+
+  - name: safe_start
+    inputs:
+      - {topic: "/ready", type: "std_msgs/msg/Bool"}
+      - {topic: "/safety_ok", type: "std_msgs/msg/Bool"}
+    condition: "ready == true AND safety_ok == true"
+
+    output_topic: "/system_state"
+    output_type: "std_msgs/msg/String"
+    publish_value: "RUNNING"
+
+    start_delay_sec: 3
+    duration_sec: 20
+    rate_hz:  
+
+  - name: heartbeat_publisher
+    inputs:
+      - {topic: "/enable", type: "std_msgs/msg/Bool"}
+    condition: "enable == true"
+
+    output_topic: "/heartbeat"
+    output_type: "std_msgs/msg/String"
+    publish_value: "alive"
+
+    start_delay_sec: 0
+    duration_sec: -1   # continuous
+    rate_hz: 1
+
+
+  - name: auto_mode_start
+    inputs:
+      - {topic: "/start_signal", type: "std_msgs/msg/Bool"}
+      - {topic: "/mode_auto", type: "std_msgs/msg/Bool"}
+      - {topic: "/reset_signal", type: "std_msgs/msg/Bool"}
+    condition: "(start_signal == true AND mode_auto == true) OR reset_signal == true"
+
+    output_topic: "/motor_command"
+    output_type: "std_msgs/msg/Float64"
+    publish_value: 1.0
+
+    start_delay_sec: 2
+    duration_sec: 10
+    rate_hz: 5

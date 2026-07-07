@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="Gripper1" name="Gripper1">
+    <Sequence>
+      <MsgLoggerNode msg_log="Gripper1 subtree starting..."/>
+      <DoControl name="Gripper1" driver_id="3" do_id="1" control_name="Gripper1" type_of_control="switch" expected_action="{expected_action}" push_wait="2500"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="ui say aajan chahiye yaa par field say"/>
+      </Sequence>
+      <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Gripper5" name="gggggg534587649">
+    <Sequence>
+      <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+      <DoControl ID="okkk" name="Gripper5" driver_id="5" do_id="1" control_name="Gripper5" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="ui say aajan chahiye yaa par field say..............."/>
+      </Sequence>
+      <PopupMsg msg="Gripper5 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="jhcvcjhvgdsvhiu">
+    <Sequence>
+      <MsgLoggerNode msg_log="jhcvcjhvgdsvhiu subtree starting..."/>
+      <DoControl name="jhcvcjhvgdsvhiu" driver_id="6" do_id="3" control_name="jhcvcjhvgdsvhiu" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="bdfjgvdfuifgreufghodfghit"/>
+      </Sequence>
+      <PopupMsg msg="jhcvcjhvgdsvhiu action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity1">
+    <Sequence>
+      <MsgLoggerNode msg_log="Proximity1 subtree starting..."/>
+      <DIControl name="Proximity1" driver_id="2" di_id="1" status_name="Proximity1" expected_status="{expected_status}" wait_time="250"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="okay bhai"/>
+      </Sequence>
+      <PopupMsg msg="Proximity1 sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="kjgvhdfuogure">
+    <Sequence>
+      <MsgLoggerNode msg_log="kjgvhdfuogure subtree starting..."/>
+      <DIControl name="kjgvhdfuogure" driver_id="4" di_id="4" status_name="kjgvhdfuogure" expected_status="{expected_status}"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="bhdfkghfdidgbh"/>
+      </Sequence>
+      <PopupMsg msg="kjgvhdfuogure sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="cvnihj">
+    <Sequence>
+      <MsgLoggerNode msg_log="cvnihj subtree starting..."/>
+      <DIControl name="cvnihj" driver_id="2" di_id="1" status_name="cvnihj" expected_status="{expected_status}" wait_time="250"/>
+      <Sequence>
+        <MsgLoggerNode msg_log="bnfigbhi"/>
+      </Sequence>
+      <PopupMsg msg="cvnihj sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

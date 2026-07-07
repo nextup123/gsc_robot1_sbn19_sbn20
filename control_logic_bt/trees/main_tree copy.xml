@@ -1,0 +1,28 @@
+<root main_tree_to_execute="MainTree" BTCPP_format="4">
+  <include path="do_di_tree.xml" />
+  <!-- <include path="run_path_tree.xml"/> -->
+  <include path="template_tree.xml" />
+  <BehaviorTree ID="MainTree">
+
+    <Sequence name="MainSequence">
+      <Start name="main_control_start_t">
+        <Fallback name="MainFallback">
+
+          <Sequence name="ControlSequence" ID="1">
+            <SubTreePlus ID="main_tree" />
+          </Sequence>
+          
+          <Sequence name="ExitSequence">
+            <MsgLoggerNode name="ExitSequencelog" msg_log="Resetting the tree" />
+            <PublishDataOnTopic name="ExitSequencekill" type_of_topic="std_msgs/msg/String"
+              msg_on_topic="stop" topic_name="/control_process_bt" />
+            <PublishDataOnTopic name="ExitSequenceReset" type_of_topic="std_msgs/msg/Bool"
+              msg_on_topic="true" topic_name="/reset_bt" />/>
+            <Sleep name="ExitSequenceSleep" msec="" />
+            <ResetTreeTrigger name="ExitSequenceResetting" />
+          </Sequence>
+        </Fallback>
+      </Start>
+    </Sequence>
+  </BehaviorTree>
+</root>

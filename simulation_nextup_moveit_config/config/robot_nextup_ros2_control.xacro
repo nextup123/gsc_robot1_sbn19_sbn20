@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file">
+        <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
+
+        <ros2_control name="RobotSimulation" type="system">
+
+          <hardware>
+              <plugin>mock_components/GenericSystem</plugin>
+          </hardware>
+          
+          <joint name="joint1">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint1']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+
+          <joint name="joint2">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint2']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+
+
+          <joint name="joint3">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint3']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+
+
+          <joint name="joint4">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint4']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+
+
+          <joint name="joint5">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint5']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+
+
+          <joint name="joint6">
+              <state_interface name="position">
+                <param name="initial_value">${initial_positions['joint6']}</param>
+              </state_interface>
+              <state_interface name="velocity"/>
+              <state_interface name="effort"/>
+              <state_interface name="modeofoperation"/>
+              <state_interface name="statusword"/>
+              <state_interface name="lasterror"/>
+              <state_interface name="dinput"/>
+              
+              <command_interface name="position"/>
+              <command_interface name="velocity"/>
+              <command_interface name="modeofoperation"/>
+              <command_interface name="controlword"/>
+              <command_interface name="jogvelocity"/>
+              <command_interface name="dos"/>
+          </joint>
+        </ros2_control>
+    </xacro:macro>
+</robot>

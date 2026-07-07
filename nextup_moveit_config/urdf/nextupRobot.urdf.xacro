@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<robot name="robot_nextup" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link name="world" />
+    <joint name="ground" type="fixed">
+        <parent link="world" />
+        <child link="ground_link" />
+    </joint>
+    <link name="ground_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="1.5" length="0.1" />
+            </geometry>
+            <material name="">
+                <color rgba="1 0 0 0.0" />
+            </material>
+        </visual>
+        <!-- <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="1.5" length="0.1" />
+            </geometry>
+        </collision> -->
+    </link>
+
+    <joint name="base" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+    </joint>
+
+    <link
+        name="base_link">
+        <inertial>
+        <origin
+            xyz="4.996E-16 -0.00011451 0.25926"
+            rpy="0 0 0" />
+        <mass
+            value="11.396" />
+        <inertia
+            ixx="0.2145"
+            ixy="-1.8009E-15"
+            ixz="-2.5057E-16"
+            iyy="0.21469"
+            iyz="-0.00015389"
+            izz="0.13801" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/base_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/base_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <link
+        name="link1">
+        <inertial>
+        <origin
+            xyz="-0.19294 1.3878E-15 0.11272"
+            rpy="0 0 0" />
+        <mass
+            value="6.4295" />
+        <inertia
+            ixx="0.024502"
+            ixy="-9.7405E-16"
+            ixz="0.0025439"
+            iyy="0.064104"
+            iyz="-2.228E-17"
+            izz="0.063843" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link1.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link1.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint1"
+        type="revolute">
+        <origin
+        xyz="0 0 0.493"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="link1" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-5.0"
+        upper="5.0"
+        effort="0"
+        velocity="0" />
+    </joint>
+    <link
+        name="link2">
+        <inertial>
+        <origin
+            xyz="-2.0219E-05 0.39079 0.063187"
+            rpy="0 0 0" />
+        <mass
+            value="5.9094" />
+        <inertia
+            ixx="0.24879"
+            ixy="-2.7679E-06"
+            ixz="-2.7251E-06"
+            iyy="0.020768"
+            iyz="-0.0044564"
+            izz="0.2567" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link2.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link2.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint2"
+        type="revolute">
+        <origin
+        xyz="-0.089 0 0.125"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="link1" />
+        <child
+        link="link2" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" />
+    </joint>
+    <link
+        name="link3">
+        <inertial>
+        <origin
+            xyz="-2.8453E-06 0.30926 0.056092"
+            rpy="0 0 0" />
+        <mass
+            value="3.2455" />
+        <inertia
+            ixx="0.071331"
+            ixy="4.3529E-07"
+            ixz="8.6084E-08"
+            iyy="0.0096193"
+            iyz="-0.0013454"
+            izz="0.072526" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link3.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link3.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint3"
+        type="revolute">
+        <origin
+        xyz="0 0.6 -0.004"
+        rpy="3.1416 0 3.1416" />
+        <parent
+        link="link2" />
+        <child
+        link="link3" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" />
+    </joint>
+    <link
+        name="link4">
+        <inertial>
+        <origin
+            xyz="-0.028909 -1.6989E-07 0.079456"
+            rpy="0 0 0" />
+        <mass
+            value="1.3626" />
+        <inertia
+            ixx="0.002894"
+            ixy="2.0214E-09"
+            ixz="0.00012571"
+            iyy="0.004659"
+            iyz="-2.2301E-09"
+            izz="0.0045693" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link4.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link4.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint4"
+        type="revolute">
+        <origin
+        xyz="0 0.45 -0.005"
+        rpy="-3.1416 0 -1.5708" />
+        <parent
+        link="link3" />
+        <child
+        link="link4" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" />
+    </joint>
+    <link
+        name="link5">
+        <inertial>
+        <origin
+            xyz="8.0384E-08 -0.00277 0.13161"
+            rpy="0 0 0" />
+        <mass
+            value="0.68533" />
+        <inertia
+            ixx="0.0047863"
+            ixy="-7.5906E-11"
+            ixz="-1.0505E-09"
+            iyy="0.0047414"
+            iyz="-9.5913E-05"
+            izz="0.0014206" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link5.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link5.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint5"
+        type="revolute">
+        <origin
+        xyz="-0.137 0 0.088"
+        rpy="1.5708 0 -1.5708" />
+        <parent
+        link="link4" />
+        <child
+        link="link5" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="0"
+        velocity="0" />
+    </joint>
+    <link
+        name="link6">
+        <inertial>
+        <origin
+            xyz="-2.2204E-16 0 -0.045114"
+            rpy="0 0 0" />
+        <mass
+            value="0.2487" />
+        <inertia
+            ixx="0.00028976"
+            ixy="3.3881E-21"
+            ixz="-2.8773E-19"
+            iyy="0.00028976"
+            iyz="-3.3041E-19"
+            izz="0.00011142" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link6.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.79216 0.81961 0.93333 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://nextup_moveit_config/meshes/robot/link6.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint6"
+        type="revolute">
+        <origin
+        xyz="0 0.068 0.245"
+        rpy="1.5708 0 3.1416" />
+        <parent
+        link="link5" />
+        <child
+        link="link6" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="0"
+        velocity="0" />
+    </joint>
+
+
+  <joint name="end" type="fixed">
+    <origin xyz="0 0 0.02" rpy="3.14 0 -1.57" />
+    <parent
+      link="link6" />
+    <child
+      link="end" />
+  </joint>
+
+  <link name="end"/>
+
+    <!-- Test TF -->
+  <link name="test_tf"/>
+  <joint name="base_to_test_tf" type="fixed">
+    <parent link="base_link"/>
+    <child link="test_tf"/>
+
+    <origin
+      xyz="0.2907 -0.2040 1.1835"
+      rpy="0.0 0.0 -1.5708"/>
+  </joint>
+
+
+  
+</robot>

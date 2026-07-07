@@ -1,0 +1,244 @@
+<root BTCPP_format="4">
+  <include path="do_di_tree.xml" />
+  <BehaviorTree ID="main_tree">
+    <Sequence>
+      <DoControl name="Gripper1" driver_id="2" do_id="1"
+        control_name="Gripper1"
+        type_of_control="switch"
+        expected_action="{expected_action}"
+        push_wait="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="okkkkk">
+    <Sequence>
+      <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+
+    </Sequence>
+  </BehaviorTree>
+
+
+  <!-- New Subtrees for All Combinations -->
+  <!-- Driver 1 -->
+  <BehaviorTree ID="Proximity1_DI1">
+    <Sequence>
+      <DIControl name="Proximity1_DI1" driver_id="1" di_id="1"
+        status_name="Proximity1_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity1_DI2">
+    <Sequence>
+      <DIControl name="Proximity1_DI2" driver_id="1" di_id="2"
+        status_name="Proximity1_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity1_DI3">
+    <Sequence>
+      <DIControl name="Proximity1_DI3" driver_id="1" di_id="3"
+        status_name="Proximity1_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity1_DI4">
+    <Sequence>
+      <DIControl name="Proximity1_DI4" driver_id="1" di_id="4"
+        status_name="Proximity1_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Driver 2 (Excluding di_id=1, as it's already in Proximity1) -->
+  <BehaviorTree ID="Proximity2_DI1">
+    <Sequence>
+      <DIControl name="Proximity2_DI1" driver_id="2" di_id="2"
+        status_name="Proximity2_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity2_DI2">
+    <Sequence>
+      <DIControl name="Proximity2_DI2" driver_id="2" di_id="2"
+        status_name="Proximity2_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity2_DI3">
+    <Sequence>
+      <DIControl name="Proximity2_DI3" driver_id="2" di_id="3"
+        status_name="Proximity2_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity2_DI4">
+    <Sequence>
+      <DIControl name="Proximity2_DI4" driver_id="2" di_id="4"
+        status_name="Proximity2_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Driver 3 -->
+  <BehaviorTree ID="Proximity3_DI1">
+    <Sequence>
+      <DIControl name="Proximity3_DI1" driver_id="3" di_id="1"
+        status_name="Proximity3_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity3_DI2">
+    <Sequence>
+      <DIControl name="Proximity3_DI2" driver_id="3" di_id="2"
+        status_name="Proximity3_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity3_DI3">
+    <Sequence>
+      <DIControl name="Proximity3_DI3" driver_id="3" di_id="3"
+        status_name="Proximity3_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity3_DI4">
+    <Sequence>
+      <DIControl name="Proximity3_DI4" driver_id="3" di_id="4"
+        status_name="Proximity3_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Driver 4 -->
+  <BehaviorTree ID="Proximity4_DI1">
+    <Sequence>
+      <DIControl name="Proximity4_DI1" driver_id="4" di_id="1"
+        status_name="Proximity4_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity4_DI2">
+    <Sequence>
+      <DIControl name="Proximity4_DI2" driver_id="4" di_id="2"
+        status_name="Proximity4_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity4_DI3">
+    <Sequence>
+      <DIControl name="Proximity4_DI3" driver_id="4" di_id="3"
+        status_name="Proximity4_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity4_DI4">
+    <Sequence>
+      <DIControl name="Proximity4_DI4" driver_id="4" di_id="4"
+        status_name="Proximity4_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Driver 5 -->
+  <BehaviorTree ID="Proximity5_DI1">
+    <Sequence>
+      <DIControl name="Proximity5_DI1" driver_id="5" di_id="1"
+        status_name="Proximity5_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity5_DI2">
+    <Sequence>
+      <DIControl name="Proximity5_DI2" driver_id="5" di_id="2"
+        status_name="Proximity5_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity5_DI3">
+    <Sequence>
+      <DIControl name="Proximity5_DI3" driver_id="5" di_id="3"
+        status_name="Proximity5_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity5_DI4">
+    <Sequence>
+      <DIControl name="Proximity5_DI4" driver_id="5" di_id="4"
+        status_name="Proximity5_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Driver 6 -->
+  <BehaviorTree ID="Proximity6_DI1">
+    <Sequence>
+      <DIControl name="Proximity6_DI1" driver_id="6" di_id="1"
+        status_name="Proximity6_DI1"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity6_DI2">
+    <Sequence>
+      <DIControl name="Proximity6_DI2" driver_id="6" di_id="2"
+        status_name="Proximity6_DI2"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity6_DI3">
+    <Sequence>
+      <DIControl name="Proximity6_DI3" driver_id="6" di_id="3"
+        status_name="Proximity6_DI3"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Proximity6_DI4">
+    <Sequence>
+      <DIControl name="Proximity6_DI4" driver_id="6" di_id="4"
+        status_name="Proximity6_DI4"
+        expected_status="{expected_status}"
+        wait_time="10000" />
+    </Sequence>
+  </BehaviorTree>
+
+</root>

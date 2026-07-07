@@ -1,0 +1,59 @@
+<root main_tree_to_execute="MainTree" BTCPP_format="4">
+  <include path="do_di_tree.xml" />
+  <BehaviorTree ID="MainTree">
+
+    <Sequence name="MainSequence">
+      <Start name="start_t">
+        <Fallback name="MainFallback">
+
+          <Sequence name="ControlSequence">
+            <SubTreePlus ID="Gripper1"
+              expected_action="true"
+              name="Gripper1" />
+              <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+              <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+              <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+              <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+              <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+              <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+
+
+
+            <Sleep msec="5000" />
+            <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+            <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+            <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+            <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+            <PopupMsg msg="Gripper1 action successful" type="success" timeout="3"/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+            <MsgLoggerNode msg_log="Gripper5 subtree starting..."/>
+
+
+            <SubTreePlus ID="Gripper5"
+              expected_action="false"
+              name="Gripper1" />
+
+          </Sequence>
+
+          <Sequence name="ExitSequence">
+            <MsgLoggerNode name="ExitSequencelog" msg_log="Resetting the tree" />
+            <PublishDataOnTopic name="ExitSequencekill" type_of_topic="std_msgs/msg/String"
+              msg_on_topic="stop" topic_name="/control_process_motion_bt" />
+            <PublishDataOnTopic name="ExitSequenceReset" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="/motion_reset_bt" />
+            <Sleep name="ExitSequenceSleep" msec="100" />
+            <ResetTreeTrigger name="ExitSequenceResetting" />
+          </Sequence>
+        </Fallback>
+      </Start>
+    </Sequence>
+  </BehaviorTree>
+</root>

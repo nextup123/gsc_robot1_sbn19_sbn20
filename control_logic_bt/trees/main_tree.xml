@@ -1,0 +1,30 @@
+<root main_tree_to_execute="MainTree" BTCPP_format="4">
+
+  <BehaviorTree ID="MainTree">
+
+
+      <Sequence name="DI_AND_Group">
+        <DIControl name="J4_DI1" driver_id="4" di_id="1"
+                   status_name="J4_DI1" expected_status="true" wait_time="10000"/>
+
+        <DIControl name="J4_DI2" driver_id="4" di_id="2"
+                   status_name="J4_DI2" expected_status="false" wait_time="5000"/>
+
+        <DIControl name="J5_DI1" driver_id="5" di_id="1"
+                 status_name="J5_DI1" expected_status="false" wait_time="10000"/>
+
+        <DIControl name="J1_DI1" driver_id="1" di_id="1"
+                   status_name="J4_DI1" expected_status="true" wait_time="10000"/>
+
+        <DIControl name="J3_DI2" driver_id="3" di_id="2"
+                   status_name="J4_DI2" expected_status="false" wait_time="5000"/>
+
+        <DIControl name="J5_DI1" driver_id="5" di_id="1"
+                 status_name="J5_DI1" expected_status="false" wait_time="10000"/>
+
+      </Sequence>
+      
+
+  </BehaviorTree>
+
+</root>

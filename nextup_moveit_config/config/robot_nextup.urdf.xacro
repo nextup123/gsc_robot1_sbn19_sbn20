@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_nextup">
+
+
+
+
+    <!-- SELECT ROBOT HERE -->
+    <xacro:property name="robot_type" value="robot1"/>
+
+
+
+
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:if value="${robot_type == 'robot'}">
+        <xacro:include filename="$(find nextup_moveit_config)/urdf/nextupRobot.urdf.xacro" />
+    </xacro:if>
+
+    <xacro:if value="${robot_type == 'robot1'}">
+        <xacro:include filename="$(find nextup_moveit_config)/urdf/nextupRobot1.urdf.xacro" />
+    </xacro:if>
+
+    <xacro:if value="${robot_type == 'cobot'}">
+        <xacro:include filename="$(find nextup_moveit_config)/urdf/nextupCobot.urdf.xacro" />
+    </xacro:if>
+    <xacro:include filename="robot_nextup.ros2_control.xacro" />
+    
+    <xacro:robot_nextup_ros2_control
+        initial_positions_file="$(arg initial_positions_file)" />
+</robot>

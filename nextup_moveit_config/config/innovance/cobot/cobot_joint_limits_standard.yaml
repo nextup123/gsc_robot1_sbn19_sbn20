@@ -1,0 +1,80 @@
+# to set the joint_limits you have to follow the steps.
+# step1 : the maximum velocity of the joint motor := 5500
+# step2 : the gear ratio of the joint : for example joint1 (160)
+# the formula is = (maximum velocity of the joint motor / gear ratio) -----> ( 5500 / 160) rpm
+# step3 : convert rpm into radian /second. (using this formula ω = rpm × (60/2π)​)
+
+# A very important note... acceleration can be only either 2 times or 3 times of the result of the value we got in the step3 (rad/sec).
+# dont exceed the 3 times value... 
+# same for the max_jerk limit ohkay.
+
+
+# Gear Ratios data given by mechanical team
+# joint1 -> 160
+# joint2 -> 160
+# joint3 -> 160
+# joint4 -> 120
+# joint5 -> 100
+# joint6 -> 50
+
+
+
+default_velocity_scaling_factor: 1.0
+default_acceleration_scaling_factor: 1.0
+
+
+joint_limits:
+  joint1:
+    has_velocity_limits: true
+    max_velocity: 3.60  
+    has_acceleration_limits: true
+    max_acceleration: 9.8
+    has_deceleration_limits: true
+    max_deceleration: -9.8
+    has_jerk_limits: true
+    max_jerk: 9.8
+  joint2:
+    has_velocity_limits: true
+    max_velocity: 3.60  
+    has_acceleration_limits: true
+    max_acceleration: 9.8
+    has_deceleration_limits: true
+    max_deceleration: -9.8
+    has_jerk_limits: true
+    max_jerk: 9.8
+  joint3:
+    has_velocity_limits: true
+    max_velocity: 3.60  
+    has_acceleration_limits: true
+    max_acceleration: 9.8
+    has_deceleration_limits: true
+    max_deceleration: -9.8
+    has_jerk_limits: true
+    max_jerk: 9.8
+  joint4:
+    has_velocity_limits: true
+    max_velocity: 4.8
+    has_acceleration_limits: true
+    max_acceleration: 14.4
+    has_deceleration_limits: true
+    max_deceleration: -14.4
+    has_jerk_limits: true
+    max_jerk: 14.4
+  joint5:
+    has_velocity_limits: true
+    max_velocity: 5.76
+    has_acceleration_limits: true
+    max_acceleration: 17.28
+    has_deceleration_limits: true
+    max_deceleration: -17.28
+    has_jerk_limits: true
+    max_jerk: 17.28
+  joint6:
+    has_velocity_limits: true
+    max_velocity: 11.52
+    has_acceleration_limits: true
+    max_acceleration: 34.56
+    has_deceleration_limits: true
+    max_deceleration: -34.56
+    has_jerk_limits: true
+    max_jerk: 34.56

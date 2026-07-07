@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_nextup">
+
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Robot geometry (links link1..link6, base_link, end) -->
+    <xacro:include filename="$(find simulation_nextup_moveit_config)/config/nextupCobot.urdf.xacro" />
+
+    <!-- ros2_control hardware interface block -->
+    <xacro:include filename="$(find simulation_nextup_moveit_config)/config/robot_nextup_ros2_control.xacro" />
+    <xacro:robot_nextup_ros2_control
+        initial_positions_file="$(find simulation_nextup_moveit_config)/config/$(arg initial_positions_file)" />
+</robot>

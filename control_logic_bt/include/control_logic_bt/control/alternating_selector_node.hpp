@@ -103,15 +103,21 @@ public:
     {
       cycle_count_ = 0;
       reset_requested_ = false;
+      running_child_valid_ = false;
       haltChildren();
     }
 
+    // Resolve the mode. NOTE: an empty XML port (mode="") still counts as
+    // "provided" in BT.CPP, so getInput() would succeed with "" and shadow
+    // the live parameter set via /select_cnc. We therefore only honor the
+    // port when it is non-empty; otherwise we read the 'operation_mode'
+    // parameter (updated by the /select_cnc subscription).
     std::string mode_str;
-    if (!getInput("mode", mode_str))
+    if (!getInput("mode", mode_str) || mode_str.empty())
     {
       mode_str = node_->get_parameter("operation_mode").as_string();
-      config().blackboard->set("mode", mode_str);
     }
+    config().blackboard->set("mode", mode_str);
 
     if (mode_str == "cnc1")
     {
@@ -125,10 +131,20 @@ public:
     {
       operation_mode_ = OperationMode::BOTH;
     }
+    else
+    {
+      RCLCPP_WARN_THROTTLE(node_->get_logger(), *node_->get_clock(), 5000,
+                           "[AlternatingSelector] Unknown mode '%s'; keeping current",
+                           mode_str.c_str());
+    }
 
 
     setStatus(BT::NodeStatus::RUNNING);
 
+    // Decide which child to run. IMPORTANT: only pick a NEW child when we
+    // are not already in the middle of running one. Otherwise cycle_count_
+    // would advance every tick (100 Hz) and we'd thrash between children,
+    // halting each mid-motion and never completing either branch.
     size_t selected_child = 0;
     switch (operation_mode_)
     {
@@ -139,17 +155,40 @@ public:
       selected_child = 1;
       break;
     case OperationMode::BOTH:
-      selected_child = cycle_count_++ % 2;
+      // If a child is already running, stay on it. Only advance the
+      // alternation counter once the previous child has completed.
+      selected_child = running_child_valid_
+                           ? running_child_
+                           : (cycle_count_ % 2);
       break;
     }
 
+    // If the selection changed since last tick (e.g. mode switch), halt
+    // the previously-running branch so it isn't left dangling.
+    if (running_child_valid_ && running_child_ != selected_child)
+    {
+      haltChild(running_child_);
+      running_child_valid_ = false;
+    }
     haltChild(1 - selected_child);
+
     BT::TreeNode *child = children_nodes_[selected_child];
     BT::NodeStatus status = child->executeTick();
 
-    if (status != BT::NodeStatus::RUNNING)
+    if (status == BT::NodeStatus::RUNNING)
     {
+      // Latch this child until it finishes.
+      running_child_ = selected_child;
+      running_child_valid_ = true;
+    }
+    else
+    {
+      // Child finished (SUCCESS/FAILURE). Clean up and, in BOTH mode,
+      // advance to the other child for the next activation.
       haltChild(selected_child);
+      running_child_valid_ = false;
+      if (operation_mode_ == OperationMode::BOTH)
+        ++cycle_count_;
     }
 
     return status;
@@ -157,6 +196,7 @@ public:
 
   void halt() override
   {
+    running_child_valid_ = false;
     for (unsigned i = 0; i < childrenCount(); ++i)
     {
       haltChild(i);
@@ -176,6 +216,10 @@ private:
 
   size_t cycle_count_;
   OperationMode operation_mode_;
+
+  // Latch: which child is currently RUNNING (so we don't re-pick every tick).
+  size_t running_child_{0};
+  bool   running_child_valid_{false};
 
   // Static shared ROS 2 members
   static std::atomic_bool reset_requested_;

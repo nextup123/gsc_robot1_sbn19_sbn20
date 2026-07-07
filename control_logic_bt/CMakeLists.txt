@@ -54,8 +54,7 @@ add_executable(control_logic_bt_runner
   #condition nodes
   src/condition/is_at_pose_node.cpp
   src/condition/check_bool_topic.cpp
-
-
+  src/condition/check_topic.cpp
 
 
   src/motion/plan_and_execute_node.cpp

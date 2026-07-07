@@ -12,7 +12,7 @@ public:
         : BT::SyncActionNode(name, config), count_(0)
     {
         node_ = rclcpp::Node::make_shared("cycle_counter_node");
-        pub_ = node_->create_publisher<std_msgs::msg::Int32>("/operation_counter", 10);
+        pub_ = node_->create_publisher<std_msgs::msg::Int32>("/cycle_count", 10);
 
         // Spin the node in a separate thread
         std::thread([this]() { rclcpp::spin(node_); }).detach();

@@ -9,7 +9,7 @@ def generate_launch_description():
             package_name="nextup_moveit_config"
         )
         .planning_pipelines(
-            pipelines=["ompl", "pilz_industrial_motion_planner", "pilz_blend"]
+            pipelines=["ompl", "pilz_industrial_motion_planner"]
         )
         .to_moveit_configs()
     )

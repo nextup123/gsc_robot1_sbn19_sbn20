@@ -5,7 +5,7 @@
 
 
     <!-- SELECT ROBOT HERE -->
-    <xacro:property name="robot_type" value="robot1"/>
+    <xacro:property name="robot_type" value="cobot"/>
 
 
 

@@ -21,6 +21,7 @@
 
 #include "control_logic_bt/condition/is_at_pose_node.hpp"
 #include "control_logic_bt/condition/check_bool_topic.hpp"
+#include "control_logic_bt/condition/check_topic.hpp"
 
 #include "control_logic_bt/motion/cartesian_mover_bt.hpp"
 #include "control_logic_bt/motion/plan_and_execute_node.hpp"
@@ -31,6 +32,8 @@
 #include "control_logic_bt/motion/run_path_node.hpp"
 
 
+
+#include "control_logic_bt/motion/plan_and_execute_arc_hybrid.hpp"
 
 
 
@@ -58,8 +61,6 @@
 #include "control_logic_bt/blackboard/wait_for_blackboard_change_node.hpp"
 #include "control_logic_bt/blackboard/subscribe_to_blackboard_node.hpp"
 #include "control_logic_bt/blackboard/publish_blackboard_node.hpp"
-
-#include "control_logic_bt/motion/plan_and_execute_arc_hybrid.hpp"
 
 #include "control_logic_bt/blackboard/add_pilz_point_node.hpp"
 #include "control_logic_bt/blackboard/arithmetic_node.hpp"
@@ -113,6 +114,7 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
             return std::make_unique<bt_control::DIControl>(name, config, node);
         });
 
+    factory.registerNodeType<PlanAndExecuteArcHybrid>("PlanAndExecuteArcHybrid");
     factory.registerNodeType<SleepNode>("Sleep");
     factory.registerNodeType<ShutdownNode>("ShutdownNode");
     factory.registerNodeType<PauseControlNode>("PauseControl");
@@ -122,12 +124,12 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
 
     factory.registerNodeType<IsAtPose>("IsAtPose");
     factory.registerNodeType<CheckBoolTopic>("CheckBoolTopic");
+    factory.registerNodeType<CheckTopic>("CheckTopic");
 
     factory.registerNodeType<AlternatingSelector>("AlternatingSelector");
     factory.registerNodeType<CycleCounterNode>("CycleCounter");
     factory.registerNodeType<RunOnce>("RunOnce");
     factory.registerNodeType<DelayTicks>("DelayTicks");
-    factory.registerNodeType<PlanAndExecuteArcHybrid>("PlanAndExecuteArcHybrid");
 
     factory.registerBuilder<bt_logger::MsgLoggerNode>(
         "MsgLogger",
@@ -142,8 +144,7 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
         {
             return std::make_unique<bt_popup::PopupMsgNode>(name, config);
         });
-
-    
+   
     factory.registerNodeType<PlanAndExecutePoseHybrid>("PlanAndExecute");
     factory.registerNodeType<PilzMotionPlanner>("PilzFramePlanner");
     factory.registerNodeType<PilzPointsPlanner>("PilzPointsPlanner");

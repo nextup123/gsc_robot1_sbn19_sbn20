@@ -146,11 +146,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    over_velocity_manager_node = Node(
-        package='utility_pkg',
-        executable='over_velocity_manager',
-        output='screen'
-    )
 
     return LaunchDescription([
         TimerAction(period=1.0, actions=[demo_node]),
@@ -165,6 +160,5 @@ def generate_launch_description():
         TimerAction(period=22.0, actions=[controller_state_monitor]),
         TimerAction(period=23.0, actions=[reset_mode_manager]),
         TimerAction(period=25.0, actions=[emergency_manager]),
-        TimerAction(period=27.0,actions=[execute_trajectory_node]),
-        TimerAction(period=27.0,actions=[over_velocity_manager_node])
+        TimerAction(period=27.0,actions=[execute_trajectory_node])
     ])

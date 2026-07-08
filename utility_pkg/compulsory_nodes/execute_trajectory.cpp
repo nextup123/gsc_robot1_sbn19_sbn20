@@ -77,6 +77,14 @@ public:
                 joint_state_data_ = *msg;
             });
 
+        control_logic_bt_sub_ = this->create_subscription<Bool>(
+            "/control_start_bt", 10,
+            [this](const Bool::SharedPtr msg)
+            {
+                (void)msg; // fires on any message, value doesn't matter
+                clearRunningStatus();
+            });
+
         status_pub_ = this->create_publisher<String>("/running_path_status", 10);
         path_names_pub_ = this->create_publisher<String>("/read_paths_from_yaml_file", 10);
         bt_popup_pub_ = this->create_publisher<String>("/bt_toast_popup", 10);
@@ -125,6 +133,7 @@ private:
     rclcpp::TimerBase::SharedPtr status_timer_;
     rclcpp::TimerBase::SharedPtr path_names_timer_;
     rclcpp::TimerBase::SharedPtr file_watcher_timer_;
+    rclcpp::Subscription<Bool>::SharedPtr control_logic_bt_sub_;
 
     // Data
     std::unordered_map<std::string, PathData> path_map_;
@@ -168,6 +177,14 @@ private:
             loadTrajectory();
             last_mod_time_ = mod;
         }
+    }
+
+    // == clear running status on start bt ==   //
+    void clearRunningStatus()
+    {
+        std::lock_guard<std::mutex> lock(status_mutex_);
+        current_status_ = "cleared";
+        RCLCPP_INFO(this->get_logger(), "Start received on /control_logic_bt → status set to 'cleared'");
     }
 
     // === LOAD YAML ===
@@ -405,7 +422,6 @@ private:
         popup.data = msg + "," + type + "," + std::to_string(timeout);
         bt_popup_pub_->publish(popup);
     }
-
 
     void logsPopup(const std::string &msg, const std::string &type, int timeout)
     {

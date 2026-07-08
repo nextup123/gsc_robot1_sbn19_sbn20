@@ -14,7 +14,7 @@
 #include "control_logic_bt/control/pause_control_node.hpp"
 #include "control_logic_bt/control/alternating_selector_node.hpp"
 
-// #include "control_logic_bt/decorator/general_one_shot.hpp"
+#include "control_logic_bt/decorator/general_one_shot.hpp"
 #include "control_logic_bt/decorator/delay_ticks.hpp"
 #include "control_logic_bt/decorator/wait_until_true.hpp"
 #include "control_logic_bt/decorator/run_once_node.hpp"
@@ -121,6 +121,14 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
     factory.registerNodeType<PublishDataOnTopic>("PublishDataOnTopic");
     factory.registerNodeType<ResetTreeTrigger>("ResetTreeTrigger");
     factory.registerNodeType<WaitUntilTrue>("WaitUntilTrue");
+    
+    factory.registerBuilder<GeneralOneShot>(
+    "GeneralOneShot",
+    [node](const std::string &name, const BT::NodeConfiguration &config)
+    {
+        return std::make_unique<GeneralOneShot>(name, config, node);
+    });
+
 
     factory.registerNodeType<IsAtPose>("IsAtPose");
     factory.registerNodeType<CheckBoolTopic>("CheckBoolTopic");

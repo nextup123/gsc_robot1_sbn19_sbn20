@@ -1,3 +1,8 @@
+// 1. Include Eigen first to prevent macro/evaluator conflicts
+#include <Eigen/Geometry>
+#include <Eigen/Core>
+
+// 2. Include ROS 2 and MoveIt headers afterwards
 #include <rclcpp/rclcpp.hpp>
 #include <yaml-cpp/yaml.h>
 #include <std_msgs/msg/string.hpp>
@@ -8,11 +13,12 @@
 
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/robot_state/robot_state.h>
+#include <moveit/robot_trajectory/robot_trajectory.h>
+#include <moveit/trajectory_processing/iterative_time_parameterization.h>
 #include <moveit_msgs/msg/robot_trajectory.hpp>
 #include <trajectory_msgs/msg/joint_trajectory.hpp>
 
 #include <geometry_msgs/msg/pose.hpp>
-#include <Eigen/Geometry>
 
 #include <vector>
 #include <memory>
@@ -21,9 +27,6 @@
 #include <chrono>
 #include <cmath>
 #include <atomic>
-#include <sstream>
-#include <iomanip>
-#include <fstream>
 
 using String            = std_msgs::msg::String;
 using Float64MultiArray = std_msgs::msg::Float64MultiArray;
@@ -33,29 +36,24 @@ using SetBool           = std_srvs::srv::SetBool;
 
 static constexpr char MOVE_GROUP[] = "robot_manipulator";
 
-class PrintLastPositionNode : public rclcpp::Node
+class move_it_go_to_pose : public rclcpp::Node
 {
 public:
-    PrintLastPositionNode()
+    move_it_go_to_pose()
         : Node("moveit_go_to_pose")
     {
-        // Single speed factor per pipeline. Used identically for velocity AND
-        // acceleration scaling, and identically across every planner attempt
-        // within that pipeline (spline attempt + its non-spline fallback for
-        // Pilz), so the executed speed never silently changes depending on
-        // which internal attempt happens to succeed.
+        // Single speed factor per pipeline.
         pilz_speed_factor_ = this->declare_parameter<double>("pilz_speed_factor", 0.05);
         ompl_speed_factor_ = this->declare_parameter<double>("ompl_speed_factor", 0.05);
+
+        // Increased planning time to 15.0 seconds for robust trajectory generation across all sections
+        planning_time_         = this->declare_parameter<double>("planning_time", 15.0);
+        num_planning_attempts_ = this->declare_parameter<int>("num_planning_attempts", 10);
 
         // Mutually exclusive callback group to ensure parallel execution across threads
         callback_group_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
 
-        // Separate callback group for the pipeline-switch service so it never
-        // queues behind high-frequency /joint_states callbacks or a blocking
-        // initializeMoveGroup() timer tick that share callback_group_. With a
-        // MultiThreadedExecutor, callbacks in different callback groups can be
-        // dispatched to different threads and run concurrently, so this call
-        // is serviced immediately regardless of what else is happening.
+        // Separate callback group for the pipeline-switch service
         service_callback_group_ = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
         
         auto sub_options = rclcpp::SubscriptionOptions();
@@ -63,12 +61,12 @@ public:
 
         command_sub_ = this->create_subscription<String>(
             "/ui_commands", 10,
-            std::bind(&PrintLastPositionNode::commandCallback, this, std::placeholders::_1),
+            std::bind(&move_it_go_to_pose::commandCallback, this, std::placeholders::_1),
             sub_options);
 
         pipeline_srv_ = this->create_service<SetBool>(
             "/change_planning_pipeline",
-            std::bind(&PrintLastPositionNode::pipelineServiceCallback, this, std::placeholders::_1, std::placeholders::_2),
+            std::bind(&move_it_go_to_pose::pipelineServiceCallback, this, std::placeholders::_1, std::placeholders::_2),
             rmw_qos_profile_services_default,
             service_callback_group_);
 
@@ -83,12 +81,12 @@ public:
 
         cartesian_sub_ = this->create_subscription<BoolMsg>(
             "/cartesian_motion", 10,
-            std::bind(&PrintLastPositionNode::cartesianCallback, this, std::placeholders::_1),
+            std::bind(&move_it_go_to_pose::cartesianCallback, this, std::placeholders::_1),
             sub_options);
 
         joint_motion_sub_ = this->create_subscription<BoolMsg>(
             "/joint_motion", 10,
-            std::bind(&PrintLastPositionNode::jointCallback, this, std::placeholders::_1),
+            std::bind(&move_it_go_to_pose::jointCallback, this, std::placeholders::_1),
             sub_options);
 
         lastpos_pub_ = this->create_publisher<Float64MultiArray>("/last_position", 10);
@@ -99,12 +97,12 @@ public:
 
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(100),
-            std::bind(&PrintLastPositionNode::initializeMoveGroup, this),
+            std::bind(&move_it_go_to_pose::initializeMoveGroup, this),
             callback_group_);
 
         RCLCPP_INFO(this->get_logger(),
-            "moveit_go_to_pose (Strict Async Multi-Threaded) initialized | pilz_speed_factor=%.3f ompl_speed_factor=%.3f",
-            pilz_speed_factor_, ompl_speed_factor_);
+            "moveit_go_to_pose initialized | pilz_speed=%.3f ompl_speed=%.3f | plan_time=%.1fs attempts=%d",
+            pilz_speed_factor_, ompl_speed_factor_, planning_time_, num_planning_attempts_);
     }
 
 private:
@@ -139,15 +137,11 @@ private:
     const uint64_t required_js_updates_ = 10;
     const int      js_wait_timeout_ms_  = 2000;
 
-    // The only two speed knobs left. Same value drives velocity AND
-    // acceleration scaling, and is applied identically to every attempt
-    // (spline + fallback) within its pipeline.
     double pilz_speed_factor_ = 0.05;
     double ompl_speed_factor_ = 0.05;
+    double planning_time_     = 15.0;
+    int    num_planning_attempts_ = 10;
 
-    // Minimum fraction of the Cartesian path that must be achievable via IK
-    // before we accept the trajectory. Below this, the path is considered
-    // to have broken down (e.g. near a singularity or joint limit).
     static constexpr double CARTESIAN_MIN_FRACTION = 0.95;
     static constexpr double CARTESIAN_EEF_STEP     = 0.01; // 1 cm interpolation resolution
 
@@ -167,9 +161,6 @@ private:
         }
     }
 
-    // Builds a geometry_msgs Pose corresponding to the given joint target,
-    // via forward kinematics. Used both by the OMPL joint-target-as-pose
-    // path and the Cartesian path computation.
     geometry_msgs::msg::Pose forwardKinematicsPose(const std::vector<double> &target)
     {
         const moveit::core::RobotModelConstPtr robot_model = move_group_->getRobotModel();
@@ -189,15 +180,10 @@ private:
         return target_pose;
     }
 
-    // Converts a geometry_msgs quaternion to standard roll/pitch/yaw
-    // (roll about X, pitch about Y, yaw about Z), in radians.
     void quaternionToRPY(const geometry_msgs::msg::Quaternion &q,
                           double &roll, double &pitch, double &yaw)
     {
         Eigen::Quaterniond eq(q.w, q.x, q.y, q.z);
-        // eulerAngles(2,1,0) applies rotations intrinsically Z then Y then X,
-        // which corresponds to the standard extrinsic roll-pitch-yaw
-        // convention; result order is (yaw, pitch, roll).
         Eigen::Vector3d ypr = eq.toRotationMatrix().eulerAngles(2, 1, 0);
         yaw   = ypr[0];
         pitch = ypr[1];
@@ -256,64 +242,32 @@ private:
         toast_pub_->publish(m);
     }
 
-    // Writes the joint-space waypoints of a planned trajectory to
-    // waypoint.yaml, placed in the same directory as file_path_ (the
-    // existing points.yaml). Overwrites the file each time a new plan
-    // succeeds, so it always reflects the most recently planned
-    // point-to-point motion. Does not touch file_path_/points.yaml at all.
-    // Also computes the end-effector RPY (via forward kinematics) for each
-    // waypoint and stores it alongside the joint positions.
-    void saveWaypointsToYaml(const trajectory_msgs::msg::JointTrajectory &jt,
-                              const std::string &point_name,
-                              const std::string &mode_label)
+    // Mathematically applies IPTP time parameterization so Cartesian paths strictly run at ompl_speed_factor_
+    bool retimeCartesianTrajectory(moveit_msgs::msg::RobotTrajectory &traj_msg, double speed_factor)
     {
-        try {
-            std::string dir = file_path_;
-            size_t slash = dir.find_last_of('/');
-            dir = (slash == std::string::npos) ? "." : dir.substr(0, slash);
-            std::string out_path = dir + "/waypoint.yaml";
+        moveit::core::RobotStatePtr current_state = move_group_->getCurrentState(1.0);
+        if (!current_state) return false;
 
-            YAML::Node root;
-            root["target_point"] = point_name;
-            root["mode"] = mode_label;
+        robot_trajectory::RobotTrajectory rt(move_group_->getRobotModel(), MOVE_GROUP);
+        rt.setRobotTrajectoryMsg(*current_state, traj_msg);
 
-            YAML::Node joint_names(YAML::NodeType::Sequence);
-            for (const auto &jn : jt.joint_names) joint_names.push_back(jn);
-            root["joint_names"] = joint_names;
-
-            YAML::Node waypoints(YAML::NodeType::Sequence);
-            for (const auto &pt : jt.points) {
-                YAML::Node wp;
-
-                YAML::Node positions(YAML::NodeType::Sequence);
-                for (double p : pt.positions) positions.push_back(p);
-                wp["positions"] = positions;
-
-                // Forward-kinematics-derived pose/orientation for this waypoint.
-                geometry_msgs::msg::Pose wp_pose = forwardKinematicsPose(pt.positions);
-                double roll = 0.0, pitch = 0.0, yaw = 0.0;
-                quaternionToRPY(wp_pose.orientation, roll, pitch, yaw);
-
-                YAML::Node rpy(YAML::NodeType::Sequence);
-                rpy.push_back(roll);
-                rpy.push_back(pitch);
-                rpy.push_back(yaw);
-                wp["rpy"] = rpy; // [roll, pitch, yaw] in radians
-
-                waypoints.push_back(wp);
-            }
-            root["waypoints"] = waypoints;
-
-            std::ofstream fout(out_path, std::ios::trunc);
-            if (!fout.is_open()) {
-                RCLCPP_ERROR(this->get_logger(), "Could not open %s for writing", out_path.c_str());
-                return;
-            }
-            fout << root;
-            fout.close();
-        } catch (const std::exception &e) {
-            RCLCPP_ERROR(this->get_logger(), "Failed to write waypoint.yaml: %s", e.what());
+        // Uses MoveIt's mathematical solver to recalculate timestamps, velocities, and accelerations
+        trajectory_processing::IterativeParabolicTimeParameterization time_param;
+        if (!time_param.computeTimeStamps(rt, speed_factor, speed_factor)) {
+            return false;
         }
+
+        rt.getRobotTrajectoryMsg(traj_msg);
+        return true;
+    }
+
+    // Explicitly sets the 15-second planning time and attempt limits for any solver section
+    void applyRobustPlanningLimits(double speed_factor)
+    {
+        move_group_->setPlanningTime(planning_time_);
+        move_group_->setNumPlanningAttempts(num_planning_attempts_);
+        move_group_->setMaxVelocityScalingFactor(speed_factor);
+        move_group_->setMaxAccelerationScalingFactor(speed_factor);
     }
 
     void pipelineServiceCallback(const std::shared_ptr<SetBool::Request> request,
@@ -322,17 +276,13 @@ private:
         if (request->data) {
             use_ompl_pipeline_.store(true); 
             RCLCPP_INFO(this->get_logger(), "Service: Switched pipeline to OMPL");
-            
             publish_toast("Set to OMPL,success,3");
-            
             response->success = true;
             response->message = "Flipped to OMPL Planning Engine Module.";
         } else {
             use_ompl_pipeline_.store(false); 
             RCLCPP_INFO(this->get_logger(), "Service: Switched pipeline to PILZ");
-            
             publish_toast("Set to PILZ,success,3");
-            
             response->success = true;
             response->message = "Flipped to PILZ Industrial Planning Engine Module.";
         }
@@ -361,7 +311,7 @@ private:
         }
         busy_.store(true);
         std::string point = msg->data.substr(prefix.size());
-        std::thread(&PrintLastPositionNode::handleGetLastPose, this, point).detach(); 
+        std::thread(&move_it_go_to_pose::handleGetLastPose, this, point).detach(); 
     }
 
     void handleGetLastPose(std::string point_name)
@@ -372,7 +322,7 @@ private:
 
             bool joint_flag = joint_mode_.load();
             bool cart_flag  = cartesian_mode_.load();
-            bool use_joint = false;
+            bool use_joint  = false;
 
             if (!joint_flag && !cart_flag) {
                 publish_toast("Select Joint or Cartesian mode,warn,3");
@@ -404,44 +354,39 @@ private:
             move_group_->setStartStateToCurrentState();
             moveit::planning_interface::MoveGroupInterface::Plan plan;
             bool plan_success = false;
-            std::string used_mode_toast; // set right before publishing "Motion Started"
+            std::string used_mode_toast; 
 
             bool active_pipeline_is_ompl = use_ompl_pipeline_.load();
 
             if (active_pipeline_is_ompl) {
                 if (use_joint) {
-                    // Joint-space target: RRTConnect is fine here, no
-                    // straight-line requirement for PTP-style joint motion.
+                    // --- OMPL Joint PTP Motion (15s planning time applied) ---
                     move_group_->setPlanningPipelineId("ompl"); 
                     move_group_->setPlannerId("RRTConnectkConfigDefault"); 
-                    move_group_->setMaxVelocityScalingFactor(ompl_speed_factor_);
-                    move_group_->setMaxAccelerationScalingFactor(ompl_speed_factor_);
+                    applyRobustPlanningLimits(ompl_speed_factor_);
                     move_group_->setJointValueTarget(target);
                     plan_success = (move_group_->plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
+                    if (plan_success) used_mode_toast = "OMPL PTP";
                 } else {
-                    // Cartesian target under OMPL: RRTConnect is a sampling-based
-                    // planner with no notion of a straight-line end-effector path,
-                    // so plan()/setPoseTarget() here produced curved motion.
-                    // Use computeCartesianPath() instead, which interpolates the
-                    // EE pose linearly and solves IK per waypoint. The scaling
-                    // factors set below are what MoveGroupInterface applies when
-                    // it internally re-times this trajectory before execute().
-                    move_group_->setMaxVelocityScalingFactor(ompl_speed_factor_);
-                    move_group_->setMaxAccelerationScalingFactor(ompl_speed_factor_);
-
+                    // --- OMPL Strictly Linear Cartesian Motion ---
                     geometry_msgs::msg::Pose target_pose = forwardKinematicsPose(target);
-
-                    std::vector<geometry_msgs::msg::Pose> waypoints;
-                    waypoints.push_back(target_pose);
+                    std::vector<geometry_msgs::msg::Pose> waypoints = { target_pose };
 
                     moveit_msgs::msg::RobotTrajectory cart_trajectory;
-                    const double jump_threshold = 0.0; // disabled; deprecated but required by this signature
+                    const double jump_threshold = 0.0; 
                     double fraction = move_group_->computeCartesianPath(
                         waypoints, CARTESIAN_EEF_STEP, jump_threshold, cart_trajectory);
 
                     plan_success = (fraction >= CARTESIAN_MIN_FRACTION);
                     if (plan_success) {
-                        plan.trajectory_ = cart_trajectory;
+                        // Apply mathematical time parameterization to force 0.05 speed factor
+                        if (retimeCartesianTrajectory(cart_trajectory, ompl_speed_factor_)) {
+                            plan.trajectory_ = cart_trajectory;
+                            used_mode_toast = "OMPL LINEAR";
+                        } else {
+                            RCLCPP_WARN(this->get_logger(), "Failed to mathematically re-time Cartesian trajectory for '%s'", point_name.c_str());
+                            plan_success = false;
+                        }
                     } else {
                         RCLCPP_WARN(this->get_logger(),
                             "Cartesian path only %.1f%% achieved for '%s', aborting",
@@ -451,21 +396,12 @@ private:
             }
             else {
                 // ---- Pilz Industrial Motion Planner ----
-                // First attempt: SPLINE variant (SPTP for joint targets,
-                // SLIN for Cartesian targets). If that plan fails, fall back
-                // to the non-spline PTP/LIN planner within the same Pilz
-                // pipeline. Both attempts now use the SAME pilz_speed_factor_
-                // for velocity and acceleration scaling, so the executed
-                // speed is identical regardless of which attempt succeeds
-                // (previously the fallback used a different hardcoded scale,
-                // which is why the configured speed appeared to be ignored).
                 move_group_->setPlanningPipelineId("pilz_industrial_motion_planner");
 
                 if (use_joint) {
-                    // --- Attempt 1: PTP SPLINE ---
+                    // --- Attempt 1: PTP SPLINE (15s planning time applied) ---
                     move_group_->setPlannerId("SPTP");
-                    move_group_->setMaxVelocityScalingFactor(pilz_speed_factor_);
-                    move_group_->setMaxAccelerationScalingFactor(pilz_speed_factor_);
+                    applyRobustPlanningLimits(pilz_speed_factor_);
                     move_group_->setJointValueTarget(target);
                     plan_success = (move_group_->plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
 
@@ -476,23 +412,20 @@ private:
                             "PTP SPLINE (SPTP) planning failed for '%s', falling back to PTP",
                             point_name.c_str());
 
-                        // --- Fallback: PTP (same speed factor) ---
+                        // --- Fallback: PTP (15s planning time applied) ---
                         move_group_->setPlannerId("PTP");
-                        move_group_->setMaxVelocityScalingFactor(pilz_speed_factor_);
-                        move_group_->setMaxAccelerationScalingFactor(pilz_speed_factor_);
+                        applyRobustPlanningLimits(pilz_speed_factor_);
                         move_group_->setJointValueTarget(target);
                         plan_success = (move_group_->plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
 
                         if (plan_success) used_mode_toast = "PTP";
                     }
                 } else {
-                    geometry_msgs::msg::Pose target_pose = forwardKinematicsPose(target);
 
-                    // --- Attempt 1: LIN SPLINE ---
+                    // --- Attempt 1: LIN SPLINE (15s planning time applied) ---
                     move_group_->setPlannerId("SLIN");
-                    move_group_->setMaxVelocityScalingFactor(pilz_speed_factor_);
-                    move_group_->setMaxAccelerationScalingFactor(pilz_speed_factor_);
-                    move_group_->setPoseTarget(target_pose);
+                    applyRobustPlanningLimits(pilz_speed_factor_);
+                    move_group_->setJointValueTarget(target);
                     plan_success = (move_group_->plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
 
                     if (plan_success) {
@@ -502,11 +435,10 @@ private:
                             "LIN SPLINE (SLIN) planning failed for '%s', falling back to LIN",
                             point_name.c_str());
 
-                        // --- Fallback: LIN (same speed factor) ---
+                        // --- Fallback: LIN (15s planning time applied) ---
                         move_group_->setPlannerId("LIN");
-                        move_group_->setMaxVelocityScalingFactor(pilz_speed_factor_);
-                        move_group_->setMaxAccelerationScalingFactor(pilz_speed_factor_);
-                        move_group_->setPoseTarget(target_pose);
+                        applyRobustPlanningLimits(pilz_speed_factor_);
+                        move_group_->setJointValueTarget(target);
                         plan_success = (move_group_->plan(plan) == moveit::core::MoveItErrorCode::SUCCESS);
 
                         if (plan_success) used_mode_toast = "LIN";
@@ -515,12 +447,6 @@ private:
             }
 
             if (plan_success) {
-                // Save the planned joint-space waypoints (+ RPY) for this
-                // point-to-point motion into waypoint.yaml (same folder as
-                // points.yaml).
-                saveWaypointsToYaml(plan.trajectory_.joint_trajectory, point_name,
-                                    used_mode_toast.empty() ? "OMPL" : used_mode_toast);
-
                 if (!used_mode_toast.empty()) {
                     publish_toast(point_name + " " + used_mode_toast + ",success,5");
                 }
@@ -541,7 +467,7 @@ private:
 
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<PrintLastPositionNode>();
+    auto node = std::make_shared<move_it_go_to_pose>();
     
     rclcpp::executors::MultiThreadedExecutor executor;
     executor.add_node(node);

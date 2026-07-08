@@ -10,12 +10,12 @@
 
 
 # Gear Ratios data given by mechanical team
-# joint1 -> 160
-# joint2 -> 160
+# joint1 -> 171
+# joint2 -> 171
 # joint3 -> 160
-# joint4 -> 120
-# joint5 -> 100
-# joint6 -> 50
+# joint4 -> 160
+# joint5 -> 120
+# joint6 -> 120
 
 
 
@@ -26,22 +26,22 @@ default_acceleration_scaling_factor: 1.0
 joint_limits:
   joint1:
     has_velocity_limits: true
-    max_velocity: 3.60  
+    max_velocity: 3.368  
     has_acceleration_limits: true
-    max_acceleration: 9.8
+    max_acceleration: 10.104
     has_deceleration_limits: true
-    max_deceleration: -9.8
+    max_deceleration: -10.104
     has_jerk_limits: true
-    max_jerk: 9.8
+    max_jerk: 10.104
   joint2:
     has_velocity_limits: true
-    max_velocity: 3.60  
+    max_velocity: 3.368  
     has_acceleration_limits: true
-    max_acceleration: 9.8
+    max_acceleration: 10.104
     has_deceleration_limits: true
-    max_deceleration: -9.8
+    max_deceleration: -10.104
     has_jerk_limits: true
-    max_jerk: 9.8
+    max_jerk: 10.104
   joint3:
     has_velocity_limits: true
     max_velocity: 3.60  
@@ -53,6 +53,15 @@ joint_limits:
     max_jerk: 9.8
   joint4:
     has_velocity_limits: true
+    max_velocity: 3.60  
+    has_acceleration_limits: true
+    max_acceleration: 9.8
+    has_deceleration_limits: true
+    max_deceleration: -9.8
+    has_jerk_limits: true
+    max_jerk: 9.8
+  joint5:
+    has_velocity_limits: true
     max_velocity: 4.8
     has_acceleration_limits: true
     max_acceleration: 14.4
@@ -60,21 +69,12 @@ joint_limits:
     max_deceleration: -14.4
     has_jerk_limits: true
     max_jerk: 14.4
-  joint5:
-    has_velocity_limits: true
-    max_velocity: 5.76
-    has_acceleration_limits: true
-    max_acceleration: 17.28
-    has_deceleration_limits: true
-    max_deceleration: -17.28
-    has_jerk_limits: true
-    max_jerk: 17.28
   joint6:
     has_velocity_limits: true
-    max_velocity: 11.52
+    max_velocity: 4.8
     has_acceleration_limits: true
-    max_acceleration: 34.56
+    max_acceleration: 14.4
     has_deceleration_limits: true
-    max_deceleration: -34.56
+    max_deceleration: -14.4
     has_jerk_limits: true
-    max_jerk: 34.56
+    max_jerk: 14.4

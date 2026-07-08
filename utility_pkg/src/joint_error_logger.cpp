@@ -42,6 +42,8 @@ public:
     }
 
 private:
+    static constexpr size_t MAX_ENTRIES = 600;
+
     // ROS
     rclcpp::Subscription<
         nextup_joint_interfaces::msg::NextupJointState>::SharedPtr sub_;
@@ -88,7 +90,6 @@ private:
             entry["time"] = time_str;
             entry["joint"] = joint;
 
-            // FIXED (no ternary type issue)
             if (std::isnan(new_error))
             {
                 entry["last_error"] = "nan";
@@ -101,6 +102,8 @@ private:
             root_["error_logs"].push_back(entry);
             last_errors_[joint] = new_error;
             dirty_ = true;
+
+            trimLog();
 
             // RCLCPP_WARN(this->get_logger(),
             //             "Error change | %s : %s → %s",
@@ -134,6 +137,20 @@ private:
     }
 
     // ================= HELPERS =================
+
+    void trimLog()
+    {
+        YAML::Node logs = root_["error_logs"];
+        if (logs.size() <= MAX_ENTRIES)
+            return;
+
+        YAML::Node trimmed(YAML::NodeType::Sequence);
+        size_t start = logs.size() - MAX_ENTRIES;
+        for (size_t i = start; i < logs.size(); ++i)
+            trimmed.push_back(logs[i]);
+
+        root_["error_logs"] = trimmed;
+    }
 
     bool sameError(double a, double b)
     {
@@ -170,6 +187,9 @@ private:
             root_ = YAML::LoadFile(log_file_path_);
             if (!root_["error_logs"])
                 root_["error_logs"] = YAML::Node(YAML::NodeType::Sequence);
+
+            // In case a pre-existing file already exceeds the cap
+            trimLog();
         }
         catch (const std::exception &e)
         {

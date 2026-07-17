@@ -146,10 +146,6 @@ def generate_launch_description():
         output='screen'
     )
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     return LaunchDescription([
         TimerAction(period=1.0, actions=[demo_node]),
         TimerAction(period=4.0, actions=[controllers_node]),
@@ -163,9 +159,5 @@ def generate_launch_description():
         TimerAction(period=22.0, actions=[controller_state_monitor]),
         TimerAction(period=23.0, actions=[reset_mode_manager]),
         TimerAction(period=25.0, actions=[emergency_manager]),
-<<<<<<< Updated upstream
         TimerAction(period=27.0,actions=[execute_trajectory_node])
-=======
-        TimerAction(period=27.0,actions=[execute_trajectory_node]),
->>>>>>> Stashed changes
     ])

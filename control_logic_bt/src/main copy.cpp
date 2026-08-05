@@ -3,8 +3,6 @@
 #include <csignal>
 #include <atomic>
 #include <memory>
-#include <thread>
-#include <chrono>
 #include <ament_index_cpp/get_package_share_directory.hpp>
 
 #include <behaviortree_cpp_v3/loggers/bt_zmq_publisher.h>
@@ -44,7 +42,6 @@
 #include "control_logic_bt/action/cycle_counter_node.hpp"
 #include "control_logic_bt/action/bt_do_control.hpp"
 #include "control_logic_bt/action/bt_di_control.hpp"
-#include "control_logic_bt/action/runway_protection_node.hpp"
 
 #include "control_logic_bt/blackboard/print_message_node.hpp"
 #include "control_logic_bt/blackboard/arithmetic_node.hpp"
@@ -75,8 +72,6 @@
 #include "control_logic_bt/blackboard/timer_start_node.hpp"
 #include "control_logic_bt/blackboard/timer_stop_node.hpp"
 #include "control_logic_bt/blackboard/wait_for_blackboard_change_node.hpp"
-#include "control_logic_bt/motion/weaving_motion_planner_bt.hpp"
-
 
 std::atomic<bool> running(true);
 bool g_shutdown_requested = false;
@@ -88,27 +83,6 @@ void signalHandler(int signum)
 {
     RCLCPP_INFO(rclcpp::get_logger("control_logic_bt_runner"), "Received signal %d. Shutting down...", signum);
     running = false;
-}
-
-// Block until at least one subscriber has matched the publisher, or timeout.
-// Returns true if a subscriber is present when we return.
-bool wait_for_subscriber(
-    const rclcpp::Node::SharedPtr &node,
-    const rclcpp::PublisherBase::SharedPtr &pub,
-    std::chrono::milliseconds timeout)
-{
-    if (!pub)
-        return false;
-
-    auto deadline = std::chrono::steady_clock::now() + timeout;
-    while (rclcpp::ok() && std::chrono::steady_clock::now() < deadline)
-    {
-        if (pub->get_subscription_count() > 0)
-            return true;
-        rclcpp::spin_some(node);
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    }
-    return pub->get_subscription_count() > 0;
 }
 
 void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::SharedPtr &node)
@@ -159,8 +133,7 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
     factory.registerNodeType<CycleCounterNode>("CycleCounter");
     factory.registerNodeType<RunOnce>("RunOnce");
     factory.registerNodeType<DelayTicks>("DelayTicks");
-    
-    factory.registerNodeType<RunwayProtection>("RunwayProtection");
+
     factory.registerBuilder<bt_logger::MsgLoggerNode>(
         "MsgLogger",
         [node](const std::string &name, const BT::NodeConfiguration &config)
@@ -187,13 +160,7 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
         {
             return std::make_unique<PilzCircPlanner>(name, config);
         });
-factory.registerBuilder<control_logic_bt::WeavingMotionPlanner>(
-        "WeavingMotionPlanner",
-        [](const std::string &name, const BT::NodeConfiguration &config)
-        {
-            return std::make_unique<control_logic_bt::WeavingMotionPlanner>(name, config);
-        });
-
+       
     // 👉 Blackboards
     factory.registerNodeType<PrintMessage>("PrintMessage");
     factory.registerNodeType<ArithmeticNode>("ArithmeticNode");
@@ -264,7 +231,7 @@ public:
                 trace += path[i] + (i + 1 < path.size() ? " -> " : "");
 
             std_msgs::msg::String msg;
-            msg.data = "[bt][failure]FAILED_NODE: " + node.name() +
+            msg.data = "[failure]FAILED_NODE: " + node.name() +
                        " TRACE: " + (trace.empty() ? node.name() : trace) +
                        " TIME: " + std::string(tbuf);
 
@@ -303,53 +270,45 @@ private:
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;
 };
 
-// Publish a log line and block until every matched reliable reader has ACKed it.
-// This is the "concrete surety" path: when wait_for_all_acked returns true, the
-// sample is provably in the subscriber's hands, not merely "probably delivered".
 void publishLog(
-    const rclcpp::Node::SharedPtr &node,
+    rclcpp::Node::SharedPtr node,
     const std::string &type,
-    const std::string &msg,
-    std::chrono::milliseconds ack_timeout = std::chrono::seconds(2))
+    const std::string &msg)
 {
     if (!g_logs_pub)
+    {
         return;
+    }
 
     std_msgs::msg::String log_msg;
-    log_msg.data = "[bt][" + type + "] " + msg;
+    log_msg.data = "[" + type + "] " + msg;
 
     g_logs_pub->publish(log_msg);
-    rclcpp::spin_some(node);
 
-    if (!g_logs_pub->wait_for_all_acked(ack_timeout))
-        RCLCPP_WARN(node->get_logger(),
-                    "publishLog: not all subscribers ACKed within timeout for: %s",
-                    log_msg.data.c_str());
+    rclcpp::spin_some(node);
 }
 
 void publishPopup(
-    const rclcpp::Node::SharedPtr &node,
+    rclcpp::Node::SharedPtr node,
     const std::string &msg,
     const std::string &type,
-    int timeout_secs,
-    std::chrono::milliseconds ack_timeout = std::chrono::seconds(2))
+    int timeout_secs)
 {
     if (!g_popup_pub)
+    {
         return;
+    }
 
     std_msgs::msg::String popup_msg;
+
     popup_msg.data =
         msg + "," +
         type + "," +
         std::to_string(timeout_secs);
 
     g_popup_pub->publish(popup_msg);
-    rclcpp::spin_some(node);
 
-    if (!g_popup_pub->wait_for_all_acked(ack_timeout))
-        RCLCPP_WARN(node->get_logger(),
-                    "publishPopup: not all subscribers ACKed within timeout for: %s",
-                    popup_msg.data.c_str());
+    rclcpp::spin_some(node);
 }
 
 int main(int argc, char **argv)
@@ -362,8 +321,6 @@ int main(int argc, char **argv)
     PauseControlUtil::set_node(node);
     PrintMessage::set_node(node);
 
-    // Both publishers are reliable + transient_local so a late-joining subscriber
-    // still receives the retained samples on discovery match.
     g_logs_pub =
         node->create_publisher<std_msgs::msg::String>(
             "/logs_topic",
@@ -372,16 +329,8 @@ int main(int argc, char **argv)
     g_popup_pub =
         node->create_publisher<std_msgs::msg::String>(
             "/bt_toast_popup",
-            rclcpp::QoS(10).reliable().transient_local());
-
-    // Replace the blind sleep with an explicit wait for the HMI subscriber to
-    // match. If it isn't up within the timeout we still proceed (transient_local
-    // covers a subscriber that joins slightly later).
-    if (!wait_for_subscriber(node, g_logs_pub, std::chrono::seconds(5)))
-        RCLCPP_WARN(node->get_logger(),
-                    "No subscriber matched on /logs_topic within 5s; "
-                    "relying on transient_local for late joiners.");
-    wait_for_subscriber(node, g_popup_pub, std::chrono::seconds(2));
+            rclcpp::QoS(10).reliable());
+    rclcpp::sleep_for(std::chrono::milliseconds(500)); // Ensure publishers are ready
 
     const std::string xml_path = "/home/nextup/NextupRobot/src/active_project_configs/control_data/main_tree.xml";
 
@@ -419,14 +368,20 @@ int main(int argc, char **argv)
         std::string error_msg = e.what();
         std::string hint_msg = make_hint_from_error(error_msg);
 
-        // Each of these blocks until the subscriber ACKs, so shutdown below
-        // cannot race ahead of delivery.
         publishLog(node, "failure", "BT XML validation failed: " + error_msg);
         publishLog(node, "info", "Hint: " + hint_msg);
         publishPopup(node, "BT XML ERROR : check logs", "failure", 0);
 
         RCLCPP_ERROR(node->get_logger(), "XML validation failed: %s", error_msg.c_str());
         RCLCPP_ERROR(node->get_logger(), "Hint: %s", hint_msg.c_str());
+
+        // let DDS actually flush the samples before tearing down
+        auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(1);
+        while (std::chrono::steady_clock::now() < deadline)
+        {
+            rclcpp::spin_some(node);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
 
         rclcpp::shutdown();
         return 1;

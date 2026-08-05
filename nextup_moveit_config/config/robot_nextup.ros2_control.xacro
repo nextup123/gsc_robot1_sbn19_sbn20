@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file vendor:=innovance product:=robot1">
+  <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file vendor:=innovance product:=cobot">
     <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
     <xacro:property name="slave_config_dir" value="$(find nextup_moveit_config)/config/${vendor}/${product}"/>
 
@@ -28,11 +28,13 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
           <param name="alias">0</param>
-          <param name="position">0</param>
+          <param name="position">6</param>
           <param name="mode_of_operation">9</param>
           <param name="slave_config">${slave_config_dir}/joint1.yaml</param>
         </ec_module>
@@ -55,6 +57,8 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
@@ -82,6 +86,8 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
@@ -109,6 +115,8 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
@@ -136,6 +144,8 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
@@ -164,6 +174,8 @@
         <command_interface name="jogvelocity"/>
         <command_interface name="dos"/>
         <command_interface name="emergency_trigger"/>
+        <command_interface name="runway_protection"/>
+        <command_interface name="max_torque"/>
 
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
@@ -173,6 +185,19 @@
           <param name="slave_config">${slave_config_dir}/joint6.yaml</param>
         </ec_module>
       </joint>
+
+      <gpio name="gpio1">
+        <command_interface name="d_output_allbit"/>
+        <state_interface name="d_input_allbit"/>
+        <state_interface name="error_code"/>     
+     
+        <ec_module name="RTU">
+          <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
+          <param name="alias">0</param>
+          <param name="position">0</param>
+          <param name="slave_config">/home/nextup/NextupRobot/src/nextup_moveit_config/config/innovance/do_di.yaml</param>
+        </ec_module>
+      </gpio>
 
     </ros2_control>
 </xacro:macro>

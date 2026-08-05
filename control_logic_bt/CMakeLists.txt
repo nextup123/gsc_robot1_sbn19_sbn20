@@ -66,13 +66,15 @@ add_executable(control_logic_bt_runner
   src/motion/run_path_node.cpp
   src/motion/blend_executor.cpp
   src/motion/plan_and_execute_arc_hybrid.cpp
-
+  src/motion/weaving_motion_planner_bt.cpp
   #action nodes
   src/action/msg_logger_node.cpp
   src/action/popup_msg_node.cpp
   src/action/publish_data_bt_node.cpp
   src/action/bt_do_control.cpp
   src/action/bt_di_control.cpp
+  src/action/runway_protection_node.cpp
+  
 
   #blackboards
   src/blackboard/print_message_node.cpp

@@ -13,14 +13,14 @@ rpdo:  # RxPDO = receive PDO Mapping
           sub_index: 0,
           type: int32,
           command_interface: jogvelocity,
-          factor: 254647.908947033, #  ( gear_ratio * 10000 ) / (2 * Pi) ---> gear ratio : (160) joint1
+          factor: 254647.9089470325372302140, #  ( gear_ratio * 10000 ) / (2 * Pi) ---> gear ratio : (160) joint4
           default: 0}  # Target velocity
       - {
           index: 0x607a,
           sub_index: 0,
           type: int32,
           command_interface: position,
-          factor: 254647.908947033, # ( gear_ratio * 10000 ) / (2 * Pi)  ---> gear_ratio (160) for joint1
+          factor: 254647.9089470325372302140, # ( gear_ratio * 10000 ) / (2 * Pi)  ---> gear_ratio (160) for joint4
           default: .nan}  # Target position
       - {index: 0x6060, sub_index: 0, type: int8, command_interface: modeofoperation, default: 9}  # Mode of operation
       - {index: 0x200D, sub_index: 0x06, type: int16, command_interface: emergency_trigger, default: 0}  # Mode of operation
@@ -34,14 +34,14 @@ tpdo:  # TxPDO = transmit PDO Mapping
           sub_index: 0,
           type: int32,
           state_interface: position,
-          factor: 0.000003927 # (2 * Pi) / (gear_ratio * 10000)
+          factor: 0.000003926990816987241548 # (2 * Pi) / (gear_ratio * 10000)
         }  # Position actual value
       - {
           index: 0x606c,
           sub_index: 0,
           type: int32,
           state_interface: velocity,
-          factor: 0.000003927 # (2 * Pi) / (gear_ratio * 10000) 
+          factor: 0.000003926990816987241548 # (2 * Pi) / (gear_ratio * 10000)
         }  # Velocity actual value
       - {
           index: 0x6077,

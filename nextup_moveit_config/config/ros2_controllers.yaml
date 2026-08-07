@@ -45,6 +45,14 @@ controller_manager:
     nextup_digital_output_controller_6:
       type: nextup_digital_output_controller/NextupDigitalOutputController
 
+    nextup_safety_controller:
+      type: nextup_safety_controller/NextupSafetyController
+
+    nextup_gpio_command_controller:
+      type: nextup_gpio_controllers/NextupGpioCommandController
+
+    nextup_gpio_status_broadcaster:
+      type: nextup_gpio_status_broadcaster/GpioStatusBroadcaster
 
 joint_state_broadcaster:
   ros__parameters:
@@ -77,7 +85,7 @@ robot_manipulator_controller:
       joint2: { trajectory: 0.21, goal: 0.1 }
       joint3: { trajectory: 0.21, goal: 0.1 }
       joint4: { trajectory: 0.21, goal: 0.1 }
-      joint5: { trajectory: 0.21, goal: 0.1 }
+      joint5: { trajectory: 0.31, goal: 0.1 }
       joint6: { trajectory: 0.21, goal: 0.1 }
 
     trajectory_execution:
@@ -193,3 +201,49 @@ nextup_digital_output_controller_6:
     joints:
       - joint6
     interface_name: dos
+
+nextup_safety_controller:
+  ros__parameters:
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+    command_interfaces:
+      - runway_protection
+      - max_torque
+
+    # Fail-safe state used at activation and whenever the command watchdog trips.
+    default_runway_protection: true
+    default_max_torque: [3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0]
+
+    # Seconds since the last accepted command before falling back to the
+    # defaults above. Set to 0.0 to disable the watchdog.
+    command_timeout: 0.0
+
+nextup_gpio_command_controller:
+  ros__parameters:
+    gpios:
+      - gpio1
+    command_interfaces:
+      gpio1:
+        interfaces: ["d_output_allbit"]
+    state_interfaces:
+      gpio1:
+        interfaces: ["d_input_allbit"]
+    command_bitset_interfaces:
+      gpio1:
+        raw_interface: "d_output_allbit"
+        bit_names: ["do1","do2","do3","do4","do5","do6","do7","do8"]
+    state_bitset_interfaces:
+      gpio1:
+        raw_interface: "d_input_allbit"
+        bit_names: ["di1","di2","di3","di4","di5","di6","di7","di8"]
+
+nextup_gpio_status_broadcaster:
+  ros__parameters:
+    use_local_topics: false
+    gpios:
+      - gpio1

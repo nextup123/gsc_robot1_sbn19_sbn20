@@ -7,31 +7,37 @@ rclcpp::Node::SharedPtr MsgLoggerNode::node_ = nullptr;
 rclcpp::Publisher<std_msgs::msg::String>::SharedPtr MsgLoggerNode::publisher_ = nullptr;
 std::once_flag MsgLoggerNode::init_flag_;
 
+// Every message published by this node is a BT log, so it is tagged
+// with a leading "[bt] " prefix. The frontend detects this prefix to
+// route/colour the entry (and parses an optional [level] tag after it,
+// e.g. "[bt] [success] ...").
+static constexpr const char *BT_PREFIX = "[bt] ";
+
 MsgLoggerNode::MsgLoggerNode(
-    const std::string& name,
-    const BT::NodeConfiguration& config)
+    const std::string &name,
+    const BT::NodeConfiguration &config)
     : BT::SyncActionNode(name, config)
 {
-    std::call_once(init_flag_, []() {
+    std::call_once(init_flag_, []()
+                   {
         node_ = rclcpp::Node::make_shared("msg_logger_node");
         publisher_ = node_->create_publisher<std_msgs::msg::String>(
             "/logs_topic", 10);
 
         RCLCPP_INFO(node_->get_logger(),
-                    "MsgLoggerNode initialized");
-    });
+                    "MsgLoggerNode initialized"); });
 }
 
 BT::PortsList MsgLoggerNode::providedPorts()
 {
     return {
-        BT::InputPort<std::string>("msg_log", "")
-    };
+        BT::InputPort<std::string>("msg_log", "")};
 }
 
 BT::NodeStatus MsgLoggerNode::tick()
 {
-    try {
+    try
+    {
         std::string msg;
 
         // IMPORTANT: this will also accept {counter}
@@ -43,20 +49,23 @@ BT::NodeStatus MsgLoggerNode::tick()
             return BT::NodeStatus::FAILURE;
         }
 
+        // Prefix every BT log with the [bt] tag.
+        const std::string tagged = std::string(BT_PREFIX) + msg;
+
         // Console print
-        std::cout << "[MsgLoggerNode]: " << msg << std::endl;
+        std::cout << "[MsgLoggerNode]: " << tagged << std::endl;
 
         // ROS publish
         std_msgs::msg::String ros_msg;
-        ros_msg.data = msg;
+        ros_msg.data = tagged;
         publisher_->publish(ros_msg);
 
         RCLCPP_INFO(node_->get_logger(),
-                    "Published: %s", msg.c_str());
+                    "Published: %s", tagged.c_str());
 
         return BT::NodeStatus::SUCCESS;
     }
-    catch (const std::exception& e)
+    catch (const std::exception &e)
     {
         RCLCPP_ERROR(node_->get_logger(),
                      "Exception: %s", e.what());
@@ -65,10 +74,10 @@ BT::NodeStatus MsgLoggerNode::tick()
     }
 }
 
-void MsgLoggerNode::publishStatus(const std::string& status)
+void MsgLoggerNode::publishStatus(const std::string &status)
 {
     std_msgs::msg::String msg;
-    msg.data = status;
+    msg.data = std::string(BT_PREFIX) + status;
 
     publisher_->publish(msg);
 
@@ -76,4 +85,4 @@ void MsgLoggerNode::publishStatus(const std::string& status)
                 "Status: %s", msg.data.c_str());
 }
 
-}  // namespace bt_logger
+} // namespace bt_logger

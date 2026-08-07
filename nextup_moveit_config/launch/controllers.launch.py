@@ -78,6 +78,21 @@ def generate_launch_description():
         arguments=['nextup_digital_output_controller_6', "-c", "/controller_manager"],
     )
 
+    nextup_safety_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=['nextup_safety_controller', "-c", "/controller_manager"],
+    )
+    nextup_gpio_command_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=['nextup_gpio_command_controller', "-c", "/controller_manager"],
+    )
+    nextup_gpio_status_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=['nextup_gpio_status_broadcaster', "-c", "/controller_manager"],
+    )
     sequential_launch = []
 
     sequential_launch.append(RegisterEventHandler(
@@ -161,6 +176,26 @@ def generate_launch_description():
         )
     ))
 
+    sequential_launch.append(RegisterEventHandler(
+        OnProcessExit(
+            target_action=nextup_digital_output_controller_spawner_6,
+            on_exit=[nextup_safety_controller]
+        )
+    ))
+
+    sequential_launch.append(RegisterEventHandler(
+        OnProcessExit(
+            target_action=nextup_safety_controller,
+            on_exit=[nextup_gpio_command_controller]
+        )
+    ))
+
+    sequential_launch.append(RegisterEventHandler(
+        OnProcessExit(
+            target_action=nextup_gpio_command_controller,
+            on_exit=[nextup_gpio_status_broadcaster]
+        )
+    ))
     return LaunchDescription(
         [
             operation_mode_controller_spawner,

@@ -1,0 +1,96 @@
+shape_tracer_node:
+  ros__parameters:
+    # =====================================================================
+    # Nextup Shape Tracer v2
+    #
+    # Defaults are CONSERVATIVE for a first hardware run on the SV660
+    # velocity path. Confirm the shape traces cleanly and WITHOUT vibration,
+    # then raise kp / speed one step at a time.
+    #
+    # Validated offline (see test/validate_control_law.cpp):
+    #   kp=2, feedback only      -> 2.99mm mean, circle undersized to 29.87mm
+    #   kp=5, feedback only      -> 1.20mm mean
+    #   kp=2, + feedforward      -> 0.02mm mean, 30.02mm            <-- use this
+    # Feedforward at LOW gain is what keeps the loop stable on hardware.
+    # =====================================================================
+
+    # --- shape -----------------------------------------------------------
+    # circle | ellipse | square | triangle | hexagon | star | spiral
+    # | lemniscate | custom
+    shape: circle
+    size: 0.06          # characteristic dimension (m). circle: DIAMETER.
+    ratio: 0.6          # ellipse minor/major
+    path_samples: 720   # reference polyline resolution
+
+    # --- motion ----------------------------------------------------------
+    speed: 0.006        # path speed (m/s) = 6 mm/s
+    laps: 3
+    rate: 50.0          # control rate (Hz). Must be <= servo's rate.
+
+    # --- control law -----------------------------------------------------
+    feedforward: true   # velocity feedforward. Turn OFF only to demonstrate droop.
+    kp: 3.0             # position gain (1/s). START LOW ON HARDWARE.
+    kd: 0.0             # velocity damping (1/s). 0 = off.
+    vmax: 0.05          # SAFETY: hard clamp on commanded twist speed (m/s).
+                        #   If the report says cycles were CLAMPED, the command
+                        #   was saturated and could not track the path.
+
+    # --- plane -----------------------------------------------------------
+    z: .nan             # fixed drawing-plane Z (m); .nan = tool's Z at start
+
+    # --- frames / topics (match your servo bringup) ----------------------
+    planning_frame: base_link
+    base: base_link
+    ee: end
+    twist_topic: /servo_node/delta_twist_cmds
+    servo_ns: /servo_node
+    auto_start: false   # true = this node requests servo_ns/start_servo
+
+    # --- start-point approach --------------------------------------------
+    goto_start: true       # move to the shape's start BEFORE tracing, so the
+                           #   logged error is DRAWING error, not approach error
+    goto_tolerance: 0.002  # m; "arrived" threshold
+    goto_timeout: 30.0     # s; abort if the start cannot be reached
+    settle_time: 2.0       # s; hold still at the start before tracing
+
+    # --- safety ----------------------------------------------------------
+    tf_timeout: 0.2     # s; if TF is older than this, publish zero and wait
+
+    # --- reference freeze -------------------------------------------------
+    # The reference advances by ARC LENGTH and only while the tool is still ON
+    # the path. A wall-clock reference runs away from an arm that servo has
+    # slowed down; the error then points ALONG the path instead of across it,
+    # the correction drives the tool forward rather than outward, and the
+    # circle spirals into its own centre. (A 150mm circle at 15mm/s did this.)
+    #
+    # freeze_error is a CROSS-TRACK (perpendicular) distance to the path.
+    # It is NOT the total error. Total error is dominated by phase lag, which
+    # is harmless and always present -- gating on it makes the reference
+    # stutter and the tool overshoot OUTWARD.
+    #
+    #   measured, 60mm circle, kp=3:   cross-track    phase      total
+    #        3 mm/s                       0.023mm    0.888mm   0.888mm
+    #        6 mm/s                       0.335mm    3.060mm   3.078mm
+    #       10 mm/s                       0.437mm    3.768mm   3.793mm
+    #
+    # 2mm gives 4.6x headroom over the worst healthy run and still fires
+    # instantly on the spiral (cross-track reached ~84mm there).
+    freeze_error: 0.002        # m; CROSS-TRACK gate
+    freeze_timeout: 15.0       # s; abort if frozen continuously this long
+    stall_timeout_factor: 4.0  # abort if the trace exceeds factor x nominal time
+    cross_search_window: 60    # segments searched either side of the phase index
+
+    # Only HALT codes (2,4,5) freeze the reference. Codes 1/3/6 are
+    # DECELERATIONS -- the arm still moves. moveit_servo's singularity
+    # thresholds are condition-number based and fire in perfectly healthy poses
+    # on this arm, so 1 and 6 appear almost continuously. Freezing on them
+    # would stall every trace. A slowed arm shows up as cross-track error.
+    watch_servo_status: true
+
+    # --- run control -----------------------------------------------------
+    autorun: true       # false = wait for ~/command {"action":"start"}
+                        #   (set false when driving from the web HMI)
+
+    # --- output ----------------------------------------------------------
+    publish_diagnostics: true   # ~/diagnostics JSON every cycle
+    csv: ""                     # trace CSV path; "" = auto-named in CWD

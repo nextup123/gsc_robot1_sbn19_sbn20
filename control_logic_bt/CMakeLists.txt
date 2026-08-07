@@ -22,6 +22,8 @@ find_package(moveit_core REQUIRED)
 find_package(moveit_ros_planning REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_msgs REQUIRED)
+find_package(control_msgs REQUIRED)
+
 
 # TF and Eigen dependencies
 find_package(tf2_ros REQUIRED)
@@ -66,13 +68,15 @@ add_executable(control_logic_bt_runner
   src/motion/run_path_node.cpp
   src/motion/blend_executor.cpp
   src/motion/plan_and_execute_arc_hybrid.cpp
-
+  src/motion/weaving_motion_planner_bt.cpp
   #action nodes
   src/action/msg_logger_node.cpp
   src/action/popup_msg_node.cpp
   src/action/publish_data_bt_node.cpp
   src/action/bt_do_control.cpp
   src/action/bt_di_control.cpp
+  src/action/runway_protection_node.cpp
+  
 
   #blackboards
   src/blackboard/print_message_node.cpp
@@ -89,6 +93,10 @@ add_executable(control_logic_bt_runner
   src/blackboard/wait_for_blackboard_change_node.cpp
   src/blackboard/subscribe_to_blackboard_node.cpp
   src/blackboard/publish_blackboard_node.cpp
+
+  #gpio
+  src/action/gpio/bt_gpio_di_control.cpp
+  src/action/gpio/bt_gpio_do_control.cpp
 
 )
 
@@ -108,6 +116,7 @@ ament_target_dependencies(control_logic_bt_runner
   tf2_ros
   tf2_geometry_msgs
   tf2_eigen
+  control_msgs
 )
 target_link_libraries(control_logic_bt_runner yaml-cpp)
 

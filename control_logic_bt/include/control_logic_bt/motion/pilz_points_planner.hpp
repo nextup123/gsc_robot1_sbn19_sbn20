@@ -1,22 +1,22 @@
 #pragma once
-
 #include <behaviortree_cpp_v3/action_node.h>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <yaml-cpp/yaml.h>
 #include <Eigen/Geometry>
-
 #include <string>
 #include <unordered_map>
 #include <vector>
 #include <future>
 #include <memory>
+#include <thread>
 
 class PilzPointsPlanner : public BT::StatefulActionNode
 {
 public:
     PilzPointsPlanner(const std::string& name, const BT::NodeConfiguration& config);
+    ~PilzPointsPlanner() override;
 
     static BT::PortsList providedPorts();
 
@@ -36,25 +36,34 @@ private:
     };
 
     void loadJointTargetsFromYaml(const std::string& filepath);
-
     bool runPTP(const std::vector<double>& target, double speed, double accel);
     bool runLIN(const std::vector<double>& target, double speed, double accel);
 
     // Async helpers
     bool startPTPPlanning(const std::vector<double>& target, double speed, double accel);
     bool startLINPlanning(const std::vector<double>& target, double speed, double accel);
-    bool isPlanningComplete();
     bool startExecution();
-    bool isExecutionComplete();
+
+    // Cache validity check — compares cached_plan_'s expected start joint
+    // positions against the robot's ACTUAL current state. Returns true only
+    // if it's safe to execute the cached plan without re-planning.
+    bool cachedPlanStartMatchesCurrentState(double tolerance);
 
     rclcpp::Node::SharedPtr node_;
     std::shared_ptr<moveit::planning_interface::MoveGroupInterface> move_group_;
+
+    // Background executor that keeps node_'s subscriptions (joint_states via
+    // CurrentStateMonitor, etc.) alive. Without this, getCurrentState()
+    // never receives anything — action-based calls like plan()/execute()
+    // internally block-spin the node so they don't need this, but passive
+    // topic subscriptions do.
+    std::shared_ptr<rclcpp::executors::SingleThreadedExecutor> executor_;
+    std::thread spin_thread_;
 
     std::unordered_map<std::string, std::vector<double>> joint_targets_;
 
     const std::string yaml_path_ =
         "/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml";
-
     const std::string pose_reference_frame_ = "base_link";
 
     // State tracking
@@ -62,7 +71,7 @@ private:
     std::string current_pose_goal_;
     std::string current_planner_id_;
     double current_speed_factor_ = 0.1;
-    double current_accel_factor_ = 1.0;   // NEW: acceleration scaling factor
+    double current_accel_factor_ = 1.0;   // acceleration scaling factor
     std::vector<double> current_target_;
 
     // Async operation futures
@@ -71,4 +80,14 @@ private:
 
     // Stored plan for execution
     moveit::planning_interface::MoveGroupInterface::Plan stored_plan_;
+
+    // --- Validated one-shot planning cache ---
+    bool has_planned_ = false;
+    moveit::planning_interface::MoveGroupInterface::Plan cached_plan_;
+    std::string cached_pose_goal_;
+    std::string cached_planner_id_;
+    double cached_speed_factor_ = 0.0;
+    double cached_accel_factor_ = 0.0;
+
+    static constexpr double kCacheStartTolerance = 0.02; // radians
 };

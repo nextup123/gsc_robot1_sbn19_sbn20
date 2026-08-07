@@ -6,8 +6,7 @@
 #include <thread>
 
 // -----------------------------------------------------------------------
-// Constructor — mirrors PlanAndExecutePoseHybrid pattern exactly:
-//   node + move_group created once, reused across all ticks
+// Constructor — node + move_group created once, reused across all ticks
 // -----------------------------------------------------------------------
 PilzPointsPlanner::PilzPointsPlanner(const std::string& name,
                                    const BT::NodeConfiguration& config)
@@ -22,6 +21,42 @@ PilzPointsPlanner::PilzPointsPlanner(const std::string& name,
     move_group_->setPoseReferenceFrame(pose_reference_frame_);
 
     loadJointTargetsFromYaml(yaml_path_);
+
+    // ---- Spin node_ continuously in the background ----
+    // Required so that passive topic subscriptions (joint_states, used by
+    // MoveGroupInterface's CurrentStateMonitor for getCurrentState()) are
+    // actually serviced. plan()/execute() don't need this since they block-
+    // spin internally while waiting on their action result, but
+    // getCurrentState() does — without this thread it always times out.
+    executor_ = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
+    executor_->add_node(node_);
+    spin_thread_ = std::thread([this]() { executor_->spin(); });
+
+    // Warm up the current state monitor once at startup with a generous
+    // timeout so the very first short-timeout cache-validation call later
+    // doesn't race the first /joint_states message.
+    auto warm_state = move_group_->getCurrentState(5.0);
+    if (!warm_state)
+    {
+        RCLCPP_WARN(node_->get_logger(),
+                    "[PilzPointsPlanner] Could not get initial robot state within 5s at startup — "
+                    "check that /joint_states is publishing and reachable from this node.");
+    }
+}
+
+// -----------------------------------------------------------------------
+// Destructor — stop the background executor cleanly
+// -----------------------------------------------------------------------
+PilzPointsPlanner::~PilzPointsPlanner()
+{
+    if (executor_)
+    {
+        executor_->cancel();
+    }
+    if (spin_thread_.joinable())
+    {
+        spin_thread_.join();
+    }
 }
 
 // -----------------------------------------------------------------------
@@ -33,7 +68,7 @@ BT::PortsList PilzPointsPlanner::providedPorts()
         BT::InputPort<std::string>("pose_goal"),   // point name, e.g. "home"
         BT::InputPort<std::string>("planner_id"),  // "PTP" or "LIN"
         BT::InputPort<double>("speed_factor"),     // 0.01 – 1.0
-        BT::InputPort<double>("acceleration")      // 0.01 – 1.0  (NEW)
+        BT::InputPort<double>("acceleration")      // 0.01 – 1.0
     };
 }
 
@@ -42,7 +77,7 @@ BT::PortsList PilzPointsPlanner::providedPorts()
 // -----------------------------------------------------------------------
 BT::NodeStatus PilzPointsPlanner::onStart()
 {
-    // ---- Read ports ----
+    // ---- Read ports (always, every activation) ----
     if (!getInput("pose_goal", current_pose_goal_) || current_pose_goal_.empty())
     {
         RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] Missing pose_goal input");
@@ -58,12 +93,10 @@ BT::NodeStatus PilzPointsPlanner::onStart()
     getInput("speed_factor", current_speed_factor_);
     current_speed_factor_ = std::max(0.01, std::min(1.0, current_speed_factor_));
 
-    // Acceleration port (NEW). Defaults to 1.0 if not provided.
     if (!getInput("acceleration", current_accel_factor_))
         current_accel_factor_ = 1.0;
     current_accel_factor_ = std::max(0.01, std::min(1.0, current_accel_factor_));
 
-    // Normalise planner id to uppercase
     std::transform(current_planner_id_.begin(), current_planner_id_.end(),
                    current_planner_id_.begin(), ::toupper);
 
@@ -86,12 +119,47 @@ BT::NodeStatus PilzPointsPlanner::onStart()
 
     current_target_ = it->second;
 
+    // -------------------------------------------------------------------
+    // Reuse cache only if it's the same request AND the robot's actual
+    // current joint state still matches the cached plan's expected start.
+    // -------------------------------------------------------------------
+    const bool same_request = has_planned_ &&
+        cached_pose_goal_    == current_pose_goal_ &&
+        cached_planner_id_   == current_planner_id_ &&
+        std::abs(cached_speed_factor_ - current_speed_factor_) < 1e-6 &&
+        std::abs(cached_accel_factor_ - current_accel_factor_) < 1e-6;
+
+    if (same_request && cachedPlanStartMatchesCurrentState(kCacheStartTolerance))
+    {
+        RCLCPP_INFO(node_->get_logger(),
+                    "[PilzPointsPlanner] Reusing cached plan for '%s' (%s) — start state matches, no re-planning",
+                    current_pose_goal_.c_str(), current_planner_id_.c_str());
+
+        stored_plan_ = cached_plan_;
+
+        if (!startExecution())
+        {
+            current_state_ = State::IDLE;
+            return BT::NodeStatus::FAILURE;
+        }
+
+        current_state_ = (current_planner_id_ == "PTP")
+                         ? State::EXECUTING_PTP : State::EXECUTING_LIN;
+        return BT::NodeStatus::RUNNING;
+    }
+
+    if (has_planned_ && same_request)
+    {
+        RCLCPP_WARN(node_->get_logger(),
+                    "[PilzPointsPlanner] Cached plan for '%s' is stale — re-planning from actual current state.",
+                    current_pose_goal_.c_str());
+    }
+
     RCLCPP_INFO(node_->get_logger(),
                 "[PilzPointsPlanner] Starting '%s' via %s at speed %.2f, accel %.2f",
                 current_pose_goal_.c_str(), current_planner_id_.c_str(),
                 current_speed_factor_, current_accel_factor_);
 
-    // Start async planning based on planner type
     bool planning_started = false;
     if (current_planner_id_ == "PTP")
     {
@@ -99,7 +167,7 @@ BT::NodeStatus PilzPointsPlanner::onStart()
         if (planning_started)
             current_state_ = State::PLANNING_PTP;
     }
-    else // LIN
+    else
     {
         planning_started = startLINPlanning(current_target_, current_speed_factor_, current_accel_factor_);
         if (planning_started)
@@ -125,40 +193,99 @@ BT::NodeStatus PilzPointsPlanner::onRunning()
         case State::PLANNING_PTP:
         case State::PLANNING_LIN:
         {
-            if (isPlanningComplete())
+            if (!planning_future_.valid())
             {
-                RCLCPP_INFO(node_->get_logger(), "[PilzPointsPlanner] Planning complete, starting execution");
-                
-                bool exec_started = startExecution();
-                if (!exec_started)
-                {
-                    current_state_ = State::IDLE;
-                    return BT::NodeStatus::FAILURE;
-                }
-                
-                // Update state based on planner type
-                if (current_planner_id_ == "PTP")
-                    current_state_ = State::EXECUTING_PTP;
-                else
-                    current_state_ = State::EXECUTING_LIN;
-                    
-                return BT::NodeStatus::RUNNING;
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Planning future invalid — FAILURE");
+                current_state_ = State::IDLE;
+                return BT::NodeStatus::FAILURE;
             }
+
+            auto status = planning_future_.wait_for(std::chrono::milliseconds(0));
+            if (status != std::future_status::ready)
+                return BT::NodeStatus::RUNNING;
+
+            bool planned = false;
+            try
+            {
+                planned = planning_future_.get();
+            }
+            catch (const std::exception& e)
+            {
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Planning exception: %s", e.what());
+                planned = false;
+            }
+
+            if (!planned)
+            {
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Planning did not succeed — FAILURE");
+                current_state_ = State::IDLE;
+                return BT::NodeStatus::FAILURE;
+            }
+
+            RCLCPP_INFO(node_->get_logger(),
+                        "[PilzPointsPlanner] Planning complete, starting execution");
+
+            cached_plan_          = stored_plan_;
+            cached_pose_goal_     = current_pose_goal_;
+            cached_planner_id_    = current_planner_id_;
+            cached_speed_factor_  = current_speed_factor_;
+            cached_accel_factor_  = current_accel_factor_;
+            has_planned_          = true;
+
+            if (!startExecution())
+            {
+                current_state_ = State::IDLE;
+                return BT::NodeStatus::FAILURE;
+            }
+
+            current_state_ = (current_planner_id_ == "PTP")
+                             ? State::EXECUTING_PTP : State::EXECUTING_LIN;
             return BT::NodeStatus::RUNNING;
         }
-        
+
         case State::EXECUTING_PTP:
         case State::EXECUTING_LIN:
         {
-            if (isExecutionComplete())
+            if (!execution_future_.valid())
             {
-                RCLCPP_INFO(node_->get_logger(), "[PilzPointsPlanner] Execution complete");
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Execution future invalid — FAILURE");
                 current_state_ = State::IDLE;
-                return BT::NodeStatus::SUCCESS;
+                return BT::NodeStatus::FAILURE;
             }
-            return BT::NodeStatus::RUNNING;
+
+            auto status = execution_future_.wait_for(std::chrono::milliseconds(0));
+            if (status != std::future_status::ready)
+                return BT::NodeStatus::RUNNING;
+
+            bool ok = false;
+            try
+            {
+                ok = execution_future_.get();
+            }
+            catch (const std::exception& e)
+            {
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Execution exception: %s", e.what());
+                ok = false;
+            }
+
+            current_state_ = State::IDLE;
+
+            if (!ok)
+            {
+                RCLCPP_ERROR(node_->get_logger(),
+                             "[PilzPointsPlanner] Execution did not complete successfully — FAILURE");
+                return BT::NodeStatus::FAILURE;
+            }
+
+            RCLCPP_INFO(node_->get_logger(), "[PilzPointsPlanner] Execution complete");
+            return BT::NodeStatus::SUCCESS;
         }
-        
+
         default:
             RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] Invalid state");
             current_state_ = State::IDLE;
@@ -175,8 +302,6 @@ void PilzPointsPlanner::onHalted()
                 current_state_ == State::IDLE ? "IDLE" :
                 (current_state_ == State::PLANNING_PTP || current_state_ == State::PLANNING_LIN) ? "PLANNING" : "EXECUTING");
 
-    // If executing, wait for the motion to reach its target before returning.
-    // Stopping mid-motion causes mechanical jerk.
     if ((current_state_ == State::EXECUTING_PTP || current_state_ == State::EXECUTING_LIN)
         && execution_future_.valid())
     {
@@ -194,7 +319,6 @@ void PilzPointsPlanner::onHalted()
         }
         RCLCPP_INFO(node_->get_logger(), "[PilzPointsPlanner] Execution complete, halt proceeding");
     }
-    // If still planning, nothing is moving — safe to drop immediately
     else if ((current_state_ == State::PLANNING_PTP || current_state_ == State::PLANNING_LIN)
              && planning_future_.valid())
     {
@@ -203,22 +327,66 @@ void PilzPointsPlanner::onHalted()
         if (move_group_) move_group_->clearPoseTargets();
     }
 
+    // has_planned_ / cached_plan_ intentionally left untouched — see onStart().
+
     planning_future_ = std::shared_future<bool>();
     execution_future_ = std::shared_future<bool>();
     current_state_ = State::IDLE;
 }
+
+// -----------------------------------------------------------------------
+// cachedPlanStartMatchesCurrentState - validate cache before reusing it
+// -----------------------------------------------------------------------
+bool PilzPointsPlanner::cachedPlanStartMatchesCurrentState(double tolerance)
+{
+    if (!move_group_)
+        return false;
+
+    if (cached_plan_.trajectory_.joint_trajectory.points.empty())
+        return false;
+
+    moveit::core::RobotStatePtr current_state = move_group_->getCurrentState(1.0);
+    if (!current_state)
+    {
+        RCLCPP_WARN(node_->get_logger(),
+                    "[PilzPointsPlanner] Could not fetch current robot state for cache validation — forcing re-plan");
+        return false;
+    }
+
+    const auto& joint_names        = cached_plan_.trajectory_.joint_trajectory.joint_names;
+    const auto& expected_positions = cached_plan_.trajectory_.joint_trajectory.points.front().positions;
+
+    if (joint_names.size() != expected_positions.size())
+        return false;
+
+    for (size_t i = 0; i < joint_names.size(); ++i)
+    {
+        double current_value = current_state->getVariablePosition(joint_names[i]);
+        double diff = std::abs(current_value - expected_positions[i]);
+
+        if (diff > tolerance)
+        {
+            RCLCPP_WARN(node_->get_logger(),
+                        "[PilzPointsPlanner] Cache check: joint '%s' expected %.5f, actual %.5f (diff %.5f > tol %.5f)",
+                        joint_names[i].c_str(), expected_positions[i], current_value, diff, tolerance);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // -----------------------------------------------------------------------
 // startPTPPlanning - Launch async PTP planning
 // -----------------------------------------------------------------------
 bool PilzPointsPlanner::startPTPPlanning(const std::vector<double>& target, double speed, double accel)
 {
-    // Store target, speed and accel for use in async lambda
     auto target_copy = target;
-    
+
     planning_future_ = std::async(std::launch::async, [this, target_copy, speed, accel]() -> bool {
         return runPTP(target_copy, speed, accel);
     });
-    
+
     return true;
 }
 
@@ -227,38 +395,13 @@ bool PilzPointsPlanner::startPTPPlanning(const std::vector<double>& target, doub
 // -----------------------------------------------------------------------
 bool PilzPointsPlanner::startLINPlanning(const std::vector<double>& target, double speed, double accel)
 {
-    // Store target, speed and accel for use in async lambda
     auto target_copy = target;
-    
+
     planning_future_ = std::async(std::launch::async, [this, target_copy, speed, accel]() -> bool {
         return runLIN(target_copy, speed, accel);
     });
-    
-    return true;
-}
 
-// -----------------------------------------------------------------------
-// isPlanningComplete - Check if async planning is done
-// -----------------------------------------------------------------------
-bool PilzPointsPlanner::isPlanningComplete()
-{
-    if (!planning_future_.valid())
-        return false;
-    
-    auto status = planning_future_.wait_for(std::chrono::milliseconds(0));
-    if (status == std::future_status::ready)
-    {
-        try
-        {
-            return planning_future_.get();
-        }
-        catch (const std::exception& e)
-        {
-            RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] Planning exception: %s", e.what());
-            return false;
-        }
-    }
-    return false;
+    return true;
 }
 
 // -----------------------------------------------------------------------
@@ -271,43 +414,19 @@ bool PilzPointsPlanner::startExecution()
         RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] MoveGroup is null");
         return false;
     }
-    
+
     execution_future_ = std::async(std::launch::async, [this]() -> bool {
         bool executed = (move_group_->execute(stored_plan_) == moveit::core::MoveItErrorCode::SUCCESS);
         if (!executed)
             RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] Execution failed");
         return executed;
     });
-    
+
     return true;
 }
 
 // -----------------------------------------------------------------------
-// isExecutionComplete - Check if async execution is done
-// -----------------------------------------------------------------------
-bool PilzPointsPlanner::isExecutionComplete()
-{
-    if (!execution_future_.valid())
-        return false;
-    
-    auto status = execution_future_.wait_for(std::chrono::milliseconds(0));
-    if (status == std::future_status::ready)
-    {
-        try
-        {
-            return execution_future_.get();
-        }
-        catch (const std::exception& e)
-        {
-            RCLCPP_ERROR(node_->get_logger(), "[PilzPointsPlanner] Execution exception: %s", e.what());
-            return false;
-        }
-    }
-    return false;
-}
-
-// -----------------------------------------------------------------------
-// PTP — joint-space target, Pilz PTP (UNCHANGED LOGIC)
+// PTP — joint-space target, Pilz PTP
 // -----------------------------------------------------------------------
 bool PilzPointsPlanner::runPTP(const std::vector<double>& target, double speed, double accel)
 {
@@ -329,7 +448,7 @@ bool PilzPointsPlanner::runPTP(const std::vector<double>& target, double speed, 
 }
 
 // -----------------------------------------------------------------------
-// LIN — Cartesian linear, derived from FK of joint target, Pilz LIN (UNCHANGED LOGIC)
+// LIN — Cartesian linear, derived from FK of joint target, Pilz LIN
 // -----------------------------------------------------------------------
 bool PilzPointsPlanner::runLIN(const std::vector<double>& target, double speed, double accel)
 {
@@ -343,7 +462,6 @@ bool PilzPointsPlanner::runLIN(const std::vector<double>& target, double speed, 
         return false;
     }
 
-    // FK: compute end-effector pose from target joint values
     moveit::core::RobotState rs(robot_model);
     rs.setToDefaultValues();
     rs.setJointGroupPositions(jmg, target);
@@ -404,7 +522,7 @@ bool PilzPointsPlanner::runLIN(const std::vector<double>& target, double speed, 
 }
 
 // -----------------------------------------------------------------------
-// YAML loader — same logic as PlanAndExecutePoseHybrid (UNCHANGED)
+// YAML loader
 // -----------------------------------------------------------------------
 void PilzPointsPlanner::loadJointTargetsFromYaml(const std::string& filepath)
 {

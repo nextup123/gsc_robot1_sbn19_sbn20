@@ -34,7 +34,7 @@
         <ec_module name="ZeroErr">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
           <param name="alias">0</param>
-          <param name="position">6</param>
+          <param name="position">0</param>
           <param name="mode_of_operation">9</param>
           <param name="slave_config">${slave_config_dir}/joint1.yaml</param>
         </ec_module>
@@ -194,7 +194,7 @@
         <ec_module name="RTU">
           <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
           <param name="alias">0</param>
-          <param name="position">0</param>
+          <param name="position">6</param>
           <param name="slave_config">/home/nextup/NextupRobot/src/nextup_moveit_config/config/innovance/do_di.yaml</param>
         </ec_module>
       </gpio>

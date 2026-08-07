@@ -44,6 +44,8 @@
 #include "control_logic_bt/action/cycle_counter_node.hpp"
 #include "control_logic_bt/action/bt_do_control.hpp"
 #include "control_logic_bt/action/bt_di_control.hpp"
+#include "control_logic_bt/action/gpio/bt_gpio_di_control.hpp"
+#include "control_logic_bt/action/gpio/bt_gpio_do_control.hpp"
 #include "control_logic_bt/action/runway_protection_node.hpp"
 
 #include "control_logic_bt/blackboard/print_message_node.hpp"
@@ -134,6 +136,20 @@ void register_all_nodes(BT::BehaviorTreeFactory &factory, const rclcpp::Node::Sh
         [node](const std::string &name, const BT::NodeConfiguration &config)
         {
             return std::make_unique<bt_control::DIControl>(name, config, node);
+        });
+    
+    factory.registerBuilder<bt_control::GpioDiControl>(
+        "GpioDiControl",
+        [node](const std::string &name, const BT::NodeConfiguration &config)
+        {
+            return std::make_unique<bt_control::GpioDiControl>(name, config, node);
+        });
+    
+        factory.registerBuilder<bt_control::GpioDoControl>(
+        "GpioDoControl",
+        [node](const std::string &name, const BT::NodeConfiguration &config)
+        {
+            return std::make_unique<bt_control::GpioDoControl>(name, config, node);
         });
 
     factory.registerNodeType<PlanAndExecuteArcHybrid>("PlanAndExecuteArcHybrid");

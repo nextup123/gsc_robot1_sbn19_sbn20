@@ -22,6 +22,8 @@ find_package(moveit_core REQUIRED)
 find_package(moveit_ros_planning REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_msgs REQUIRED)
+find_package(control_msgs REQUIRED)
+
 
 # TF and Eigen dependencies
 find_package(tf2_ros REQUIRED)
@@ -92,6 +94,10 @@ add_executable(control_logic_bt_runner
   src/blackboard/subscribe_to_blackboard_node.cpp
   src/blackboard/publish_blackboard_node.cpp
 
+  #gpio
+  src/action/gpio/bt_gpio_di_control.cpp
+  src/action/gpio/bt_gpio_do_control.cpp
+
 )
 
 
@@ -110,6 +116,7 @@ ament_target_dependencies(control_logic_bt_runner
   tf2_ros
   tf2_geometry_msgs
   tf2_eigen
+  control_msgs
 )
 target_link_libraries(control_logic_bt_runner yaml-cpp)
 

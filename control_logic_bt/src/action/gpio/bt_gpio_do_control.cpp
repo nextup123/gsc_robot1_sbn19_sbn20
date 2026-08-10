@@ -6,6 +6,15 @@
 namespace bt_control
 {
 
+// ---------------------------------------------------------------------------
+// Static member definitions (exist exactly once for the whole process).
+// All GpioDoControl instances share ONE publisher on the single shared
+// commands topic, so N uses of this node in the tree no longer create N
+// publishers.
+// ---------------------------------------------------------------------------
+rclcpp::Publisher<control_msgs::msg::DynamicInterfaceGroupValues>::SharedPtr GpioDoControl::publisher_ = nullptr;
+std::mutex GpioDoControl::publisher_mutex_;
+
 GpioDoControl::GpioDoControl(const std::string& name,
                              const BT::NodeConfiguration& config,
                              const rclcpp::Node::SharedPtr& node)
@@ -14,9 +23,16 @@ GpioDoControl::GpioDoControl(const std::string& name,
     RCLCPP_INFO(node_->get_logger(),
                 "Initializing Async GpioDoControl BT node '%s'...", name.c_str());
 
+    // Create the shared publisher only on the first instance. Subsequent
+    // instances reuse it.
     std::lock_guard<std::mutex> lock(publisher_mutex_);
-    publisher_ = node_->create_publisher<control_msgs::msg::DynamicInterfaceGroupValues>(
-        "/nextup_gpio_command_controller/commands", 10);
+    if (!publisher_) {
+        publisher_ = node_->create_publisher<control_msgs::msg::DynamicInterfaceGroupValues>(
+            "/nextup_gpio_command_controller/commands", 10);
+        RCLCPP_INFO(node_->get_logger(),
+                    "GpioDoControl: created shared publisher on "
+                    "/nextup_gpio_command_controller/commands");
+    }
 }
 
 BT::PortsList GpioDoControl::providedPorts()

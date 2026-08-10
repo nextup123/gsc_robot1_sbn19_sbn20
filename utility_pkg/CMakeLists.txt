@@ -107,6 +107,9 @@ ament_target_dependencies(four_point_calibration_node
   moveit_ros_planning_interface)
 target_link_libraries(four_point_calibration_node yaml-cpp)
 
+add_executable(process_manager_rosbridge src/process_manager_rosbridge.cpp)
+ament_target_dependencies(process_manager_rosbridge rclcpp std_msgs)
+
 install(TARGETS four_point_calibration_node DESTINATION lib/${PROJECT_NAME})
 
 
@@ -128,6 +131,7 @@ install(TARGETS
   led_indicators
   tf_loader_node
   four_point_calibration_node
+  process_manager_rosbridge
   DESTINATION lib/${PROJECT_NAME}
 )
 

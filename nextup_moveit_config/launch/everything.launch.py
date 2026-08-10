@@ -47,7 +47,12 @@ def generate_launch_description():
     utility_pkg_nodes = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([utility_pkg_dir, '/utility_nodes.launch.py'])
     )
-
+    process_manager_rosbridge = Node(
+                package='utility_pkg',
+                executable='process_manager_rosbridge',
+                output='screen'
+            )
+    
     return LaunchDescription([
         TimerAction(
             period=1.0,  
@@ -68,5 +73,9 @@ def generate_launch_description():
         TimerAction(
             period=15.0,  
             actions=[utility_pkg_nodes]
+        ),
+        TimerAction(
+            period=17.0,  
+            actions=[process_manager_rosbridge]
         ),
     ])

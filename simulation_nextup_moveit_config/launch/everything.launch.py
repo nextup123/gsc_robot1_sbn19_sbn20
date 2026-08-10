@@ -145,6 +145,12 @@ def generate_launch_description():
         executable='execute_trajectory',
         output='screen'
     )
+    
+    process_manager_rosbridge = Node(
+            package='utility_pkg',
+            executable='process_manager_rosbridge',
+            output='screen'
+        )
 
     return LaunchDescription([
         TimerAction(period=1.0, actions=[demo_node]),
@@ -159,5 +165,6 @@ def generate_launch_description():
         TimerAction(period=22.0, actions=[controller_state_monitor]),
         TimerAction(period=23.0, actions=[reset_mode_manager]),
         TimerAction(period=25.0, actions=[emergency_manager]),
-        TimerAction(period=27.0,actions=[execute_trajectory_node])
+        TimerAction(period=27.0,actions=[execute_trajectory_node]),
+        TimerAction(period=29.0,actions=[process_manager_rosbridge])
     ])

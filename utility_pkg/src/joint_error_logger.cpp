@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <nextup_joint_interfaces/msg/nextup_joint_state.hpp>
+#include <nextup_joint_interfaces/msg/nextup_gpio_device_state_array.hpp>
 
 #include <yaml-cpp/yaml.h>
 
@@ -11,6 +12,8 @@
 #include <cmath>
 #include <unordered_map>
 #include <mutex>
+#include <vector>
+#include <string>
 
 namespace fs = std::filesystem;
 using namespace std::chrono_literals;
@@ -27,11 +30,19 @@ public:
         ensureFileExists();
         loadYamlOnce();
 
+        // Joint driver errors
         sub_ = this->create_subscription<
             nextup_joint_interfaces::msg::NextupJointState>(
             "/nextup_joint_states",
             10,
             std::bind(&JointErrorLogger::callback, this, std::placeholders::_1));
+
+        // GPIO device errors
+        gpio_sub_ = this->create_subscription<
+            nextup_joint_interfaces::msg::NextupGpioDeviceStateArray>(
+            "/nextup_gpio_device_state",
+            10,
+            std::bind(&JointErrorLogger::gpioCallback, this, std::placeholders::_1));
 
         flush_timer_ = this->create_wall_timer(
             1s,
@@ -47,6 +58,8 @@ private:
     // ROS
     rclcpp::Subscription<
         nextup_joint_interfaces::msg::NextupJointState>::SharedPtr sub_;
+    rclcpp::Subscription<
+        nextup_joint_interfaces::msg::NextupGpioDeviceStateArray>::SharedPtr gpio_sub_;
     rclcpp::TimerBase::SharedPtr flush_timer_;
 
     // File
@@ -58,15 +71,31 @@ private:
     std::mutex mutex_;
     bool dirty_{false};
 
-    // ================= CALLBACK =================
+    // ================= CALLBACKS =================
 
     void callback(
         const nextup_joint_interfaces::msg::NextupJointState::SharedPtr msg)
     {
-        if (msg->name.size() != msg->lasterror.size())
+        logErrors(msg->name, msg->lasterror);
+    }
+
+    void gpioCallback(
+        const nextup_joint_interfaces::msg::NextupGpioDeviceStateArray::SharedPtr msg)
+    {
+        logErrors(msg->name, msg->error_code);
+    }
+
+    // ================= SHARED WRITER =================
+
+    // Logs any device whose error value has changed since last seen.
+    // Keyed by device name, so joint1..joint6 and gpio1.. never collide.
+    void logErrors(const std::vector<std::string> &names,
+                   const std::vector<double> &errors)
+    {
+        if (names.size() != errors.size())
         {
             RCLCPP_ERROR(this->get_logger(),
-                         "name[] and lasterror[] size mismatch");
+                         "name[] and error[] size mismatch");
             return;
         }
 
@@ -74,21 +103,21 @@ private:
 
         std::lock_guard<std::mutex> lock(mutex_);
 
-        for (size_t i = 0; i < msg->name.size(); ++i)
+        for (size_t i = 0; i < names.size(); ++i)
         {
-            const std::string &joint = msg->name[i];
-            const double new_error = msg->lasterror[i];
+            const std::string &dev = names[i];
+            const double new_error = errors[i];
 
             double old_error = NAN;
-            if (last_errors_.count(joint))
-                old_error = last_errors_[joint];
+            if (last_errors_.count(dev))
+                old_error = last_errors_[dev];
 
             if (sameError(old_error, new_error))
                 continue;
 
             YAML::Node entry;
             entry["time"] = time_str;
-            entry["joint"] = joint;
+            entry["joint"] = dev;   // key kept as "joint" so the UI needs no change
 
             if (std::isnan(new_error))
             {
@@ -100,14 +129,14 @@ private:
             }
 
             root_["error_logs"].push_back(entry);
-            last_errors_[joint] = new_error;
+            last_errors_[dev] = new_error;
             dirty_ = true;
 
             trimLog();
 
             // RCLCPP_WARN(this->get_logger(),
-            //             "Error change | %s : %s → %s",
-            //             joint.c_str(),
+            //             "Error change | %s : %s -> %s",
+            //             dev.c_str(),
             //             errorToString(old_error).c_str(),
             //             errorToString(new_error).c_str());
         }

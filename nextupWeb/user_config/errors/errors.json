@@ -1,0 +1,284 @@
+[
+  {
+    "error": "29473",
+    "error_code": "Er 150",
+    "error_Content": "Encoder Disconnected",
+    "error_Cause": [
+      "Please Connect the Encoder Properly",
+      "Encoder cable wiring error",
+      "Encoder damaged",
+      "Encoder measuring circuit damaged"
+    ],
+    "error_Diagnosis": [
+      "Verify encoder cable connection",
+      "Verify if encoder wiring is correct",
+      "/",
+      "/"
+    ],
+    "error_Solution": [
+      "Make sure encoder cable properly connected",
+      "Reconnect encoder wiring",
+      "Replace motor",
+      "Replace driver"
+    ]
+  },
+  {
+    "error": "12834",
+    "error_code": "Er 0d2",
+    "error_Content": "No main power supply detected",
+    "error_Cause": [
+      "No main power supply",
+      "Driver fault"
+    ],
+    "error_Diagnosis": [
+      "Verify L1,L2,L3 terminal voltage",
+      "/"
+    ],
+    "error_Solution": [
+      "Increase main power supply voltage, Secure connections",
+      "Replace driver"
+    ]
+  },
+  {
+    "error": "12627",
+    "error_code": "Er 0A3",
+    "error_Content": "Motor power cable not connected",
+    "error_Cause": [
+      "Motor power cable not connected",
+      "Motor fault",
+      "Driver fault"
+    ],
+    "error_Diagnosis": [
+      "Verify motor power cable wiring",
+      "/",
+      "/"
+    ],
+    "error_Solution": [
+      "Measure resistance values between U, V, W terminals, make sure the values are almost equal. If not, might be due to damaged motor or motor winding open circuit.",
+      "Replace motor",
+      "Replace driver"
+    ]
+  },
+  {
+    "error": "33794",
+    "error_code": "Er 1A1",
+    "error_Content": "Velocity out of control",
+    "error_Cause": [
+      "Motor velocity out of control, Excessive velocity error "
+    ],
+    "error_Diagnosis": [
+      "Verify encoder phase sequence; Verify if UVW cable is connected to the right terminal"
+
+    ],
+    "error_Solution": [
+      "Reconnect UVW if wrongly connected. If still remains unsolved, please contact technical support. "
+    ]
+  },
+  {
+    "error": "34322",
+    "error_code": "Er 1b0",
+    "error_Content": "Bus input signal dithering",
+    "error_Cause": [
+      "Controller synchronization dithering"
+    ],
+    "error_Diagnosis": [
+      "/"
+
+    ],
+    "error_Solution": [
+      "Increase alarm threshold value."
+    ]
+  },
+  {
+    "error": "33307",
+    "error_code": "Er 81b",
+    "error_Content": "SyncManager2 watchdog timer timeout",
+    "error_Cause": [
+      "The RxPDO update timeout in operational state"
+    ],
+    "error_Diagnosis": [
+      "/"
+
+    ],
+    "error_Solution": [
+      "1. Verify if EL7EC network is connected 2. Verify RxPDO update time"
+    ]
+  },
+  {
+    "error": "33297",
+    "error_code": "Er 818",
+    "error_Content": "No valid input data",
+    "error_Cause": [
+      "The input data is not updated for more than 1 second"
+    ],
+    "error_Diagnosis": [
+      "The current state is maintained below the safe operation, and the operation state is switched to the safe operation state"
+
+    ],
+    "error_Solution": [
+      "1. Verify if TxPDO is valid  2. Verify master device synchronization settings"
+    ]
+  },
+  {
+    "error": "33298",
+    "error_code": "Er 819",
+    "error_Content": "No valid input data",
+    "error_Cause": [
+      "Output data is not updated for more than 1 second"
+    ],
+    "error_Diagnosis": [
+      "The current state is maintained below the safe operation, and the operation state is switched to the safe operation state "
+    ],
+    "error_Solution": [
+      "1. Verify if RxPDO is valid 2. Verify master device synchronization settings "
+    ]
+  },
+  {
+    "error": "33553",
+    "error_code": "Er 100",
+    "error_Content": "Motor overloaded",
+    "error_Cause": [
+      "Load too heavy",
+      "Strong mechanical vibration",
+      "Motor or encoder cable wiring error",
+      "Holding brake engaged"
+    ],
+    "error_Diagnosis": [
+      "Verify if actual load exceeds maximum value allowed",
+      "Look for mechanical vibration from machine system ",
+      "Verify motor and encoder wiring",
+      "Verify holding brake terminal voltage"
+    ],
+    "error_Solution": [
+      "1. Decrease load 2. Adjust limit values ",
+      "1. Adjust gain value of control loop 2. Increase duration time for acceleration and deceleration ",
+      "1. Reconnect wiring 2. Replace motor and encoder cable ",
+      "Cut off holding brake"
+    ]
+  },
+  {
+    "error": "33537",
+    "error_code": "Er 102",
+    "error_Content": "Motor rotor blocked",
+    "error_Cause": [
+      "Motor rotor blocked",
+      "Motor rotor blocking time threshold value too low "
+    ],
+    "error_Diagnosis": [
+      "Look for mechanical blockages",
+      "Verify value of Pr6.57"
+    ],
+    "error_Solution": [
+      "Check the machinery ",
+      "Adjust value of Pr6.57"
+    ]
+  },
+  {
+    "error": "34321",
+    "error_code": "Er 180",
+    "error_Content": " Excessive position deviation ",
+    "error_Cause": [
+      "Improper position deviation settings",
+      "Position gain setting too low",
+      "Torque limit too low",
+      "Excessive external load "
+    ],
+    "error_Diagnosis": [
+      "Verify if value of Pr_014 is too low",
+      "Verify if values of Pr1.00 & Pr1.05 are too low ",
+      "Verify if values of Pr0.13 & Pr5.22 are too low",
+      "1. Verify if acceleration and deceleration duration time is too low. 2. Verify if rotational velocity is too high 3. Verify if load is too large "
+    ],
+    "error_Solution": [
+      "Increase value of Pr_014",
+      "Increase values of Pr1.00 & Pr1.05 ",
+      "Increase values of Pr0.13 & Pr5.22 ",
+      "1. Increase duration time for acceleration and deceleration 2. Decrease rotational velocity 3. Decrease load "
+    ]
+  },
+  {
+    "error": "33793",
+    "error_code": "Er 190",
+    "error_Content": "Motor vibration too strong",
+    "error_Cause": [
+      "Motor velocity fluctuates too much "
+    ],
+    "error_Diagnosis": [
+      "Verify if Pr0.03 is too large"
+
+    ],
+    "error_Solution": [
+      "Decrease value of Pr0.03"
+    ]
+  },
+  {
+    "error": "12817",
+    "error_code": "Er 0C0",
+    "error_Content": "DC bus overvoltage",
+    "error_Cause": [
+      "Main power supply overvoltage",
+      "Inner brake circuit damaged ",
+      "Driver fault"
+    ],
+    "error_Diagnosis": [
+      "Verify L1,L2,L3 terminal voltage",
+      "/",
+      "/"
+    ],
+    "error_Solution": [
+      "Decrease main power supply voltage",
+      "Replace driver",
+      "Replace driver"
+    ]
+  },
+  {
+    "error": "12833",
+    "error_code": "Er 0d0",
+    "error_Content": "DC bus undervoltage",
+    "error_Cause": [
+      "Main power supply undervoltage",
+      "L1C, L2C connected when USB cable is connected ",
+      "Driver fault"
+    ],
+    "error_Diagnosis": [
+      "Verify L1,L2,L3 terminal voltage",
+      "Control circuit power on before driver initialization. Alarm might occur.",
+      "/"
+    ],
+    "error_Solution": [
+      "Increase main power supply voltage",
+      "Please disconnect the USB cable before powering on control circuit. ",
+      "Replace driver"
+    ]
+  },
+  {
+    "error": "8722",
+    "error_code": "Er 0E1",
+    "error_Content": "Intelligent Power Module (IPM) overcurrent",
+    "error_Cause": [
+      "/"
+    ],
+    "error_Diagnosis": [
+      "/"
+
+    ],
+    "error_Solution": [
+      "/"
+    ]
+  },
+  {
+    "error": "8752",
+    "error_code": "Er 0E4",
+    "error_Content": "Phase overcurrent",
+    "error_Cause": [
+      "/"
+    ],
+    "error_Diagnosis": [
+      "/"
+
+    ],
+    "error_Solution": [
+      "/"
+    ]
+  }
+]

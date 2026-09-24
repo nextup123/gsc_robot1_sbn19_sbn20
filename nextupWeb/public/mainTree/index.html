@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behavior Tree Editor</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/context_menu.css">
+  <link rel="stylesheet" href="styles/show_toast.css">
+  <link rel="stylesheet" href="styles/subtrees-section-modal.css">
+  <link rel="stylesheet" href="styles/main_tree.css">
+  <link rel="stylesheet" href="styles/custom_node.css">
+  <link rel="stylesheet" href="styles/nodes_shortcuts.css">
+  <script src="../media/d3js-org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="../media/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+  <div id="main-container">
+    <!-- ==================== EDITOR PANEL ==================== -->
+    <div id="editor-panel">
+      <div class="panel-header">Node Editor
+        <button id="add-custom-node-btn" onclick="openCustomNodeModal()"
+          style="background: none; border: none; cursor: pointer; color: #28a745; font-size: 20px; width: 40px;"
+          title="add custom node">
+          <i class="fa fa-plus-circle"></i>
+        </button>
+      </div>
+
+      <!-- ------------------- ADD NODE SECTION ------------------- -->
+      <div class="control-group">
+        <h3>Add Node <!-- Always-visible button -->
+
+        </h3>
+
+
+
+        <input type="text" id="new-node-name" placeholder="Node Name">
+
+        <div id="node-type-container">
+          <select id="node-category">
+            <option value="">Select Category</option>
+          </select>
+          <select id="node-type">
+            <option value="">Select Node Type</option>
+          </select>
+        </div>
+
+        <div id="node-attributes"></div>
+
+        <button id="add-node-btn" onclick="addNode()" disabled>Add Node</button>
+      </div>
+
+      <!-- ------------------- CUSTOM NODE MODAL ------------------- -->
+      <div id="custom-node-modal" class="acn-modal" style="display:none;">
+        <div class="acn-modal-overlay"></div>
+        <div class="acn-modal-container">
+          <div class="acn-modal-header">
+            <div class="acn-header-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" />
+                <circle cx="12" cy="12" r="9" stroke="currentColor" />
+              </svg>
+            </div>
+            <div class="acn-header-text">
+              <h2>Create Custom Node</h2>
+              <p>Add new nodes to your behavior tree</p>
+            </div>
+            <button class="acn-modal-close" onclick="closeCustomNodeModal()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="acn-modal-body">
+            <!-- Node Name with icon -->
+            <div class="acn-form-section">
+
+              <div class="acn-form-card">
+                <div class="acn-form-header">
+                  <span class="acn-form-icon">📝</span>
+                  <label>Node Name</label>
+                  <span class="acn-required">*</span>
+                  <div class="acn-hint">Choose a descriptive name for your node</div>
+
+                </div>
+                <input type="text" id="custom-node-name" class="acn-input"
+                  placeholder="e.g., CheckBattery, MoveToPose, WaitForSignal" autocomplete="off">
+              </div>
+
+              <!-- Category Selection -->
+              <div class="acn-form-card">
+                <div class="acn-form-header">
+                  <span class="acn-form-icon">📁</span>
+                  <label>Category</label>
+                  <span class="acn-required">*</span>
+                  <div class="acn-hint">Select existing category or create a new one from the dropdown</div>
+
+                </div>
+                <div class="acn-select-wrapper">
+                  <select id="custom-node-category" class="acn-select"></select>
+                  <svg class="acn-select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Node Type Selection -->
+            <div class="acn-form-card">
+              <div class="acn-form-header">
+                <span class="acn-form-icon">🎯</span>
+                <label>Node Type</label>
+                <span class="acn-required">*</span>
+              </div>
+              <div class="acn-type-grid">
+                <label class="acn-type-option" data-type="Action">
+                  <input type="radio" name="node-type-select" value="Action" checked>
+                  <div class="acn-type-card">
+                    <span class="acn-type-emoji">🎬</span>
+                    <div class="acn-type-info">
+                      <strong>Action</strong>
+                      <small>Performs operations</small>
+                    </div>
+                  </div>
+                </label>
+                <label class="acn-type-option" data-type="Condition">
+                  <input type="radio" name="node-type-select" value="Condition">
+                  <div class="acn-type-card">
+                    <span class="acn-type-emoji">❓</span>
+                    <div class="acn-type-info">
+                      <strong>Condition</strong>
+                      <small>Checks state</small>
+                    </div>
+                  </div>
+                </label>
+                <label class="acn-type-option" data-type="Control">
+                  <input type="radio" name="node-type-select" value="Control">
+                  <div class="acn-type-card">
+                    <span class="acn-type-emoji">🎮</span>
+                    <div class="acn-type-info">
+                      <strong>Control</strong>
+                      <small>Controls flow</small>
+                    </div>
+                  </div>
+                </label>
+                <label class="acn-type-option" data-type="Decorator">
+                  <input type="radio" name="node-type-select" value="Decorator">
+                  <div class="acn-type-card">
+                    <span class="acn-type-emoji">✨</span>
+                    <div class="acn-type-info">
+                      <strong>Decorator</strong>
+                      <small>Modifies behavior</small>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <input type="hidden" id="custom-node-type" value="Action">
+            </div>
+
+            <!-- Node Kind Toggle -->
+            <div class="acn-form-card">
+              <div class="acn-form-header">
+                <span class="acn-form-icon">🔧</span>
+                <label>Node Structure</label>
+              </div>
+              <div class="acn-toggle-group">
+                <button type="button" class="acn-toggle-btn active" data-kind="leaf">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19 12a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <span>Leaf Node</span>
+                  <small>No children</small>
+                </button>
+                <button type="button" class="acn-toggle-btn" data-kind="wrapper">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
+                  <span>Wrapper Node</span>
+                  <small>Can have children</small>
+                </button>
+              </div>
+              <input type="hidden" name="node-kind" value="leaf">
+            </div>
+
+            <!-- Attributes Section -->
+            <div class="acn-form-card">
+              <div class="acn-form-header">
+                <span class="acn-form-icon">⚙️</span>
+                <label>Attributes</label>
+                <span class="acn-optional">optional</span>
+              </div>
+              <div id="custom-attributes-list" class="acn-attributes-container">
+                <!-- Dynamic attribute rows go here -->
+              </div>
+              <button type="button" id="add-attr-btn" class="acn-add-attr">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Add Attribute
+              </button>
+            </div>
+
+            <!-- Live Preview -->
+            <div id="attribute-preview" class="acn-preview-card" style="display:none;">
+              <div class="acn-preview-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <span>Preview</span>
+              </div>
+              <pre id="preview-content" class="acn-preview-content"></pre>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="acn-actions">
+              <button class="acn-btn-secondary" onclick="closeCustomNodeModal()">
+                Cancel
+              </button>
+              <button id="save-custom-node" class="acn-btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+                  <path d="M17 21v-8H7v8M12 3v5" />
+                </svg>
+                Create Custom Node
+              </button>
+            </div>
+
+
+            <div id="attribute-preview" class="acn-preview-card" style="display:none;">
+              <div class="acn-preview-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <span>Preview</span>
+              </div>
+              <pre id="preview-content" class="acn-preview-content"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ------------------- ADD WRAPPER SECTION ------------------- -->
+      <div class="control-group">
+        <h3>Add Wrapper</h3>
+        <select id="new-wrapper-type">
+          <option value="">Select Wrapper Type</option>
+          <option value="Sequence">Sequence</option>
+          <option value="Fallback">Fallback</option>
+          <option value="Selector">Selector</option>
+        </select>
+        <button id="add-wrapper-btn" onclick="addWrapper()" disabled>Add Wrapper</button>
+      </div>
+
+      <!-- ------------------- NODE ACTIONS ------------------- -->
+      <div class="control-group">
+        <h3>Node Actions</h3>
+        <div class="delete-button-container">
+          <button id="delete-node-btn" onclick="deleteNode()" disabled>Delete Node</button>
+          <button id="delete-wrapper-btn" onclick="deleteWrapperOnly()" disabled>Delete Wrapper Only</button>
+        </div>
+        <div style="margin-top:8px;">
+          <button id="add-node-after-btn" onclick="openAddNodeAfterModal()" disabled
+            title="Add a new node immediately after the selected node (same parent)">
+            ➕ Add Node After Selected
+          </button>
+        </div>
+      </div>
+      <div id="node-info">Select a node to view details</div>
+      <div id="edit-section" style="display:none;">
+        <h3>Edit Node</h3>
+        <form id="edit-form">
+          <div id="edit-fields"></div>
+          <button type="submit">Update Node</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- ==================== TREE VIEW ==================== -->
+    <div id="tree-container">
+      <div class="tree-header">
+        <span id="current-subtree-name">
+          No Subtree Selected
+        </span>
+
+        <div id="search-bar" style="display:flex; align-items:center; gap:6px; padding:4px 8px;">
+          <input type="text" id="search-input" placeholder="Search nodes..."
+            style="flex:1; padding:4px 8px; font-size:12px;" />
+          <span id="search-counter" style="font-size:11px; color:#888; min-width:40px;"></span>
+          <button onclick="navigateMatch(-1)" title="Previous" style="padding:6px 10px;">prev</button>
+          <button onclick="navigateMatch(1)" title="Next" style="padding:6px 10px;">next</button>
+          <button onclick="clearSearch()" title="Clear" style="padding:6px 10px;">clear</button>
+        </div>
+
+        <div id="view-toggle" style="display:flex; gap:4px;">
+          <button id="btn-tree-view" class="view-btn active" onclick="switchView('tree')" title="Tree view">⬡
+            Tree</button>
+          <button id="btn-nested-view" class="view-btn" onclick="switchView('nested')" title="Nested view">☰
+            ladder</button>
+        </div>
+        <div class="tree-spacing-control">
+          <div style="display: flex;justify-content: space-between;">
+            <label>Horizontal</label>
+            <input type="range" id="spacing-x-slider" min="10" max="250" step="1" value="30">
+          </div>
+          <div style="display: flex;justify-content: space-between;">
+            <label>Vertical</label>
+            <input type="range" id="spacing-y-slider" min="20" max="250" step="1" value="90">
+          </div>
+        </div>
+      </div>
+      <div id="tree-view"></div>
+      <div id="nested-view" style="display:none; overflow:auto; padding:12px;"></div>
+    </div>
+    <div id="tree-legend" style="display: none;">loading</div>
+
+    <!-- ==================== TEMPLATE PANEL ==================== -->
+    <div id="template-panel">
+
+
+      <div class="control-group">
+        <span style="display: flex; flex-direction: row; align-items: center;">
+          <h3>Add New Subtree </h3>
+          <div style="
+                  margin-left: 10px;
+                  font-size: 12px;
+                  background-color: #28a745;
+                  border-radius: 8px;
+                  padding: 8px;
+                  color: #ffffff;
+                  cursor: pointer;
+                  transition: transform 0.15s ease, box-shadow 0.15s ease;
+                " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 2px 6px rgba(0,0,0,0.2)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';" id="reload-all-trees">
+            Reload
+            <i class="fas fa-rotate-right" title="Reload Subtrees" style="cursor:pointer;color:#ffffff;"></i>
+          </div>
+        </span>
+        <div style="display: flex; align-items: center;">
+          <input type="text" id="new-subtree-name" placeholder="Subtree Name"
+            style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; outline: none; flex: 1;">
+          <button onclick="addSubtree()"
+            style="background: none; border: none; cursor: pointer; color: #28a745; font-size: 20px; width: 40px;"
+            title="Add Subtree">
+            <i class="fa fa-plus-circle"></i>
+          </button>
+        </div>
+      </div>
+      <div class="panel-header">Available Subtrees
+        <button class="xml-btn" onclick="openMainTreeXMLModal('mainTree')">
+          <i class="fas fa-code"></i> XML
+        </button>
+        <!-- <i class="fas fa-rotate-right" title="Reload Subtrees" style="cursor:pointer;color:#007aff;"
+          onclick="reloadSubtrees()"></i> -->
+      </div>
+      <div id="main_tree_title_box" class="main_tree_title_box" onclick="loadSubtree('main_tree')">
+        <span class="main_tree_title">main_tree</span>
+        <i class="fas fa-eye main_tree_icon" title="Preview" onclick="previewSubtree('main_tree')"></i>
+      </div>
+      <div id="template-list" class="subtree-section"></div>
+
+      <div class="panel-header" style="margin-top: 5px;">Run Path Subtrees
+        <button class="xml-btn" onclick="openMainTreeXMLModal('runPathTree')">
+          <i class="fas fa-route"></i> XML
+        </button>
+        <!-- <i class="fas fa-rotate-right" title="Reload RunPath Subtrees" style="cursor:pointer;color:#007aff;"
+          onclick="reloadRunPathSubtrees()"></i> -->
+      </div>
+      <div id="runpath-subtree-list" class="runpath-section"></div>
+
+      <div class="panel-header" style="margin-top:5px;display:flex;align-items:center;justify-content:space-between;">
+        <span>DO/DI Subtrees</span>
+
+        <button class="xml-btn" onclick="openMainTreeXMLModal('doDiTree')">
+          <i class="fas fa-plug"></i>XML
+        </button>
+        <!-- <i class="fas fa-rotate-right" title="Reload DO/DI Subtrees" style="cursor:pointer;color:#007aff;"
+          onclick="reloadDoDiSubtrees()"></i> -->
+      </div>
+
+      <div id="dodi-subtree-list" class="subtree-section"></div>
+    </div>
+
+    <!-- ==================== TOOLTIP & PREVIEW ==================== -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <div id="preview-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="preview-subtree-name">Preview Pane</span>
+          <div>
+            <button class="modal-reload" onclick="reloadPreviewSubtree()">Reload</button>
+            <button class="modal-close" onclick="closePreviewModal()">Close</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div id="preview-tree-view"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DO/DI Add Subtree Modal -->
+  <!-- DO/DI Subtree Modal -->
+  <div id="dodi-modal" class="dodi-modal" style="display:none;">
+    <div class="dodi-modal-content">
+      <h3 id="dodi-title">Add DO/DI Subtree</h3>
+      <p id="dodi-subtree-name" class="dodi-subtitle"></p>
+
+      <div class="dodi-options">
+        <label class="dodi-option">
+          <input type="radio" name="dodi-mode" value="full" checked>
+          <span>Add Full Subtree</span>
+        </label>
+        <label class="dodi-option">
+          <input type="radio" name="dodi-mode" value="reference">
+          <span>Add as &lt;SubTreePlus&gt;</span>
+        </label>
+      </div>
+
+      <div id="dodi-extra-attrs" class="dodi-extra" style="display:none;">
+        <label id="dodi-attr-label" class="dodi-extra-label"></label>
+        <div class="dodi-extra-options">
+          <label><input type="radio" name="dodi-value" value="true" checked> true</label>
+          <label><input type="radio" name="dodi-value" value="false"> false</label>
+        </div>
+      </div>
+
+      <div class="dodi-buttons">
+        <button id="dodi-confirm-btn" class="dodi-btn primary">Done</button>
+        <button id="dodi-cancel-btn" class="dodi-btn cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Run Path Subtree Modal -->
+  <div id="runpath-modal" class="modal" style="display:none;">
+    <div class="runpath-modal-content">
+      <h3 id="runpath-title">Add Run Path Subtree</h3>
+      <p id="runpath-subtree-name" class="runpath-subtitle"></p>
+
+      <div class="runpath-buttons">
+        <button id="runpath-full-btn" class="rp-btn primary">Add Full Subtree</button>
+        <button id="runpath-ref-btn" class="rp-btn secondary">Add as &lt;SubTreePlus&gt;</button>
+      </div>
+      <div id="runpath-extra-attrs" class="runpath-extra" style="display:none;">
+        <label class="runpath-extra-label">
+          desired_speed (0.10 – 2.00)
+        </label>
+        <input type="number" id="runpath-speed-input" min="0.10" max="2.00" step="0.05" value="0.75"
+          style="width:100%; padding:6px; margin-top:6px;" />
+      </div>
+
+      <button id="runpath-cancel-btn" class="rp-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Template Subtree Modal -->
+  <div id="template-modal" class="modal" style="display:none;">
+    <div class="runpath-modal-content">
+      <h3>Add Template Subtree</h3>
+      <p id="template-subtree-name" class="runpath-subtitle"></p>
+
+      <div class="runpath-buttons">
+        <button id="template-full-btn" class="rp-btn primary">
+          Add Full Subtree
+        </button>
+        <button id="template-ref-btn" class="rp-btn secondary">
+          Add as &lt;SubTreePlus&gt;
+        </button>
+      </div>
+
+      <button id="template-cancel-btn" class="rp-btn cancel">Cancel</button>
+    </div>
+  </div>
+
+
+  <div id="tree-toast"></div>
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="confirm-modal hidden">
+    <div class="confirm-box">
+      <div class="confirm-message" id="confirm-message"></div>
+      <div class="confirm-buttons">
+        <button id="confirm-cancel">Cancel</button>
+        <button id="confirm-ok">OK</button>
+      </div>
+    </div>
+  </div>
+  <!-- ================= MAIN TREE XML MODAL ================= -->
+  <div id="main_tree_xml_modal" class="main_tree_modal">
+    <div class="main_tree_modal-content main_tree_xml-modal-content">
+
+      <!-- Header -->
+      <div class="main_tree_modal-header">
+        <h3 class="main_tree_modal-title">
+          <i class="fas fa-code"></i> Generated Main Tree XML
+        </h3>
+
+        <div class="main_tree_font-controls">
+          <button class="main_tree_btn-font" onclick="mainTreeChangeFontSize(-1)">A-</button>
+          <button class="main_tree_btn-font" onclick="mainTreeChangeFontSize(1)">A+</button>
+          <button class="main_tree_modal-close" onclick="closeMainTreeXMLModal()">&times;</button>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="main_tree_modal-body">
+        <pre id="main_tree_xml_output" class="main_tree_xml-content"></pre>
+      </div>
+
+      <!-- Footer -->
+      <div class="main_tree_modal-footer">
+        <button class="btn btn-success" onclick="reloadMainTreeXML()">
+          <i class="bx bx-refresh"></i> Reload
+        </button>
+        <button class="btn btn-success" onclick="copyMainTreeXML()">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+        <button class="btn btn-danger" onclick="closeMainTreeXMLModal()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+<datalist id="point-names-datalist"></datalist>
+
+  <script src="scripts/script.js"></script>
+  <script src="scripts/search.js"></script>
+  <script src="scripts/node_editor.js"></script>
+  <script src="scripts/subtrees.js"></script>
+  <script src="scripts/do_di_subtrees.js"></script>
+  <script src="scripts/context_menu.js"></script>
+  <script src="scripts/tree_legend.js"></script>
+  <script src="scripts/main_tree.js"></script>
+  <script src="scripts/nested_tree.js"></script>
+  <script src="scripts/custom_node.js"></script>
+  <script src="scripts/show_toast.js"></script>
+  <script src="scripts/nodes_shortcuts.js"></script>
+</body>
+
+</html>

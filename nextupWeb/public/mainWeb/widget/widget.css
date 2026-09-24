@@ -1,0 +1,306 @@
+/* widget.css */
+
+.floating-control-wrapper {
+    position: fixed;
+    right: 0rem;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    font-family: Inter, sans-serif;
+
+}
+
+/* =========================================
+   Floating Button
+========================================= */
+
+.floating-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius:10px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    background: #000000;
+    color: #64748b;
+    font-size: 18px;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-toggle-btn:hover {
+    background: #2a2a2b;
+    color: #0f172a;
+}
+
+/* =========================================
+   Floating Widget
+========================================= */
+
+.floating-control-widget {
+    position: absolute;
+    right: 56px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.97);
+
+    width: 320px;
+
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 16px;
+
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s;
+}
+
+.floating-control-widget.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+}
+
+/* =========================================
+   Header
+========================================= */
+
+.floating-widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 14px;
+}
+
+.floating-widget-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* =========================================
+   Process Toggle
+========================================= */
+
+.process-toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 2px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.process-toggle-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 1px;
+    background: #cbd5e1;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.2s;
+}
+
+.process-toggle.active {
+    background: #f0fdf4;
+    border-color: #86efac;
+}
+
+.process-toggle.active .process-toggle-thumb {
+    background: #22c55e;
+    left: 22px;
+}
+
+/* =========================================
+   Indicator
+========================================= */
+
+.process-status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fca5a5;
+    border: 1px solid #ef4444;
+}
+
+.process-status-indicator.running {
+    background: #86efac;
+    border-color: #22c55e;
+}
+
+/* =========================================
+   Buttons
+========================================= */
+
+.robot-control-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.control-btn {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 9px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.control-btn.start {
+    background: #f0fdf4;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+.control-btn.start:hover { background: #dcfce7; }
+
+.control-btn.exit {
+    background: #fff5f5;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+.control-btn.exit:hover { background: #fee2e2; }
+
+.control-btn.runonce {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.control-btn.runonce:hover { background: #dbeafe; }
+
+/* =========================================
+   Divider
+========================================= */
+
+.floating-divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 14px 0;
+}
+
+/* =========================================
+   Speed Card
+========================================= */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+}
+
+.card-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.speed-value-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.value-big {
+    font-size: 22px;
+    color: #0f172a;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.value-max {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* =========================================
+   Slider
+========================================= */
+
+.slider-area {
+    position: relative;
+    height: 36px;
+}
+
+.track-bg,
+.track-fill {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    border-radius: 0;
+}
+
+.track-bg {
+    width: 100%;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+
+.track-fill {
+    background: #3b82f6;
+}
+
+.thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 20px;
+    border-radius: 2px;
+    background: #1e293b;
+    cursor: grab;
+    transition: background 0.15s;
+}
+
+.thumb.dragging {
+    cursor: grabbing;
+    background: #0f172a;
+}
+
+.ticks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    color: #cbd5e1;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   Disabled State
+========================================= */
+
+.btn-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+

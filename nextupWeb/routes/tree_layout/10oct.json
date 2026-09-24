@@ -1,0 +1,197 @@
+{
+  "name": "10oct",
+  "nodes": [
+    {
+      "id": "homing-point",
+      "label": "homing-point",
+      "x": -320,
+      "y": 0
+    },
+    {
+      "id": "p1",
+      "label": "p1",
+      "x": -240,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          0.00006816716488407552,
+          -0.00029780223761810364
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "label": "p2",
+      "x": -160,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.000005216054338990575,
+          -0.0002460530021672967
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "label": "p3",
+      "x": -80,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.000005236139015141371,
+          -0.0004764754763067935
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "label": "p4",
+      "x": 0,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.03874111698243048,
+          -0.17199737069367046
+        ]
+      }
+    },
+    {
+      "id": "p5",
+      "label": "p5",
+      "x": 80,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.43520583613734787,
+          -0.1720078359065532
+        ]
+      }
+    },
+    {
+      "id": "p6",
+      "label": "p6",
+      "x": 160,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.44709681670049584,
+          -0.43923753406731864
+        ]
+      }
+    },
+    {
+      "id": "p7",
+      "label": "p7",
+      "x": 240,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.6859526428149075,
+          -0.5422401489196812
+        ]
+      }
+    },
+    {
+      "id": "endpoint",
+      "label": "endpoint",
+      "x": 320,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          0.3725623156863184,
+          -0.5421511240793004
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "homing-point",
+      "to": "p1",
+      "label": "homing-point_p1",
+      "type": "joint",
+      "waypoints": 13,
+      "coordinates": [
+        0.00006816716488407552,
+        -0.00029780223761810364
+      ]
+    },
+    {
+      "from": "p1",
+      "to": "p2",
+      "label": "p1_p2",
+      "type": "cartesian",
+      "waypoints": 24,
+      "coordinates": [
+        -0.000005216054338990575,
+        -0.0002460530021672967
+      ]
+    },
+    {
+      "from": "p2",
+      "to": "p3",
+      "label": "p2_p3",
+      "type": "cartesian",
+      "waypoints": 16,
+      "coordinates": [
+        -0.000005236139015141371,
+        -0.0004764754763067935
+      ]
+    },
+    {
+      "from": "p3",
+      "to": "p4",
+      "label": "p3_p4",
+      "type": "cartesian",
+      "waypoints": 12,
+      "coordinates": [
+        -0.03874111698243048,
+        -0.17199737069367046
+      ]
+    },
+    {
+      "from": "p4",
+      "to": "p5",
+      "label": "p4_p5",
+      "type": "cartesian",
+      "waypoints": 12,
+      "coordinates": [
+        -0.43520583613734787,
+        -0.1720078359065532
+      ]
+    },
+    {
+      "from": "p5",
+      "to": "p6",
+      "label": "p5_p6",
+      "type": "cartesian",
+      "waypoints": 10,
+      "coordinates": [
+        -0.44709681670049584,
+        -0.43923753406731864
+      ]
+    },
+    {
+      "from": "p6",
+      "to": "p7",
+      "label": "p6_p7",
+      "type": "cartesian",
+      "waypoints": 9,
+      "coordinates": [
+        -0.6859526428149075,
+        -0.5422401489196812
+      ]
+    },
+    {
+      "from": "p7",
+      "to": "endpoint",
+      "label": "p7_endpoint",
+      "type": "cartesian",
+      "waypoints": 22,
+      "coordinates": [
+        0.3725623156863184,
+        -0.5421511240793004
+      ]
+    }
+  ]
+}

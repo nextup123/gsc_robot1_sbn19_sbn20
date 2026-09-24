@@ -1,0 +1,2187 @@
+:root {
+    --primary: #4361ee;
+    --secondary: #5727c7;
+    --success: #129469;
+    --warning: #f72585;
+    --danger: #e63946;
+    --process: rgb(255, 64, 0);
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --border-radius: 12px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    color: var(--gray-800);
+    line-height: 1.6;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-top: 20px;
+    min-height: 95vh;
+}
+
+.app-container {
+    max-width: 99%;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    color: var(--primary);
+    font-size: 28px;
+}
+
+h1 {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 28px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+}
+
+.content-left {
+    width: 58%;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+.content-right {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.section-title i {
+    color: var(--primary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.joint_name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.subs_value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-800);
+    background: var(--gray-100);
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 80px;
+}
+
+.btna {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.btnplus,
+.btnminus {
+    border-radius: 8px;
+}
+
+.joint-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 40%;
+}
+
+.point-editor-title-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.point-editor,
+.file-editor {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow: hidden;
+}
+
+.btn-reload-points {
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid #e7e8e9;
+    background-color: #c7cafd;
+    color: rgb(36, 44, 92);
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-reload-points:hover {
+    transform: scale(1.05);
+}
+
+.btn-reload-points:active {
+    transform: scale(0.95);
+    background-color: #b0b3fa;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+select,
+input,
+textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--gray-100);
+    transition: var(--transition);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+input[readonly],
+input.input-readonly {
+    background: var(--gray-200);
+    cursor: not-allowed;
+}
+
+textarea {
+    resize: none;
+    height: 60px;
+}
+
+#fileName,
+#backupFilesInput {
+    width: 100%;
+}
+
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--gray-800);
+    transition: background 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 36px;
+}
+
+.dropdown-item:hover,
+.dropdown-item.selected {
+    background: var(--gray-200);
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+
+
+
+.motion-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.motion-options button {
+    min-width: 160px;
+    padding: 14px;
+    font-size: 16px;
+}
+
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success) 0%, #0a6b4a 100%);
+    color: white;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ff9500 0%, #cc7700 100%);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger) 0%, #c1121f 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--gray-500) 0%, var(--gray-600) 100%);
+    color: white;
+}
+
+
+.sequence-panel {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    /* height: 50rem; */
+    max-height: 60rem;
+    /* overflow: scroll;
+    overflow-x: hidden; */
+}
+
+.sequence-count {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.sequence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.point-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 8px;
+    border: 1px dotted rgba(128, 128, 128, 0.5);
+    border-radius: 12px;
+    padding-left: 8px;
+    padding-top: 8px;
+    max-height: 100%;
+}
+
+.point-item {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-100);
+    border-radius: 8px;
+    cursor: move;
+    transition: var(--transition);
+    gap: 4px;
+}
+
+.point-item:hover {
+    background: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.point-item.dragging {
+    opacity: 0.7;
+    background: var(--gray-200);
+}
+
+.point-index-container {
+    min-width: 40px;
+    padding-right: 8px;
+}
+
+.drag-handle {
+    width: 12px;
+    height: 20px;
+    background-image: radial-gradient(circle, #888 1px, transparent 1px);
+    background-size: 4px 4px;
+    background-repeat: repeat-y;
+    margin-right: 8px;
+    cursor: grab;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.point-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: var(--primary);
+}
+
+.point-content {
+    flex-grow: 1;
+}
+
+.point-details {
+    display: flex;
+    gap: 12px;
+    /* overflow: scroll; */
+
+}
+
+.point-name {
+    cursor: pointer;
+    overflow: hidden;
+    min-width: 4rem ;
+    max-width: 10rem;
+}
+
+.point-name:hover {
+    text-decoration: underline;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-primary {
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-secondary {
+    background: rgba(88, 86, 214, 0.1);
+    color: #5856d6;
+}
+
+.point-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    padding: 8px;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: var(--gray-100);
+    transform: scale(1.05);
+}
+
+.btn-move {
+    color: var(--success);
+    border-color: rgba(18, 148, 105, 0.2);
+}
+
+.btn-edit {
+    color: #ff9500;
+    border-color: rgba(255, 149, 0, 0.2);
+}
+
+.btn-delete {
+    color: var(--danger);
+    border-color: rgba(230, 57, 70, 0.2);
+}
+
+.btn-refresh {
+    color: var(--gray-600);
+    border: 1px solid var(--gray-300);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.btn-refresh:hover {
+    transform: scale(1.05);
+    background-color: #336ac3;
+    color: wheat;
+}
+
+.btn-refresh:active {
+    transform: scale(0.95);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--dark);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gray-500);
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--danger);
+}
+
+.modal-body p {
+    margin: 8px 0;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.modal-footer {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.history-container {
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+}
+
+.history-title i {
+    color: var(--primary);
+}
+
+.history-entry {
+    font-size: 12px;
+    margin: 4px 0;
+    color: var(--gray-800);
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--gray-500);
+}
+
+.empty-state i {
+    font-size: 48px;
+}
+
+.origin-point-file-name {
+    font-size: 13px;
+    color: #213a8b;
+    font-weight: bold;
+    align-items: center;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 350px;
+    animation: toastIn 0.3s ease-out forwards;
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.toast.toast-out {
+    animation: toastOut 0.3s ease-in forwards;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #34c759 0%, #2ca74e 100%);
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #ff3b30 0%, #d70015 100%);
+}
+
+.toast-info {
+    background: linear-gradient(135deg, #007aff 0%, #005ecb 100%);
+}
+
+.toast-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.toast-content {
+    flex-grow: 1;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+@keyframes toastIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toastOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .content-left {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .content-right {
+        width: 100%;
+    }
+
+    .control-panel {
+        width: 100%;
+    }
+
+    .sequence-panel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        grid-template-columns: 1fr;
+    }
+
+    .joint-item {
+        grid-template-columns: auto 1fr auto;
+    }
+}
+
+.badge-tf {
+    background: rgba(18, 148, 105, 0.12);
+    color: #0a6b4a;
+    border: 1px solid rgba(18, 148, 105, 0.3);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 3px 7px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tf-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    display: inline-block;
+}
+
+.current-frame-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px;
+    margin-top: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.current-frame-label {
+    font-size: 12px;
+    color: var(--text-secondary, #888);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.current-frame-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #2ecc71;
+    padding: 2px 8px;
+    letter-spacing: 0.3px;
+}
+
+
+/* Lock reorder button states */
+#lockReorderBtn.locked {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+.point-item.reorder-locked {
+    cursor: default;
+}
+.point-item.reorder-locked .drag-handle {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Frame dropdown */
+/* ─── Servo Frame Switch Card ─────────────────────────────────── */
+  .servo-frame-card {
+  overflow: visible !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+  background: var(--gray-850, #1e1f24);
+  border: 1px solid var(--gray-700);
+  border-radius: 14px;
+  transition: 0.2s ease;
+  box-shadow: none;
+}
+
+.servo-frame-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bolder;
+  color: rgb(54, 45, 45);
+  letter-spacing: -0.3px;
+}
+
+.servo-frame-active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: 12px;
+  gap: 12px;
+}
+
+.servo-frame-active-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--gray-400);
+  font-weight: 600;
+}
+
+.servo-frame-active-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-100);
+  font-family: 'Menlo', 'Monaco', monospace;
+  max-width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.frame-dropdown-wrapper {
+  position: relative;
+}
+
+.frame-dropdown-toggle {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--gray-900);
+  color: var(--gray-100);
+  border: 1px solid var(--gray-700);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.18s ease;
+}
+
+.frame-dropdown-toggle:hover {
+  border-color: var(--gray-500);
+  background: #24262d;
+}
+
+.frame-dropdown-toggle.open {
+  border-color: var(--primary);
+  background: #24262d;
+}
+
+.dropdown-chevron {
+  transition: transform 0.2s ease;
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+.frame-dropdown-toggle.open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.frame-dropdown-menu {
+  display: none;
+  position: absolute;
+
+  /* remove old top */
+  top: auto;
+  bottom: calc(100% + 8px);
+
+  left: 0;
+  right: 0;
+
+  max-height: 320px;
+  overflow-y: auto;
+
+  background: #202227;
+  border: 1px solid var(--gray-700);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  z-index: 9999;
+  padding: 6px 0;
+
+  /* smoother opening */
+  transform-origin: bottom center;
+}
+
+.frame-dropdown-menu.open {
+  display: block;
+}
+
+.frame-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.frame-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.frame-dropdown-menu::-webkit-scrollbar-thumb {
+  background: var(--gray-600);
+  border-radius: 999px;
+}
+
+.frame-dropdown-group-label {
+  padding: 10px 16px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  letter-spacing: 0.7px;
+}
+
+.frame-dropdown-item {
+  padding: 12px 16px;
+  color: var(--gray-100);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.frame-dropdown-item i {
+  width: 18px;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 13px;
+}
+
+.frame-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.frame-dropdown-item.active {
+  background: rgba(67, 97, 238, 0.14);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.frame-dropdown-item.active i {
+  color: var(--primary);
+}
+
+.frame-dropdown-empty {
+  padding: 12px 16px;
+  color: var(--gray-500);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.robot-movement-footer {
+  overflow: visible !important;
+}
+
+.content-right {
+  overflow: visible !important;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   isEditable feature additions — append these to style/style.css
+   ───────────────────────────────────────────────────────────────── */
+
+/* Non-editable point row: muted background + left accent stripe */
+.point-item.non-editable {
+    border-color: rgba(230, 57, 70, 0.25);
+    background: rgba(230, 57, 70, 0.04);
+    border-left: 3px solid rgba(230, 57, 70, 0.45);
+}
+
+.point-item.non-editable:hover {
+    border-color: rgba(230, 57, 70, 0.45);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.08);
+}
+
+/* Locked badge — displayed inline next to name/sequence badges */
+.badge-locked {
+    background: rgba(230, 57, 70, 0.1);
+    color: #c1121f;
+    border: 1px solid rgba(230, 57, 70, 0.28);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 3px 7px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.badge-locked i {
+    font-size: 10px;
+}
+
+/* Per-point lock/unlock toggle button */
+.btn-lock-toggle {
+    color: var(--gray-500);
+    border-color: rgba(108, 117, 125, 0.25);
+}
+
+.btn-lock-toggle:hover {
+    color: #ff9500;
+    border-color: rgba(255, 149, 0, 0.3);
+    background: rgba(255, 149, 0, 0.06);
+}
+
+/* When the point IS locked, tint the icon red to signal danger */
+.btn-lock-toggle.locked {
+    color: var(--danger);
+    border-color: rgba(230, 57, 70, 0.3);
+    background: rgba(230, 57, 70, 0.06);
+}
+
+.btn-lock-toggle.locked:hover {
+    color: #c1121f;
+    border-color: rgba(230, 57, 70, 0.5);
+    background: rgba(230, 57, 70, 0.1);
+}
+
+/* Disabled icon buttons (edit / delete when locked) */
+.btn-icon.btn-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none; /* belt-and-suspenders alongside disabled attr */
+}
+
+/* modalEditable line in the details modal — colour-coded */
+#modalEditable {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   Point Editor  —  light theme
+   Replace / merge into style/style.css
+   ═══════════════════════════════════════════════════════════════ */
+ 
+/* ── Card shell ──────────────────────────────────────────────── */
+.point-editor {
+    background: #ffffff;
+    border: 1px solid #e8eaed;
+    border-radius: 14px;
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;                   /* gaps handled by children */
+    overflow: hidden;
+}
+ 
+/* ── Section title row ───────────────────────────────────────── */
+.point-editor .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+ 
+.point-editor .section-title i {
+    width: 28px;
+    height: 28px;
+    background: #eef0ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4361ee;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+ 
+/* The <i> inside section-title is a flex child itself, so we need
+   to make it a flex container too for centering the icon glyph */
+.point-editor .section-title > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.point-editor .section-title h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+ 
+/* Clear / refresh button that lives inside the Point Name label */
+.btn-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #6b7280;
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 3px 9px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    line-height: 1;
+}
+ 
+.btn-refresh:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    color: #374151;
+    transform: none;             /* override any global hover transform */
+}
+ 
+.btn-refresh:active {
+    transform: scale(0.97);
+}
+ 
+/* ── Form grid ───────────────────────────────────────────────── */
+.point-editor .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+ 
+.point-editor .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+ 
+.point-editor .form-group.full-width {
+    grid-column: 1 / -1;
+}
+ 
+/* ── Labels ──────────────────────────────────────────────────── */
+.point-editor label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+ 
+.point-editor label i {
+    font-size: 12px;
+}
+ 
+/* ── Text inputs, select, textarea ───────────────────────────── */
+.point-editor input[type="text"],
+.point-editor select,
+.point-editor textarea {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 9px 11px;
+    font-size: 13.5px;
+    color: #111827;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+}
+ 
+.point-editor input[type="text"]:hover,
+.point-editor select:hover,
+.point-editor textarea:hover {
+    border-color: #c7cad0;
+    background: #f3f4f6;
+}
+ 
+.point-editor input[type="text"]:focus,
+.point-editor select:focus,
+.point-editor textarea:focus {
+    border-color: #4361ee;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.10);
+}
+ 
+/* Read-only date field */
+.point-editor input[readonly],
+.point-editor input.input-readonly {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: default;
+    font-family: 'SFMono-Regular', 'Consolas', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+}
+ 
+.point-editor textarea {
+    resize: none;
+    height: 64px;
+    line-height: 1.5;
+}
+ 
+/* ── Toggle rows (Is TF / Editable) ──────────────────────────── */
+/*
+   Replace the raw checkbox + span markup with this pattern in HTML:
+ 
+   <div class="pe-toggle-row" id="tog-tf" onclick="peToggle('tog-tf','tf-lbl','is_tf')">
+       <span class="pe-toggle-label" id="tf-lbl">Disabled</span>
+       <div class="pe-pill-track"><div class="pe-pill-thumb"></div></div>
+       <input type="checkbox" id="is_tf" hidden>
+   </div>
+ 
+   Or keep the existing checkbox markup and just style it — see the
+   "keep checkbox" variant below.
+*/
+ 
+/* — Pill-toggle row — */
+.pe-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 11px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+    min-height: 38px;
+    box-sizing: border-box;
+}
+ 
+.pe-toggle-row:hover {
+    border-color: #c7cad0;
+    background: #f3f4f6;
+}
+ 
+.pe-toggle-row.is-on {
+    border-color: #c7d2fe;
+    background: #eef2ff;
+}
+ 
+.pe-toggle-label {
+    font-size: 13px;
+    color: #6b7280;
+    transition: color 0.15s;
+    pointer-events: none;
+}
+ 
+.pe-toggle-row.is-on .pe-toggle-label {
+    color: #4361ee;
+    font-weight: 500;
+}
+ 
+.pe-pill-track {
+    width: 32px;
+    height: 18px;
+    background: #d1d5db;
+    border-radius: 20px;
+    position: relative;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+ 
+.pe-pill-track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+ 
+.pe-toggle-row.is-on .pe-pill-track {
+    background: #4361ee;
+}
+ 
+.pe-toggle-row.is-on .pe-pill-track::after {
+    transform: translateX(14px);
+}
+ 
+/* — "Keep checkbox" variant — style the existing checkbox + span —
+   Use this if you don't want to change the HTML at all.            */
+.point-editor .form-group > div:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 11px;
+    gap: 10px;
+    min-height: 38px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+ 
+.point-editor .form-group > div:has(input[type="checkbox"]):hover {
+    border-color: #c7cad0;
+    background: #f3f4f6;
+}
+ 
+.point-editor .form-group > div:has(input[type="checkbox"]:checked) {
+    border-color: #c7d2fe;
+    background: #eef2ff;
+}
+ 
+.point-editor input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #4361ee;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}
+ 
+.point-editor .form-group > div > span {
+    font-size: 13px;
+    color: #6b7280;
+}
+ 
+.point-editor .form-group > div:has(input[type="checkbox"]:checked) > span {
+    color: #4361ee;
+    font-weight: 500;
+}
+ 
+/* ── Divider ─────────────────────────────────────────────────── */
+.point-editor .pe-divider,
+.point-editor hr {
+    height: 1px;
+    background: #f0f0f0;
+    border: none;
+    margin: 14px 0;
+}
+ 
+/* ── Button group ────────────────────────────────────────────── */
+.point-editor .button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+}
+ 
+.point-editor .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    color: #374151;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    font-family: inherit;
+    text-align: center;
+}
+ 
+.point-editor .btn i {
+    font-size: 13px;
+}
+ 
+.point-editor .btn:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    transform: none;             /* keep flat */
+}
+ 
+.point-editor .btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+ 
+/* Add Point */
+.point-editor .btn-primary {
+    background: #4361ee;
+    border-color: #4361ee;
+    color: #ffffff;
+}
+ 
+.point-editor .btn-primary:hover:not(:disabled) {
+    background: #3451d1;
+    border-color: #3451d1;
+}
+ 
+/* Update Point */
+.point-editor .btn-warning {
+    background: #fff7ed;
+    border-color: #fed7aa;
+    color: #c2410c;
+}
+ 
+.point-editor .btn-warning:hover:not(:disabled) {
+    background: #ffedd5;
+    border-color: #fdba74;
+}
+ 
+.point-editor .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ── Collapsible sections for editable/non-editable points ── */
+.points-section {
+    margin-bottom: 20px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background: white;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--gray-100);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    user-select: none;
+}
+
+.section-header:hover {
+    background: var(--gray-200);
+}
+
+.section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-header-left i {
+    font-size: 14px;
+    color: var(--primary);
+    transition: transform 0.2s ease;
+}
+
+.section-header.collapsed .section-header-left i {
+    transform: rotate(-90deg);
+}
+
+.section-title-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.section-count {
+    font-size: 12px;
+    padding: 2px 8px;
+    background: var(--gray-300);
+    border-radius: 12px;
+    color: var(--gray-700);
+}
+
+.section-header-right i {
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+.section-content {
+    max-height: 1000px;
+    overflow-y: auto;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding: 12px;
+}
+
+.section-content.collapsed {
+    max-height: 0;
+    padding: 0 12px;
+    overflow: hidden;
+}
+
+/* Empty state for sections */
+.section-empty {
+    text-align: center;
+    padding: 30px;
+    color: var(--gray-500);
+    font-size: 13px;
+}
+
+.section-empty i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+/* Adjust point-list to remove its own padding/overflow when using sections */
+.point-list.with-sections {
+    padding: 0;
+    border: none;
+    gap: 16px;
+}
+
+.point-list.with-sections .point-item {
+    margin-bottom: 8px;
+}
+
+/* Badge styles for section headers */
+.badge-editable, .badge-non-editable {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.badge-editable {
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+}
+
+.badge-non-editable {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--danger);
+}
+
+/* Alternative: Independent section scrolling */
+.point-list.with-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.points-section {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px; /* Each section max height */
+    margin-bottom: 20px;
+}
+
+.section-content {
+    overflow-y: auto;
+    flex: 1;
+    padding: 12px;
+}
+
+.section-content.collapsed {
+    display: none;
+}
+
+/* Custom scrollbar for better UX */
+.section-content::-webkit-scrollbar,
+.point-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.section-content::-webkit-scrollbar-track,
+.point-list::-webkit-scrollbar-track {
+    background: var(--gray-200);
+    border-radius: 10px;
+}
+
+.section-content::-webkit-scrollbar-thumb,
+.point-list::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.section-content::-webkit-scrollbar-thumb:hover,
+.point-list::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+
+/*
+  ═══════════════════════════════════════════════════════════════════
+  APPEND EVERYTHING BELOW to the bottom of style/style.css
+  ═══════════════════════════════════════════════════════════════════
+*/
+
+/* ─── Manage Access button in sequence-count row ──────────────── */
+.btn-access-manager {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    color: #fff;
+    border: none;
+}
+.btn-access-manager:hover {
+    background: linear-gradient(135deg, #3451d1, #2d0990);
+}
+
+/* ─── Unified list: locked point row ─────────────────────────── */
+.point-item.non-editable {
+    opacity: 0.42;
+    border-left: 3px solid rgba(230, 57, 70, 0.4);
+    background: var(--gray-100);
+    cursor: default;
+}
+.point-item.non-editable:hover {
+    opacity: 0.55;
+    border-color: rgba(230, 57, 70, 0.55);
+    box-shadow: none;
+}
+.point-item.non-editable .drag-handle {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* ─── Access Manager modal shell ─────────────────────────────── */
+.am-modal-content {
+    width: min(820px, 96vw);
+    max-width: 820px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.am-modal-content .modal-header {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--gray-200);
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.am-modal-content .modal-header .modal-title {
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.am-modal-content .modal-header .modal-close {
+    position: absolute;
+    right: 18px;
+    top: 14px;
+}
+
+.am-header-sub {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 400;
+    padding-left: 2px;
+}
+
+/* ─── Search row ──────────────────────────────────────────────── */
+.am-search-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.am-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-right: 1px solid var(--gray-200);
+}
+.am-search-box:last-child { border-right: none; }
+
+.am-search-box i {
+    color: var(--gray-400);
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.am-search-box input {
+    border: none;
+    background: none;
+    font-size: 13px;
+    color: var(--gray-800);
+    outline: none;
+    width: 100%;
+    padding: 0;
+}
+.am-search-box input::placeholder { color: var(--gray-400); }
+
+/* ─── Body ────────────────────────────────────────────────────── */
+.am-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.am-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 14px;
+    min-width: 0;
+}
+
+/* ─── Column header ───────────────────────────────────────────── */
+.am-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 8px;
+}
+
+.am-col-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.am-col-title--editable { color: var(--primary); }
+.am-col-title--editable i { color: var(--primary); }
+
+.am-col-title--locked { color: var(--danger); }
+.am-col-title--locked i { color: var(--danger); }
+
+.am-count {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+.am-count--editable {
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+}
+.am-count--locked {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--danger);
+}
+
+.am-col-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.am-act-btn {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+    background: var(--gray-100);
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.am-act-btn:hover {
+    background: var(--gray-200);
+    color: var(--gray-800);
+}
+
+/* ─── Drop zone ───────────────────────────────────────────────── */
+.am-drop-zone {
+    flex: 1;
+    overflow-y: auto;
+    border: 2px dashed var(--gray-300);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: border-color 0.2s, background 0.2s;
+    min-height: 0;
+}
+
+.am-drop-zone--editable.am-drag-over {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.03);
+}
+.am-drop-zone--locked.am-drag-over {
+    border-color: var(--danger);
+    background: rgba(230, 57, 70, 0.03);
+}
+
+.am-drop-zone::-webkit-scrollbar { width: 5px; }
+.am-drop-zone::-webkit-scrollbar-track { background: transparent; }
+.am-drop-zone::-webkit-scrollbar-thumb {
+    background: var(--gray-300);
+    border-radius: 10px;
+}
+
+/* ─── Point row inside modal ──────────────────────────────────── */
+.am-pt-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 9px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+    background: white;
+    cursor: grab;
+    user-select: none;
+    transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+    position: relative;
+}
+.am-pt-row:hover {
+    border-color: var(--gray-400);
+    background: var(--gray-100);
+}
+.am-pt-row.am-selected {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.06);
+}
+.am-pt-row.am-dragging { opacity: 0.35; }
+.am-pt-row.am-locked-row { border-color: rgba(230, 57, 70, 0.2); }
+
+.am-pt-check {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--gray-400);
+    background: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s, border-color 0.12s;
+}
+.am-pt-check.am-checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.am-pt-check.am-checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 5px;
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid white;
+    transform: rotate(-45deg) translateY(-1px);
+}
+
+.am-drag-handle {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+    opacity: 0.3;
+    flex-shrink: 0;
+}
+.am-drag-handle span {
+    display: block;
+    width: 10px;
+    height: 1.5px;
+    background: var(--gray-600);
+    border-radius: 2px;
+}
+
+.am-pt-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-800);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.am-pt-nature {
+    font-size: 11px;
+    color: var(--gray-500);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+}
+
+/* ─── Arrow controls between columns ─────────────────────────── */
+.am-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 6px;
+    border-left: 1px solid var(--gray-200);
+    border-right: 1px solid var(--gray-200);
+}
+
+.am-arrows-icon {
+    font-size: 14px;
+    color: var(--gray-300);
+    transform: rotate(90deg);
+}
+
+.am-arrow-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-300);
+    background: white;
+    color: var(--gray-600);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+}
+.am-arrow-btn:hover:not(:disabled) {
+    background: rgba(67, 97, 238, 0.08);
+    color: var(--primary);
+    border-color: rgba(67, 97, 238, 0.3);
+    transform: scale(1.08);
+}
+.am-arrow-btn:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+}
+
+/* ─── Empty zone placeholder ──────────────────────────────────── */
+.am-zone-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px 16px;
+    color: var(--gray-400);
+    font-size: 12px;
+    text-align: center;
+    flex: 1;
+}
+.am-zone-empty i { font-size: 26px; opacity: 0.4; }
+
+/* ─── Footer ──────────────────────────────────────────────────── */
+.am-footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.am-footer-info {
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+/* ─── TF badge (reused in modal rows) ────────────────────────── */
+.am-badge-tf {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: rgba(18, 148, 105, 0.12);
+    color: #085041;
+    border: 1px solid rgba(18, 148, 105, 0.25);
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ─── Toast notification for modal actions ────────────────────── */
+.am-toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--gray-900);
+    color: white;
+    border-radius: 20px;
+    padding: 9px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    z-index: 2000;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.am-toast.am-toast-show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+
+.current-robot-point {
+    border: 2px solid #bdc734;
+    background: rgba(172, 199, 52, 0.12);
+}
+
+.rosbridge-toggle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mac-rosbridge-toggle {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.mac-rosbridge-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.mac-rosbridge-track {
+    position: relative;
+    display: flex;
+    width: 9rem;
+    height: 3rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.mac-rosbridge-option {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #9a9a9a;
+    transition: color 0.2s ease;
+    pointer-events: none;
+}
+
+.mac-rosbridge-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 4rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #8e97a3 0%, #6b7280 100%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mac-rosbridge-toggle input:checked ~ .mac-rosbridge-track .mac-rosbridge-thumb {
+    transform: translateX(4.5rem);
+    background: linear-gradient(135deg, #34c759 0%, #28b44f 100%);
+}
+
+.mac-rosbridge-toggle input:not(:checked) ~ .mac-rosbridge-track .mac-rosbridge-option--off {
+    color: #ffffff;
+}
+
+.mac-rosbridge-toggle input:checked ~ .mac-rosbridge-track .mac-rosbridge-option--on {
+    color: #ffffff;
+}
+
+.mac-rosbridge-toggle input:focus-visible ~ .mac-rosbridge-track {
+    box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.35);
+}

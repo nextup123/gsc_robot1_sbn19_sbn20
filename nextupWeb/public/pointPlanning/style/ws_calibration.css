@@ -1,0 +1,544 @@
+/* public/pointPlanning/style/ws_calibration.css
+   Workspace Calibration modal. Reuses base .modal/.modal-content/.btn-* and the
+   project's gray-scale + accent tokens from style.css. */
+
+/* ── launcher section under the Point Editor ─────────────────────────────── */
+.ws-calib-launch {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px dashed var(--gray-300);
+  border-radius: var(--border-radius);
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ws-calib-launch-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.ws-calib-launch-info i {
+  color: var(--primary);
+}
+.ws-calib-open-btn {
+  white-space: nowrap;
+}
+
+/* ── modal shell (wider than the 500px base) ─────────────────────────────── */
+.wsc-modal-content {
+  max-width: 920px;
+  width: 92%;
+  padding: 20px 22px;
+  transform: translateX(-380px); /* adjust this value to taste */
+}
+
+/* The shared #confirmModal lives earlier in the DOM than #wsCalibModal, so at
+   equal z-index it paints *behind* the WS modal. Raise it so confirm dialogs
+   (e.g. delete-frame) always stack on top of the open WS modal. */
+#confirmModal {
+  z-index: 10000;
+}
+
+/* ── inline add-frame form (replaces window.prompt) ──────────────────────── */
+.wsc-addframe {
+  padding: 8px;
+  border-bottom: 1px solid var(--gray-200);
+  background: #fff;
+}
+.wsc-addframe-row {
+  display: flex;
+  gap: 6px;
+}
+.wsc-addframe-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: 7px;
+  font-size: 13px;
+  outline: none;
+  transition: var(--transition);
+}
+.wsc-addframe-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.12);
+}
+.wsc-addframe-input.wsc-input-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.12);
+}
+.wsc-addframe-btn {
+  border: none;
+  border-radius: 7px;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition);
+}
+.wsc-addframe-confirm {
+  background: var(--primary);
+  color: #fff;
+}
+.wsc-addframe-confirm:hover {
+  filter: brightness(1.08);
+}
+.wsc-addframe-cancel {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+.wsc-addframe-cancel:hover {
+  background: var(--gray-300);
+}
+.wsc-addframe-err {
+  font-size: 11px;
+  color: var(--danger);
+  margin-top: 5px;
+  min-height: 13px;
+}
+
+/* ── compact "go to point" button on each point card ─────────────────────── */
+.wsc-pt-goto {
+  border: 1px solid var(--gray-300);
+  background: #fff;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: var(--transition);
+}
+.wsc-pt-goto:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.wsc-pt-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wsc-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  min-height: 420px;
+  max-height: 70vh;
+}
+
+/* ── left: frame list ────────────────────────────────────────────────────── */
+.wsc-frames {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  background: var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wsc-frames-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gray-200);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--gray-800);
+}
+.wsc-frames-head i {
+  color: var(--primary);
+  margin-right: 6px;
+}
+.wsc-frame-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.wsc-icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  color: var(--gray-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.wsc-icon-btn:hover {
+  background: var(--gray-200);
+  color: var(--gray-900);
+}
+.wsc-add-frame:hover {
+  color: var(--primary);
+}
+.wsc-del-frame:hover {
+  color: var(--danger);
+  background: rgba(230, 57, 70, 0.1);
+}
+
+.wsc-frame-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  border: 1px solid transparent;
+  background: #fff;
+  transition: var(--transition);
+}
+.wsc-frame-item:hover {
+  border-color: var(--gray-300);
+}
+.wsc-frame-active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.12);
+}
+.wsc-frame-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.wsc-frame-main i {
+  color: var(--primary);
+  font-size: 12px;
+}
+.wsc-frame-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wsc-frame-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.wsc-frame-count {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+.wsc-frame-count.wsc-complete {
+  background: rgba(18, 148, 105, 0.15);
+  color: var(--success);
+}
+
+/* ── right: detail pane ──────────────────────────────────────────────────── */
+.wsc-detail {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  overflow-y: auto;
+  padding: 16px;
+}
+.wsc-detail-empty {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--gray-500);
+  text-align: center;
+}
+.wsc-detail-empty i {
+  font-size: 34px;
+  margin-bottom: 6px;
+  color: var(--gray-400);
+}
+.wsc-detail-empty p {
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.wsc-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.wsc-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.wsc-detail-title i {
+  color: var(--primary);
+}
+.wsc-progress {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+/* ── point cards ─────────────────────────────────────────────────────────── */
+.wsc-points {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.wsc-pt-card {
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  transition: var(--transition);
+}
+.wsc-pt-set {
+  border-color: rgba(18, 148, 105, 0.4);
+  background: rgba(18, 148, 105, 0.04);
+}
+.wsc-pt-locked {
+  opacity: 0.55;
+  background: var(--gray-100);
+}
+.wsc-pt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.wsc-pt-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+.wsc-pt-idx {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.wsc-pt-locked .wsc-pt-idx {
+  background: var(--gray-400);
+}
+.wsc-pt-set .wsc-pt-idx {
+  background: var(--success);
+}
+.wsc-pt-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--success);
+  background: rgba(18, 148, 105, 0.12);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.wsc-pt-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.wsc-pt-vals {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+.wsc-pt-vals span {
+  font-size: 11px;
+  font-family: "Courier New", monospace;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 4px 6px;
+  text-align: center;
+  color: var(--gray-700);
+}
+.wsc-pt-times {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--gray-500);
+}
+.wsc-pt-times i {
+  margin-right: 4px;
+}
+.wsc-pt-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.wsc-pt-hint i {
+  margin-right: 6px;
+}
+.wsc-pt-next {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ── action buttons ──────────────────────────────────────────────────────── */
+.wsc-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-200);
+}
+.wsc-actions .btn {
+  flex: 1;
+  min-width: 150px;
+  justify-content: center;
+}
+.wsc-actions .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── shared empty state ──────────────────────────────────────────────────── */
+.wsc-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 30px 10px;
+  color: var(--gray-400);
+  font-size: 13px;
+}
+.wsc-empty i {
+  font-size: 24px;
+}
+
+/* ── responsive: stack panes on narrow screens ───────────────────────────── */
+@media (max-width: 720px) {
+  .wsc-body {
+    grid-template-columns: 1fr;
+    max-height: 80vh;
+  }
+  .wsc-frames {
+    max-height: 180px;
+  }
+  .wsc-pt-vals {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── make the backdrop see-through and click-through ─────────────────────── */
+#wsCalibModal {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  pointer-events: none;
+}
+
+/* re-enable interaction for the modal box itself */
+#wsCalibModal .wsc-modal-content {
+  pointer-events: auto;
+  animation: none !important;
+  transition: none !important;
+  transform: translateX(-380px);
+}
+
+.planner-toggle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mac-planner-toggle {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.mac-planner-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.mac-planner-track {
+    position: relative;
+    display: flex;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.mac-planner-option {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #9a9a9a;
+    transition: color 0.2s ease;
+    pointer-events: none;
+}
+
+.mac-planner-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 7rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #8e97a3 0%, #6b7280 100%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mac-planner-toggle input:checked ~ .mac-planner-track .mac-planner-thumb {
+    transform: translateX(7.5rem);
+    background: linear-gradient(135deg, #34c759 0%, #28b44f 100%);
+}
+
+.mac-planner-toggle input:not(:checked) ~ .mac-planner-track .mac-planner-option--ompl {
+    color: #ffffff;
+}
+
+.mac-planner-toggle input:checked ~ .mac-planner-track .mac-planner-option--pilz {
+    color: #ffffff;
+}
+
+.mac-planner-toggle input:focus-visible ~ .mac-planner-track {
+    box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.35);
+}

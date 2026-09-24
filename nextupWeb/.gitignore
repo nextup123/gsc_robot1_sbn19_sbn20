@@ -1,0 +1,13 @@
+node_modules/
+.vscode/
+*.log
+dist/
+build/
+# user_config/
+user_config/run_path_with_uids.json
+user_config/template_with_uids.json
+user_config/do_di_with_uids.json
+points_backup.yaml
+frame.json
+*.zip
+planner.json

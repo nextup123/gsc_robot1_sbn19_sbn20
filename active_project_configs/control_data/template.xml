@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <include path="do_di.xml"/>
+  <include path="run_path.xml"/>
+  <BehaviorTree ID="main_tree">
+    <Sequence ID="jhckjdf" name="main_tree_sequennce(dont_delete_it)">
+      <Sequence ID="sequence_1788336012034_zsga33c" name="Sequence_maintree">
+        <SubTreePlus ID="maintree"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="is_at_pose">
+    <Sequence ID="seq_1788259633939_4jokh6s" name="RootSequence">
+      <Sequence ID="sequence_1788259659379_ri4arhc" name="Sequence_cnc1station1">
+        <Fallback ID="fallback_1788259888821_3u7ujaz" name="Fallback_162128">
+          <Sequence ID="seq_1788259888821_2auby7g" name="Sequence1">
+            <IsAtPose ID="isatpose_1788259906204_mj3kfo5" name="IsAtPose_162146" target_name="home"/>
+            <MsgLogger ID="msglogger_1788259978013_82gduwc" name="MsgLogger_162258" msg_log="robot is at home position"/>
+            <PilzPointsPlanner ID="pilzpointsplanner_1788260141684_y6p0tqw" name="PilzPointsPlanner_162541" pose_goal="local_home" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+          </Sequence>
+          <Sequence ID="seq_1788259888821_gk4hj7v" name="Sequence2">
+            <IsAtPose ID="isatpose_1788260021940_jdrf6bi" name="IsAtPose_162341" target_name="local_home"/>
+            <MsgLogger ID="msglogger_1788260075852_r1wz4xz" name="MsgLogger_162435" msg_log="robot is at local homing"/>
+          </Sequence>
+          <Sequence ID="sequence_1788260179508_64164k2" name="Sequence_162619">
+            <MsgLogger ID="msglogger_1788260187611_ekm02t3" name="MsgLogger_162627" msg_log="not at Home not at local home"/>
+            <AlwaysFailure ID="alwaysfailure_1788260210860_0jva9na" name="AlwaysFailure_162650"/>
+          </Sequence>
+        </Fallback>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="maintree">
+    <Sequence ID="seq_1788260659331_hd0kvdq" name="RootSequence">
+      <Sequence ID="sequence_1788260774516_wfkx5qo" name="Sequence_163614">
+        <Sequence ID="sequence_1788260778172_o8nj0d8" name="Sequence_is_at_pose">
+          <Sequence ID="sequence_1788421290817_pv6upf9" name="Sequence_is_at_pose">
+            <SubTreePlus ID="is_at_pose"/>
+          </Sequence>
+          <Fallback ID="fallback_1788333650131_21kd5d0" name="Fallback_125050">
+            <Sequence ID="seq_1788333650131_c7g9ed0" name="Sequence1">
+              <CheckBoolTopic ID="checkbooltopic_1788338210283_7wzew8j" name="CheckBoolTopic_14650" topic="/cnc1" data="true" timeout_ms="3000" freshness_ms="50"/>
+              <RetryUntilSuccessful ID="retryuntilsuccessful_1789719257769_hlin9gs" name="RetryUntilSuccessful_134417" num_attempts="3">
+                <Sequence ID="sequence_1789719269099_d819d5e" name="Sequence_AUTOMODE[DI]">
+                  <SubTreePlus ID="AUTOMODE[DI]" expected_status="true"/>
+                </Sequence>
+              </RetryUntilSuccessful>
+              <Sequence ID="sequence_1788336904900_36wr3yd" name="Sequence_cnc1station1">
+                <SubTreePlus ID="cnc1stations"/>
+              </Sequence>
+            </Sequence>
+            <Sequence ID="seq_1788333650131_aoznkxj" name="Sequence2">
+              <CheckBoolTopic ID="checkbooltopic_1788338237844_wjok52u" name="CheckBoolTopic_14717" topic="/cnc2" data="true" timeout_ms="3000" freshness_ms="50"/>
+              <RetryUntilSuccessful ID="retryuntilsuccessful_1789719291383_90glvae" name="RetryUntilSuccessful_134451" num_attempts="3">
+                <Sequence ID="sequence_1789719298585_pz6h0pm" name="Sequence_AUTOMODE2[DI]">
+                  <SubTreePlus ID="AUTOMODE2[DI]" expected_status="true"/>
+                </Sequence>
+              </RetryUntilSuccessful>
+              <Sequence ID="sequence_1789710022084_woq8i1n" name="Sequence_111022">
+                <Sequence ID="sequence_1789719181266_0l36moh" name="Sequence_cnc2stations">
+                  <SubTreePlus ID="cnc2stations"/>
+                </Sequence>
+              </Sequence>
+            </Sequence>
+            <Sequence ID="sequence_1788333716850_2uqrhlt" name="Sequence_125156">
+              <CheckBoolTopic ID="checkbooltopic_1788338273287_862kok1" name="CheckBoolTopic_14753" topic="/both" data="true" timeout_ms="3000" freshness_ms="50"/>
+              <Sequence ID="sequence_1789719201183_914nn2i" name="Sequence_134321">
+                <RetryUntilSuccessful ID="retryuntilsuccessful_1789719346386_9zbt87j" name="RetryUntilSuccessful_134546" num_attempts="3">
+                  <Sequence ID="sequence_1789719366898_xbusfw3" name="Sequence_AUTOMODE[DI]">
+                    <SubTreePlus ID="AUTOMODE[DI]" expected_status="true"/>
+                  </Sequence>
+                </RetryUntilSuccessful>
+                <Sequence ID="sequence_1789719208966_fa306ds" name="Sequence_cnc1stations">
+                  <SubTreePlus ID="cnc1stations"/>
+                </Sequence>
+                <RetryUntilSuccessful ID="retryuntilsuccessful_1789719376534_qd0t3cw" name="RetryUntilSuccessful_134616" num_attempts="3">
+                  <Sequence ID="sequence_1789719394482_r4y95y2" name="Sequence_AUTOMODE2[DI]">
+                    <SubTreePlus ID="AUTOMODE2[DI]" expected_status="true"/>
+                  </Sequence>
+                </RetryUntilSuccessful>
+                <Sequence ID="sequence_1789719214665_5vfd8me" name="Sequence_cnc2stations">
+                  <SubTreePlus ID="cnc2stations"/>
+                </Sequence>
+              </Sequence>
+            </Sequence>
+          </Fallback>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="cnc1stations">
+    <Sequence ID="seq_1788260817891_zp7rv5u" name="RootSequence">
+      <Sequence ID="sequence_1788334609802_ci3mos5" name="Sequence_13649">
+        <Sequence ID="sequence_1789118750172_zgnuuol" name="Sequence_pickupcnc1station1">
+          <SubTreePlus ID="pickupcnc1station1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789118764407_qjc98vn" name="Sequence_placecnc1station1">
+          <SubTreePlus ID="placecnc1station1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789118775169_lm681wk" name="Sequence_pickupcnc1station2">
+          <SubTreePlus ID="pickupcnc1station2"/>
+        </Sequence>
+        <Sequence ID="sequence_1788346957392_5oz462c" name="Sequence_placecnc1station2">
+          <SubTreePlus ID="placecnc1station2"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="testing">
+    <Sequence ID="seq_1788265264465_edptq45" name="RootSequence">
+      <Sequence ID="sequence_1788265290058_t9frt7u" name="Sequence_175130">
+        <Sequence ID="sequence_1788265361866_ii9s78s" name="Sequence_SUCTION1[DO]">
+          <SubTreePlus ID="SUCTION1[DO]" expected_action="true"/>
+        </Sequence>
+        <Sequence ID="sequence_1788265557329_nh1rmg4" name="Sequence_SUCTION1[DI]">
+          <SubTreePlus ID="SUCTION1[DI]" expected_status="true"/>
+        </Sequence>
+        <Sequence ID="sequence_1788265571217_8aswvij" name="Sequence_SUCTION1[DO]">
+          <SubTreePlus ID="SUCTION1[DO]" expected_action="true"/>
+        </Sequence>
+        <Sequence ID="sequence_1788265579305_n6cnvpj" name="Sequence_SUCTION1[DI]">
+          <SubTreePlus ID="SUCTION1[DI]" expected_status="false"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="pickupcnc1station1">
+    <Sequence ID="seq_1788333879546_o6x7sug" name="RootSequence">
+      <Sequence ID="sequence_1788333957338_z56v61b" name="Sequence_125557">
+        <Sequence ID="sequence_1789974193400_aojoeob" name="Sequence_local_home_AfterConvSafe">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158539524_lprsnrx" name="PilzPointsPlanner_154539" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974221152_yshs01s" name="Sequence_AfterConvSafe_towardsstation1">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158607124_so3yq38" name="PilzPointsPlanner_154647" pose_goal="towardsstation1" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974229726_fub9sqw" name="Sequence_towardsstation1_station1downoutside">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158694052_6v4fb4j" name="PilzPointsPlanner_154814" pose_goal="station1downoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1788334082350_7t9u6b1" name="Sequence_STATION1RUNNING[DI]">
+          <SubTreePlus ID="STATION1RUNNING[DI]" expected_status="false"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788419046125_d6y11ej" name="PublishDataOnTopic_12346" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="safety_on_left"/>
+        <Sequence ID="sequence_1789974236321_r9inl2j" name="Sequence_station1downoutside_station1downoutside2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158729785_vmhgg97" name="PilzPointsPlanner_154849" pose_goal="station1downoutside2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974240454_811tlbt" name="Sequence_station1downoutside2_prepickupstation1">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158781603_vkk0w4a" name="PilzPointsPlanner_154941" pose_goal="prepickupstation1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974242557_g5vufl3" name="Sequence_prepickupstation1_pickupstation1">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158818489_qbfoh3n" name="PilzPointsPlanner_155018" pose_goal="pickupstation1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sleep ID="sleep_1788334232850_hfj38b4" name="Sleep_13032" msec="500"/>
+        <Fallback ID="fallback_1788335461395_nati91l" name="Fallback_13211">
+          <Sequence ID="seq_1788335461395_olv40ql" name="Sequence2">
+            <Sequence ID="sequence_1788335622476_eoa3883" name="Sequence_SUCTION1[DI]">
+              <SubTreePlus ID="SUCTION1[DI]" expected_status="true"/>
+            </Sequence>
+            <Sequence ID="sequence_1788589769199_wn7f8mn" name="Sequence_SUCTION1[DO]">
+              <SubTreePlus ID="SUCTION1[DO]" expected_action="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1788589801514_zjm604p" name="Sleep_1201" msec="2000"/>
+            <Sequence ID="sequence_1788589725309_rzwzk5h" name="Sequence_SUCTION1[DI]">
+              <SubTreePlus ID="SUCTION1[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+          <Sequence ID="sequence_1788335613996_6d31tth" name="Sequence_132333">
+            <Sequence ID="sequence_1788335657722_q21ucsi" name="Sequence_SUCTION1[DI]">
+              <SubTreePlus ID="SUCTION1[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+        </Fallback>
+        <Sleep ID="sleep_1788334317549_2x1dtcs" name="Sleep_13157" msec="1000"/>
+        <Sequence ID="sequence_1788334309670_4wul3y7" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+        </Sequence>
+        <Sleep ID="sleep_1788335199448_y1pj29j" name="Sleep_13157_copy" msec="1000"/>
+        <Sequence ID="sequence_1789974247551_e7gemn4" name="Sequence_pickupstation1_afterpickupstation1">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158938803_lgb4v5u" name="PilzPointsPlanner_155218" pose_goal="afterpickupstation1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974249885_e2myzws" name="Sequence_afterpickupstation1_afterpickupoutsidedown">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790158995486_tzgbuxw" name="PilzPointsPlanner_155315" pose_goal="afterpickupoutsidedown" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974255440_5a4q46n" name="Sequence_afterpickupoutsidedown_afterpickupoutsidedown2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159064907_f0gxyra" name="PilzPointsPlanner_155424" pose_goal="afterpickupoutsidedown2" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788419060405_y6cbrj7" name="PublishDataOnTopic_12346_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="false" topic_name="safety_on_left"/>
+        <Sequence ID="sequence_1789974258723_ci0q7zq" name="Sequence_afterpickupoutsidedown2_afterpickupoutsideupper">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159094307_vcf0y3l" name="PilzPointsPlanner_155454" pose_goal="afterpickupoutsideupper" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974262941_toonmr4" name="Sequence_afterpickupoutsideupper_afterpickuptowardsConv">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159202685_gso1q8m" name="PilzPointsPlanner_155642" pose_goal="afterpickuptowardsConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974266582_rquwfrw" name="Sequence_afterpickuptowardsConv_preconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159240923_e49mt0y" name="PilzPointsPlanner_155720" pose_goal="preconvplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974270136_qk04aj6" name="Sequence_preconvplace_convplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159285852_d3iu9jf" name="PilzPointsPlanner_15585" pose_goal="convplace" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974272267_hq80620" name="Sequence_convplace_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159297968_q1tjba3" name="PilzPointsPlanner_155817" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974275237_z7wtnoq" name="Sequence_convplaceB_convplaceF">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159339606_qjkxui3" name="PilzPointsPlanner_155859" pose_goal="convplaceF" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788334454551_20fgtvr" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+        </Sequence>
+        <Sleep ID="sleep_1788334462278_wugjjw1" name="Sleep_13422" msec="1000"/>
+        <Sequence ID="sequence_1789974278493_70nbbp6" name="Sequence_convplaceF_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159350484_4v46k1u" name="PilzPointsPlanner_155910" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789974281671_ha4f75r" name="Sequence_convplaceB_afterconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790159357269_7sucqx0" name="PilzPointsPlanner_155917" pose_goal="afterconvplace" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="placecnc1station1">
+    <Sequence ID="seq_1788343353885_38nv8cc" name="RootSequence">
+      <Sequence ID="sequence_1789974837748_o64ckn9" name="Sequence_afterconvplace_PrePickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790159992501_uxuvq71" name="PilzPointsPlanner_16952" pose_goal="PrePickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1788343406804_bulf3xr" name="Sequence_glasspresent[DI]">
+        <SubTreePlus ID="glasspresent[DI]" expected_status="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1788590914964_0myce4t" name="Sleep_153459_copy" msec="2000"/>
+      <Sequence ID="sequence_1789974851150_jxpbpqe" name="Sequence_PrePickupConv_PickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790159999101_2uqyzbn" name="PilzPointsPlanner_16959" pose_goal="PickupConv" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1788593194312_647qgjh" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1788343602272_kt3a3ec" name="Sleep_153642" msec="1000"/>
+      <Sequence ID="sequence_1788343597724_rdp70jj" name="Sequence_GLASSADJUSTOR[DO]">
+        <SubTreePlus ID="GLASSADJUSTOR[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1788593244084_pwarhem" name="Sleep_153642_copy" msec="1000"/>
+      <Sequence ID="sequence_1789974854564_idn4vzv" name="Sequence_PickupConv_AfterPickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160007869_pczzz8x" name="PilzPointsPlanner_16107" pose_goal="AfterPickupConv" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789975601085_s8ly6nw" name="Sequence_AfterPickupConv_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160018205_uo1eso7" name="PilzPointsPlanner_161018" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789974898485_zjgiiir" name="Sequence_AfterConvSafe_towardsstation1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160024118_7x1vnpk" name="PilzPointsPlanner_161024" pose_goal="towardsstation1" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789974910906_j83vjuo" name="Sequence_towardsstation1_station1downoutside">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160032003_fsexmr1" name="PilzPointsPlanner_161031" pose_goal="station1downoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1788429637158_n1dtchp" name="Sequence_STATION1RUNNING[DI]">
+        <SubTreePlus ID="STATION1RUNNING[DI]" expected_status="false"/>
+      </Sequence>
+      <PublishDataOnTopic ID="publishdataontopic_1788418994628_46ry227" name="PublishDataOnTopic_123145_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="safety_on_left"/>
+      <Sequence ID="sequence_1789974914018_p91lt93" name="Sequence_station1downoutside_station1downoutside2">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160043167_00v8can" name="PilzPointsPlanner_161043" pose_goal="station1downoutside2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789974927039_c1tn8sg" name="Sequence_station1downoutside2_preplacestation1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160048035_lh35zik" name="PilzPointsPlanner_161048" pose_goal="preplacestation1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789974929523_q7udndc" name="Sequence_preplacestation1_L1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160066584_11ejrk8" name="PilzPointsPlanner_16116" pose_goal="L1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789974932974_y7uht9x" name="Sequence_L1_L3">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160071269_1i85ho3" name="PilzPointsPlanner_161111" pose_goal="L3" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Fallback ID="fallback_1788343743451_xat12vi" name="Fallback_15393">
+        <Sequence ID="seq_1788343743451_ppq3dht" name="Sequence1">
+          <Sequence ID="sequence_1788343783561_twpn7yg" name="Sequence_SUCTION1[DI]">
+            <SubTreePlus ID="SUCTION1[DI]" expected_status="false"/>
+          </Sequence>
+          <Sleep ID="sleep_1788343856901_quyj7eh" name="Sleep_154056" msec="2000"/>
+          <Sequence ID="sequence_1788343866735_ctksylj" name="Sequence_SUCTION1[DO]">
+            <SubTreePlus ID="SUCTION1[DO]" expected_action="false"/>
+          </Sequence>
+          <Sleep ID="sleep_1788344011944_1dpnzo5" name="Sleep_154331" msec="2500"/>
+        </Sequence>
+        <Sequence ID="seq_1788343743451_lqxcldg" name="Sequence2">
+          <Sequence ID="sequence_1788343912778_z84ffk9" name="Sequence_SUCTION1[DI]">
+            <SubTreePlus ID="SUCTION1[DI]" expected_status="true"/>
+          </Sequence>
+          <Sequence ID="sequence_1788343927247_ma1bfh7" name="Sequence_SUCTION1[DO]">
+            <SubTreePlus ID="SUCTION1[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1788343932063_5b6og7z" name="Sleep_154212" msec="2000"/>
+          <Sequence ID="sequence_1788343970384_3u0q49i" name="Sequence_SUCTION1[DI]">
+            <SubTreePlus ID="SUCTION1[DI]" expected_status="false"/>
+          </Sequence>
+          <Sequence ID="sequence_1788343982943_6zvykq8" name="Sequence_SUCTION1[DO]">
+            <SubTreePlus ID="SUCTION1[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1788343987996_n573mg1" name="Sleep_15437" msec="2500"/>
+        </Sequence>
+      </Fallback>
+      <Sequence ID="sequence_1788344046648_nx5fkkw" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1788344061232_icfmy1n" name="Sleep_154421" msec="1200"/>
+      <Sequence ID="sequence_1789974937198_dh90kbt" name="Sequence_L3_afterplacestation1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160089135_epdwrhr" name="PilzPointsPlanner_161129" pose_goal="afterplacestation1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789975054080_64854w5" name="Sequence_afterplacestation1_afterpickupoutsidedown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160094884_uy5d78a" name="PilzPointsPlanner_161134" pose_goal="afterpickupoutsidedown" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789975076256_5zv2p4z" name="Sequence_afterpickupoutsidedown_afterpickupoutsidedown2">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160120837_v58gbvr" name="PilzPointsPlanner_16120" pose_goal="afterpickupoutsidedown2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <PublishDataOnTopic ID="publishdataontopic_1788418905412_8e42rdz" name="PublishDataOnTopic_123145" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="cnc_start"/>
+      <PublishDataOnTopic ID="publishdataontopic_1788418959700_6pje73q" name="PublishDataOnTopic_123145_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="false" topic_name="safety_on_left"/>
+      <Sequence ID="sequence_1789975083731_adzc7ij" name="Sequence_afterpickupoutsidedown2_afterpickupoutsideupper">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160125668_jk89nj9" name="PilzPointsPlanner_16125" pose_goal="afterpickupoutsideupper" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+      </Sequence>
+      <Sequence ID="sequence_1789975121952_ue9g57q" name="Sequence_afterpickupoutsideupper_afterpickuptowardsConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160130984_3q0g8fd" name="PilzPointsPlanner_161210" pose_goal="afterpickuptowardsConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789975222879_fh489gv" name="Sequence_afterpickuptowardsConv_local_home">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790160136452_uswuazt" name="PilzPointsPlanner_161216" pose_goal="local_home" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="pickupcnc1station2">
+    <Sequence ID="seq_1788345054920_le1mcbw" name="RootSequence">
+      <Sequence ID="sequence_1788345150659_i6dtyhk" name="Sequence_16230">
+        <Sequence ID="sequence_1789976026989_evd7vva" name="Sequence_local_home_outsidestation2upper">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162215735_82426bh" name="PilzPointsPlanner_164655" pose_goal="outsidestation2upper" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976059701_ynz2877" name="Sequence_outsidestation2upper_outsidestation2down">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162221301_9al2lh0" name="PilzPointsPlanner_16471" pose_goal="outsidestation2down" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788345242860_d4eqgll" name="Sequence_STATION2RUNNING[DI]">
+          <SubTreePlus ID="STATION2RUNNING[DI]" expected_status="false"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788419164948_k855gg6" name="PublishDataOnTopic_123531_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="safety_on_right"/>
+        <Sequence ID="sequence_1789976063784_8kmvz7t" name="Sequence_outsidestation2down_prepickupstation2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162227701_m467fc3" name="PilzPointsPlanner_16477" pose_goal="prepickupstation2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976065486_dz00mwg" name="Sequence_prepickupstation2_pickupstation2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162233201_tje9vqn" name="PilzPointsPlanner_164713" pose_goal="pickupstation2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Fallback ID="fallback_1788345294877_tzu6yqs" name="Fallback_16454">
+          <Sequence ID="seq_1788345294877_up5uyne" name="Sequence1">
+            <Sequence ID="sequence_1788345301499_6fmat81" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1788345326839_s4oix2b" name="Sleep_16526" msec="500"/>
+            <Sequence ID="sequence_1788345340924_2cebqns" name="Sequence_SUCTION2[DO]">
+              <SubTreePlus ID="SUCTION2[DO]" expected_action="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1788345347128_q1zitml" name="Sleep_16547" msec="2000"/>
+            <Sequence ID="sequence_1788345417924_t8qadau" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+          <Sequence ID="seq_1788345294877_n6aljr5" name="Sequence2">
+            <Sequence ID="sequence_1788345405297_hs30lo2" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+        </Fallback>
+        <Sequence ID="sequence_1788345443313_2krzflu" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+        </Sequence>
+        <Sleep ID="sleep_1788345452983_kp63rf9" name="Sleep_16732" msec="1000"/>
+        <Sequence ID="sequence_1789976067741_3e4063o" name="Sequence_pickupstation2_Afterpickupstation2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162240453_0c4a0kl" name="PilzPointsPlanner_164720" pose_goal="Afterpickupstation2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976069997_hjvfibn" name="Sequence_Afterpickupstation2_afterPickupstation2down">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162250035_auhrpwo" name="PilzPointsPlanner_164730" pose_goal="afterPickupstation2down" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788419131532_h8cy37h" name="PublishDataOnTopic_123531" type_of_topic="std_msgs/msg/Bool" msg_on_topic="false" topic_name="safety_on_right"/>
+        <Sequence ID="sequence_1789976072937_6wcrj1d" name="Sequence_afterPickupstation2down_afterPickupStation2Upper">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162269701_sp7iyzm" name="PilzPointsPlanner_164749" pose_goal="afterPickupStation2Upper" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976074996_pzj2gym" name="Sequence_afterPickupStation2Upper_preconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162275453_tizmtsw" name="PilzPointsPlanner_164755" pose_goal="preconvplace" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976084648_6tzwx5d" name="Sequence_preconvplace_convplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162290551_i01v5pk" name="PilzPointsPlanner_164810" pose_goal="convplace" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976086412_fjnnnu9" name="Sequence_convplace_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790162303205_pk3iabp" name="PilzPointsPlanner_164823" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976093734_smw90w3" name="Sequence_convplaceB_convplaceF">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790163969934_b0r0xp5" name="PilzPointsPlanner_17169" pose_goal="convplaceF" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788345659539_8ymoecs" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+        </Sequence>
+        <Sleep ID="sleep_1788345665412_7jvlb8d" name="Sleep_16115" msec="1000"/>
+        <Sequence ID="sequence_1789976367990_69ixunw" name="Sequence_convplaceF_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790163980619_ruztc88" name="PilzPointsPlanner_171620" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976096249_ssuayd6" name="Sequence_convplaceB_afterconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790163986189_8bh9y1u" name="PilzPointsPlanner_171626" pose_goal="afterconvplace" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="placecnc1station2">
+    <Sequence ID="seq_1788346228435_tst5wgt" name="RootSequence">
+      <Sequence ID="sequence_1788346235444_ibu4q8o" name="Sequence_162035">
+        <Sequence ID="sequence_1789976501299_bhgj0ez" name="Sequence_afterconvplace_PrePickupConv">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164889252_mg1jct6" name="PilzPointsPlanner_173129" pose_goal="PrePickupConv" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788346320860_co12pze" name="Sequence_glasspresent[DI]">
+          <SubTreePlus ID="glasspresent[DI]" expected_status="true"/>
+        </Sequence>
+        <Sleep ID="sleep_1788590971145_b2knvk1" name="Sleep_162241_copy" msec="2000"/>
+        <Sequence ID="sequence_1789976516631_kmhzxjy" name="Sequence_PrePickupConv_PickupConv">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164898205_7911k0a" name="PilzPointsPlanner_173138" pose_goal="PickupConv" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788346351183_0vezm3c" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+        </Sequence>
+        <Sleep ID="sleep_1788421227033_tzgvmvl" name="Sleep_162241_copy" msec="1000"/>
+        <Sequence ID="sequence_1788346375720_ozfjal2" name="Sequence_GLASSADJUSTOR[DO]">
+          <SubTreePlus ID="GLASSADJUSTOR[DO]" expected_action="false"/>
+        </Sequence>
+        <Sleep ID="sleep_1788346381337_5ggxv0y" name="Sleep_16231" msec="1000"/>
+        <Sequence ID="sequence_1789976518657_eb497od" name="Sequence_PickupConv_AfterPickupConv">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164904984_eptauhe" name="PilzPointsPlanner_173144" pose_goal="AfterPickupConv" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1790141217737_jdtueqj" name="Sequence_AfterPickupConv_local_home">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164958151_g4wp2sn" name="PilzPointsPlanner_173238" pose_goal="local_home" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1790141213124_kooll9v" name="Sequence_local_home_outsidestation2upper">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164967950_76okexd" name="PilzPointsPlanner_173247" pose_goal="outsidestation2upper" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976544389_c6za0ua" name="Sequence_outsidestation2upper_outsidestation2down">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164974317_h7m8hpp" name="PilzPointsPlanner_173254" pose_goal="outsidestation2down" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1788346925899_hnc924q" name="Sequence_STATION2RUNNING[DI]">
+          <SubTreePlus ID="STATION2RUNNING[DI]" expected_status="false"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788419290820_1i5ycuf" name="PublishDataOnTopic_123038_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="safety_on_right"/>
+        <Sequence ID="sequence_1789976780617_ff7wj9d" name="Sequence_outsidestation2down_preplacestation2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164980317_gny0ss4" name="PilzPointsPlanner_17330" pose_goal="preplacestation2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976784799_t7q8mr5" name="Sequence_preplacestation2_R1">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164989951_p2z4brn" name="PilzPointsPlanner_17339" pose_goal="R1" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976790333_461ouyo" name="Sequence_R1_R3">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790164995219_bjok1ob" name="PilzPointsPlanner_173315" pose_goal="R3" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Fallback ID="fallback_1788346544746_y4dmv4u" name="Fallback_162544">
+          <Sequence ID="seq_1788346544746_rnrd509" name="Sequence1">
+            <Sequence ID="sequence_1788346557354_dqc8jph" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1788346577559_8ixz4cp" name="Sleep_162617" msec="500"/>
+            <Sequence ID="sequence_1788346591608_l1bm475" name="Sequence_SUCTION2[DO]">
+              <SubTreePlus ID="SUCTION2[DO]" expected_action="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1788346596811_v30gc6m" name="Sleep_162636" msec="2500"/>
+            <Sequence ID="sequence_1788346647137_0s2eqeb" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+          <Sequence ID="seq_1788346544746_qljq26k" name="Sequence2">
+            <Sequence ID="sequence_1788346653761_mnjproj" name="Sequence_SUCTION2[DI]">
+              <SubTreePlus ID="SUCTION2[DI]" expected_status="false"/>
+            </Sequence>
+            <Sequence ID="sequence_1788346675970_3m0w0k2" name="Sequence_SUCTION2[DO]">
+              <SubTreePlus ID="SUCTION2[DO]" expected_action="true"/>
+            </Sequence>
+          </Sequence>
+          <Sleep ID="sleep_1788346682947_4voqbku" name="Sleep_16282" msec="2500"/>
+        </Fallback>
+        <Sequence ID="sequence_1788346765568_ombp80p" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+        </Sequence>
+        <Sleep ID="sleep_1788346771039_9bay9wz" name="Sleep_162931" msec="1000"/>
+        <Sequence ID="sequence_1789976794182_gxg9kib" name="Sequence_R3_Afterplacestation2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790165039589_wxowg33" name="PilzPointsPlanner_173359" pose_goal="Afterplacestation2" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789976910206_e1tzkwd" name="Sequence_Afterplacestation2_afterPickupstation2down">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790165070219_mkw24ol" name="PilzPointsPlanner_173430" pose_goal="afterPickupstation2down" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <PublishDataOnTopic ID="publishdataontopic_1788418838093_rysponq" name="PublishDataOnTopic_123038" type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="cnc_start"/>
+        <PublishDataOnTopic ID="publishdataontopic_1788419315668_nr3ln1f" name="PublishDataOnTopic_123038_copy" type_of_topic="std_msgs/msg/Bool" msg_on_topic="false" topic_name="safety_on_right"/>
+        <Sequence ID="sequence_1789976948125_khtegve" name="Sequence_afterPickupstation2down_afterPickupStation2Upper">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790165080019_z8yu4kp" name="PilzPointsPlanner_173440" pose_goal="afterPickupStation2Upper" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789977116936_u0rhfky" name="Sequence_afterPickupStation2Upper_local_home">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790165085185_pbd7lbn" name="PilzPointsPlanner_173445" pose_goal="local_home" planner_id="LIN" speed_factor="0.1" acceleration="0.1"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="cnc2stations">
+    <Sequence ID="seq_1789710217777_vag0ku7" name="RootSequence">
+      <Sequence ID="sequence_1789719559966_h16cb09" name="Sequence_134919">
+        <Sequence ID="sequence_1789719576217_k8n5hil" name="Sequence_pickupcnc2station1">
+          <SubTreePlus ID="pickupcnc2station1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789719580233_jog0d0h" name="Sequence_placecnc2station1">
+          <SubTreePlus ID="placecnc2station1"/>
+        </Sequence>
+        <Sequence ID="sequence_1789719586515_zyz16pz" name="Sequence_pickupcnc2station2">
+          <SubTreePlus ID="pickupcnc2station2"/>
+        </Sequence>
+        <Sequence ID="sequence_1789719589931_fcbf1h7" name="Sequence_placecnc2station2">
+          <SubTreePlus ID="placecnc2station2"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="pickupcnc2station1">
+    <Sequence ID="seq_1789710240385_wv6mz8c" name="RootSequence">
+      <Sequence ID="sequence_1789710279906_r49p4rc" name="Sequence_111439">
+        <Sequence ID="sequence_1790144645384_u4j3jkp" name="Sequence_local_home_AfterConvSafe">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166164285_uiqqya5" name="PilzPointsPlanner_175244" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144687030_19wzxv7" name="Sequence_AfterConvSafe_cnc2LSoutside">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166189988_t4j6h9n" name="PilzPointsPlanner_17539" pose_goal="cnc2LSoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144716313_sbe2kgx" name="Sequence_cnc2LSoutside_cnc2LSdown">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166194621_rhwbiyn" name="PilzPointsPlanner_175314" pose_goal="cnc2LSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144738032_wfuxz7s" name="Sequence_cnc2LSdown_cnc2LSdown2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166203601_wajkmkx" name="PilzPointsPlanner_175323" pose_goal="cnc2LSdown2" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1789711405826_36hki42" name="Sequence_STATION3RUNNING[DI]">
+          <SubTreePlus ID="STATION3RUNNING[DI]" expected_status="false"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144752321_cskolug" name="Sequence_cnc2LSdown2_cnc2LSPPickup">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166208550_88uqkpz" name="PilzPointsPlanner_175328" pose_goal="cnc2LSPPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144767505_w5oqp3w" name="Sequence_cnc2LSPPickup_cnc2LSPickup">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166214300_blc33d9" name="PilzPointsPlanner_175334" pose_goal="cnc2LSPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Fallback ID="fallback_1789711591531_ampplb1" name="Fallback_113631">
+          <Sequence ID="seq_1789711591531_rfrl2xn" name="Sequence1">
+            <Sequence ID="sequence_1789711636226_rzu1crr" name="Sequence_SUCTION3[DI]">
+              <SubTreePlus ID="SUCTION3[DI]" expected_status="true"/>
+            </Sequence>
+            <Sequence ID="sequence_1789711661722_tuddzs0" name="Sequence_SUCTION3[DO]">
+              <SubTreePlus ID="SUCTION3[DO]" expected_action="true"/>
+            </Sequence>
+            <Sleep ID="sleep_1789711666378_u4jvm1d" name="Sleep_113746" msec="2500"/>
+            <Sequence ID="sequence_1789711728809_ltn3le4" name="Sequence_SUCTION3[DI]">
+              <SubTreePlus ID="SUCTION3[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+          <Sequence ID="seq_1789711591531_d8h9v38" name="Sequence2">
+            <Sequence ID="sequence_1789711737106_vrwgdc9" name="Sequence_SUCTION3[DI]">
+              <SubTreePlus ID="SUCTION3[DI]" expected_status="false"/>
+            </Sequence>
+          </Sequence>
+        </Fallback>
+        <Sequence ID="sequence_1789712311934_lu1kj0m" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+        </Sequence>
+        <Sleep ID="sleep_1790145013885_punbyqd" name="Sleep_12013" msec="1000"/>
+        <Sequence ID="sequence_1790144801848_5j97w5o" name="Sequence_cnc2LSPickup_cnc2LSAPickup">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166221268_q79f890" name="PilzPointsPlanner_175341" pose_goal="cnc2LSAPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144810249_hnygtxq" name="Sequence_cnc2LSAPickup_cnc2LSdown2">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166226951_ybg8pgx" name="PilzPointsPlanner_175346" pose_goal="cnc2LSdown2" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790150582562_2jx5lbg" name="Sequence_cnc2LSdown2_cnc2LSdown">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166235285_1sukg13" name="PilzPointsPlanner_175355" pose_goal="cnc2LSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144828414_vp2bf63" name="Sequence_cnc2LSdown_cnc2LSoutside">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166245252_e47cuzr" name="PilzPointsPlanner_17545" pose_goal="cnc2LSoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144832814_u7g7hmg" name="Sequence_cnc2LSoutside_AfterConvSafe">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166249789_ehf5dq0" name="PilzPointsPlanner_17549" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144930224_ck0yee8" name="Sequence_AfterConvSafe_preconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166255567_2wd02oq" name="PilzPointsPlanner_175415" pose_goal="preconvplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144942998_11muier" name="Sequence_preconvplace_convplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166261401_vnlbk1i" name="PilzPointsPlanner_175421" pose_goal="convplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144946270_g47ef1w" name="Sequence_convplace_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166265884_egeum0b" name="PilzPointsPlanner_175425" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144951053_hltl8bi" name="Sequence_convplaceB_convplaceF">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166299605_izq03fr" name="PilzPointsPlanner_175459" pose_goal="convplaceF" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790145063436_lsuognd" name="Sequence_GRIPPERSUCTION[DO]">
+          <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+        </Sequence>
+        <Sleep ID="sleep_1790145120529_243bf29" name="Sleep_1220" msec="1200"/>
+        <Sequence ID="sequence_1790144960456_e93doer" name="Sequence_convplaceF_convplaceB">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166306368_l62m2zu" name="PilzPointsPlanner_17556" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+        <Sequence ID="sequence_1790144965992_excukea" name="Sequence_convplaceB_afterconvplace">
+          <PilzPointsPlanner ID="pilzpointsplanner_1790166311085_xohb6vp" name="PilzPointsPlanner_175511" pose_goal="afterconvplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+        </Sequence>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="placecnc2station1">
+    <Sequence ID="seq_1789710249425_klc41du" name="RootSequence">
+      <Sequence ID="sequence_1790145278248_ertor6h" name="Sequence_afterconvplace_PrePickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166944068_o10ghfi" name="PilzPointsPlanner_18544" pose_goal="PrePickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789712549401_1hhuutr" name="Sequence_glasspresent[DI]">
+        <SubTreePlus ID="glasspresent[DI]" expected_status="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1789712555199_bu0x8m1" name="Sleep_115235" msec="2000"/>
+      <Sequence ID="sequence_1790145351709_r14eq8h" name="Sequence_PrePickupConv_PickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166951318_pwnu50y" name="PilzPointsPlanner_18551" pose_goal="PickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789712651751_1qtx43k" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1789712655982_x6v653u" name="Sleep_115415" msec="2000"/>
+      <Sequence ID="sequence_1789712674018_o2ru9wn" name="Sequence_GLASSADJUSTOR[DO]">
+        <SubTreePlus ID="GLASSADJUSTOR[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1789712679150_1q0gi2a" name="Sleep_115439" msec="1000"/>
+      <Sequence ID="sequence_1790145356439_i5gfr74" name="Sequence_PickupConv_AfterPickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166957535_dbb519q" name="PilzPointsPlanner_18557" pose_goal="AfterPickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145361967_8u4bidj" name="Sequence_AfterPickupConv_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166963184_onez7wx" name="PilzPointsPlanner_1863" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145382649_z5qi0kb" name="Sequence_AfterConvSafe_cnc2LSoutside">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166968020_7wog2tp" name="PilzPointsPlanner_1868" pose_goal="cnc2LSoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145397655_2i7sibe" name="Sequence_cnc2LSoutside_cnc2LSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166971789_z5jvbar" name="PilzPointsPlanner_18611" pose_goal="cnc2LSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145400058_4htdnxj" name="Sequence_cnc2LSdown_cnc2LSdown2">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166976604_50mti0q" name="PilzPointsPlanner_18616" pose_goal="cnc2LSdown2" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789713256633_gxriail" name="Sequence_STATION3RUNNING[DI]">
+        <SubTreePlus ID="STATION3RUNNING[DI]" expected_status="false"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145413135_jzub6jk" name="Sequence_cnc2LSdown2_cnc2LSPPlace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166981768_z0e9w0v" name="PilzPointsPlanner_18621" pose_goal="cnc2LSPPlace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145416613_acsqeva" name="Sequence_cnc2LSPPlace_C1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166987001_mvtd2xw" name="PilzPointsPlanner_18626" pose_goal="C1" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Fallback ID="fallback_1789713231034_tf13ps0" name="Fallback_12351">
+        <Sequence ID="seq_1789713231034_dc5ed4r" name="Sequence1">
+          <Sequence ID="sequence_1789713282233_prpphgf" name="Sequence_SUCTION3[DI]">
+            <SubTreePlus ID="SUCTION3[DI]" expected_status="false"/>
+          </Sequence>
+          <Sequence ID="sequence_1789713294849_2ko5gtl" name="Sequence_SUCTION3[DO]">
+            <SubTreePlus ID="SUCTION3[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789713353566_259am7l" name="Sleep_12553" msec="2500"/>
+          <Sequence ID="sequence_1789713400918_j4kjosi" name="Sequence_SUCTION3[DI]">
+            <SubTreePlus ID="SUCTION3[DI]" expected_status="true"/>
+          </Sequence>
+        </Sequence>
+        <Sequence ID="seq_1789713231034_22vo59g" name="Sequence2">
+          <Sequence ID="sequence_1789713416299_m4a1n15" name="Sequence_SUCTION3[DI]">
+            <SubTreePlus ID="SUCTION3[DI]" expected_status="true"/>
+          </Sequence>
+          <Sequence ID="sequence_1789713468617_i7zhp1p" name="Sequence_SUCTION3[DO]">
+            <SubTreePlus ID="SUCTION3[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789713472517_qpn4iaw" name="Sleep_12752" msec="2500"/>
+          <Sequence ID="sequence_1789713485232_pbwokj0" name="Sequence_SUCTION3[DI]">
+            <SubTreePlus ID="SUCTION3[DI]" expected_status="false"/>
+          </Sequence>
+          <Sequence ID="sequence_1789713492151_74iaoo0" name="Sequence_SUCTION3[DO]">
+            <SubTreePlus ID="SUCTION3[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789713497402_xr0m961" name="Sleep_12817" msec="2500"/>
+          <Sequence ID="sequence_1789713519301_lx1ql4c" name="Sequence_SUCTION3[DI]">
+            <SubTreePlus ID="SUCTION3[DI]" expected_status="true"/>
+          </Sequence>
+        </Sequence>
+      </Fallback>
+      <Sequence ID="sequence_1789713534200_n965vlm" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1789713541234_680gnmr" name="Sleep_1291" msec="1000"/>
+      <Sequence ID="sequence_1790145426248_jgd23ul" name="Sequence_C1_C3">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790166996589_4q3q4md" name="PilzPointsPlanner_18636" pose_goal="C3" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145432648_0vz3bn3" name="Sequence_C3_cnc2LSAPlace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167002254_e0rp85w" name="PilzPointsPlanner_18642" pose_goal="cnc2LSAPlace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145436799_nwj405w" name="Sequence_cnc2LSAPlace_cnc2LSdown2">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167020384_48skdyu" name="PilzPointsPlanner_1870" pose_goal="cnc2LSdown2" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145700929_kght9nv" name="Sequence_cnc2LSdown2_cnc2LSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167024734_wcb2l8d" name="PilzPointsPlanner_1874" pose_goal="cnc2LSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145720128_0wgtrer" name="Sequence_cnc2LSdown_cnc2LSoutside">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167029005_1pzr1s2" name="PilzPointsPlanner_1879" pose_goal="cnc2LSoutside" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145731492_scm8d0a" name="Sequence_cnc2LSoutside_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167033068_so8pdsj" name="PilzPointsPlanner_18713" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="pickupcnc2station2">
+    <Sequence ID="seq_1789710257313_68x9uh6" name="RootSequence">
+      <Sequence ID="sequence_1790145975031_hxn7841" name="Sequence_AfterConvSafe_cnc2RSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167578606_n05x8x0" name="PilzPointsPlanner_181618" pose_goal="cnc2RSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789716045041_pad0r0j" name="Sequence_STATION4RUNNING[DI]">
+        <SubTreePlus ID="STATION4RUNNING[DI]" expected_status="false"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145978357_3lxhfnl" name="Sequence_cnc2RSdown_cnc2RSPPickup">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167583835_cehfhf3" name="PilzPointsPlanner_181623" pose_goal="cnc2RSPPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790145984189_8fn6bbt" name="Sequence_cnc2RSPPickup_cnc2RSPickup">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167587951_xh9f52a" name="PilzPointsPlanner_181627" pose_goal="cnc2RSPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Fallback ID="fallback_1789716115385_rkup9i0" name="Fallback_125155">
+        <Sequence ID="seq_1789716115385_uppgoo4" name="Sequence1">
+          <Sequence ID="sequence_1789716130353_09gq6ha" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="true"/>
+          </Sequence>
+          <Sequence ID="sequence_1789716136043_vpc0smk" name="Sequence_SUCTION4[DO]">
+            <SubTreePlus ID="SUCTION4[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789716144530_1tf6p20" name="Sleep_125224" msec="2500"/>
+          <Sequence ID="sequence_1789716163129_e4myjth" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="false"/>
+          </Sequence>
+        </Sequence>
+        <Sequence ID="seq_1789716115385_ytl7e7g" name="Sequence2">
+          <Sequence ID="sequence_1789716179386_hqhe6at" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="false"/>
+          </Sequence>
+        </Sequence>
+      </Fallback>
+      <Sequence ID="sequence_1789716215113_tx7semm" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1789717007819_k78e02a" name="Sleep_13647" msec="1000"/>
+      <Sequence ID="sequence_1790145991661_v3p0uh7" name="Sequence_cnc2RSPickup_cnc2RSAPickup">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167593734_86ue3j3" name="PilzPointsPlanner_181633" pose_goal="cnc2RSAPickup" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146001098_mmpngfb" name="Sequence_cnc2RSAPickup_cnc2RSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167598001_ler578q" name="PilzPointsPlanner_181637" pose_goal="cnc2RSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146003841_butcf3p" name="Sequence_cnc2RSdown_cnc2RSdown2after">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167604836_bkr3pw1" name="PilzPointsPlanner_181644" pose_goal="cnc2RSdown2after" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146007667_1o594wp" name="Sequence_cnc2RSdown2after_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167608836_st4611x" name="PilzPointsPlanner_181648" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146018497_lwpp1rj" name="Sequence_AfterConvSafe_preconvplace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167613219_kaheiok" name="PilzPointsPlanner_181653" pose_goal="preconvplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146026367_rjoz0xw" name="Sequence_preconvplace_convplace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167619334_si3lttt" name="PilzPointsPlanner_181659" pose_goal="convplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146028982_u03nfe0" name="Sequence_convplace_convplaceB">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167624484_g6lb3xs" name="PilzPointsPlanner_18174" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146031882_5oxbwpg" name="Sequence_convplaceB_convplaceF">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167651021_g0wug30" name="PilzPointsPlanner_181731" pose_goal="convplaceF" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146149395_iy6nre1" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1790146164929_ymrvxig" name="Sleep_121924" msec="1200"/>
+      <Sequence ID="sequence_1790146034871_lt7sy14" name="Sequence_convplaceF_convplaceB">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167661734_w3bzyl0" name="PilzPointsPlanner_181741" pose_goal="convplaceB" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146038626_bnahdaw" name="Sequence_convplaceB_afterconvplace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790167667269_4jznxbw" name="PilzPointsPlanner_181747" pose_goal="afterconvplace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="placecnc2station2">
+    <Sequence ID="seq_1789710263657_wguprha" name="RootSequence">
+      <Sequence ID="sequence_1790146205787_tp8y074" name="Sequence_afterconvplace_PrePickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227177643_v2rheii" name="PilzPointsPlanner_104937" pose_goal="PrePickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789717576786_gnvam7i" name="Sequence_glasspresent[DI]">
+        <SubTreePlus ID="glasspresent[DI]" expected_status="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1789717580978_3ez858j" name="Sleep_131620" msec="2000"/>
+      <Sequence ID="sequence_1790146223690_cwbu210" name="Sequence_PrePickupConv_PickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227182770_mexptly" name="PilzPointsPlanner_104942" pose_goal="PickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1789717639418_atmxgmt" name="Sequence_GRIPPERSUCTION[DO]">
+        <SubTreePlus ID="GRIPPERSUCTION[DO]" expected_action="true"/>
+      </Sequence>
+      <Sleep ID="sleep_1789717643318_bnou1oz" name="Sleep_131723" msec="1200"/>
+      <Sequence ID="sequence_1789717658735_w4i9lq1" name="Sequence_GLASSADJUSTOR[DO]">
+        <SubTreePlus ID="GLASSADJUSTOR[DO]" expected_action="false"/>
+      </Sequence>
+      <Sleep ID="sleep_1789717665150_qcm9y75" name="Sleep_131745" msec="1200"/>
+      <Sequence ID="sequence_1790146227955_6ujjtzu" name="Sequence_PickupConv_AfterPickupConv">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227187271_xx1jimv" name="PilzPointsPlanner_104947" pose_goal="AfterPickupConv" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146232484_vdl3r1s" name="Sequence_AfterPickupConv_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227192820_5r52dmc" name="PilzPointsPlanner_104952" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146255019_8qd3rhf" name="Sequence_AfterConvSafe_cnc2RSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227197587_levyeak" name="PilzPointsPlanner_104957" pose_goal="cnc2RSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146871536_im0mn19" name="Sequence_cnc2RSdown_cnc2RSPPlace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227201675_lo91he5" name="PilzPointsPlanner_10501" pose_goal="cnc2RSPPlace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146877432_75o0q73" name="Sequence_cnc2RSPPlace_D1">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227206787_m4f5w8o" name="PilzPointsPlanner_10506" pose_goal="D1" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Fallback ID="fallback_1789718381783_c01rh1d" name="Fallback_132941">
+        <Sequence ID="seq_1789718381783_do6ef3n" name="Sequence1">
+          <Sequence ID="sequence_1789718411899_m13q5n6" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="false"/>
+          </Sequence>
+          <Sequence ID="sequence_1789718421407_xk5v9wn" name="Sequence_SUCTION4[DO]">
+            <SubTreePlus ID="SUCTION4[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789718425535_jpdqxyp" name="Sleep_133025" msec="2500"/>
+          <Sequence ID="sequence_1789718447833_cnq7oe4" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="true"/>
+          </Sequence>
+        </Sequence>
+        <Sequence ID="seq_1789718381783_lh6vks0" name="Sequence2">
+          <Sequence ID="sequence_1789718470186_mis1wvk" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="true"/>
+          </Sequence>
+          <Sequence ID="sequence_1789718478917_vwg3oh4" name="Sequence_SUCTION4[DO]">
+            <SubTreePlus ID="SUCTION4[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789718487699_tmgmf3f" name="Sleep_133127" msec="2500"/>
+          <Sequence ID="sequence_1789718545449_w3nftxk" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="false"/>
+          </Sequence>
+          <Sequence ID="sequence_1789718590001_rkh2jh4" name="Sequence_SUCTION4[DO]">
+            <SubTreePlus ID="SUCTION4[DO]" expected_action="true"/>
+          </Sequence>
+          <Sleep ID="sleep_1789718594822_7q3n9av" name="Sleep_133314" msec="2500"/>
+          <Sequence ID="sequence_1789718669616_4441jdg" name="Sequence_SUCTION4[DI]">
+            <SubTreePlus ID="SUCTION4[DI]" expected_status="true"/>
+          </Sequence>
+        </Sequence>
+      </Fallback>
+      <Sequence ID="sequence_1790146881615_d269nju" name="Sequence_D1_D3">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227213971_nodpbwq" name="PilzPointsPlanner_105013" pose_goal="D3" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146887317_p8rlopu" name="Sequence_D3_cnc2RSAPlace">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227221237_puvs4o3" name="PilzPointsPlanner_105021" pose_goal="cnc2RSAPlace" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146894824_soa0468" name="Sequence_cnc2RSAPlace_cnc2RSdown">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227238171_wkn82n9" name="PilzPointsPlanner_105038" pose_goal="cnc2RSdown" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146927282_7p7wynz" name="Sequence_cnc2RSdown_cnc2RSdown2after">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227241837_szhhcyj" name="PilzPointsPlanner_105041" pose_goal="cnc2RSdown2after" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790146937480_ox8q5is" name="Sequence_cnc2RSdown2after_AfterConvSafe">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227245621_4z79c38" name="PilzPointsPlanner_105045" pose_goal="AfterConvSafe" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+      <Sequence ID="sequence_1790147369262_4vc75ef" name="Sequence_AfterConvSafe_local_home">
+        <PilzPointsPlanner ID="pilzpointsplanner_1790227250708_ew03kaq" name="PilzPointsPlanner_105050" pose_goal="local_home" planner_id="LIN" speed_factor="0.3" acceleration="0.3"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+</root>

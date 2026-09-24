@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Point Planning UI</title>
+    <link rel="stylesheet" href="../media/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/robot_control.css">
+    <link rel="stylesheet" href="style/mode_segmented.css">
+    <link rel="stylesheet" href="style/yaml_view.css">
+    <link rel="stylesheet" href="style/gamepad.css">
+    <link rel="stylesheet" href="./tf_visualiser/tf_visual.css">
+
+    <link rel="stylesheet" href="style/ws_calibration.css">
+
+
+    <style>
+        .servo-frame-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .servo-frame-button {
+            flex: 1;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.18s ease;
+            background: #0a84ff;
+            color: white;
+            border: 1px solid #2da0a0;
+        }
+
+        .servo-frame-button:hover {
+            transform: translateY(-2px);
+            background: #2a3b62;
+        }
+
+        .servo-frame-button.active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-color: #27ae60;
+            box-shadow: 0 0 0 3px rgba(59, 246, 206, 0.35);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-map-marker-alt logo-icon"></i>
+                <h1>Point Planning UI</h1>
+            </div>
+            <div class="header-actions">
+                <div class="temp_class rosbridge-toggle-wrap">
+    <label class="mac-rosbridge-toggle" for="rosbridge-toggle">
+        <input type="checkbox" id="rosbridge-toggle" onchange="toggleRosbridge(this.checked)" />
+        <span class="mac-rosbridge-track">
+            <span class="mac-rosbridge-option mac-rosbridge-option--off">OFF</span>
+            <span class="mac-rosbridge-option mac-rosbridge-option--on">ON</span>
+            <span class="mac-rosbridge-thumb"></span>
+        </span>
+    </label>
+</div>
+                <!-- NEXSIM (test view) — remove this button to uninstall -->
+                <button class="btn btn-primary ws-calib-open-btn" onclick="openWsCalibration()">
+                    <i class="fas fa-crosshairs"></i> WS-Calibration
+                </button>
+                <button type="button" class="btn btn-secondary nxs-launch" id="nexsimLaunchBtn"
+                    onclick="window.openNexSim && window.openNexSim()" title="Open NexSim 3D robot view (test)">
+                    <i class="fas fa-cube"></i> NexSim
+                </button>
+                <button class="btn btn-secondary" id="reloadPoint" onclick="reloadPoints()">
+                    <i class="fas fa-sync-alt"></i> Reload Points
+                </button>
+                <button class="btn btn-primary" onclick="openYAMLModal()">
+                    <i class="fas fa-code"></i> View Points YAML
+                </button>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <div class="content-left">
+                <div class="control-panel">
+                    <div class="point-editor">
+                        <div class="section-title">
+                            <i class="fas fa-plus-circle"></i>
+                            <span class="point-editor-title-container">
+                                <h2>Point Editor</h2>
+                            </span>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label style="display: flex; flex-direction: row;" for="pointName">
+                                    <i class="fas fa-signature"></i> Point Name
+                                    <button class="btn-refresh" onclick="clearForm()">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </label>
+                                <input type="text" id="pointName" placeholder="e.g., point-1">
+                            </div>
+                            <div class="form-group">
+                                <label for="sequence"><i class="fas fa-list-ol"></i> Sequence</label>
+                                <select id="sequence">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="is_tf"><i class="fas fa-exchange-alt"></i> Is TF</label>
+                                <div style="display: flex; align-items: center; gap: 8px; padding-top: 6px;">
+                                    <input type="checkbox" id="is_tf"
+                                        style="width: 18px; height: 18px; cursor: pointer;">
+                                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Enable TF</span>
+                                </div>
+                            </div>
+                            <!-- ── is_editable checkbox ─────────────────────────── -->
+                            <div class="form-group">
+                                <label for="is_editable"><i class="fas fa-lock-open"></i> Editable</label>
+                                <div style="display: flex; align-items: center; gap: 8px; padding-top: 6px;">
+                                    <input type="checkbox" id="is_editable" checked
+                                        style="width: 18px; height: 18px; cursor: pointer;">
+                                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Editable</span>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="nature"><i class="fas fa-info-circle"></i> Nature</label>
+                                <textarea id="nature" maxlength="30" placeholder="e.g., test point"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateTime"><i class="fas fa-calendar"></i> Date Time</label>
+                                <input type="text" id="dateTime" readonly value="Auto-generated">
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" id="addPointBtn" onclick="addPoint()">
+                                <i class="fas fa-plus"></i> Add Point
+                            </button>
+                            <button class="btn btn-warning" id="updateBtn" onclick="updatePoint()" disabled>
+                                <i class="fas fa-edit"></i> Update Point
+                            </button>
+                        </div>
+                    </div>
+                    <section class="tf-orient-root">
+                        <div class="tf-canvas-container" id="tfCanvasContainer">
+                            <canvas id="tfMainCanvas"></canvas>
+                            <span class="tf-corner-bl"></span>
+                            <span class="tf-corner-br"></span>
+                            <div class="tf-hud tf-hud-top">
+                                <select id="tfPointSelect" class="tf-point-select"></select>
+                                <div class="tf-hud-buttons">
+                                    <button id="tfLockToggle" type="button" title="Lock current view">🔓</button>
+                                    <button id="tfResetView" type="button" title="Reset view">⟲</button>
+                                </div>
+                            </div>
+
+                            <div class="tf-hud tf-hud-bottom" id="tfMainRPW"></div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="sequence-panel">
+                    <div class="sequence-header">
+                        <div class="section-title">
+                            <i class="fas fa-project-diagram"></i>
+                            <h2>Point List</h2>
+                        </div>
+                        <div class="sequence-count">
+                            <span class="origin-point-file-name">
+                                <span id="sequenceCount">0</span> points
+                            </span>
+                            <button class="btn-reload-points btn-access-manager" onclick="openAccessManager()"
+                                title="Manage editable / locked points">
+                                <i class="fas fa-shield-alt"></i> <span>Manage Access</span>
+                            </button>
+                            <button id="lockReorderBtn" class="btn-reload-points btn-secondary"
+                                onclick="toggleReorderLock()" title="Lock reordering">
+                                <i class="fas fa-lock-open"></i> <span id="lockReorderLabel">Unlocked</span>
+                            </button>
+                            <button class="btn-reload-points btn-danger"
+                                onclick="showConfirmModal('Delete all points?', deleteAll)">
+                                <i class="fas fa-broom"></i> Delete All
+                            </button>
+                            <button id="undoBtn" class="btn-reload-points btn-warning" onclick="performUndo()" disabled>
+                                <i class="fas fa-undo"></i> Undo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="point-list" id="pointList">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>No points added yet</p>
+                            <small>Start by adding a point using the editor</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="content-right">
+                <div class="robot-movement-card">
+                    <div class="robot-movement-header">
+                        <i class="fas fa-robot"></i>
+                        <span>Robot Movement Control</span>
+                    </div>
+
+                    <div class="robot-movement-controls">
+                        <div class="temp_class planner-toggle-wrap">
+                            <!-- <span class="switch-label">Planner</span> -->
+                            <label class="mac-planner-toggle" for="planner-toggle">
+                                <input type="checkbox" id="planner-toggle" onchange="callTogglePlanner(this.checked)" />
+                                <span class="mac-planner-track">
+                                    <span class="mac-planner-option mac-planner-option--ompl">OMPL</span>
+                                    <span class="mac-planner-option mac-planner-option--pilz">PILZ</span>
+                                    <span class="mac-planner-thumb"></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="temp_class mode-seg-wrap">
+                            <!-- <span class="switch-label">Mode of Operation</span> -->
+                            <div class="mode-seg" id="mode-seg" role="tablist" aria-label="Mode of Operation">
+                                <div class="mode-seg-progress" id="mode-seg-progress"></div>
+                                <div class="mode-seg-thumb" id="mode-seg-thumb"></div>
+                                <button class="mode-seg-btn is-active" data-mode="safeauto" role="tab"
+                                    aria-selected="true">SafeAuto</button>
+                                <button class="mode-seg-btn" data-mode="jog" role="tab"
+                                    aria-selected="false">Jog</button>
+                                <button class="mode-seg-btn" data-mode="auto" role="tab"
+                                    aria-selected="false">Auto</button>
+                            </div>
+                        </div>
+
+                        <div class="mac-divider"></div>
+
+
+
+                        <div class="mac-divider"></div>
+
+                        <div class="mac-actions-row">
+                            <button class="temp_class mac-btn mac-btn-primary mac-jog-btn btn-servo-start"
+                                id="startServoButton" onclick="callStartServo()">
+                                <i class="fas fa-play"></i>
+                                Jog Servo
+                            </button>
+                            <div class="mac-switch" id="gamepad-open-btn" style="display: none;">
+                                <i class="fa-solid fa-gamepad"></i>
+                                Gamepad
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="robot-controller-container">
+                    <div class="servo-node-control-button-container">
+                        <div class="section-title">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <h2>Joint Control</h2>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="joint-row">
+                                <span class="joint-label">J1</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j1_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j1val">0.00°</span>
+                                    <button class="hex-btn minus" id="j1_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">J2</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j2_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j2val">0.00°</span>
+                                    <button class="hex-btn minus" id="j2_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">J3</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j3_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j3val">0.00°</span>
+                                    <button class="hex-btn minus" id="j3_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">J4</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j4_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j4val">0.00°</span>
+                                    <button class="hex-btn minus" id="j4_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">J5</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j5_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j5val">0.00°</span>
+                                    <button class="hex-btn minus" id="j5_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">J6</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="j6_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="j6val">0.00°</span>
+                                    <button class="hex-btn minus" id="j6_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="translation-rotation-motion-container">
+                        <div class="section-title">
+                            <i class="fas fa-arrows-alt"></i>
+                            <h2>Cartesian Control</h2>
+                        </div>
+                        <div class="form-grid">
+                            <div class="joint-row">
+                                <span class="joint-label">X</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cx_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="xval">0.00 cm</span>
+                                    <button class="hex-btn minus" id="cx_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">Y</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cy_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="yval">0.00 cm</span>
+                                    <button class="hex-btn minus" id="cy_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">Z</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cz_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="zval">0.00 cm</span>
+                                    <button class="hex-btn minus" id="cz_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">R</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cr_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="rval">0.00°</span>
+                                    <button class="hex-btn minus" id="cr_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">P</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cp_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="pval">0.00°</span>
+                                    <button class="hex-btn minus" id="cp_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="joint-row">
+                                <span class="joint-label">W</span>
+                                <div class="joint-control-line">
+                                    <button class="hex-btn plus" id="cw_plus"><i class="fas fa-plus"></i></button>
+                                    <span class="joint-value" id="wval">0.00°</span>
+                                    <button class="hex-btn minus" id="cw_minus"><i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="robot-movement-footer">
+                    <div class="robot-movement-card servo-frame-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                            <h2 class="servo-frame-title">Servo Frame</h2>
+                            <div class="servo-frame-active">
+                                <span class="servo-frame-active-label">Active</span>
+                                <span class="servo-frame-active-value" id="currentFrameDisplay">—</span>
+                            </div>
+                        </div>
+
+                        <div class="frame-dropdown-wrapper">
+                            <button type="button" class="frame-dropdown-toggle" id="frameDropdownToggle"
+                                onclick="toggleFrameDropdown()">
+                                <span id="frameDropdownLabel">Select frame...</span>
+                                <i class="fas fa-chevron-down dropdown-chevron"></i>
+                            </button>
+                            <div class="frame-dropdown-menu" id="frameDropdownMenu">
+                                <div class="frame-dropdown-group-label">Special Frames</div>
+                                <div class="frame-dropdown-item" data-frame="end"
+                                    onclick="selectFrameFromDropdown('end')">
+                                    <i class="fas fa-hand-point-right"></i> END
+                                </div>
+                                <div class="frame-dropdown-item" data-frame="base_link"
+                                    onclick="selectFrameFromDropdown('base_link')">
+                                    <i class="fas fa-cube"></i> BASE
+                                </div>
+                                <div class="frame-dropdown-item" data-frame="external_link"
+                                    onclick="selectFrameFromDropdown('external_link')">
+                                    <i class="fas fa-external-link-alt"></i> EXTERNAL
+                                </div>
+                                <div class="frame-dropdown-group-label">TF Points</div>
+                                <div id="tfFramesContainer">
+                                    <div class="frame-dropdown-empty">No TF points</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Point Details Modal -->
+        <div id="pointModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-info-circle"></i> Point Details</h3>
+                    <button class="modal-close" onclick="closePointModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalName"></p>
+                    <p id="modalDateTime"></p>
+                    <p id="modalSequence"></p>
+                    <p id="modalNature"></p>
+                    <!-- ── is_editable status shown in details modal ── -->
+                    <p id="modalEditable"></p>
+                    <p id="modalJoints"></p>
+                    <p id="modalCoordinates"></p>
+                    <div id="modalHistory" class="history-container">
+                        <div class="history-title">
+                            <i class="fas fa-history"></i> History
+                        </div>
+                        <div id="historyEntries"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" onclick="closePointModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Name Change Error Modal -->
+        <div id="nameChangeModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-exclamation-circle"></i> Error</h3>
+                    <button class="modal-close" onclick="closeNameChangeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Point's name cannot be changed</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="addPointFromNameChange()">
+                        <i class="fas fa-plus"></i> Add new point with this name
+                    </button>
+                    <button class="btn btn-danger" onclick="closeNameChangeModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-question-circle"></i> Confirm Action</h3>
+                    <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirmMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="confirmAction()">
+                        <i class="fas fa-check"></i> Confirm
+                    </button>
+                    <button class="btn btn-danger" onclick="closeConfirmModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Name Error Modal -->
+        <div id="fileNameErrorModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-exclamation-circle"></i> Error</h3>
+                    <button class="modal-close" onclick="closeFileNameErrorModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>File name cannot be empty</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" onclick="closeFileNameErrorModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="motionTypeModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-route"></i> Choose Path Motion Type
+                    </h3>
+                    <button class="modal-close" onclick="closeMotionTypeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="motion-options">
+                        <button class="btn btn-primary" onclick="selectMotionType('cartesian')">
+                            <i class="fas fa-arrows-alt"></i> Cartesian
+                        </button>
+                        <button class="btn btn-secondary" onclick="selectMotionType('joint')">
+                            <i class="fas fa-project-diagram"></i> Joint
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- YAML Modal -->
+        <div id="yamlModal" class="modal">
+            <div class="modal-content yaml-modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><i class="fas fa-code"></i> Points YAML</h3>
+                    <div class="font-controls">
+                        <button class="btn-font" onclick="changeFontSize(-1)">A-</button>
+                        <button class="btn-font" onclick="changeFontSize(1)">A+</button>
+                        <button class="modal-close" onclick="closeYAMLModal()">&times;</button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <pre id="yamlOutput" class="yaml-content"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="reloadYAML()">
+                        <i class='bx bx-refresh'></i> Reload YAML
+                    </button>
+                    <button class="btn btn-success" onclick="copyYAML()">
+                        <i class="fas fa-copy"></i> Copy to Clipboard
+                    </button>
+                    <button class="btn btn-danger" onclick="closeYAMLModal()">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="accessManagerModal" class="modal">
+            <div class="modal-content am-modal-content">
+
+                <!-- ── Header ── -->
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <i class="fas fa-shield-alt"></i> Access Manager
+                    </h3>
+                    <div class="am-header-sub">
+                        Drag points between columns · select multiple then use arrows · changes apply on Save
+                    </div>
+                    <button class="modal-close" onclick="closeAccessManager()">&times;</button>
+                </div>
+
+                <!-- ── Search row ── -->
+                <div class="am-search-row">
+                    <div class="am-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="am-search-editable" placeholder="Filter editable…"
+                            oninput="amFilterPoints()">
+                    </div>
+                    <div class="am-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="am-search-locked" placeholder="Filter locked…"
+                            oninput="amFilterPoints()">
+                    </div>
+                </div>
+
+                <!-- ── Body: two columns + arrow controls ── -->
+                <div class="am-body">
+
+                    <!-- Left col — Editable -->
+                    <div class="am-col" id="am-col-editable">
+                        <div class="am-col-header">
+                            <div class="am-col-title am-col-title--editable">
+                                <i class="fas fa-lock-open"></i>
+                                Editable
+                                <span class="am-count am-count--editable" id="am-count-editable">0</span>
+                            </div>
+                            <div class="am-col-actions">
+                                <button class="am-act-btn" onclick="amSelectAll('editable')">All</button>
+                                <button class="am-act-btn" onclick="amSelectNone('editable')">None</button>
+                            </div>
+                        </div>
+                        <div class="am-drop-zone am-drop-zone--editable" id="am-zone-editable"
+                            ondragover="amDragOver(event,'editable')" ondragleave="amDragLeave('editable')"
+                            ondrop="amDrop(event,'editable')">
+                        </div>
+                    </div>
+
+                    <!-- Arrow controls -->
+                    <div class="am-arrows">
+                        <button class="am-arrow-btn" id="am-btn-lock" onclick="amMoveSelected('locked')"
+                            title="Lock selected" disabled>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <div class="am-arrows-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <button class="am-arrow-btn" id="am-btn-unlock" onclick="amMoveSelected('editable')"
+                            title="Unlock selected" disabled>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+
+                    <!-- Right col — Locked -->
+                    <div class="am-col" id="am-col-locked">
+                        <div class="am-col-header">
+                            <div class="am-col-title am-col-title--locked">
+                                <i class="fas fa-lock"></i>
+                                Locked
+                                <span class="am-count am-count--locked" id="am-count-locked">0</span>
+                            </div>
+                            <div class="am-col-actions">
+                                <button class="am-act-btn" onclick="amSelectAll('locked')">All</button>
+                                <button class="am-act-btn" onclick="amSelectNone('locked')">None</button>
+                            </div>
+                        </div>
+                        <div class="am-drop-zone am-drop-zone--locked" id="am-zone-locked"
+                            ondragover="amDragOver(event,'locked')" ondragleave="amDragLeave('locked')"
+                            ondrop="amDrop(event,'locked')">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Footer ── -->
+                <div class="modal-footer am-footer">
+                    <span class="am-footer-info" id="am-footer-info">
+                        Select points to move, or drag them directly
+                    </span>
+                    <div style="display:flex;gap:10px">
+                        <button class="btn btn-secondary" onclick="closeAccessManager()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="btn btn-primary" onclick="amApplyChanges()">
+                            <i class="fas fa-check"></i> Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── WS-Calibration Modal ─────────────────────────────────────────── -->
+    <div id="wsCalibModal" class="modal">
+        <div class="modal-content wsc-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-ruler-combined"></i> Workspace Calibration
+                </h3>
+                <button class="modal-close" onclick="closeWsCalibration()">&times;</button>
+            </div>
+
+            <div class="wsc-body">
+                <!-- Left: frames -->
+                <aside class="wsc-frames">
+                    <div class="wsc-frames-head">
+                        <span><i class="fas fa-layer-group"></i> Frames</span>
+                        <button class="wsc-icon-btn wsc-add-frame" title="Add frame" onclick="wscToggleAddFrame()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="wsc-addframe" id="wscAddFrameForm" style="display:none;">
+                        <div class="wsc-addframe-row">
+                            <input type="text" class="wsc-addframe-input" id="wscAddFrameInput" placeholder="Frame name"
+                                autocomplete="off" onkeydown="wscAddFrameKeydown(event)"
+                                oninput="wscClearAddFrameError()">
+                            <button class="wsc-addframe-btn wsc-addframe-confirm" title="Add"
+                                onclick="wscSubmitAddFrame()">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="wsc-addframe-btn wsc-addframe-cancel" title="Cancel"
+                                onclick="wscToggleAddFrame(false)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="wsc-addframe-err" id="wscAddFrameErr"></div>
+                    </div>
+                    <div class="wsc-frame-list" id="wscFrameList">
+                        <div class="wsc-empty"><i class="fas fa-inbox"></i><span>No frames</span></div>
+                    </div>
+                </aside>
+
+                <!-- Right: points for selected frame -->
+                <section class="wsc-detail" id="wscDetail">
+                    <div class="wsc-detail-empty" id="wscDetailEmpty">
+                        <i class="fas fa-hand-pointer"></i>
+                        <p>Select a frame to begin</p>
+                        <small>or add a new one from the left</small>
+                    </div>
+
+                    <div class="wsc-detail-body" id="wscDetailBody" style="display:none;">
+                        <div class="wsc-detail-head">
+                            <div class="wsc-detail-title">
+                                <i class="fas fa-crosshairs"></i>
+                                <span id="wscActiveFrameName">—</span>
+                            </div>
+                            <div class="wsc-progress" id="wscProgress">0 / 4 points set</div>
+                        </div>
+
+                        <div class="wsc-points" id="wscPoints"><!-- point cards injected --></div>
+
+                        <div class="wsc-actions">
+                            <button class="btn btn-primary" id="wscStartBtn" disabled onclick="wscStartCalibration()">
+                                <i class="fas fa-play"></i> Start Calibration
+                            </button>
+                            <button class="btn btn-secondary" id="wscOriginBtn" disabled onclick="wscGoToFrameOrigin()">
+                                <i class="fas fa-location-arrow"></i> Go to Frame Origin
+                            </button>
+                            <button class="btn btn-success" id="wscFinishBtn" disabled onclick="wscFinishCalibration()">
+                                <i class="fas fa-flag-checkered"></i> Finish Calibration
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="gamepad-modal-backdrop"></div>
+
+    <div id="gamepad-modal">
+        <div id="gamepad-modal-header">
+            <h2 id="gamepad-modal-title">
+                <i class="fas fa-robot"></i> Arm Control
+            </h2>
+            <button id="gamepad-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div id="gamepad-modal-content">
+            <div id="gamepad-compact-grid">
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">ROS</div>
+                    <div id="gamepad-ros-status" class="gamepad-compact-value disconnected">Disconnected</div>
+                </div>
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">Gamepad</div>
+                    <div id="gamepad-gamepad-status" class="gamepad-compact-value disconnected">Disconnected</div>
+                </div>
+                <div id="gamepad-control-status" class="gamepad-compact-item">
+                    <div id="gamepad-control-label">Control</div>
+                    <div id="gamepad-control-value" class="inactive">INACTIVE</div>
+                </div>
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">Command</div>
+                    <div id="gamepad-command-value">—</div>
+                </div>
+            </div>
+
+            <div id="gamepad-mode-display">
+                <div id="gamepad-mode-idle" class="gamepad-mode">IDLE</div>
+                <div id="gamepad-mode-joint" class="gamepad-mode">JOINT</div>
+                <div id="gamepad-mode-cart" class="gamepad-mode">CART</div>
+            </div>
+
+            <div id="gamepad-rate-control">
+                <div id="gamepad-rate-header">
+                    <div id="gamepad-rate-label">Publish Rate</div>
+                    <div id="gamepad-rate-value">33.3 Hz</div>
+                </div>
+                <input type="range" id="gamepad-rate-slider" min="30" max="1000" value="30">
+            </div>
+
+            <div id="gamepad-axes-grid">
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">LX</div>
+                    <div id="gamepad-lx" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">LY</div>
+                    <div id="gamepad-ly" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">RX</div>
+                    <div id="gamepad-rx" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">RY</div>
+                    <div id="gamepad-ry" class="gamepad-axis-value">0.00</div>
+                </div>
+            </div>
+
+            <div id="gamepad-hint">
+                LT: Joint Mode • RT: Cartesian Mode • Close modal to stop publishing
+            </div>
+        </div>
+
+        <script src="script/script.js"></script>
+        <script src="script/mode_segmented.js"></script>
+        <script src="script/servo_jog.js"></script>
+        <script src="script/keyboard_pendant.js"></script>
+        <script src="script/yaml_view.js"></script>
+        <script src="script/js-yaml-min.js"></script>
+        <script src="tf_visualiser/tf_visual.js"></script>
+        <script src="script/ws_calibration.js"></script>
+        <!-- <script src="script/teaching_pendant.js"></script> -->
+        <!-- NEXSIM (test view) — remove this line + the public/nexsim/ folder + the NexSim button above to uninstall -->
+        <!-- NEXSIM (test view) — remove this line + the public/nexsim/ folder + the NexSim button to uninstall.
+             Path is root-absolute (correct for express.static("public")). If your HMI is served behind a
+             sub-path/proxy and this 404s, change to the relative form: src="nexsim/nexsim-embed.js" -->
+        <script src="nexsim/nexsim-embed.js"></script>
+
+</body>
+
+</html>

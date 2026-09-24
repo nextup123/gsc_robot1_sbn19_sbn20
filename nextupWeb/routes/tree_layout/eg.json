@@ -1,0 +1,264 @@
+{
+  "name": "eg",
+  "nodes": [
+    {
+      "id": "homing-point",
+      "label": "homing-point",
+      "x": -1560,
+      "y": 0
+    },
+    {
+      "id": "main-point",
+      "label": "main-point",
+      "x": 1400,
+      "y": 277,
+      "metadata": {
+        "coordinates": [
+          0.00005675686049231887,
+          -0.2828194752334383
+        ]
+      }
+    },
+    {
+      "id": "go-inside-left-station",
+      "label": "go-inside-left-station",
+      "x": 1480,
+      "y": -120,
+      "metadata": {
+        "coordinates": [
+          0.000037491660228133216,
+          -0.000050995972575187685
+        ]
+      }
+    },
+    {
+      "id": "pick-point-glass",
+      "label": "pick-point-glass",
+      "x": 1560,
+      "y": -120,
+      "metadata": {
+        "coordinates": [
+          -0.000020944,
+          0.000005236
+        ]
+      }
+    },
+    {
+      "id": "after-pickup",
+      "label": "after-pickup",
+      "x": 1480,
+      "y": -40,
+      "metadata": {
+        "coordinates": [
+          -0.00005957196900793909,
+          0.000016557272328495987
+        ]
+      }
+    },
+    {
+      "id": "abover-convery",
+      "label": "abover-convery",
+      "x": 1560,
+      "y": -12,
+      "metadata": {
+        "coordinates": [
+          -0.000020944,
+          0.000005236
+        ]
+      }
+    },
+    {
+      "id": "place-glass-convery",
+      "label": "place-glass-convery",
+      "x": 1480,
+      "y": 40,
+      "metadata": {
+        "coordinates": [
+          -0.00011610362619334458,
+          0.000012678969316599744
+        ]
+      }
+    },
+    {
+      "id": "p8",
+      "label": "p8",
+      "x": 1560,
+      "y": 40,
+      "metadata": {
+        "coordinates": [
+          -0.000020944,
+          0.000005236
+        ]
+      }
+    },
+    {
+      "id": "p9",
+      "label": "p9",
+      "x": 1480,
+      "y": 92,
+      "metadata": {
+        "coordinates": [
+          -0.000023354236187279214,
+          0.00010312542388258875
+        ]
+      }
+    },
+    {
+      "id": "homing-point-2",
+      "label": "homing-point-2",
+      "x": 1560,
+      "y": 194,
+      "metadata": {
+        "coordinates": [
+          -0.000020944,
+          0.000005236
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "homing-point",
+      "to": "main-point",
+      "label": "homing-point_main-point",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        0.00005675686049231887,
+        -0.2828194752334383
+      ]
+    },
+    {
+      "from": "main-point",
+      "to": "go-inside-left-station",
+      "label": "main-point_go-inside-left-station",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        0.000037491660228133216,
+        -0.000050995972575187685
+      ]
+    },
+    {
+      "from": "go-inside-left-station",
+      "to": "pick-point-glass",
+      "label": "go-inside-left-station_pick-point-glass",
+      "type": "joint",
+      "waypoints": 1,
+      "coordinates": [
+        -0.000020944,
+        0.000005236
+      ]
+    },
+    {
+      "from": "pick-point-glass",
+      "to": "main-point",
+      "label": "pick-point-glass_main-point",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        -0.00007386935184752942,
+        -0.2827483438686699
+      ]
+    },
+    {
+      "from": "main-point",
+      "to": "after-pickup",
+      "label": "main-point_after-pickup",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        -0.00005957196900793909,
+        0.000016557272328495987
+      ]
+    },
+    {
+      "from": "after-pickup",
+      "to": "abover-convery",
+      "label": "after-pickup_abover-convery",
+      "type": "joint",
+      "waypoints": 1,
+      "coordinates": [
+        -0.000020944,
+        0.000005236
+      ]
+    },
+    {
+      "from": "abover-convery",
+      "to": "main-point",
+      "label": "abover-convery_main-point",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        0.00002618534197987616,
+        -0.2827592175996628
+      ]
+    },
+    {
+      "from": "main-point",
+      "to": "place-glass-convery",
+      "label": "main-point_place-glass-convery",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        -0.00011610362619334458,
+        0.000012678969316599744
+      ]
+    },
+    {
+      "from": "place-glass-convery",
+      "to": "p8",
+      "label": "place-glass-convery_p8",
+      "type": "joint",
+      "waypoints": 1,
+      "coordinates": [
+        -0.000020944,
+        0.000005236
+      ]
+    },
+    {
+      "from": "p8",
+      "to": "main-point",
+      "label": "p8_main-point",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        -0.00010382204394830764,
+        -0.28278948460745146
+      ]
+    },
+    {
+      "from": "main-point",
+      "to": "p9",
+      "label": "main-point_p9",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        -0.000023354236187279214,
+        0.00010312542388258875
+      ]
+    },
+    {
+      "from": "p9",
+      "to": "homing-point-2",
+      "label": "p9_homing-point-2",
+      "type": "joint",
+      "waypoints": 1,
+      "coordinates": [
+        -0.000020944,
+        0.000005236
+      ]
+    },
+    {
+      "from": "homing-point-2",
+      "to": "main-point",
+      "label": "homing-point-2_main-point",
+      "type": "joint",
+      "waypoints": 20,
+      "coordinates": [
+        7.660457953214593e-7,
+        -0.28275679192699016
+      ]
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+body {
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    margin: 0;
+}
+
+.dashboard-container {
+    max-width: 1600px;
+    margin: auto;
+    padding: 24px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#digital-clock {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* ROS Status */
+.ros-status {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.connected {
+    background: #e6f4ea;
+    color: #1d7f37;
+}
+
+.disconnected {
+    background: #fdecea;
+    color: #b3261e;
+}
+
+/* Layout */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* Terminal */
+.terminal-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.terminal-container {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+#terminal-display {
+    flex: 1;
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 14px;
+    overflow-y: auto;
+    font-family: "SF Mono", monospace;
+    font-size: 14px;
+}
+
+.timestamp {
+    color: #6e6e73;
+    margin-right: 10px;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.btn {
+    background: #007aff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    background: #d2d2d7;
+}
+
+/* Placeholder */
+.placeholder-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: #6e6e73;
+}
+
+.placeholder-content i {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+
+/* Terminal Header */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Search */
+.log-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.log-search input {
+    height: 30px;
+    width: 180px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid #d2d2d7;
+    background: #ffffff;
+    font-size: 13px;
+    outline: none;
+}
+
+.log-search input:focus {
+    border-color: #007aff;
+}
+
+.log-search button {
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    border: none;
+    background: #e5e5ea;
+    cursor: pointer;
+    color: #1d1d1f;
+}
+
+.log-search button:hover {
+    background: #d1d1d6;
+}
+
+
+.log-line {
+    margin-bottom: 4px;
+}
+
+/* Default */
+.log-default .log-message {
+    color: #1d1d1f;
+}
+
+/* INFO */
+.log-info .log-message {
+    color: #007aff;
+}
+
+/* SUCCESS */
+.log-success .log-message {
+    color: #1d7f37;
+}
+
+/* WARN */
+.log-warn .log-message {
+    color: #b05a00;
+}
+
+/* FAILURE */
+.log-failure .log-message {
+    color: #b3261e;
+    font-weight: 600;
+}
+
+
+.service-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #444;
+    color: #fff;
+    margin-right: 10px;
+    transition: background 0.3s ease;
+}
+
+.service-btn.success {
+    background: #1f7a1f;
+    /* green */
+}
+
+.service-btn.failure {
+    background: #a30000;
+    /* red */
+}
+
+
+.monitor-open-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: #333;
+    color: #fff;
+}
+
+/* Overlay */
+.monitor-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.monitor-modal-overlay.hidden {
+    display: none;
+}
+
+/* Modal */
+.monitor-modal {
+    width: 700px;
+    max-height: 80vh;
+    background: #121212;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.monitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+    padding-bottom: 6px;
+}
+
+.monitor-close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Status */
+.monitor-status {
+    font-size: 12px;
+    margin: 6px 0;
+    color: #aaa;
+}
+
+/* Sections */
+.monitor-section {
+    margin-top: 8px;
+}
+
+.monitor-title {
+    font-size: 13px;
+    color: #bbb;
+    margin-bottom: 4px;
+}
+
+/* Grid */
+.monitor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px;
+}
+
+/* Items */
+.monitor-item {
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    background: #550000;
+    color: #fff;
+}
+
+.monitor-item.active {
+    background: #1f7a1f;
+}
+
+.clickable-pill {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.clickable-pill:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+/* Add to your stylesheet */
+.warning-group .fault-group-header {
+    background-color: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+.type-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: normal;
+}
+
+.warning-badge {
+    background-color: #ffffff;
+    color: #ff9800;
+        border: 1px solid #ff9800;
+
+
+}
+
+.fault-badge {
+    border: 1px solid red;
+    background-color: #ffffff;
+    color: rgb(255, 0, 0);
+}

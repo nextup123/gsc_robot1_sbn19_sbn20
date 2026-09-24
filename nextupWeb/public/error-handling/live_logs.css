@@ -1,0 +1,408 @@
+/* ══════════════════════════════════════════════════════════
+   Live Log History  (/logs_topic → live_logs.json)
+   ══════════════════════════════════════════════════════════ */
+
+/* Live-update toggle switch */
+.live-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 13px;
+    color: var(--text-2, #374151);
+}
+
+.live-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.live-toggle-track {
+    position: relative;
+    width: 38px;
+    height: 20px;
+    background: var(--border2, #c8cdd8);
+    border-radius: 999px;
+    transition: background 0.18s ease;
+    flex: none;
+}
+
+.live-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.18s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.live-toggle input:checked + .live-toggle-track {
+    background: #16a34a;
+}
+
+.live-toggle input:checked + .live-toggle-track .live-toggle-thumb {
+    transform: translateX(18px);
+}
+
+.live-toggle-label {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Controls row buttons/inputs (align with existing history-controls) */
+#live-limit-select,
+#live-source-select,
+#live-search {
+    height: 30px;
+    padding: 0 8px;
+    border: 1px solid var(--border, #dde1e8);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text, #111827);
+    font-size: 13px;
+}
+
+#live-reload,
+.live-clear-btn {
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--border, #dde1e8);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text-2, #374151);
+    cursor: pointer;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+#live-reload:hover {
+    background: #f3f4f6;
+}
+
+.live-clear-btn:hover {
+    background: var(--danger-lt, #fef2f2);
+    border-color: var(--danger, #dc2626);
+    color: var(--danger, #dc2626);
+}
+
+/* Log list container */
+.live-history-container {
+    flex: 1 1 0;          /* fill the remaining section height */
+    min-height: 0;        /* REQUIRED: lets the flex child shrink so overflow-y engages */
+    overflow-y: auto;
+    background: #0d1117;
+    border: 1px solid var(--border, #dde1e8);
+    border-radius: 8px;
+    padding: 6px 0;
+    font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12.5px;
+}
+
+.live-history-container .loading-text,
+.live-history-container .error-text {
+    padding: 14px 16px;
+    color: #8b949e;
+    font-family: inherit;
+}
+
+.live-history-container .error-text {
+    color: #f87171;
+}
+
+/* Individual log row */
+.live-row {
+    display: grid;
+    grid-template-columns: 74px 108px 1fr;
+    align-items: baseline;
+    gap: 10px;
+    padding: 3px 14px;
+    line-height: 1.5;
+    border-left: 3px solid transparent;
+}
+
+.live-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.live-time {
+    color: #6e7681;
+    white-space: nowrap;
+}
+
+.live-badges {
+    display: inline-flex;
+    gap: 5px;
+    align-items: baseline;
+    justify-self: start;
+}
+
+.live-badge {
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+}
+
+.live-msg {
+    color: #c9d1d9;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+/* Level colouring */
+.live-info    { border-left-color: #3b82f6; }
+.live-success { border-left-color: #16a34a; }
+.live-warn    { border-left-color: #d97706; }
+.live-failure { border-left-color: #dc2626; }
+
+.live-badge-info    { background: rgba(59, 130, 246, 0.18);  color: #60a5fa; }
+.live-badge-success { background: rgba(22, 163, 74, 0.18);   color: #4ade80; }
+.live-badge-warn    { background: rgba(217, 119, 6, 0.20);   color: #fbbf24; }
+.live-badge-failure { background: rgba(220, 38, 38, 0.20);   color: #f87171; }
+.live-badge-bt      { background: rgba(167, 139, 250, 0.20); color: #c4b5fd; }
+
+/* BT rows get a subtle purple left accent */
+.live-bt { border-left-color: #a78bfa; }
+
+.live-failure .live-msg { color: #fca5a5; }
+.live-warn    .live-msg { color: #fcd9a3; }
+
+
+/* ══════════════════════════════════════════════════════════
+   Clear Live Logs — confirmation modal
+   ══════════════════════════════════════════════════════════ */
+
+.lc-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.lc-backdrop.hidden {
+    display: none;
+}
+
+.lc-modal {
+    width: 100%;
+    max-width: 380px;
+    background: #fff;
+    border: 1px solid var(--border, #dde1e8);
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    text-align: center;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+.lc-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--danger-lt, #fef2f2);
+    color: var(--danger, #dc2626);
+}
+
+.lc-title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text, #111827);
+}
+
+.lc-text {
+    margin: 0 0 18px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-2, #374151);
+}
+
+.lc-text code {
+    background: #f3f4f6;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+}
+
+.lc-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.lc-btn {
+    flex: 1;
+    height: 36px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.lc-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.lc-btn-ghost {
+    background: #fff;
+    border-color: var(--border2, #c8cdd8);
+    color: var(--text-2, #374151);
+}
+
+.lc-btn-ghost:hover {
+    background: #f3f4f6;
+}
+
+.lc-btn-danger {
+    background: var(--danger, #dc2626);
+    color: #fff;
+}
+
+.lc-btn-danger:hover:not(:disabled) {
+    background: #b91c1c;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   Layout: full-height panels + responsive collapse
+   (scoped to the error-handling page; loaded after styles.css)
+   ══════════════════════════════════════════════════════════ */
+
+/* Both panels stretch to the same row height, and their log
+   containers absorb the leftover space via flex:1.
+
+   NOTE: the grid row needs a DEFINITE height (not min-height), or
+   `flex:1` resolves to the content height and the panels grow
+   forever instead of scrolling internally. */
+.main-content > .terminal-section {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;                 /* let content shrink instead of overflowing the grid */
+    min-height: 0;                /* let the section shrink inside the grid row */
+    overflow: hidden;             /* nothing escapes the panel */
+}
+
+/* Header must not stretch; only the log list grows. */
+.main-content > .terminal-section > .terminal-header {
+    flex: none;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;              /* controls wrap instead of overflowing */
+}
+
+/* Error History: match the live panel's fill behaviour. */
+.main-content > .terminal-section > .error-history-container {
+    flex: 1 1 0;
+    min-height: 0;                /* REQUIRED so overflow-y actually scrolls */
+    max-height: none;             /* was a hard 600px cap */
+}
+
+/* Desktop: the row gets a definite height tied to the viewport, so
+   both panels end at the same place and scroll internally. */
+@media (min-width: 981px) {
+    .main-content {
+        align-items: stretch;
+        /* definite height: floor 420, ceiling 900, otherwise fill the viewport */
+        height: clamp(420px, calc(100vh - 190px), 900px);
+    }
+
+    .main-content > .terminal-section {
+        height: 95%;
+    }
+}
+
+/* Controls wrap gracefully as the panel narrows. */
+.history-controls {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* ── Tablet / narrow desktop: stack panels, second goes below ── */
+@media (max-width: 980px) {
+    .main-content {
+        grid-template-columns: 1fr;   /* single column → Error History drops below */
+    }
+
+    .main-content > .terminal-section > .live-history-container,
+    .main-content > .terminal-section > .error-history-container {
+        /* fixed, comfortable height once stacked (no row to stretch into) */
+        flex: none;
+        height: 420px;
+        max-height: none;
+    }
+
+    .terminal-header.history-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .history-controls {
+        justify-content: flex-start;
+        width: 100%;
+    }
+}
+
+/* ── Phone ── */
+@media (max-width: 640px) {
+    .dashboard-container {
+        padding: 14px;
+    }
+
+    .main-content {
+        gap: 16px;
+    }
+
+    .main-content > .terminal-section > .live-history-container,
+    .main-content > .terminal-section > .error-history-container {
+        height: 340px;
+    }
+
+    /* search grows, other controls keep their size */
+    #live-search,
+    #history-search {
+        flex: 1 1 140px;
+        min-width: 0;
+    }
+
+    .live-history-container {
+        font-size: 11.5px;
+    }
+
+    /* drop the fixed time/badge columns so long messages get room */
+    .live-row {
+        grid-template-columns: 62px 92px 1fr;
+        gap: 8px;
+        padding: 3px 10px;
+    }
+
+    header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header-right {
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "mode": "high_testing",
+  "speed": 0.5,
+  "cnc": "cnc2",
+  "total_operations": 2,
+  "last_session_operations": 110
+}

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>🎮 Gamepad Arm Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- ROSLIB -->
+    <script src="https://cdn.jsdelivr.net/npm/roslib/build/roslib.min.js"></script>
+
+    <style>
+        :root {
+            --bg-light: #f5f5f7;
+            --surface: #ffffff;
+            --border: #d2d2d7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --blue: #007aff;
+            --green: #30d158;
+            --red: #ff3b30;
+            --orange: #ff9500;
+            --purple: #af52de;
+            --cyan: #5ac8fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
+            background: var(--bg-light);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal Backdrop */
+        #gamepad-modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        /* Modal Container */
+        #gamepad-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--surface);
+            border-radius: 12px;
+            width: 380px;
+            max-width: 90vw;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        /* Modal Header */
+        #gamepad-modal-header {
+            padding: 14px 18px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #gamepad-modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #gamepad-modal-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        #gamepad-modal-close:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Modal Content */
+        #gamepad-modal-content {
+            padding: 18px;
+        }
+
+        /* Compact Grid Layout */
+        #gamepad-compact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .gamepad-compact-item {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            min-height: 70px;
+        }
+
+        .gamepad-compact-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .gamepad-compact-value {
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'SF Mono', monospace;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .gamepad-compact-value.connected {
+            color: var(--green);
+        }
+
+        .gamepad-compact-value.disconnected {
+            color: var(--red);
+        }
+
+        /* Control Status */
+        #gamepad-control-status {
+            grid-column: span 2;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #gamepad-control-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        #gamepad-control-value {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        #gamepad-control-value.active {
+            color: var(--green);
+        }
+
+        #gamepad-control-value.inactive {
+            color: var(--orange);
+        }
+
+        /* Mode Display */
+        #gamepad-mode-display {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .gamepad-mode {
+            padding: 8px 6px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            background: var(--bg-light);
+        }
+
+        .gamepad-mode.active {
+            background: var(--blue);
+            color: white;
+            border-color: var(--blue);
+        }
+
+        /* Rate Control */
+        #gamepad-rate-control {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        #gamepad-rate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        #gamepad-rate-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        #gamepad-rate-value {
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'SF Mono', monospace;
+            color: var(--blue);
+        }
+
+        #gamepad-rate-slider {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        #gamepad-rate-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--blue);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #gamepad-rate-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--blue);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Axes Grid */
+        #gamepad-axes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .gamepad-axis {
+            background: var(--bg-light);
+            border-radius: 6px;
+            padding: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .gamepad-axis-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .gamepad-axis-value {
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'SF Mono', monospace;
+            text-align: center;
+        }
+
+        /* Command Display */
+        #gamepad-command-display {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        #gamepad-command-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        #gamepad-command-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--blue);
+            min-height: 24px;
+        }
+
+        /* Hint */
+        #gamepad-hint {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Open Button */
+        #gamepad-open-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(0, 122, 255, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #gamepad-open-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Open Button -->
+    <button id="gamepad-open-btn">
+        <i class="fas fa-gamepad"></i> Gamepad Control
+    </button>
+
+    <!-- Modal Backdrop -->
+    <div id="gamepad-modal-backdrop"></div>
+
+    <!-- Modal -->
+    <div id="gamepad-modal">
+        <div id="gamepad-modal-header">
+            <h2 id="gamepad-modal-title">
+                <i class="fas fa-robot"></i> Arm Control
+            </h2>
+            <button id="gamepad-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div id="gamepad-modal-content">
+            <!-- Compact Grid -->
+            <div id="gamepad-compact-grid">
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">ROS</div>
+                    <div id="gamepad-ros-status" class="gamepad-compact-value disconnected">Disconnected</div>
+                </div>
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">Gamepad</div>
+                    <div id="gamepad-gamepad-status" class="gamepad-compact-value disconnected">Disconnected</div>
+                </div>
+                <div id="gamepad-control-status" class="gamepad-compact-item">
+                    <div id="gamepad-control-label">Control</div>
+                    <div id="gamepad-control-value" class="inactive">INACTIVE</div>
+                </div>
+                <div class="gamepad-compact-item">
+                    <div class="gamepad-compact-label">Command</div>
+                    <div id="gamepad-command-value">—</div>
+                </div>
+            </div>
+
+            <!-- Mode Display -->
+            <div id="gamepad-mode-display">
+                <div id="gamepad-mode-idle" class="gamepad-mode">IDLE</div>
+                <div id="gamepad-mode-joint" class="gamepad-mode">JOINT</div>
+                <div id="gamepad-mode-cart" class="gamepad-mode">CART</div>
+            </div>
+
+            <!-- Rate Control -->
+            <div id="gamepad-rate-control">
+                <div id="gamepad-rate-header">
+                    <div id="gamepad-rate-label">Publish Rate</div>
+                    <div id="gamepad-rate-value">33.3 Hz</div>
+                </div>
+                <input type="range" id="gamepad-rate-slider" min="30" max="1000" value="30">
+            </div>
+
+            <!-- Axes Grid -->
+            <div id="gamepad-axes-grid">
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">LX</div>
+                    <div id="gamepad-lx" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">LY</div>
+                    <div id="gamepad-ly" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">RX</div>
+                    <div id="gamepad-rx" class="gamepad-axis-value">0.00</div>
+                </div>
+                <div class="gamepad-axis">
+                    <div class="gamepad-axis-label">RY</div>
+                    <div id="gamepad-ry" class="gamepad-axis-value">0.00</div>
+                </div>
+            </div>
+
+            <!-- Hint -->
+            <div id="gamepad-hint">
+                LT: Joint Mode • RT: Cartesian Mode • Close modal to stop publishing
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ================= ROS ================= */
+        const ros = new ROSLIB.Ros({ url: 'ws://localhost:9090' });
+        let publishingActive = false;
+        let publishInterval = 30; // Default 30ms
+
+        // ROS Topic
+        const uiCommandTopic = new ROSLIB.Topic({
+            ros,
+            name: '/ui_commands',
+            messageType: 'std_msgs/String'
+        });
+
+        // ROS Connection Events
+        ros.on('connection', () => {
+            document.getElementById('gamepad-ros-status').textContent = 'Connected';
+            document.getElementById('gamepad-ros-status').className = 'gamepad-compact-value connected';
+        });
+
+        ros.on('error', (error) => {
+            document.getElementById('gamepad-ros-status').textContent = 'Error';
+            document.getElementById('gamepad-ros-status').className = 'gamepad-compact-value disconnected';
+        });
+
+        ros.on('close', () => {
+            document.getElementById('gamepad-ros-status').textContent = 'Disconnected';
+            document.getElementById('gamepad-ros-status').className = 'gamepad-compact-value disconnected';
+        });
+
+        function ros2Publish(data) {
+            if (ros.isConnected && publishingActive) {
+                uiCommandTopic.publish(new ROSLIB.Message({ data }));
+            }
+        }
+
+        /* ================= MODAL CONTROL ================= */
+        const modal = document.getElementById('gamepad-modal');
+        const backdrop = document.getElementById('gamepad-modal-backdrop');
+        const openBtn = document.getElementById('gamepad-open-btn');
+        const closeBtn = document.getElementById('gamepad-modal-close');
+        const rateSlider = document.getElementById('gamepad-rate-slider');
+        const rateValue = document.getElementById('gamepad-rate-value');
+
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+            backdrop.style.display = 'block';
+            publishingActive = true;
+            updateControlStatus();
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+
+        function closeModal() {
+            modal.style.display = 'none';
+            backdrop.style.display = 'none';
+            publishingActive = false;
+            stopJog();
+            updateControlStatus();
+        }
+
+        function updateControlStatus() {
+            const controlValue = document.getElementById('gamepad-control-value');
+            if (publishingActive) {
+                controlValue.textContent = 'ACTIVE';
+                controlValue.className = 'active';
+            } else {
+                controlValue.textContent = 'INACTIVE';
+                controlValue.className = 'inactive';
+            }
+        }
+
+        function msToHz(ms) {
+            return (1000 / ms).toFixed(1);
+        }
+
+        function updateRateDisplay() {
+            const hz = msToHz(publishInterval);
+            rateValue.textContent = `${hz} Hz`;
+        }
+
+        rateSlider.addEventListener('input', () => {
+            publishInterval = parseInt(rateSlider.value);
+            updateRateDisplay();
+
+            // Restart jog interval with new rate if active
+            if (jogInterval) {
+                clearInterval(jogInterval);
+                jogInterval = setInterval(() => {
+                    if (activeJog && lastCommand && publishingActive) {
+                        ros2Publish(lastCommand);
+                    }
+                }, publishInterval);
+            }
+        });
+
+        // Initialize rate display
+        updateRateDisplay();
+
+        /* ================= JOG CORE ================= */
+        let activeJog = null;
+        let jogInterval = null;
+        let lastCommand = null;
+
+        function stopJog() {
+            if (!activeJog) return;
+            clearInterval(jogInterval);
+            jogInterval = null;
+            if (lastCommand !== `0${activeJog}`) {
+                ros2Publish(`0${activeJog}`);
+                lastCommand = `0${activeJog}`;
+            }
+            activeJog = null;
+            document.getElementById('gamepad-command-value').textContent = '—';
+        }
+
+        function startJog(direction, joint) {
+            if (activeJog === joint) return;
+            if (activeJog) stopJog();
+
+            activeJog = joint;
+            const command = `${direction}${joint}`;
+
+            if (lastCommand !== command) {
+                ros2Publish(command);
+                lastCommand = command;
+            }
+
+            document.getElementById('gamepad-command-value').textContent = command;
+
+            jogInterval = setInterval(() => {
+                if (publishingActive && lastCommand) {
+                    ros2Publish(lastCommand);
+                }
+            }, publishInterval);
+        }
+
+        /* ================= GAMEPAD ================= */
+        const DEADMAN = 0.2;
+        const DEADZONE = 0.12;
+        let gamepadConnected = false;
+
+        function updateAxis(id, value) {
+            const element = document.getElementById(`gamepad-${id}`);
+            if (element) {
+                element.textContent = value.toFixed(2);
+                // Color coding for visualization
+                if (Math.abs(value) > DEADZONE) {
+                    element.style.color = value > 0 ? 'var(--green)' : 'var(--red)';
+                } else {
+                    element.style.color = 'var(--text)';
+                }
+            }
+        }
+
+        function dir(v) {
+            if (Math.abs(v) < DEADZONE) return null;
+            return v > 0 ? '+' : '-';
+        }
+
+        function teleopLoop() {
+            const gamepads = navigator.getGamepads();
+            const gp = gamepads[0];
+
+            if (!gp) {
+                if (gamepadConnected) {
+                    gamepadConnected = false;
+                    document.getElementById('gamepad-gamepad-status').textContent = 'Disconnected';
+                    document.getElementById('gamepad-gamepad-status').className = 'gamepad-compact-value disconnected';
+                }
+                requestAnimationFrame(teleopLoop);
+                return;
+            }
+
+            if (!gamepadConnected) {
+                gamepadConnected = true;
+                document.getElementById('gamepad-gamepad-status').textContent = 'Connected';
+                document.getElementById('gamepad-gamepad-status').className = 'gamepad-compact-value connected';
+            }
+
+            // Get trigger values
+            const lt = gp.buttons[6]?.value || 0;
+            const rt = gp.buttons[7]?.value || 0;
+
+            // Determine mode
+            let mode = 'idle';
+            if (lt >= DEADMAN && rt < DEADMAN) mode = 'joint';
+            else if (rt >= DEADMAN && lt < DEADMAN) mode = 'cart';
+
+            // Update mode display
+            document.getElementById('gamepad-mode-idle').classList.toggle('active', mode === 'idle');
+            document.getElementById('gamepad-mode-joint').classList.toggle('active', mode === 'joint');
+            document.getElementById('gamepad-mode-cart').classList.toggle('active', mode === 'cart');
+
+            // Get axes
+            const lx = gp.axes[0] || 0;
+            const ly = gp.axes[1] || 0;
+            const rx = gp.axes[2] || 0;
+            const ry = gp.axes[3] || 0;
+
+            // Update axis displays
+            updateAxis('lx', lx);
+            updateAxis('ly', ly);
+            updateAxis('rx', rx);
+            updateAxis('ry', ry);
+
+            // D-Pad states
+            const dUp = gp.buttons[12]?.pressed || false;
+            const dDown = gp.buttons[13]?.pressed || false;
+            const dLeft = gp.buttons[14]?.pressed || false;
+            const dRight = gp.buttons[15]?.pressed || false;
+
+            // Determine command
+            let joint = null;
+            let direction = null;
+
+            if (mode === 'joint') {
+                if (dir(lx)) { joint = 'j1'; direction = dir(lx); }
+                else if (dir(ly)) { joint = 'j2'; direction = dir(-ly); }
+                else if (dir(rx)) { joint = 'j3'; direction = dir(rx); }
+                else if (dir(ry)) { joint = 'j4'; direction = dir(-ry); }
+                else if (dUp) { joint = 'j5'; direction = '+'; }
+                else if (dDown) { joint = 'j5'; direction = '-'; }
+                else if (dRight) { joint = 'j6'; direction = '+'; }
+                else if (dLeft) { joint = 'j6'; direction = '-'; }
+            }
+
+            if (mode === 'cart') {
+                if (dir(lx)) { joint = 'cx'; direction = dir(lx); }
+                else if (dir(ly)) { joint = 'cy'; direction = dir(-ly); }
+                else if (dir(rx)) { joint = 'cr'; direction = dir(rx); }
+                else if (dir(ry)) { joint = 'cp'; direction = dir(-ry); }
+                else if (dUp) { joint = 'cz'; direction = '+'; }
+                else if (dDown) { joint = 'cz'; direction = '-'; }
+                else if (dRight) { joint = 'cw'; direction = '+'; }
+                else if (dLeft) { joint = 'cw'; direction = '-'; }
+            }
+
+            // Execute command (only if modal is open)
+            if (joint && direction && publishingActive) {
+                startJog(direction, joint);
+            } else if (!publishingActive || !joint || !direction) {
+                stopJog();
+            }
+
+            requestAnimationFrame(teleopLoop);
+        }
+
+        /* ================= INITIALIZATION ================= */
+        window.addEventListener('gamepadconnected', (e) => {
+            teleopLoop();
+        });
+
+        window.addEventListener('gamepaddisconnected', (e) => {
+            gamepadConnected = false;
+            document.getElementById('gamepad-gamepad-status').textContent = 'Disconnected';
+            document.getElementById('gamepad-gamepad-status').className = 'gamepad-compact-value disconnected';
+        });
+
+        // Start the teleop loop
+        teleopLoop();
+
+        // Initialize control status
+        updateControlStatus();
+    </script>
+</body>
+
+</html>

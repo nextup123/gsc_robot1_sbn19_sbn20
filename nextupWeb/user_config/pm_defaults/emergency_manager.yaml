@@ -1,0 +1,7 @@
+Emergency Manager:
+  cnc_fault:
+    topic_name: /cnc_fault
+    msg_type: bool
+    data: true
+    connection: always
+  

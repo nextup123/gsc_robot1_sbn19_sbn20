@@ -1,0 +1,145 @@
+{
+  "name": "shivamaaj",
+  "nodes": [
+    {
+      "id": "homing-point",
+      "label": "homing-point",
+      "x": -120,
+      "y": 0
+    },
+    {
+      "id": "p1",
+      "label": "p1",
+      "x": -40,
+      "y": -80,
+      "metadata": {
+        "coordinates": [
+          0.00012086384592880312,
+          -0.00043826597210250794
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "label": "p2",
+      "x": -40,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          0.00020955299790036678,
+          0.000028544587897107003
+        ]
+      }
+    },
+    {
+      "id": "p3",
+      "label": "p3",
+      "x": -40,
+      "y": 80,
+      "metadata": {
+        "coordinates": [
+          0.000029607467082828293,
+          -0.0003964848580604642
+        ]
+      }
+    },
+    {
+      "id": "p5",
+      "label": "p5",
+      "x": 40,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          -0.4353008036446169,
+          -0.1720950952884116
+        ]
+      }
+    },
+    {
+      "id": "p6",
+      "label": "p6",
+      "x": 40,
+      "y": 80
+    },
+    {
+      "id": "p7",
+      "label": "p7",
+      "x": 120,
+      "y": 80,
+      "metadata": {
+        "coordinates": [
+          -0.6859526428149075,
+          -0.5422401489196812
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "homing-point",
+      "to": "p1",
+      "label": "homing-point_p1",
+      "type": "joint",
+      "waypoints": 13,
+      "coordinates": [
+        0.00012086384592880312,
+        -0.00043826597210250794
+      ]
+    },
+    {
+      "from": "homing-point",
+      "to": "p2",
+      "label": "homing-point_p2",
+      "type": "joint",
+      "waypoints": 16,
+      "coordinates": [
+        0.00020955299790036678,
+        0.000028544587897107003
+      ]
+    },
+    {
+      "from": "homing-point",
+      "to": "p3",
+      "label": "homing-point_p3",
+      "type": "joint",
+      "waypoints": 19,
+      "coordinates": [
+        0.000029607467082828293,
+        -0.0003964848580604642
+      ]
+    },
+    {
+      "from": "p2",
+      "to": "p5",
+      "label": "p2_p5",
+      "type": "joint",
+      "waypoints": 18,
+      "coordinates": [
+        -0.4353008036446169,
+        -0.1720950952884116
+      ]
+    },
+    {
+      "from": "p6",
+      "to": "p7",
+      "label": "p6_p7",
+      "type": "cartesian",
+      "waypoints": 9,
+      "coordinates": [
+        -0.6859526428149075,
+        -0.5422401489196812
+      ]
+    },
+    {
+      "from": "p3",
+      "to": "p6",
+      "label": "p3_p6",
+      "type": "joint",
+      "waypoints": 14,
+      "coordinates": [
+        -0.4470326044815411,
+        -0.4392740842345581
+      ]
+    }
+  ]
+}

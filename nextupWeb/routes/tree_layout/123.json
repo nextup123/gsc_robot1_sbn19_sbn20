@@ -1,0 +1,36 @@
+{
+  "name": "123",
+  "nodes": [
+    {
+      "id": "p1",
+      "label": "p1",
+      "x": -40,
+      "y": 173
+    },
+    {
+      "id": "endpoint",
+      "label": "endpoint",
+      "x": 40,
+      "y": 78,
+      "metadata": {
+        "coordinates": [
+          -1.0307589496834355,
+          -0.9347724117287928
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "p1",
+      "to": "endpoint",
+      "label": "p1_p2_p3_p4_p5_p6_p7_endpoint",
+      "type": "cartesian",
+      "waypoints": 15,
+      "coordinates": [
+        -1.0307589496834355,
+        -0.9347724117287928
+      ]
+    }
+  ]
+}

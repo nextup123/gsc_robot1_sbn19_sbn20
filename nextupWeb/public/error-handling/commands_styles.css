@@ -1,0 +1,90 @@
+/* Container – compact */
+.cells-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+/* Shared cell */
+.cell {
+    position: relative;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+/* Text cell */
+.text-cell {
+    background: #ffffff;
+    border: 1px solid #e5e5ea;
+}
+
+.text-cell .cell-content {
+    font-size: 14px;
+    color: #1d1d1f;
+}
+
+/* Command cell (Colab-style) */
+.command-cell {
+    background: #1e1e1e;
+}
+
+.command-cell .cell-content {
+    color: #e6ffe6;
+    font-size: 13px;
+    font-family: "SF Mono", monospace;
+    white-space: pre-wrap;
+}
+
+/* Editable feel (no textbox look) */
+.cell-content[contenteditable="true"] {
+    outline: none;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 4px;
+    
+}
+
+/* Buttons */
+.copy-btn {
+    position: absolute;
+    top: 6px;
+    right: 40px;
+    background-color: rgb(114, 114, 114);
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    opacity: 1;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #2c2c2c;
+    color: #d0ffd0;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.modal-content.modal-wide {
+    padding: 12px;
+}
+
+.modal-header {
+    margin-bottom: 8px;
+}
+
+.modal-actions .modal-btn {
+    padding: 4px 10px;
+    font-size: 12px;
+}

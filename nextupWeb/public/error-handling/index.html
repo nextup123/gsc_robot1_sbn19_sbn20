@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Logs Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="../media/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="error_styles.css">
+    <link rel="stylesheet" href="description_styles.css">
+    <link rel="stylesheet" href="commands_styles.css">
+    <link rel="stylesheet" href="fault_lookup.css">
+    <link rel="stylesheet" href="live_logs.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Header -->
+        <header>
+            <h1>Error Logs Dashboard</h1>
+            <div class="header-right">
+                <button class="btn-fault-lookup" onclick="showFaultModal()" title="Fault Code Lookup">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M8 5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                        <circle cx="8" cy="11.5" r="0.8" fill="currentColor" />
+                    </svg>
+                    Fault Lookup
+                </button>
+                <button id="monitorStartBtn" class="service-btn">
+                    Start Monitoring
+                </button>
+
+                <button id="monitorStopBtn" class="service-btn">
+                    Stop Monitoring
+                </button>
+
+                <!-- Open Monitor Button -->
+                <button id="monitor-open-btn" class="monitor-open-btn">
+                    Open ROS Monitor
+                </button>
+
+                <button id="open-terminal" class="header-btn">
+                    <i class="fas fa-terminal"></i>
+                    Launch Terminal
+                </button>
+
+                <button id="open-commands" class="header-btn">
+                    <i class="fas fa-terminal"></i>
+                    Commands
+                </button>
+                <button id="open-description" class="header-btn">
+                    <i class="fas fa-file-alt"></i>
+                    Description.txt
+                </button>
+
+                <!-- <span id="ros-status" class="ros-status disconnected">ROS Disconnected</span> -->
+                <div id="digital-clock"></div>
+
+
+
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="main-content">
+
+            <!-- Live Log History (/logs_topic persisted to live_logs.json) -->
+            <section class="terminal-section">
+
+                <div class="terminal-header history-header">
+
+                    <div class="history-controls">
+                        <!-- Live update toggle -->
+                        <label class="live-toggle" title="Toggle live updates">
+                            <input type="checkbox" id="live-toggle-input" checked />
+                            <span class="live-toggle-track"><span class="live-toggle-thumb"></span></span>
+                            <span class="live-toggle-label">Live</span>
+                        </label>
+
+                        <select id="live-source-select" title="Filter by log source">
+                            <option value="all" selected>All logs</option>
+                            <option value="bt">BT logs</option>
+                            <option value="backend">Backend logs</option>
+                        </select>
+
+                        <select id="live-limit-select">
+                            <option value="100">Last 100</option>
+                            <option value="200">Last 200</option>
+                            <option value="500" selected>Last 500</option>
+                            <option value="1000">Last 1000</option>
+                            <option value="2000">Last 2000</option>
+                        </select>
+
+                        <button id="live-reload" title="Reload">↻</button>
+
+                        <input type="text" id="live-search" placeholder="Search…" />
+
+                        <button id="live-clear" class="live-clear-btn" title="Clear live logs">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+
+                        <span id="live-count" class="history-count"></span>
+                    </div>
+                </div>
+
+                <div class="live-history-container" id="live-history">
+                    <div class="loading-text">Loading live logs…</div>
+                </div>
+
+            </section>
+
+            <!-- Error History -->
+            <section class="terminal-section">
+
+                <div class="terminal-header history-header">
+                    <h2>Error History</h2>
+
+                    <div class="history-controls">
+                        <select id="limit-select">
+                            <option value="100">Last 100</option>
+                            <option value="200">Last 200</option>
+                            <option value="500">Last 500</option>
+                            <option value="1000">Last 1000</option>
+                            <option value="2000">Last 2000</option>
+                        </select>
+                        <button id="reload-history" title="Reload">↻</button>
+                        <input type="text" id="history-search" placeholder="Search…" />
+
+                        <span id="history-count" class="history-count"></span>
+                    </div>
+                </div>
+
+                <div class="error-history-container" id="error-history">
+                    <div class="loading-text">Loading error logs…</div>
+                </div>
+
+            </section>
+
+
+
+        </main>
+    </div>
+    <!-- Clear Live Logs confirmation -->
+    <div id="live-clear-modal" class="lc-backdrop hidden">
+        <div class="lc-modal" role="dialog" aria-modal="true" aria-labelledby="lc-title">
+            <div class="lc-icon">
+                <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
+                    <path d="M8 4.5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    <circle cx="8" cy="11" r="0.9" fill="currentColor" />
+                </svg>
+            </div>
+            <h3 id="lc-title" class="lc-title">Clear live logs?</h3>
+            <p class="lc-text">
+                This permanently deletes all entries from
+                <code>live_logs.json</code> on disk. This cannot be undone.
+            </p>
+            <div class="lc-actions">
+                <button id="lc-cancel" class="lc-btn lc-btn-ghost">Cancel</button>
+                <button id="lc-confirm" class="lc-btn lc-btn-danger">Clear logs</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="description-modal" class="modal hidden">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Error Description</h3>
+
+                <div class="modal-actions">
+                    <button id="edit-description" class="modal-btn">Edit</button>
+                    <button id="save-description" class="modal-btn hidden">Save</button>
+                    <button id="close-description" class="modal-close">&times;</button>
+                </div>
+            </div>
+
+            <textarea id="description-text" class="modal-textarea" readonly></textarea>
+
+        </div>
+    </div>
+    <div id="commands-modal" class="modal hidden">
+        <div class="modal-content modal-wide">
+
+            <div class="modal-header">
+                <h3>Commands Notebook</h3>
+
+                <div class="modal-actions">
+                    <button id="add-text-cell" class="modal-btn">+ Text</button>
+                    <button id="add-command-cell" class="modal-btn">+ Command</button>
+                    <button id="save-commands" class="modal-btn primary">Save</button>
+                    <button id="close-commands" class="modal-close">&times;</button>
+                </div>
+            </div>
+
+            <div id="cells-container" class="cells-container"></div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal Overlay -->
+    <div id="monitor-modal-overlay" class="monitor-modal-overlay hidden">
+
+        <div class="monitor-modal">
+
+            <div class="monitor-header">
+                <span>ROS Node & Controller Monitor</span>
+                <button id="monitor-close-btn" class="monitor-close-btn">✕</button>
+            </div>
+
+            <div class="monitor-status" id="monitor-ros-status">
+                ROS: connecting...
+            </div>
+
+            <div class="monitor-section">
+                <div class="monitor-title">Nodes</div>
+                <div id="monitor-nodes" class="monitor-list"></div>
+            </div>
+
+            <div class="monitor-section">
+                <div class="monitor-title">Controllers</div>
+                <div id="monitor-controllers" class="monitor-list"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══ FAULT LOOKUP MODAL ══ -->
+    <div class="backdrop fault-backdrop" id="fault-modal" style="display:none"
+        onclick="backdropClose(event,'fault-modal')">
+        <div class="modal fault-modal">
+            <div class="modal-head">
+                <div class="fault-modal-title">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="8" r="7" stroke="var(--danger)" stroke-width="1.5" />
+                        <path d="M8 4.5v4" stroke="var(--danger)" stroke-width="1.8" stroke-linecap="round" />
+                        <circle cx="8" cy="11" r="0.9" fill="var(--danger)" />
+                    </svg>
+                    <span>Fault Code Lookup</span>
+                    <span class="fault-count-badge" id="fault-count-badge"></span>
+                </div>
+                <button class="mx" onclick="closeModal('fault-modal')">✕</button>
+            </div>
+            <div class="fault-search-bar">
+                <div class="fault-search-wrap">
+                    <svg class="fault-search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <circle cx="6.5" cy="6.5" r="5" stroke="var(--text-3)" stroke-width="1.5" />
+                        <path d="M10.5 10.5L14 14" stroke="var(--text-3)" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    <input class="fault-search-input" type="text" id="fault-search-input"
+                        placeholder="Search by fault code (E201), name, or keyword…" oninput="filterFaults(this.value)"
+                        autocomplete="off" />
+                    <button class="fault-search-clear" id="fault-search-clear" onclick="clearFaultSearch()"
+                        style="display:none">✕</button>
+                </div>
+                <div class="fault-filter-row">
+                    <button class="fault-filter-btn active" onclick="setFaultFilter('all',this)">All</button>
+                    <button class="fault-filter-btn" onclick="setFaultFilter('No',this)">Non-Resettable</button>
+                    <button class="fault-filter-btn" onclick="setFaultFilter('Yes',this)">Resettable</button>
+                    <button class="fault-filter-btn" onclick="setFaultFilter('Servo',this)">Drive Faults</button>
+                    <button class="fault-filter-btn" onclick="setFaultFilter('Axis',this)">Axis Faults</button>
+                    <button class="fault-filter-btn" onclick="setFaultFilter('Warning',this)">Warnings</button>
+                </div>
+            </div>
+            <div class="fault-list-container" id="fault-list-container">
+                <div class="fault-loading" id="fault-loading">
+                    <span class="spinner"></span> Loading fault database…
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- <script src="error_script.js"></script>
+    <script src="description_script.js"></script>
+    <script src="commands_script.js"></script> -->
+
+
+</body>
+
+</html>

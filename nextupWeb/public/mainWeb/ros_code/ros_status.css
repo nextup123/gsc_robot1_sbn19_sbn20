@@ -1,0 +1,326 @@
+/* Base Styles */
+.operational-status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  background: #2d2d2d;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+}
+
+.operational-status-header {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #aaa;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #444;
+}
+
+/* LED Container */
+.led-op {
+  display: flex;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  background: #222;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 2px rgba(73, 73, 73, 0.3);
+}
+
+.led-op-true {
+  box-shadow: inset 0 0 6px rgba(76, 175, 80, 0.5);
+  border-left: 2px solid #32ff32;
+  border-right: 2px solid #32ff32;
+
+}
+
+.led-op-false {
+  box-shadow: inset 0 0 6px rgba(244, 67, 54, 0.5);
+  border-left: 2px solid #F44336;
+  border-right: 2px solid #F44336;
+
+}
+
+/* Joint Indicators */
+.joint-indicator {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: #444;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.joint-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.joint-indicator-true {
+  background-color: #1a2e1c;
+  transform: translateY(-1px);
+}
+
+.joint-indicator-true::before {
+  opacity: 1;
+  color: #32ff32;
+  box-shadow: 0 0 4px #32ff32;
+}
+
+.joint-indicator-false {
+  background-color: #2e1a1a;
+  animation: pulse 2s infinite;
+  
+}
+
+.joint-indicator-false::before {
+  opacity: 1;
+  color: #F44336;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hover Effects */
+.led-op:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.joint-indicator:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+
+
+
+/* Add these styles to your existing CSS */
+.homing-status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  background: #2d2d2d;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.homing-status-header {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #aaa;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #444;
+}
+
+.led-homing {
+  display: flex;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  background: #222;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.led-homing-true {
+  box-shadow: inset 0 0 6px rgba(76, 175, 80, 0.5);
+  border-left: 2px solid #32ff32;
+  border-right: 2px solid #32ff32;
+}
+
+.led-homing-false {
+  box-shadow: inset 0 0 6px rgba(244, 67, 54, 0.5);
+  border-left: 2px solid #F44336;
+  border-right: 2px solid #F44336;
+  
+
+}
+
+/* .joint-indicator-homed {
+  background-color: #001a33;
+}
+
+.joint-indicator-homed::before {
+  opacity: 1;
+  color: #32ff32;
+  box-shadow: 0 0 4px #32ff32;
+}
+
+.joint-indicator-not-homed {
+  background-color: #55211d;
+  animation: pulse-orange 2s infinite;
+}
+
+.joint-indicator-not-homed::before {
+  opacity: 1;
+  color: #F44336;
+}
+
+@keyframes pulse-orange {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+} */
+
+/* Add these styles to your existing CSS */
+.status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px;
+    background: #2d2d2d;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    width: fit-content;
+    margin-top: 8px;
+}
+
+.status-header {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #aaa;
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #444;
+}
+
+.led-status {
+    display: flex;
+    gap: 6px;
+    padding: 4px 6px;
+    border-radius: 3px;
+    background: #222;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+}
+
+/* Running Status Colors */
+.led-running-true {
+    box-shadow: inset 0 0 6px rgba(100, 255, 100, 0.4);
+    border-left: 2px solid #64ff64;
+    border-right: 2px solid #64ff64;
+
+}
+
+.led-running-false {
+    box-shadow: inset 0 0 6px rgba(255, 100, 100, 0.4);
+    border-left: 2px solid #F44336;
+    border-right: 2px solid #F44336;
+    
+
+}
+
+/* Emergency Status Colors */
+.led-emergency-true {
+    box-shadow: inset 0 0 6px rgba(255, 50, 50, 0.6);
+    border-left: 2px solid #F44336;
+    border-right: 2px solid #F44336;
+    
+
+}
+
+.led-emergency-false {
+    box-shadow: inset 0 0 6px rgba(50, 255, 50, 0.4);
+    border-left: 2px solid #32ff32;
+    border-right: 2px solid #32ff32;
+
+}
+
+/* Indicator Colors */
+.joint-indicator-running-true {
+    background-color: #1a331a;
+}
+
+.joint-indicator-running-true::before {
+    opacity: 1;
+    color: #64ff64;
+    box-shadow: 0 0 4px #64ff64;
+}
+
+.joint-indicator-running-false {
+    background-color: #331a1a;
+    animation: pulse-red 2s infinite;
+}
+
+.joint-indicator-running-false::before {
+    opacity: 1;
+    color: #F44336;
+    
+}
+
+.joint-indicator-emergency-true {
+    background-color: #331a1a;
+    animation: pulse-red-fast 1s infinite;
+}
+
+.joint-indicator-emergency-true::before {
+    opacity: 1;
+    color: #F44336;
+    
+}
+
+.joint-indicator-emergency-false {
+    background-color: #1a331a;
+}
+
+.joint-indicator-emergency-false::before {
+    opacity: 1;
+    color: #32ff32;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-red-fast {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

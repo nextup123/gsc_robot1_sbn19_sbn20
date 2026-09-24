@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="gripperTest98">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="gripperTest98 subtree starting..."/>
+      <DoControl ID="ctrl_1" name="gripperTest98" driver_id="4" do_id="3" control_name="gripperTest98" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="98 gripper pushed"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="gripperTest98 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="proxy2">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="proxy2 subtree starting..."/>
+      <DIControl ID="ctrl_1" name="proxy2" driver_id="2" di_id="2" status_name="proxy2" expected_status="{expected_status}" wait_time="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="test2"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="proxy2 sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="grip5">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="grip5 subtree starting..."/>
+      <DoControl ID="ctrl_1" name="grip5" driver_id="1" do_id="3" control_name="grip5" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="gript test"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="grip5 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="test2">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="test2 subtree starting..."/>
+      <DoControl ID="ctrl_1" name="test2" driver_id="5" do_id="1" control_name="test2" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="2"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="test2 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="gripper1">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="gripper1 subtree starting..."/>
+      <DoControl ID="ctrl_1" name="gripper1" driver_id="1" do_id="1" control_name="gripper1" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="test1"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="gripper1 action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="AdnanStatus">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="AdnanStatus subtree starting..."/>
+      <DIControl ID="ctrl_1" name="AdnanStatus" driver_id="5" di_id="3" status_name="AdnanStatus" expected_status="{expected_status}" wait_time="1250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger id="msg_2" msg_log="this is puneet yo!"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="AdnanStatus sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="rfwe">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="rfwe subtree starting..."/>
+      <DoControl ID="ctrl_1" name="rfwe" driver_id="4" do_id="1" control_name="rfwe" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger id="msg_2" msg_log="we"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="rfwe action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="TestDo">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="TestDo subtree starting..."/>
+      <DoControl ID="ctrl_1" name="TestDo" driver_id="5" do_id="3" control_name="TestDo" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="test"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="TestDo action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="testDi">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="testDi subtree starting..."/>
+      <DIControl ID="ctrl_1" name="testDi" driver_id="4" di_id="3" status_name="testDi" expected_status="{expected_status}" wait_time="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="test"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="testDi sensing successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

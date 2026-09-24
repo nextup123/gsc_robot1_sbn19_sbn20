@@ -1,0 +1,43 @@
+{
+  "sequence": {
+    "id": "seq_test_1",
+    "start": "home",
+    "current": "home",
+    "steps": [
+      {
+        "order": 1,
+        "path": "home_point2",
+        "type": "J",
+        "from": "home",
+        "to": "point2"
+      },
+      {
+        "order": 2,
+        "path": "point2_point3",
+        "type": "C",
+        "from": "point2",
+        "to": "point3"
+      }
+    ]
+  },
+  "sequences": [
+    {
+      "id": "seq_1764916079180",
+      "name": "test_sequence_1",
+      "createdAt": "2025-12-05T06:27:59.180Z",
+      "start": "home",
+      "current": "point2",
+      "totalSteps": 1,
+      "steps": [
+        {
+          "order": 1,
+          "path": "home_point2",
+          "type": "J",
+          "from": "home",
+          "to": "point2",
+          "velocity": 0.15
+        }
+      ]
+    }
+  ]
+}

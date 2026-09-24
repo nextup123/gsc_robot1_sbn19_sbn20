@@ -1,0 +1,83 @@
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 720px;
+    max-width: 90%;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-btn {
+    background: #007aff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Textarea */
+.modal-textarea {
+    resize: none;
+    height: 360px;
+    border-radius: 10px;
+    border: 1px solid #d2d2d7;
+    padding: 12px;
+    font-family: "SF Mono", monospace;
+    font-size: 14px;
+    background: #f8f8f8;
+}
+
+.modal-textarea:focus {
+    outline: none;
+    border-color: #007aff;
+}
+
+/* Header button */
+.header-btn {
+    background: #e5e5ea;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}

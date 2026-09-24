@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Nextup · Move</title>
+<style>
+/* ── Nextup teach pendant ──────────────────────────────────────────
+   UR-style information architecture, modernised: compact directional
+   rosettes + slim joint rockers + a precise TCP readout. Hairlines
+   instead of heavy shadows. Tabular numerals so values never jitter. */
+:root{
+  --canvas:#f4f6f9;
+  --panel:#ffffff;
+  --sunken:#f8fafc;
+  --line:#e3e8ef;
+  --line-2:#cfd6e0;
+
+  --ink:#111826;
+  --ink-2:#48536b;
+  --ink-3:#7c879c;
+  --ink-4:#aab3c4;
+
+  --accent:#2563eb;
+  --accent-press:#1a4fd0;
+  --accent-tint:#eef4ff;
+  --accent-line:#bcd2ff;
+
+  --good:#0f9d58;  --good-tint:#e8f7ee;
+  --warn:#b45309;  --warn-tint:#fdf3e3;
+  --stop:#dc2626;  --stop-press:#b21b1b;
+
+  --r:10px; --r-lg:14px;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent;}
+html,body{
+  position:fixed; inset:0; height:100%; width:100%; overflow:hidden;
+  background:var(--canvas); color:var(--ink); font-family:var(--sans);
+  -webkit-user-select:none; user-select:none; touch-action:none;
+  -webkit-font-smoothing:antialiased; overscroll-behavior:none;
+}
+.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-feature-settings:"tnum"; }
+
+.app{ position:fixed; inset:0; display:flex; flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 7px) 9px calc(env(safe-area-inset-bottom) + 7px); gap:7px; }
+
+/* ── Top bar ── */
+.bar{ flex:0 0 auto; height:38px; display:flex; align-items:center; gap:6px; }
+.wordmark{ font:700 14px/1 var(--sans); letter-spacing:-.01em; padding-right:4px; color:var(--ink); }
+.wordmark i{ font-style:normal; color:var(--accent); }
+.tag{ display:flex; align-items:center; gap:5px; height:28px; padding:0 9px; border-radius:8px;
+  background:var(--panel); border:1px solid var(--line); font:600 11px/1 var(--sans); color:var(--ink-2); white-space:nowrap; }
+.tag .led{ width:6px;height:6px;border-radius:50%;background:var(--ink-4); }
+.tag.ok{ color:var(--good); border-color:#bfe6cd;} .tag.ok .led{ background:var(--good);}
+.tag.bad{ color:var(--stop); border-color:#f3c2c2;} .tag.bad .led{ background:var(--stop);}
+.tag.warn{ color:var(--warn); border-color:#eddab4;} .tag.warn .led{ background:var(--warn);}
+.sp{ flex:1; }
+
+.switch{ display:flex; height:28px; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel); }
+.switch button{ border:none;background:transparent;cursor:pointer; padding:0 11px;
+  font:600 11px/1 var(--sans); color:var(--ink-3); transition:background .15s,color .15s; }
+.switch button.on{ background:var(--accent); color:#fff; }
+.switch button.on.jog{ background:var(--warn); }
+
+.ghost{ height:28px; width:28px; border:1px solid var(--line); border-radius:8px; background:var(--panel);
+  color:var(--ink-2); cursor:pointer; display:grid;place-items:center; font-size:13px; }
+.ghost:active{ background:var(--sunken); }
+
+/* ── Work area ── */
+.work{ flex:1 1 auto; min-height:0; display:flex; gap:7px; }
+.col{ display:flex; flex-direction:column; gap:7px; min-height:0; min-width:0; }
+.col.left{ flex:0 0 auto; }
+.col.mid{ flex:1 1 auto; }
+.col.right{ flex:0 0 auto; width:clamp(150px,22vw,200px); }
+
+.panel{ background:var(--panel); border:1px solid var(--line); border-radius:var(--r-lg);
+  padding:9px; display:flex; flex-direction:column; min-height:0; }
+.panel-t{ font:700 9px/1 var(--sans); letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);
+  margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; flex:0 0 auto; }
+
+/* ── Directional rosettes (Move Tool) ── */
+.rosettes{ display:flex; flex-direction:column; gap:9px; flex:1 1 auto; justify-content:center; }
+.rose{ display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr);
+  gap:4px; aspect-ratio:1; width:100%; max-width:168px; margin:0 auto; }
+.rose-lab{ font:700 9px/1 var(--sans); letter-spacing:.09em; color:var(--ink-4); text-align:center;
+  text-transform:uppercase; margin-bottom:5px; }
+.pad{ border:1px solid var(--line-2); border-radius:9px; background:var(--sunken); cursor:pointer;
+  color:var(--ink-2); display:grid; place-items:center; font-size:15px; line-height:1;
+  transition:background .08s,color .08s,border-color .08s,transform .08s; touch-action:none; }
+.pad:active,.pad.held{ background:var(--accent); border-color:var(--accent); color:#fff; transform:scale(.93); }
+.pad.center{ background:transparent; border:none; cursor:default; font:700 10px/1 var(--mono); color:var(--ink-4); }
+.pad.center:active{ transform:none; background:transparent; color:var(--ink-4); }
+.pad.blank{ visibility:hidden; }
+
+/* ── Joint rockers ── */
+.joints{ flex:1 1 auto; min-height:0; display:flex; flex-direction:column; gap:5px; justify-content:space-evenly; }
+.jrow{ display:grid; grid-template-columns:56px 30px 1fr 30px 66px; align-items:center; gap:6px; flex:0 0 auto; }
+.jname{ font:600 11px/1 var(--sans); color:var(--ink-2); }
+.jname small{ display:block; font:500 8px/1.4 var(--sans); color:var(--ink-4); }
+.nudge{ height:34px; border:1px solid var(--line-2); border-radius:8px; background:var(--sunken); cursor:pointer;
+  color:var(--ink-2); display:grid;place-items:center; font-size:13px; line-height:1;
+  transition:background .08s,color .08s,border-color .08s,transform .08s; touch-action:none; }
+.nudge:active,.nudge.held{ background:var(--accent); border-color:var(--accent); color:#fff; transform:scale(.92); }
+.track{ position:relative; height:8px; border-radius:999px; background:var(--sunken); border:1px solid var(--line);
+  overflow:visible; }
+.track .ticks{ position:absolute; inset:0; display:flex; justify-content:space-between; padding:0 3px; align-items:center; }
+.track .ticks i{ width:1px; height:3px; background:var(--line-2); display:block; }
+.track .cursor{ position:absolute; top:50%; width:9px;height:9px; border-radius:50%;
+  background:var(--accent); border:2px solid #fff; box-shadow:0 0 0 1px var(--accent-line);
+  transform:translate(-50%,-50%); left:50%; transition:left .12s linear; }
+.jval{ text-align:right; padding:6px 7px; border:1px solid var(--line); border-radius:7px; background:var(--sunken);
+  font:600 12px/1 var(--mono); font-variant-numeric:tabular-nums; color:var(--ink); }
+
+/* ── TCP readout ── */
+.tcp{ display:flex; flex-direction:column; gap:0; flex:1 1 auto; min-height:0; justify-content:center; }
+.tcp-row{ display:grid; grid-template-columns:24px 1fr 26px; align-items:center; gap:6px;
+  padding:6px 0; border-bottom:1px solid var(--line); }
+.tcp-row:last-child{ border-bottom:none; }
+.tcp-k{ font:700 11px/1 var(--mono); color:var(--ink-3); }
+.tcp-v{ text-align:right; font:600 13px/1 var(--mono); font-variant-numeric:tabular-nums; color:var(--ink); }
+.tcp-u{ font:500 9px/1 var(--sans); color:var(--ink-4); }
+
+/* frame chips */
+.chips{ display:flex; flex-wrap:wrap; gap:4px; margin-top:8px; flex:0 0 auto; }
+.chip{ font:600 10px/1 var(--sans); padding:6px 9px; border-radius:999px; cursor:pointer;
+  border:1px solid var(--line-2); background:var(--sunken); color:var(--ink-2); transition:all .12s; }
+.chip.on{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.chip:active{ transform:scale(.95); }
+
+/* homing pips */
+.pips{ display:flex; gap:3px; margin-top:8px; flex:0 0 auto; }
+.pip{ flex:1; text-align:center; padding:4px 0; border-radius:5px; font:600 8px/1 var(--mono);
+  color:var(--ink-4); background:var(--sunken); border:1px solid var(--line); }
+.pip.on{ color:var(--good); background:var(--good-tint); border-color:#bfe6cd; }
+
+/* ── Bottom bar ── */
+.foot{ flex:0 0 auto; height:44px; display:flex; align-items:center; gap:6px; }
+.btn{ height:36px; padding:0 13px; border-radius:9px; cursor:pointer; border:1px solid var(--line-2);
+  background:var(--panel); color:var(--ink-2); font:600 12px/1 var(--sans);
+  display:inline-flex; align-items:center; gap:6px; transition:background .1s,transform .08s; }
+.btn:active{ transform:scale(.97); background:var(--sunken); }
+.btn.pri{ border-color:var(--accent-line); color:var(--accent); }
+.btn.pri:active{ background:var(--accent-tint); }
+.btn.good{ border-color:#bfe6cd; color:var(--good); } .btn.good:active{ background:var(--good-tint); }
+.btn.warn{ border-color:#eddab4; color:var(--warn); } .btn.warn:active{ background:var(--warn-tint); }
+.btn.stop{ background:var(--stop); border-color:var(--stop); color:#fff; font-weight:700; padding:0 18px; }
+.btn.stop:active{ background:var(--stop-press); }
+
+.speed{ display:flex; align-items:center; gap:8px; height:36px; padding:0 11px; border-radius:9px;
+  border:1px solid var(--line); background:var(--panel); }
+.speed span.k{ font:700 9px/1 var(--sans); letter-spacing:.09em; color:var(--ink-3); }
+.speed input{ -webkit-appearance:none;appearance:none; width:clamp(70px,14vw,130px); height:4px; border-radius:999px;
+  background:linear-gradient(90deg,var(--accent) var(--pct,20%),var(--line) var(--pct,20%)); outline:none; }
+.speed input::-webkit-slider-thumb{ -webkit-appearance:none; width:18px;height:18px;border-radius:50%;
+  background:#fff; border:1px solid var(--line-2); box-shadow:0 1px 3px rgba(0,0,0,.2); cursor:pointer; }
+.speed .v{ font:700 12px/1 var(--mono); color:var(--accent); min-width:34px; text-align:right; }
+
+/* ── Points sheet ── */
+.scrim{ position:fixed; inset:0; z-index:40; background:rgba(17,24,38,.28); opacity:0; pointer-events:none; transition:opacity .22s; }
+.scrim.show{ opacity:1; pointer-events:auto; }
+.sheet{ position:fixed; z-index:41; background:var(--panel); display:flex; flex-direction:column;
+  transition:transform .28s cubic-bezier(.2,.9,.3,1); border-left:1px solid var(--line);
+  right:0; top:0; bottom:0; width:min(400px,86vw); transform:translateX(101%);
+  padding:14px 14px calc(env(safe-area-inset-bottom) + 14px); box-shadow:-14px 0 40px rgba(17,24,38,.14); }
+.sheet.show{ transform:translateX(0); }
+.sheet-h{ display:flex;align-items:center;justify-content:space-between; margin-bottom:11px; flex:0 0 auto; }
+.sheet-h h2{ font:700 16px/1 var(--sans); }
+.sheet-h .c{ font:500 12px var(--sans); color:var(--ink-3); }
+.find{ width:100%; padding:10px 12px; margin-bottom:10px; border:1px solid var(--line); border-radius:9px;
+  background:var(--sunken); color:var(--ink); font:500 14px var(--sans); flex:0 0 auto; outline:none; }
+.find:focus{ border-color:var(--accent-line); }
+.plist{ flex:1 1 auto; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:flex; flex-direction:column; gap:6px; }
+.prow{ display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:6px; padding:9px 10px;
+  border:1px solid var(--line); border-radius:9px; background:var(--panel); flex:0 0 auto; }
+.prow.at{ border-color:var(--warn); background:var(--warn-tint); }
+.pn{ font:600 13px/1.2 var(--sans); overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
+.pn b{ font:700 8px/1 var(--sans); color:#fff; background:var(--accent); padding:2px 5px; border-radius:4px; margin-left:5px; vertical-align:middle; letter-spacing:.03em; }
+.pm{ font:500 10px var(--mono); color:var(--ink-4); margin-top:2px; }
+.mv{ border:1px solid var(--line-2); border-radius:7px; cursor:pointer; padding:8px 10px; background:var(--sunken);
+  font:700 10px/1 var(--sans); color:var(--ink-2); transition:all .1s; }
+.mv.c{ border-color:var(--accent-line); color:var(--accent); }
+.mv:active{ transform:scale(.94); background:var(--accent); border-color:var(--accent); color:#fff; }
+.pempty{ text-align:center; color:var(--ink-4); padding:30px; font:500 13px var(--sans); }
+
+/* toast / offline */
+#toast{ position:fixed; left:50%; bottom:calc(env(safe-area-inset-bottom) + 58px);
+  transform:translateX(-50%) translateY(180%); background:rgba(17,24,38,.95); color:#fff;
+  padding:10px 18px; border-radius:999px; font:600 12px var(--sans); z-index:50; max-width:84vw; text-align:center;
+  transition:transform .28s cubic-bezier(.2,.9,.3,1); }
+#toast.show{ transform:translateX(-50%) translateY(0); }
+#toast.ok{ background:rgba(15,120,70,.96);} #toast.err{ background:rgba(190,25,25,.96);}
+#offline{ position:fixed; inset:0; z-index:60; background:rgba(244,246,249,.92);
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;
+  -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px); }
+#offline.show{ display:flex; }
+#offline .ring{ width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp 1s linear infinite; }
+@keyframes sp{ to{transform:rotate(360deg);} }
+#offline p{ font:600 13px var(--sans); color:var(--ink-2);} #offline small{ font:500 11px var(--mono); color:var(--ink-4);}
+
+/* ── Portrait: stack rosettes above joints, TCP becomes a strip ── */
+@media (orientation:portrait){
+  .work{ flex-direction:column; }
+  .col.left{ flex:0 0 auto; }
+  .col.right{ width:auto; flex:0 0 auto; }
+  .split{ display:flex; gap:7px; flex:0 0 auto; }
+  .split > .col{ flex:1 1 0; min-width:0; }
+  .split .panel{ flex:1 1 auto; }
+  .rose{ max-width:150px; }
+  .tcp{ flex-direction:row; flex-wrap:wrap; gap:0; }
+  .tcp-row{ flex:1 1 33%; border-bottom:none; border-right:1px solid var(--line); padding:4px 6px;
+    grid-template-columns:20px 1fr; }
+  .tcp-row .tcp-u{ display:none; }
+  .tcp-row:nth-child(3n){ border-right:none; }
+  .split{ align-items:stretch; }
+  .split > .col:last-child{ flex:0 0 40%; }
+  .col.mid{ flex:1 1 auto; }
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important;} }
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- top -->
+  <div class="bar">
+    <div class="wordmark">Nextup<i>.</i></div>
+    <div class="tag" id="tLink"><span class="led"></span><span>—</span></div>
+    <div class="tag" id="tStop"><span class="led"></span><span>—</span></div>
+    <div class="tag" id="tHome"><span class="led"></span><span>—</span></div>
+    <div class="sp"></div>
+    <div class="switch">
+      <button id="mAuto" class="on" onclick="setMode('8')">Auto</button>
+      <button id="mJog" class="jog" onclick="setMode('9')">Jog</button>
+    </div>
+    <button class="ghost" id="fsBtn" onclick="toggleFullscreen()" aria-label="Fullscreen">⛶</button>
+  </div>
+
+  <!-- work -->
+  <div class="work" id="work">
+
+    <!-- Move Tool -->
+    <div class="col left" id="colLeft">
+      <div class="panel" style="flex:1 1 auto;">
+        <div class="panel-t"><span>Move Tool</span><span id="frameNow" class="num" style="letter-spacing:0;text-transform:none;font-weight:600;">end</span></div>
+        <div class="rosettes">
+          <div>
+            <div class="rose-lab">Translate</div>
+            <div class="rose" id="roseT"></div>
+          </div>
+          <div>
+            <div class="rose-lab">Rotate</div>
+            <div class="rose" id="roseR"></div>
+          </div>
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip" data-f="end" onclick="pickFrame('end')">End</button>
+          <button class="chip" data-f="base_link" onclick="pickFrame('base_link')">Base</button>
+          <button class="chip" data-f="external_link" onclick="pickFrame('external_link')">Ext</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Joints -->
+    <div class="col mid">
+      <div class="panel" style="flex:1 1 auto;">
+        <div class="panel-t"><span>Move Joints</span><span style="letter-spacing:0;text-transform:none;font-weight:600;color:var(--ink-4);">deg</span></div>
+        <div class="joints" id="joints"></div>
+        <div class="pips" id="pips">
+          <div class="pip" id="p1">J1</div><div class="pip" id="p2">J2</div><div class="pip" id="p3">J3</div>
+          <div class="pip" id="p4">J4</div><div class="pip" id="p5">J5</div><div class="pip" id="p6">J6</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TCP -->
+    <div class="col right" id="colRight">
+      <div class="panel" style="flex:1 1 auto;">
+        <div class="panel-t"><span>TCP Pose</span></div>
+        <div class="tcp" id="tcp"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- bottom -->
+  <div class="foot">
+    <button class="btn pri" onclick="startServo()">▶ Servo</button>
+    <button class="btn good" onclick="goHome()">⌂ Home</button>
+    <button class="btn warn" onclick="resetFault()">↻ Reset</button>
+    <button class="btn" onclick="openSheet()">☰ Points</button>
+    <div class="sp"></div>
+    <div class="speed">
+      <span class="k">SPEED</span>
+      <input type="range" id="spd" min="1" max="100" value="20" oninput="onSpeed()" onchange="onSpeedCommit()">
+      <span class="v num" id="spdV">20%</span>
+    </div>
+    <button class="btn stop" onclick="emergency()">■ STOP</button>
+  </div>
+</div>
+
+<div class="scrim" id="scrim" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-h"><h2>Move to Point</h2><span class="c" id="pCount">0</span></div>
+  <input class="find" id="pFind" placeholder="Filter points…" oninput="renderPoints()" autocomplete="off">
+  <div class="plist" id="pList"></div>
+</div>
+
+<div id="toast"></div>
+<div id="offline"><div class="ring"></div><p>Reconnecting to robot…</p><small id="offUrl"></small></div>
+
+<script>
+/* ══ Nextup pendant — direct WS to Node relay, REST for points ══ */
+const HTTP_BASE=`${location.protocol}//${location.host}`;
+const WS_URL=`ws://${location.host}`;
+
+let ws=null,wsReady=false,currentFrame='end';
+let points=[],atPoint=null;
+let pos=[0,0,0,0,0,0];        // joint radians
+let cart=[0,0,0,0,0,0];       // x,y,z cm · r,p,w deg
+
+const INTERVAL_MS=30, ACCEL_T=2.5, DECEL_T=0.5;
+let maxJ=.20, maxT=.20, vJ=0, vT=0;
+let active=null, tickTimer=null, decelTimer=null;
+
+const JOINTS=[['J1','base'],['J2','shoulder'],['J3','elbow'],['J4','wrist 1'],['J5','wrist 2'],['J6','wrist 3']];
+const JLIMIT=[[-180,180],[-180,180],[-160,160],[-180,180],[-180,180],[-360,360]]; // display range for the tick
+const TCP=[['X','cm'],['Y','cm'],['Z','cm'],['RX','°'],['RY','°'],['RZ','°']];
+
+const buzz=v=>navigator.vibrate&&navigator.vibrate(v);
+
+/* ── rosette definitions ──
+   grid cells: 9 slots. axis = twist axis index, ang = rotational */
+const T_ROSE=[
+  {c:1,g:'↑',ax:2,s: 1,ang:0,t:'Z+'},   // top-mid  = Z up
+  {c:3,g:'←',ax:1,s: 1,ang:0,t:'Y+'},
+  {c:4,g:'XYZ',center:1},
+  {c:5,g:'→',ax:1,s:-1,ang:0,t:'Y−'},
+  {c:7,g:'↓',ax:2,s:-1,ang:0,t:'Z−'},
+  {c:0,g:'↖',ax:0,s: 1,ang:0,t:'X+'},
+  {c:8,g:'↘',ax:0,s:-1,ang:0,t:'X−'},
+];
+const R_ROSE=[
+  {c:1,g:'↻',ax:1,s: 1,ang:1,t:'RY+'},
+  {c:3,g:'↺',ax:0,s:-1,ang:1,t:'RX−'},
+  {c:4,g:'RPW',center:1},
+  {c:5,g:'↻',ax:0,s: 1,ang:1,t:'RX+'},
+  {c:7,g:'↺',ax:1,s:-1,ang:1,t:'RY−'},
+  {c:0,g:'⟲',ax:2,s: 1,ang:1,t:'RZ+'},
+  {c:8,g:'⟳',ax:2,s:-1,ang:1,t:'RZ−'},
+];
+
+function buildRose(elId,def){
+  const el=document.getElementById(elId);
+  const cells=Array(9).fill(null);
+  def.forEach(d=>cells[d.c]=d);
+  el.innerHTML=cells.map(d=>{
+    if(!d) return `<div class="pad blank"></div>`;
+    if(d.center) return `<div class="pad center">${d.g}</div>`;
+    return `<button class="pad" data-ax="${d.ax}" data-s="${d.s}" data-ang="${d.ang}" title="${d.t}">${d.g}</button>`;
+  }).join('');
+  el.querySelectorAll('button.pad').forEach(b=>bindHold(b,()=>startJog('twist',+b.dataset.ax,+b.dataset.s,+b.dataset.ang)));
+}
+
+function buildJoints(){
+  document.getElementById('joints').innerHTML=JOINTS.map((j,i)=>`
+    <div class="jrow">
+      <div class="jname">${j[0]}<small>${j[1]}</small></div>
+      <button class="nudge" data-i="${i}" data-s="-1">◀</button>
+      <div class="track"><div class="ticks">${'<i></i>'.repeat(9)}</div><div class="cursor" id="cur${i}"></div></div>
+      <button class="nudge" data-i="${i}" data-s="1">▶</button>
+      <div class="jval num" id="jv${i}">—</div>
+    </div>`).join('');
+  document.querySelectorAll('.nudge').forEach(b=>bindHold(b,()=>startJog('joint',+b.dataset.i,+b.dataset.s,0)));
+}
+
+function buildTcp(){
+  document.getElementById('tcp').innerHTML=TCP.map((t,i)=>`
+    <div class="tcp-row"><span class="tcp-k">${t[0]}</span>
+      <span class="tcp-v num" id="tv${i}">—</span><span class="tcp-u">${t[1]}</span></div>`).join('');
+}
+
+/* pointer-capture hold: finger can slide off, still holds; release anywhere stops */
+function bindHold(btn,onStart){
+  btn.addEventListener('pointerdown',e=>{
+    e.preventDefault(); btn.setPointerCapture(e.pointerId);
+    btn.classList.add('held'); buzz(6); onStart();
+  });
+  const rel=()=>{ btn.classList.remove('held'); stopJog(); };
+  ['pointerup','pointercancel','lostpointercapture'].forEach(ev=>btn.addEventListener(ev,rel));
+}
+
+/* ── WebSocket ── */
+function connect(){
+  document.getElementById('offUrl').textContent=WS_URL;
+  ws=new WebSocket(WS_URL);
+  ws.onopen=()=>{ wsReady=true; setTag('tLink','ok','Live'); off(false); send('GET_SERVO_FRAME',{}); ping(); };
+  ws.onclose=()=>{ wsReady=false; setTag('tLink','bad','Down'); off(true); setTimeout(connect,1500); };
+  ws.onerror=()=>{ try{ws.close();}catch(_){} };
+  ws.onmessage=e=>{ try{ onMsg(JSON.parse(e.data)); }catch(_){} };
+}
+function send(type,payload){ if(!wsReady) return false; ws.send(JSON.stringify({type,payload})); return true; }
+let pTimer=null; function ping(){ clearInterval(pTimer); pTimer=setInterval(()=>send('PING',{}),5000); }
+
+function onMsg(m){
+  switch(m.type){
+    case 'JOINT_STATES': pos=m.payload.positions||pos; drawJoints(); drawPips(m.payload.homingStatus||[]); break;
+    case 'CARTESIAN_VALUES':{ const v=m.payload.values; cart=Array.isArray(v)?v:Object.values(v||{}); drawTcp(); break; }
+    case 'JOINT_MODE_OF_OPERATION':{ const o=m.payload?.modeOfOperation; if(o===9)markMode('9'); else if(o===8)markMode('8'); break; }
+    case 'EMERGENCY_STATUS':{ const e=(m.payload?.jointStatus||[]).some(Boolean); setTag('tStop',e?'bad':'ok',e?'E-Stop':'Clear'); break; }
+    case 'SERVO_FRAME_CHANGED': applyFrame(m.payload.frame); break;
+    case 'SERVO_RESPONSE':{ const ok=m.payload?.success??m.payload?.result; toast(ok?'Servo started':'Servo start failed',ok?'ok':'err'); break; }
+  }
+}
+
+/* ── draw ── */
+const R2D=180/Math.PI;
+function drawJoints(){
+  pos.forEach((r,i)=>{
+    const deg=r*R2D;
+    const v=document.getElementById('jv'+i); if(v) v.textContent=deg.toFixed(2);
+    const c=document.getElementById('cur'+i);
+    if(c){ const [lo,hi]=JLIMIT[i];
+      const pct=Math.min(100,Math.max(0,((deg-lo)/(hi-lo))*100));
+      c.style.left=pct+'%'; }
+  });
+}
+function drawTcp(){ cart.forEach((v,i)=>{ const el=document.getElementById('tv'+i); if(el) el.textContent=(v??0).toFixed(2); }); }
+function drawPips(s){
+  s.forEach((h,i)=>{ const p=document.getElementById('p'+(i+1)); if(p) p.classList.toggle('on',!!h); });
+  const all=s.length===6&&s.every(Boolean); setTag('tHome',all?'ok':'warn',all?'Homed':'Partial');
+}
+
+/* ── jog motion (ramped, matches servo_jog semantics) ── */
+const stepJ=t=>maxJ*(INTERVAL_MS/1000)/t, stepT=t=>maxT*(INTERVAL_MS/1000)/t;
+function pubJoint(ax,s){ vJ=Math.min(maxJ,vJ+stepJ(ACCEL_T)); const d=[0,0,0,0,0,0]; d[ax]=vJ*s; send('SERVO_JOG',{mode:'joint',data:d}); }
+function pubTwist(ax,s,ang){ vT=Math.min(maxT,vT+stepT(ACCEL_T)); const lin={x:0,y:0,z:0},an={x:0,y:0,z:0};
+  (ang?an:lin)[['x','y','z'][ax]]=vT*s; send('SERVO_JOG',{mode:'twist',linear:lin,angular:an}); }
+
+function startJog(type,ax,s,ang){
+  stopJog(); clearInterval(decelTimer); decelTimer=null;
+  if(!wsReady){ toast('No link to robot','err'); return; }
+  active={type,ax,s,ang};
+  tickTimer=setInterval(()=>{ type==='joint'?pubJoint(ax,s):pubTwist(ax,s,ang); },INTERVAL_MS);
+}
+function stopJog(){
+  clearInterval(tickTimer); tickTimer=null;
+  if(!active) return;
+  const {type,ax,s,ang}=active; active=null; clearInterval(decelTimer);
+  decelTimer=setInterval(()=>{
+    if(type==='joint'){ vJ=Math.max(0,vJ-stepJ(DECEL_T)); const d=[0,0,0,0,0,0]; d[ax]=vJ*s;
+      send('SERVO_JOG',{mode:'joint',data:d}); if(vJ<=0){clearInterval(decelTimer);decelTimer=null;} }
+    else{ vT=Math.max(0,vT-stepT(DECEL_T)); const lin={x:0,y:0,z:0},an={x:0,y:0,z:0};
+      (ang?an:lin)[['x','y','z'][ax]]=vT*s; send('SERVO_JOG',{mode:'twist',linear:lin,angular:an});
+      if(vT<=0){clearInterval(decelTimer);decelTimer=null;} }
+  },INTERVAL_MS);
+}
+window.addEventListener('blur',stopJog);
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) stopJog(); });
+window.addEventListener('contextmenu',e=>e.preventDefault());
+
+/* ── frame ── */
+function pickFrame(f){ send('SET_SERVO_FRAME',{frame:f}); applyFrame(f); buzz(6); }
+function applyFrame(f){
+  currentFrame=f; document.getElementById('frameNow').textContent=f;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.f===f));
+}
+function tfChips(){
+  document.querySelectorAll('.chip.tf').forEach(c=>c.remove());
+  const row=document.getElementById('chips');
+  points.filter(p=>p.is_tf).forEach(p=>{
+    const c=document.createElement('button'); c.className='chip tf'; c.dataset.f=p.name; c.textContent=p.name;
+    c.onclick=()=>pickFrame(p.name); row.appendChild(c);
+  });
+  applyFrame(currentFrame);
+}
+
+/* ── speed ── */
+function onSpeed(){ const s=document.getElementById('spd'),v=+s.value;
+  document.getElementById('spdV').textContent=v+'%'; s.style.setProperty('--pct',v+'%');
+  const f=v/100; maxJ=.05+.45*f; maxT=.05+.45*f; }
+function onSpeedCommit(){ send('SET_SPEED_INT8',{value:+document.getElementById('spd').value}); }
+
+/* ── actions ── */
+function startServo(){ send('START_SERVO',{}); toast('Starting servo…'); buzz(10); }
+function goHome(){ send('UI_COMMANDS',{command:'home'}); toast('Homing…'); buzz(10); }
+function resetFault(){ send('RESET_FAULT',{}); toast('Resetting fault…'); buzz(10); }
+function emergency(){ stopJog(); send('EMERGENCY_TRIGGER',{}); toast('EMERGENCY TRIGGERED','err'); buzz([30,40,30]); }
+function setMode(m){ send('CHANGE_MODE',{mode:m}); markMode(m); buzz(8); }
+function markMode(m){ const j=m==='9';
+  document.getElementById('mJog').classList.toggle('on',j);
+  document.getElementById('mAuto').classList.toggle('on',!j); }
+
+/* ── points ── */
+function openSheet(){ document.getElementById('scrim').classList.add('show'); document.getElementById('sheet').classList.add('show'); buzz(6); }
+function closeSheet(){ document.getElementById('scrim').classList.remove('show'); document.getElementById('sheet').classList.remove('show'); }
+async function loadPoints(){
+  try{ const r=await fetch(`${HTTP_BASE}/point-planning/getPoints`); if(!r.ok) throw 0;
+    points=await r.json(); renderPoints(); tfChips();
+  }catch(_){ /* quiet — retried on interval */ }
+}
+function renderPoints(){
+  const q=document.getElementById('pFind').value.trim().toLowerCase();
+  const list=points.filter(p=>!q||p.name.toLowerCase().includes(q));
+  document.getElementById('pCount').textContent=`${points.length} point${points.length!==1?'s':''}`;
+  const el=document.getElementById('pList');
+  if(!list.length){ el.innerHTML=`<div class="pempty">${points.length?'No match.':'No points yet.'}</div>`; return; }
+  el.innerHTML=list.map(p=>{
+    const seq=p.sequence!=null?`#${p.sequence}`:'';
+    const tf=p.is_tf?'<b>TF</b>':'';
+    return `<div class="prow${p.name===atPoint?' at':''}">
+      <div><div class="pn">${esc(p.name)}${tf}</div><div class="pm">${seq}${p.nature?' · '+esc(p.nature):''}</div></div>
+      <button class="mv" onclick="moveTo('${p.name}','joint')">Joint</button>
+      <button class="mv c" onclick="moveTo('${p.name}','cartesian')">Cart</button>
+    </div>`;
+  }).join('');
+}
+async function moveTo(name,motionType){
+  buzz(10);
+  try{
+    await fetch(`${HTTP_BASE}/ros/setMotionType`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({motionType})});
+    setTimeout(async()=>{
+      const r=await fetch(`${HTTP_BASE}/ros/moveToPoint`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pointName:`get_last_pose@${name}`})});
+      const d=await r.json().catch(()=>({}));
+      if(r.ok){ atPoint=name; renderPoints(); toast(`Moving to ${name} · ${motionType}`,'ok'); }
+      else toast(d.message||'Move failed','err');
+    },400);
+  }catch(_){ toast('Connection error','err'); }
+}
+
+/* ── fullscreen ── */
+function toggleFullscreen(){
+  const el=document.documentElement, on=document.fullscreenElement||document.webkitFullscreenElement;
+  if(!on){ const r=el.requestFullscreen||el.webkitRequestFullscreen;
+    r?r.call(el).catch(()=>toast('Fullscreen blocked','err')):toast('Not supported','err'); }
+  else{ const x=document.exitFullscreen||document.webkitExitFullscreen; if(x) x.call(document); }
+}
+['fullscreenchange','webkitfullscreenchange'].forEach(e=>document.addEventListener(e,()=>{
+  const on=document.fullscreenElement||document.webkitFullscreenElement;
+  document.getElementById('fsBtn').textContent=on?'⛗':'⛶';
+}));
+
+/* ── helpers ── */
+function setTag(id,cls,txt){ const t=document.getElementById(id); t.className='tag '+(cls||'');
+  t.querySelector('span:last-child').textContent=txt; }
+let tT=null;
+function toast(msg,kind){ const t=document.getElementById('toast'); t.textContent=msg; t.className='show '+(kind||'');
+  clearTimeout(tT); tT=setTimeout(()=>t.className=t.className.replace('show','').trim(),2100); }
+function off(show){ document.getElementById('offline').classList.toggle('show',show); }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ── portrait: regroup Move Tool + TCP side by side above joints ── */
+function layout(){
+  const work=document.getElementById('work');
+  const L=document.getElementById('colLeft'), R=document.getElementById('colRight');
+  const portrait=matchMedia('(orientation:portrait)').matches;
+  let split=document.getElementById('split');
+  if(portrait){
+    if(!split){ split=document.createElement('div'); split.className='split'; split.id='split';
+      work.insertBefore(split, work.firstChild); }
+    split.appendChild(L); split.appendChild(R);
+  }else{
+    if(split) split.remove();
+    work.insertBefore(L, work.firstChild);
+    work.appendChild(R);
+  }
+}
+
+/* ── boot ── */
+buildRose('roseT',T_ROSE); buildRose('roseR',R_ROSE);
+buildJoints(); buildTcp();
+layout(); addEventListener('resize',layout); addEventListener('orientationchange',()=>setTimeout(layout,120));
+applyFrame('end'); onSpeed(); connect(); loadPoints();
+setInterval(loadPoints,15000);
+</script>
+</body>
+</html>

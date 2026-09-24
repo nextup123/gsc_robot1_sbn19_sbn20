@@ -1,0 +1,78 @@
+.sys-status-compact {
+    width: 150px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #44ff0b;
+    background: #2b2a2a;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.sys-status-time {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #22cc00;
+}
+
+.sys-status-uptime {
+    margin-bottom: 4px;
+}
+
+.sys-status-load {
+    font-size: 11px;
+    color: #22fd34;
+}
+
+.btn-emergency {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 12px;
+    border-radius: 6px;
+    height: 40px;
+    background-color: #be1414;
+    /* emergency red */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+/* Hover */
+.btn-emergency:hover {
+    background-color: #e41111;
+    box-shadow: 0 4px 12px rgba(129, 23, 33, 0.4);
+}
+
+/* Pressed */
+.btn-emergency:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+/* Focus (keyboard accessibility) */
+.btn-emergency:focus-visible {
+    outline: 2px solid #fc8888;
+    outline-offset: 2px;
+}
+
+/* Disabled state */
+.btn-emergency:disabled {
+    background-color: #9a9a9a;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}

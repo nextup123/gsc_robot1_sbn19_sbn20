@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="hello1">
+    <Sequence ID="sequence_1762752013946_9jcwbmc" name="Sequence_105013">
+      <Fallback ID="fallback_1762752021581_7ra11mc" name="Fallback_105021">
+        <Sequence ID="seq_1762752021581_a3tb7sc" name="Sequence1">
+          <Sequence ID="seq_place-glass-convery_p8_2589">
+            <Fallback ID="fallback_3265">
+              <Sequence ID="seq_success_place-glass-convery_p8_9728">
+                <RunPath path_name="place-glass-convery_p8" ID="place-glass-convery_p8_4630" speed_scale="0.5"/>
+                <MsgLogger ID="msg_success_place-glass-convery_p8_7295" msg_log="place-glass-convery_p8 success"/>
+              </Sequence>
+              <Sequence ID="seq_failure_place-glass-convery_p8_9444">
+                <MsgLogger ID="msg_fail_place-glass-convery_p8_2060" msg_log="place-glass-convery_p8 failed"/>
+                <MsgPopup ID="popup_place-glass-convery_p8_8001" msg="place-glass-convery_p8 path failed" type="failure" timeout="0"/>
+                <AlwaysFailure/>
+              </Sequence>
+            </Fallback>
+          </Sequence>
+        </Sequence>
+        <Sequence ID="sequence_1762768212719_xt766iv" name="Sequence_152010"/>
+        <Sequence ID="seq_1762752021581_4twz2yw" name="Sequence2"/>
+        <SubTreePlus ID="group_1_2849"/>
+      </Fallback>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="test2">
+    <Sequence ID="sequence_1763096375461_agvxuhv" name="Sequence_Sequence_1711">
+      <Sequence ID="sequence_1762601461415_ysyy5wl" name="Sequence_1711">
+        <CheckPosition ID="checkposition_1762757562327_neg0c9q" name="CheckPosition_122235" point_name="helo" accuracy="56"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="uy">
+    <Sequence ID="seq_1762587872776_r5xallu" name="RootSequence">
+      <Fallback ID="fallback_1762598425430_s8g3b4v" name="Fallback_wrapped">
+        <Sequence ID="seq_homing-point_main-point_9888">
+          <Fallback ID="fallback_7978">
+            <Sequence ID="seq_success_homing-point_main-point_1487">
+              <RunPath path_name="homing-point_main-point" ID="homing-point_main-point_6332" speed_scale="1"/>
+              <Sequence ID="seq_1_82651">
+                <MsgLogger ID="msg_1_94732" msg_log="gripper3 subtree starting..."/>
+                <DoControl ID="ctrl_1_38175" name="gripper3" driver_ID="2" do_ID="3" control_name="gripper3" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+                <Sequence ID="seq_2_59487">
+                  <MsgLogger ID="msg_2_16094" msg_log="test gripper done"/>
+                </Sequence>
+                <MsgPopup ID="pop_1_71268" msg="gripper3 action successful" type="success" timeout="3"/>
+              </Sequence>
+              <MsgLogger ID="msg_success_homing-point_main-point_1121" msg_log="homing-point_main-point success"/>
+            </Sequence>
+            <Sequence ID="seq_failure_homing-point_main-point_2098">
+              <MsgLogger ID="msg_fail_homing-point_main-point_4695" msg_log="homing-point_main-point failed"/>
+              <MsgPopup ID="popup_homing-point_main-point_7875" msg="homing-point_main-point path failed" type="failure" timeout="0"/>
+              <AlwaysFailure/>
+            </Sequence>
+          </Fallback>
+        </Sequence>
+      </Fallback>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="main_tree">
+    <Sequence ID="seq_1762588345186_etxzbq5" name="RootSequence">
+      <Fallback ID="fallback_1765886755054_st7fixg" name="Fallback_fRootSequence">
+        <Sequence ID="seq_1762587955766_unere0id" name="fRootSequence">
+          <SubTreePlus ID="homing-point_main-point"/>
+          <SubTreePlus ID="homing-point_main-point"/>
+          <SubTreePlus ID="main-point_go-inside-left-station"/>
+          <Sleep ID="sleep_1763021776757_1hw5ybj" name="Sleep_134616" msec=""/>
+        </Sequence>
+      </Fallback>
+      <Repeat ID="repeat_1763096613310_8mrofp6" name="Repeat_103333" num_cycle="667"/>
+      <Sequence ID="seq_1762587955766_unrre0id" name="RootSequence">
+        <SubTreePlus ID="homing-point_main-point"/>
+        <SubTreePlus ID="homing-point_main-point"/>
+        <SubTreePlus ID="main-point_go-inside-left-station"/>
+      </Sequence>
+      <SubTreePlus ID="Gripper5" expected_action="true"/>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="testTree">
+    <Sequence ID="seq_1763103707370_1uf9e9e" name="RootSequence">
+      <Sequence ID="seq_homing-point_main-point_9888">
+        <Fallback ID="fallback_7978">
+          <Sequence ID="seq_success_homing-point_main-point_1487">
+            <RunPath path_name="homing-point_main-point" ID="homing-point_main-point_6332" speed_scale="1"/>
+            <MsgLogger ID="msg_success_homing-point_main-point_1121" msg_log="homing-point_main-point success"/>
+          </Sequence>
+          <Sequence ID="seq_failure_homing-point_main-point_2098">
+            <MsgLogger ID="msg_fail_homing-point_main-point_4695" msg_log="homing-point_main-point failed"/>
+            <MsgPopup ID="popup_homing-point_main-point_7875" msg="homing-point_main-point path failed" type="failure" timeout="0"/>
+            <AlwaysFailure/>
+          </Sequence>
+        </Fallback>
+      </Sequence>
+      <Sequence ID="seq_1">
+        <MsgLogger ID="msg_1" msg_log="gripperTest98 subtree starting..."/>
+        <DoControl ID="ctrl_1" name="gripperTest98" driver_id="4" do_id="3" control_name="gripperTest98" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+        <Sequence ID="seq_2">
+          <MsgLogger ID="msg_2" msg_log="98 gripper pushed"/>
+        </Sequence>
+        <MsgPopup ID="pop_1" msg="gripperTest98 action successful" type="success" timeout="3"/>
+      </Sequence>
+      <Sequence ID="seq_main-point_go-inside-left-station_1997">
+        <Fallback ID="fallback_6222">
+          <Sequence ID="seq_success_main-point_go-inside-left-station_7277">
+            <RunPath path_name="main-point_go-inside-left-station" ID="main-point_go-inside-left-station_3996" speed_scale="1"/>
+            <MsgLogger ID="msg_success_main-point_go-inside-left-station_7834" msg_log="main-point_go-inside-left-station success"/>
+          </Sequence>
+          <Sequence ID="seq_failure_main-point_go-inside-left-station_5079">
+            <MsgLogger ID="msg_fail_main-point_go-inside-left-station_5105" msg_log="main-point_go-inside-left-station failed"/>
+            <MsgPopup ID="popup_main-point_go-inside-left-station_1108" msg="main-point_go-inside-left-station path failed" type="failure" timeout="0"/>
+            <AlwaysFailure/>
+          </Sequence>
+        </Fallback>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+</root>

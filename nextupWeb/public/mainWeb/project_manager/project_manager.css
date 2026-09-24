@@ -1,0 +1,18 @@
+.active-project-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #fdfdfd;
+  font-weight: 400;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.nav-button-pm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

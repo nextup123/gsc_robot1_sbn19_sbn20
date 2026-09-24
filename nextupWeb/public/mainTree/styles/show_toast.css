@@ -1,0 +1,171 @@
+/* ========= Toast Container ========= */
+#tree-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* ========= Toast ========= */
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  animation: toastSlideIn 0.35s ease, toastPulse 0.3s ease;
+  pointer-events: auto;
+  min-width: 240px;
+  max-width: 340px;
+}
+
+/* ========= Toast Types ========= */
+.toast.success { background: linear-gradient(135deg, #00b16a, #2ecc71); }  /* Green */
+.toast.warn    { background: linear-gradient(135deg, #ff9500, #ffb84d); }  /* Orange */
+.toast.failure { background: linear-gradient(135deg, #ff3b30, #ff6b6b); }  /* Red */
+.toast.process { background: linear-gradient(135deg, #007aff, #34a1ff); }  /* Blue */
+
+/* ========= Close Button ========= */
+.toast-close {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  transition: background 0.2s, transform 0.2s;
+}
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* ========= Animations ========= */
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@keyframes toastPulse {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+
+
+/* ===== Overlay ===== */
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(28, 28, 30, 0.05);
+  backdrop-filter: blur(1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  transition: opacity 0.2s ease;
+}
+
+.confirm-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== Box ===== */
+.confirm-box {
+  background: rgba(255, 255, 255, 0.383);
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  padding: 20px 24px;
+  width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  text-align: center;
+  color: #1c1c1e;
+  transform: translateY(-10px);
+  animation: confirmSlideIn 0.25s ease forwards;
+}
+
+/* ===== Message ===== */
+.confirm-message {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #111;
+  white-space: pre-line;
+}
+
+/* ===== Buttons ===== */
+.confirm-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.confirm-buttons button {
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, transform 0.15s;
+}
+
+#confirm-cancel {
+  background: #e5e5ea;
+  color: #1c1c1e;
+}
+
+#confirm-cancel:hover {
+  background: #d1d1d6;
+}
+
+#confirm-ok {
+  background: #007aff;
+  color: #fff;
+}
+
+#confirm-ok:hover {
+  background: #0a84ff;
+  transform: scale(1.05);
+}
+
+/* ===== Animation ===== */
+@keyframes confirmSlideIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

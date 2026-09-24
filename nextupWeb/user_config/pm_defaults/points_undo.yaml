@@ -1,0 +1,20 @@
+points_file_name: 25_march
+points:
+  - name: home
+    date_time: 25mar_1157
+    sequence: 1
+    nature: home
+    joints_values:
+      joint1: -0.00008901200000000001
+      joint2: -0.000057596
+      joint3: 0.000136136
+      joint4: -0.00007539822
+      joint5: -0.00013823007
+      joint6: -0.0000125663706
+    coordinate:
+      x: -0.01
+      y: -28.15
+      z: 135.7
+      r: 90
+      p: -0.02
+      w: 0.01

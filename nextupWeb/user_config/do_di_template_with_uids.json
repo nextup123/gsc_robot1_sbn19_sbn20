@@ -1,0 +1,734 @@
+{
+  "@attributes": {
+    "BTCPP_format": "4",
+    "_uid": "uid_2a1902b42a46_mj72zn1f"
+  },
+  "@children": [
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "gripperTest98",
+          "_uid": "uid_16cd8861c273_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_0c2e59ade84e_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "gripperTest98 subtree starting...",
+                      "_uid": "uid_98f20a302cea_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "gripperTest98",
+                      "driver_id": "4",
+                      "do_id": "3",
+                      "control_name": "gripperTest98",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_420f1d7dabb8_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c8aa03643c50_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "98 gripper pushed",
+                            "_uid": "uid_09b0ad67ee87_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "gripperTest98 action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_a0d3aa945cc8_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "proxy2",
+          "_uid": "uid_2cc6e6521a3a_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_8d4c33103c6a_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "proxy2 subtree starting...",
+                      "_uid": "uid_519259c032c3_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "proxy2",
+                      "driver_id": "2",
+                      "di_id": "2",
+                      "status_name": "proxy2",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "250",
+                      "_uid": "uid_56f6a8ac6544_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_104d4b9ec7e4_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "test2",
+                            "_uid": "uid_7be530e82faf_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "proxy2 sensing successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_5335bc419e68_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "grip5",
+          "_uid": "uid_64b920a37cc4_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_6b2d86a19cb6_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "grip5 subtree starting...",
+                      "_uid": "uid_81b08271e31c_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "grip5",
+                      "driver_id": "1",
+                      "do_id": "3",
+                      "control_name": "grip5",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_6281f686eb10_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_9c21f5abe4e2_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "gript test",
+                            "_uid": "uid_568283fe16c6_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "grip5 action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_d43248b4c034_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "test2",
+          "_uid": "uid_7f314b004885_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_2b6f5fb84566_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "test2 subtree starting...",
+                      "_uid": "uid_834a6d87fad3_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "test2",
+                      "driver_id": "5",
+                      "do_id": "1",
+                      "control_name": "test2",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_ee17a2ba0835_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_5a223e37df7e_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "2",
+                            "_uid": "uid_c0c2d7d02eb9_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "test2 action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_75ffa9b7896a_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "gripper1",
+          "_uid": "uid_66b1da800bf0_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_1fc92ca42de7_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "gripper1 subtree starting...",
+                      "_uid": "uid_4238e64712a4_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "gripper1",
+                      "driver_id": "1",
+                      "do_id": "1",
+                      "control_name": "gripper1",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_1e1d36e88f4e_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c295031a256d_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "test1",
+                            "_uid": "uid_a51d823a53ab_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "gripper1 action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_c63284d9a3c1_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "AdnanStatus",
+          "_uid": "uid_5121e1df089a_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_19d8c533622b_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "AdnanStatus subtree starting...",
+                      "_uid": "uid_8b189325a9f9_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "AdnanStatus",
+                      "driver_id": "5",
+                      "di_id": "3",
+                      "status_name": "AdnanStatus",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "1250",
+                      "_uid": "uid_81ba376d2e91_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_2b276f9e14c2_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "id": "msg_2",
+                            "msg_log": "this is puneet yo!",
+                            "_uid": "uid_a7cf67ad6dd3_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "AdnanStatus sensing successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_09a65e2a3f65_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "rfwe",
+          "_uid": "uid_07dd4fbff383_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_7426360e247a_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "rfwe subtree starting...",
+                      "_uid": "uid_86a4d04a962a_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "rfwe",
+                      "driver_id": "4",
+                      "do_id": "1",
+                      "control_name": "rfwe",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_754afdb7c4fb_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_5a3b7ea4f4a0_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "id": "msg_2",
+                            "msg_log": "we",
+                            "_uid": "uid_f7ba6f7edb33_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "rfwe action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_40abac3c8990_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "TestDo",
+          "_uid": "uid_d87af7809ac0_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_d71d9b01b5bd_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "TestDo subtree starting...",
+                      "_uid": "uid_4ae4916dcbc7_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "TestDo",
+                      "driver_id": "5",
+                      "do_id": "3",
+                      "control_name": "TestDo",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_5c87a83f8372_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_0c808ea741d2_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "test",
+                            "_uid": "uid_c3af75af23e9_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "TestDo action successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_e63e28505033_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "testDi",
+          "_uid": "uid_7476aaf5fd8f_mj72zn1f"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_6c145929ba4c_mj72zn1f"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "testDi subtree starting...",
+                      "_uid": "uid_f1815abb7a69_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "testDi",
+                      "driver_id": "4",
+                      "di_id": "3",
+                      "status_name": "testDi",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "250",
+                      "_uid": "uid_9e8bdc807fd5_mj72zn1f"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_8995f70410b7_mj72zn1f"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "test",
+                            "_uid": "uid_a0a9f44733ab_mj72zn1f"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "PopupMsg",
+                  "content": {
+                    "@attributes": {
+                      "ID": "pop_1",
+                      "msg": "testDi sensing successful",
+                      "type": "success",
+                      "timeout": "3",
+                      "_uid": "uid_5e963c9a10ec_mj72zn1f"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

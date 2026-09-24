@@ -1,0 +1,105 @@
+{
+  "name": "345",
+  "nodes": [
+    {
+      "id": "p2",
+      "label": "p2",
+      "x": -80,
+      "y": -180
+    },
+    {
+      "id": "p3",
+      "label": "p3",
+      "x": 0,
+      "y": -180,
+      "metadata": {
+        "coordinates": [
+          -0.7900338504408738,
+          -0.6158059447859798
+        ]
+      }
+    },
+    {
+      "id": "p6",
+      "label": "p6",
+      "x": -80,
+      "y": 249
+    },
+    {
+      "id": "p7",
+      "label": "p7",
+      "x": 0,
+      "y": 100,
+      "metadata": {
+        "coordinates": [
+          -0.9881379084948879,
+          -0.8502530109276172
+        ]
+      }
+    },
+    {
+      "id": "endpoint",
+      "label": "endpoint",
+      "x": 80,
+      "y": 20,
+      "metadata": {
+        "coordinates": [
+          -1.0307589496834688,
+          -0.9347724117295015
+        ]
+      }
+    },
+    {
+      "id": "p1",
+      "label": "p1",
+      "x": -80,
+      "y": 180
+    }
+  ],
+  "edges": [
+    {
+      "from": "p2",
+      "to": "p3",
+      "label": "p2_p3",
+      "type": "cartesian",
+      "waypoints": 7,
+      "coordinates": [
+        -0.7900338504408738,
+        -0.6158059447859798
+      ]
+    },
+    {
+      "from": "p6",
+      "to": "p7",
+      "label": "p6_p7",
+      "type": "cartesian",
+      "waypoints": 7,
+      "coordinates": [
+        -0.9881379084948879,
+        -0.8502530109276172
+      ]
+    },
+    {
+      "from": "p7",
+      "to": "endpoint",
+      "label": "p7_endpoint",
+      "type": "cartesian",
+      "waypoints": 8,
+      "coordinates": [
+        -1.0307589496834688,
+        -0.9347724117295015
+      ]
+    },
+    {
+      "from": "p1",
+      "to": "endpoint",
+      "label": "p1_p2_p3_p4_p5_p6_p7_endpoint",
+      "type": "cartesian",
+      "waypoints": 15,
+      "coordinates": [
+        -1.0307589496834355,
+        -0.9347724117287928
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+/* === Compact Cycle Counters Section === */
+.cycle-counters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px double rgba(168, 163, 163, 0.753);
+}
+
+.cycle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cycle-header .section-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.reset-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.reset-btn i {
+  color: #007aff;
+  font-size: 0.85rem;
+}
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: rotate(90deg);
+}
+
+/* Counter grid (similar to cycle-times) */
+.cycle-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.cycle-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cycle-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cycle-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #007aff;
+}

@@ -1,0 +1,115 @@
+.shutdown-button {
+    background: #860d09;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.shutdown-button:hover {
+    background: #350504;
+    transform: scale(0.95);
+}
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background: #333232;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    margin: 10% auto;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.option-button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.shutdown {
+    background: #e95420;
+    color: white;
+}
+
+.reboot {
+    background: #2c7ef5;
+    color: white;
+}
+
+.force {
+    background: #a80000;
+    color: white;
+}
+
+.confirm {
+    margin-top: 1.5rem;
+    display: none;
+}
+
+.confirm-buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.confirm-buttons button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.yes {
+    background: #2cbb5d;
+    color: white;
+}
+
+.no {
+    background: #999;
+    color: white;
+}
+
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #222;
+}

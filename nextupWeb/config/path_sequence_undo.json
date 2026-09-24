@@ -1,0 +1,2726 @@
+{
+  "history": [
+    {
+      "timestamp": "2026-01-07T08:19:48.819Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767773055677",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:04:15.677Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 30,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_S1PrPG2",
+                "type": "C",
+                "from": "C",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "D_S1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "HS1PrDG1_PrAdCon",
+                "type": "J",
+                "from": "HS1PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "D_HS1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1DG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T08:19:48.985Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767773988816",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:19:48.816Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 31,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_S1PrPG2",
+                "type": "C",
+                "from": "C",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "D_S1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "HS1PrDG1_PrAdCon",
+                "type": "J",
+                "from": "HS1PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "D_HS1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T08:19:49.152Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767773988983",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:19:48.983Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 31,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_S1PrPG2",
+                "type": "C",
+                "from": "C",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "D_S1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "HS1PrDG1_PrAdCon",
+                "type": "J",
+                "from": "HS1PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "D_HS1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T08:19:49.302Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767773989150",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:19:49.150Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 31,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_S1PrPG2",
+                "type": "C",
+                "from": "C",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "D_S1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "HS1PrDG1_PrAdCon",
+                "type": "J",
+                "from": "HS1PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "D_HS1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T08:30:34.235Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767773989300",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:19:49.300Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 31,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_S1PrPG2",
+                "type": "C",
+                "from": "C",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "D_S1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "HS1PrDG1_PrAdCon",
+                "type": "J",
+                "from": "HS1PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_D",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "D_HS1PrDG1",
+                "type": "C",
+                "from": "D",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T10:19:13.422Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767774634232",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T08:30:34.232Z",
+            "start": "D",
+            "current": "D",
+            "totalSteps": 29,
+            "steps": [
+              {
+                "order": 1,
+                "path": "D_S2PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "S2PrPG1_S2PG1",
+                "type": "C",
+                "from": "S2PrPG1",
+                "to": "S2PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S2PG1_S2PrPG1",
+                "type": "C",
+                "from": "S2PG1",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S2PrPG1_PrW",
+                "type": "J",
+                "from": "S2PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "C_HS2PrPG2",
+                "type": "J",
+                "from": "C",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "HS2PrPG2_S2PrPG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "S2PrPG2_S2PG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "S2PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "S2PG2_S2PrPG2",
+                "type": "C",
+                "from": "S2PG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "S2PrPG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "HS2PrPG2_PrW",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "PrAdCon_S2PrDG1",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S2PrDG1_S2DG1",
+                "type": "C",
+                "from": "S2PrDG1",
+                "to": "S2DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "S2DG1_S2PrDG1",
+                "type": "C",
+                "from": "S2DG1",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "S2PrDG1_PrAdCon",
+                "type": "C",
+                "from": "S2PrDG1",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "PrAdCon_HS2PrPG2",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "HS2PrPG2_S2PrDG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "S2PrDG2_S2DG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "S2DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "S2DG2_S2PrDG2",
+                "type": "C",
+                "from": "S2DG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S2PrDG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "HS2PrPG2_D",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-07T10:21:28.319Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767781153420",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T10:19:13.420Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 59,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "PrAdCon_HS1PrDG1",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "HS1PrDG1_S1PrDG1",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "HS1PrDG1_S1PrPG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_HS1PrDG1",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "D_S2PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 32,
+                "path": "S2PrPG1_S2PG1",
+                "type": "C",
+                "from": "S2PrPG1",
+                "to": "S2PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 33,
+                "path": "S2PG1_S2PrPG1",
+                "type": "C",
+                "from": "S2PG1",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 34,
+                "path": "S2PrPG1_PrW",
+                "type": "J",
+                "from": "S2PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 35,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 36,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 37,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 38,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 39,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 40,
+                "path": "PrAdCon_S2PrDG1",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 41,
+                "path": "S2PrDG1_S2DG1",
+                "type": "C",
+                "from": "S2PrDG1",
+                "to": "S2DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 42,
+                "path": "S2DG1_S2PrDG1",
+                "type": "C",
+                "from": "S2DG1",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 43,
+                "path": "S2PrDG1_HS2PrPG2",
+                "type": "J",
+                "from": "S2PrDG1",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 44,
+                "path": "HS2PrPG2_S2PrPG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 45,
+                "path": "S2PrPG2_S2PG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "S2PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 46,
+                "path": "S2PG2_S2PrPG2",
+                "type": "C",
+                "from": "S2PG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 47,
+                "path": "S2PrPG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 48,
+                "path": "HS2PrPG2_PrW",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 49,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 50,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 51,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 52,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 53,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 54,
+                "path": "PrAdCon_HS2PrPG2",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 55,
+                "path": "HS2PrPG2_S2PrDG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 56,
+                "path": "S2PrDG2_S2DG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "S2DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 57,
+                "path": "S2DG2_S2PrDG2",
+                "type": "C",
+                "from": "S2DG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 58,
+                "path": "S2PrDG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 59,
+                "path": "HS2PrPG2_D",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-16T08:54:46.657Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1767781288316",
+            "name": "sequence_2026-01-07",
+            "createdAt": "2026-01-07T10:21:28.316Z",
+            "start": "H",
+            "current": "D",
+            "totalSteps": 59,
+            "steps": [
+              {
+                "order": 1,
+                "path": "H_D",
+                "type": "J",
+                "from": "H",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 2,
+                "path": "D_S1PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 3,
+                "path": "S1PrPG1_S1PG1",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "S1PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 4,
+                "path": "S1PG1_S1PrPG1",
+                "type": "C",
+                "from": "S1PG1",
+                "to": "S1PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 5,
+                "path": "S1PrPG1_PrW",
+                "type": "C",
+                "from": "S1PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 6,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 7,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 8,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 9,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 10,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 11,
+                "path": "PrAdCon_HS1PrDG1",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 12,
+                "path": "HS1PrDG1_S1PrDG1",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 13,
+                "path": "S1PrDG1_S1DG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "S1DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 14,
+                "path": "S1DG1_S1PrDG1",
+                "type": "C",
+                "from": "S1DG1",
+                "to": "S1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 15,
+                "path": "S1PrDG1_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG1",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 16,
+                "path": "HS1PrDG1_S1PrPG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 17,
+                "path": "S1PrPG2_S1PG2",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "S1PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 18,
+                "path": "S1PG2_S1PrPG2",
+                "type": "C",
+                "from": "S1PG2",
+                "to": "S1PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 19,
+                "path": "S1PrPG2_PrW",
+                "type": "C",
+                "from": "S1PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 20,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 21,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 22,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 23,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 24,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 25,
+                "path": "PrAdCon_HS1PrDG1",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 26,
+                "path": "HS1PrDG1_S1PrDG2",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 27,
+                "path": "S1PrDG2_S1DG2",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "S1DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 28,
+                "path": "S1DG2_S1PrDG2",
+                "type": "C",
+                "from": "S1DG2",
+                "to": "S1PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 29,
+                "path": "S1PrDG2_HS1PrDG1",
+                "type": "C",
+                "from": "S1PrDG2",
+                "to": "HS1PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 30,
+                "path": "HS1PrDG1_D",
+                "type": "C",
+                "from": "HS1PrDG1",
+                "to": "D",
+                "velocity": 0.1
+              },
+              {
+                "order": 31,
+                "path": "D_S2PrPG1",
+                "type": "J",
+                "from": "D",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 32,
+                "path": "S2PrPG1_S2PG1",
+                "type": "C",
+                "from": "S2PrPG1",
+                "to": "S2PG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 33,
+                "path": "S2PG1_S2PrPG1",
+                "type": "C",
+                "from": "S2PG1",
+                "to": "S2PrPG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 34,
+                "path": "S2PrPG1_PrW",
+                "type": "J",
+                "from": "S2PrPG1",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 35,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 36,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 37,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 38,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 39,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 40,
+                "path": "PrAdCon_S2PrDG1",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 41,
+                "path": "S2PrDG1_S2DG1",
+                "type": "C",
+                "from": "S2PrDG1",
+                "to": "S2DG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 42,
+                "path": "S2DG1_S2PrDG1",
+                "type": "C",
+                "from": "S2DG1",
+                "to": "S2PrDG1",
+                "velocity": 0.1
+              },
+              {
+                "order": 43,
+                "path": "S2PrDG1_HS2PrPG2",
+                "type": "J",
+                "from": "S2PrDG1",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 44,
+                "path": "HS2PrPG2_S2PrPG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 45,
+                "path": "S2PrPG2_S2PG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "S2PG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 46,
+                "path": "S2PG2_S2PrPG2",
+                "type": "C",
+                "from": "S2PG2",
+                "to": "S2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 47,
+                "path": "S2PrPG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrPG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 48,
+                "path": "HS2PrPG2_PrW",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "PrW",
+                "velocity": 0.1
+              },
+              {
+                "order": 49,
+                "path": "PrW_W",
+                "type": "C",
+                "from": "PrW",
+                "to": "W",
+                "velocity": 0.1
+              },
+              {
+                "order": 50,
+                "path": "W_C",
+                "type": "C",
+                "from": "W",
+                "to": "C",
+                "velocity": 0.1
+              },
+              {
+                "order": 51,
+                "path": "C_PrAdCon",
+                "type": "J",
+                "from": "C",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 52,
+                "path": "PrAdCon_AdConP",
+                "type": "C",
+                "from": "PrAdCon",
+                "to": "AdConP",
+                "velocity": 0.1
+              },
+              {
+                "order": 53,
+                "path": "AdConP_PrAdCon",
+                "type": "C",
+                "from": "AdConP",
+                "to": "PrAdCon",
+                "velocity": 0.1
+              },
+              {
+                "order": 54,
+                "path": "PrAdCon_HS2PrPG2",
+                "type": "J",
+                "from": "PrAdCon",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 55,
+                "path": "HS2PrPG2_S2PrDG2",
+                "type": "C",
+                "from": "HS2PrPG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 56,
+                "path": "S2PrDG2_S2DG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "S2DG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 57,
+                "path": "S2DG2_S2PrDG2",
+                "type": "C",
+                "from": "S2DG2",
+                "to": "S2PrDG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 58,
+                "path": "S2PrDG2_HS2PrPG2",
+                "type": "C",
+                "from": "S2PrDG2",
+                "to": "HS2PrPG2",
+                "velocity": 0.1
+              },
+              {
+                "order": 59,
+                "path": "HS2PrPG2_D",
+                "type": "J",
+                "from": "HS2PrPG2",
+                "to": "D",
+                "velocity": 0.1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-20T12:57:43.081Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1768553686651",
+            "name": "sequence_2026-01-16",
+            "createdAt": "2026-01-16T08:54:46.651Z",
+            "start": "home",
+            "current": "home",
+            "totalSteps": 14,
+            "steps": [
+              {
+                "order": 1,
+                "path": "home_p2",
+                "type": "J",
+                "from": "home",
+                "to": "p2",
+                "velocity": 0.3
+              },
+              {
+                "order": 2,
+                "path": "p2_p3",
+                "type": "C",
+                "from": "p2",
+                "to": "p3",
+                "velocity": 0.3
+              },
+              {
+                "order": 3,
+                "path": "p3_p4",
+                "type": "C",
+                "from": "p3",
+                "to": "p4",
+                "velocity": 0.3
+              },
+              {
+                "order": 4,
+                "path": "p4_p3",
+                "type": "C",
+                "from": "p4",
+                "to": "p3",
+                "velocity": 0.3
+              },
+              {
+                "order": 5,
+                "path": "p3_p2",
+                "type": "C",
+                "from": "p3",
+                "to": "p2",
+                "velocity": 0.3
+              },
+              {
+                "order": 6,
+                "path": "p2_p7",
+                "type": "C",
+                "from": "p2",
+                "to": "p7",
+                "velocity": 0.3
+              },
+              {
+                "order": 7,
+                "path": "p7_p2",
+                "type": "C",
+                "from": "p7",
+                "to": "p2",
+                "velocity": 0.3
+              },
+              {
+                "order": 8,
+                "path": "p2_p5",
+                "type": "C",
+                "from": "p2",
+                "to": "p5",
+                "velocity": 0.3
+              },
+              {
+                "order": 9,
+                "path": "p5_p6",
+                "type": "C",
+                "from": "p5",
+                "to": "p6",
+                "velocity": 0.3
+              },
+              {
+                "order": 10,
+                "path": "p6_p5",
+                "type": "C",
+                "from": "p6",
+                "to": "p5",
+                "velocity": 0.3
+              },
+              {
+                "order": 11,
+                "path": "p5_p2",
+                "type": "C",
+                "from": "p5",
+                "to": "p2",
+                "velocity": 0.3
+              },
+              {
+                "order": 12,
+                "path": "p2_p7",
+                "type": "C",
+                "from": "p2",
+                "to": "p7",
+                "velocity": 0.3
+              },
+              {
+                "order": 13,
+                "path": "p7_p2",
+                "type": "C",
+                "from": "p7",
+                "to": "p2",
+                "velocity": 0.3
+              },
+              {
+                "order": 14,
+                "path": "p2_home",
+                "type": "J",
+                "from": "p2",
+                "to": "home",
+                "velocity": 0.3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "timestamp": "2026-01-21T05:52:51.014Z",
+      "previousState": {
+        "sequences": [
+          {
+            "id": "seq_1768913863076",
+            "name": "sequence_2026-01-20",
+            "createdAt": "2026-01-20T12:57:43.076Z",
+            "start": "home",
+            "current": "home",
+            "totalSteps": 4,
+            "steps": [
+              {
+                "order": 1,
+                "path": "home_p1",
+                "type": "J",
+                "from": "home",
+                "to": "p1",
+                "velocity": 0.2
+              },
+              {
+                "order": 2,
+                "path": "p1_p2",
+                "type": "C",
+                "from": "p1",
+                "to": "p2",
+                "velocity": 0.2
+              },
+              {
+                "order": 3,
+                "path": "p2_p1",
+                "type": "C",
+                "from": "p2",
+                "to": "p1",
+                "velocity": 0.2
+              },
+              {
+                "order": 4,
+                "path": "p1_home",
+                "type": "J",
+                "from": "p1",
+                "to": "home",
+                "velocity": 0.2
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

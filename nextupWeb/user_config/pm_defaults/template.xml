@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <include path="do_di.xml"/>
+  <include path="run_path.xml"/>
+  <BehaviorTree ID="main_tree">
+    <Sequence ID="jhckjdf" name="main_tree_sequennce(dont_delete_it)">
+      <Sequence ID="sequence_1774421708274_5afntda" name="Sequence_12258">
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+<BehaviorTree ID="initPose">
+    <Sequence ID="seq_1784540198918_0dqttdk" name="RootSequence">
+      <Sequence ID="sequence_1784540207542_6n2gvlr" name="initPoseMain">
+        <Fallback ID="fallback_1784540264593_69oy6ey" name="Fallback_initPose">
+          <Sequence ID="seq_1784540264593_3phkud2" name="Sequence1_startPoint">
+            <MsgLogger ID="msglogger_1784540357266_2naqjgv" name="MsgLogger_15917" msg_log="checking if robot is at Init Pose"/>
+            <IsAtPose ID="isatpose_1784540380718_f65xab2" name="IsAtPose_15940" target_name="p1"/>
+            <MsgLogger ID="msglogger_1784540411057_a590r5b" name="MsgLogger_151011" msg_log="robot is at Init Pose, starting cycle..."/>
+          </Sequence>
+          <Sequence ID="seq_1784540264593_caj38gd" name="Sequence2_home">
+            <MsgLogger ID="msglogger_1784540479522_yagtxvr" name="MsgLogger_151119" msg_log="robot is not at intit Pose, checking home..."/>
+            <IsAtPose ID="isatpose_1784540465424_nlelp8j" name="IsAtPose_15115" target_name="home"/>
+            <MsgLogger ID="msglogger_1784540479753_xbag9z5" name="MsgLogger_151119" msg_log="robot is at home... moving to init pose"/>
+            <PlanAndExecute ID="planandexecute_1784540544282_0vzcrti" name="PlanAndExecute_151224" pose_goal="p1" cart="false" speed_factor="0.1" acceleration="0.1"/>
+            <MsgLogger ID="msglogger_1784540570037_3ff7aac" name="MsgLogger_151250" msg_log="robot reached init pose, starting cycle..."/>
+          </Sequence>
+          <Sequence ID="sequence_1784540268398_nthin3p" name="Sequence_Failure">
+            <MsgLogger ID="msglogger_1784540596803_3eh3mx1" name="MsgLogger_151316" msg_log="robot is neither at home nor at init pose, resetting tree..."/>
+            <Sleep ID="sleep_1784540603602_krkb2va" name="Sleep_151323" msec="500"/>
+            <AlwaysFailure ID="alwaysfailure_1784540605697_ulnstzz" name="AlwaysFailure_151325"/>
+          </Sequence>
+        </Fallback>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+
+</root>

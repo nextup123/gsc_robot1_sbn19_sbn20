@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root main_tree_to_execute="MainTree">
+    <BehaviorTree ID="MainTree">
+        <Sequence>
+            <Start name="start_t">
+                <Fallback>
+                    <Sequence name="main_seq">
+                        <Fallback>
+                            <Sequence>
+                                <CopyFile copy_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml" backup_dir="/home/nextup/user_config_files/planning_data/paths_backup"/>
+                                <MsgLogger msg_log="[paths.yaml] ✅ Copy Successful"/>
+                                <MsgPopup msg="[paths.yaml] ✅ Copy Successful" type="success" timeout="10"/>
+                            </Sequence>
+                            <Sequence>
+                                <MsgLogger msg_log="[paths.yaml] ❌ Copying failed"/>
+                                <MsgPopup msg="[paths.yaml] ❌ Copying failed" type="failure" timeout="0"/>
+                                <AlwaysFailure/>
+                            </Sequence>
+                        </Fallback>
+                        <Fallback>
+                            <Sequence>
+                                <CleanFile clean_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml"/>
+                                <MsgLogger msg_log="[paths.yaml] ✅ Path data cleaned Successful"/>
+                                <MsgPopup msg="[paths.yaml] ✅ Path data cleaned Successful" type="success" timeout="10"/>
+                            </Sequence>
+                            <Sequence>
+                                <MsgLogger msg_log="[paths.yaml] ❌ Path data cleaning failed"/>
+                                <MsgPopup msg="[paths.yaml] ❌ Path data cleaning failed" type="failure" timeout="0"/>
+                                <AlwaysFailure/>
+                            </Sequence>
+                        </Fallback>
+                        <Fallback>
+                            <Sequence>
+                                <CopyFields points_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml" paths_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml"/>
+                                <MsgLogger msg_log="[paths.yaml✅ Latest point file name loaded"/>
+                                <MsgPopup msg="✅ point file name loaded" type="success" timeout="10"/>
+                            </Sequence>
+                            <Sequence>
+                                <MsgLogger msg_log="[paths.yaml] ❌ point file name loading failure"/>
+                                <MsgPopup msg="❌ point file name loading failed" type="failure" timeout="0"/>
+                                <AlwaysFailure/>
+                            </Sequence>
+                        </Fallback>
+                        <Sequence name="root_plan_sequence">
+
+                        </Sequence>
+                        <Sequence name="after_plan">
+                            <Sequence>
+                                <MsgLogger msg_log="[MOTION-PLAN] ✅ All path segments planned successfully. Executed complete motion plan."/>
+                                <MsgPopup msg="✅ All Paths Planned Successfully" type="success" timeout="20"/>
+                                <PublishDataOnTopic type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="/motion_planning_bt_success"/>
+                                <Sleep msec="900"/>
+                            </Sequence>
+                            <Sequence>
+                                <MsgLogger msg_log="[MOTION-PLAN] 🛑 Initiating smooth shutdown of motion planning node for safe operation."/>
+                                <Sleep msec="100"/>
+                                <Sequence>
+                                    <MsgLogger msg_log="[VERIFICATION] verification of the points and paths yaml start"/>
+                                </Sequence>
+                                <PathVerifier name="verify_paths" tolerance="0.001" paths_file_name="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml" points_file_name="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml"/>
+                                <AutoRunPathXml input_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/paths.yaml" points_file_path="/home/nextup/NextupRobot/src/active_project_configs/planning_data/points.yaml"/>
+                                <ShutdownNode/>
+                                <PublishDataOnTopic type_of_topic="std_msgs/msg/String" msg_on_topic="stop" topic_name="/control_process_motion_bt"/>
+                                <AlwaysFailure/>
+                            </Sequence>
+                        </Sequence>
+                        <Sequence>
+                            <Sleep msec="100"/>
+                            <AlwaysFailure/>
+                        </Sequence>
+                    </Sequence>
+                    <Sequence>
+                        <MsgLogger msg_log="Resetting the tree"/>
+                        <PublishDataOnTopic type_of_topic="std_msgs/msg/String" msg_on_topic="stop" topic_name="/control_process_motion_bt"/>
+                        <PublishDataOnTopic type_of_topic="std_msgs/msg/Bool" msg_on_topic="true" topic_name="/motion_reset_bt"/>
+                        <Sleep msec="100"/>
+                        <ResetTreeTrigger/>
+                    </Sequence>
+                </Fallback>
+            </Start>
+        </Sequence>
+    </BehaviorTree>
+</root>

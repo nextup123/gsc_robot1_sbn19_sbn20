@@ -1,0 +1,496 @@
+{
+  "categories": {
+    "action": {
+      "display_name": "Action",
+      "description": "Action nodes for robot control and IO",
+      "nodes": {
+        "Action": {
+          "DoControl": {
+            "type": "leaf",
+            "attributes": {
+              "driver_id": "",
+              "do_id": "",
+              "control_name": "",
+              "type_of_control": "",
+              "expected_action": "false",
+              "push_wait": ""
+            }
+          },
+          "MsgLogger": {
+            "type": "leaf",
+            "attributes": {
+              "msg_log": ""
+            }
+          },
+          "MsgPopup": {
+            "type": "leaf",
+            "attributes": {
+              "msg": "",
+              "type": "failure",
+              "timeout": "3"
+            }
+          },
+          "PublishDataOnTopic": {
+            "type": "leaf",
+            "attributes": {
+              "type_of_topic": "std_msgs/msg/Bool",
+              "msg_on_topic": "",
+              "topic_name": ""
+            }
+          },
+          "CycleCounter": {
+            "type": "leaf",
+            "attributes": {
+              "cycle_count": ""
+            }
+          },
+          "Sleep": {
+            "type": "leaf",
+            "attributes": {
+              "msec": "500"
+            }
+          },
+          "AlwaysFailure": {
+            "type": "leaf",
+            "attributes": {}
+          },
+          "AlwaysSuccess": {
+            "type": "leaf",
+            "attributes": {}
+          },
+          "PrintMessage": {
+            "type": "leaf",
+            "attributes": {
+              "msg": ""
+            }
+          },
+          "RunwayProtection": {
+            "type": "leaf",
+            "attributes": {
+              "active": "true",
+              "j1_torque": "1000",
+              "j2_torque": "1000",
+              "j3_torque": "1000",
+              "j4_torque": "1000",
+              "j5_torque": "1000",
+              "j6_torque": "1000"
+            }
+          }
+        }
+      }
+    },
+    "blackboard": {
+      "display_name": "Blackboard",
+      "description": "Blackboard operations for data sharing",
+      "nodes": {
+        "Action": {
+          "PrintMessage": {
+            "type": "leaf",
+            "attributes": {
+              "msg": ""
+            }
+          },
+          "SetVar": {
+            "type": "leaf",
+            "attributes": {
+              "key": "",
+              "value": ""
+            }
+          },
+          "ArithmeticNode": {
+            "type": "leaf",
+            "attributes": {
+              "a": "",
+              "b": "",
+              "op": "",
+              "result": ""
+            }
+          },
+          "MathExpression": {
+            "type": "leaf",
+            "attributes": {
+              "expression": "",
+              "a": "",
+              "b": "",
+              "c": "",
+              "d": "",
+              "e": "",
+              "result": ""
+            }
+          },
+          "Modulo": {
+            "type": "leaf",
+            "attributes": {
+              "dividend": "",
+              "divisor": "",
+              "result": ""
+            }
+          },
+          "TimerStart": {
+            "type": "leaf",
+            "attributes": {
+              "key": ""
+            }
+          },
+          "TimerStop": {
+            "type": "leaf",
+            "attributes": {
+              "key": ""
+            }
+          },
+          "TimerReset": {
+            "type": "leaf",
+            "attributes": {
+              "key": ""
+            }
+          },
+          "PublishBlackboard": {
+            "type": "leaf",
+            "attributes": {
+              "topic": "",
+              "key": ""
+            }
+          },
+          "SubscribeToBlackboard": {
+            "type": "leaf",
+            "attributes": {
+              "topic": "",
+              "key": ""
+            }
+          },
+          "AddPilzPoint": {
+            "type": "leaf",
+            "attributes": {
+              "point_name": "",
+              "speed": "",
+              "output_key": ""
+            }
+          }
+        },
+        "Condition": {
+          "Compare": {
+            "type": "leaf",
+            "attributes": {
+              "left": "",
+              "right": "",
+              "op": "",
+              "type": ""
+            }
+          },
+          "WaitForBlackboardChange": {
+            "type": "leaf",
+            "attributes": {
+              "key": ""
+            }
+          }
+        },
+        "Control": {
+          "MakePilzMotion": {
+            "type": "wrapper",
+            "attributes": {
+              "output_key": ""
+            },
+            "children": []
+          }
+        },
+        "Decorator": {
+          "RunOnce": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          }
+        }
+      }
+    },
+    "condition": {
+      "display_name": "Condition",
+      "description": "Condition nodes for state checking",
+      "nodes": {
+        "Condition": {
+          "IsAtPose": {
+            "type": "leaf",
+            "attributes": {
+              "target_name": ""
+            }
+          },
+          "DIControl": {
+            "type": "leaf",
+            "attributes": {
+              "driver_id": "",
+              "di_id": "",
+              "status_name": "",
+              "expected_status": "false",
+              "wait_time": ""
+            }
+          },
+          "CheckBoolTopic": {
+            "type": "leaf",
+            "attributes": {
+              "topic": "/",
+              "data": "true",
+              "timeout_ms": "3000",
+              "freshness_ms": "500"
+            }
+          },
+          "CheckTopic": {
+            "type": "leaf",
+            "attributes": {
+              "topic": "/",
+              "msg_type": "bool",
+              "data": "true",
+              "timeout_ms": "3000",
+              "freshness_ms": "500"
+            }
+          }
+        }
+      }
+    },
+    "control": {
+      "display_name": "Control",
+      "description": "Control flow nodes",
+      "nodes": {
+        "Control": {
+          "Sequence": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "AlternatingSelector": {
+            "type": "wrapper",
+            "attributes": {
+              "mode": ""
+            },
+            "children": []
+          },
+          "Fallback": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Sequence",
+                "name": "Sequence1"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence2"
+              }
+            ]
+          },
+          "WhileDoElse": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Sequence",
+                "name": "Sequence1"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence2"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence3"
+              }
+            ]
+          },
+          "Parallel": {
+            "type": "wrapper",
+            "attributes": {
+              "success_threshold": "2",
+              "failure_threshold": "1"
+            },
+            "children": [
+              {
+                "type": "Sequence",
+                "name": "Sequence1"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence2"
+              }
+            ]
+          },
+          "IfThenElse": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": [
+              {
+                "type": "Sequence",
+                "name": "Sequence1"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence2"
+              },
+              {
+                "type": "Sequence",
+                "name": "Sequence3"
+              }
+            ]
+          },
+          "SequenceStar": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "ReactiveFallback": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "ReactiveSequence": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          }
+        }
+      }
+    },
+    "decorator": {
+      "display_name": "Decorator",
+      "description": "Decorator nodes for modifying child behaviour",
+      "nodes": {
+        "Decorator": {
+          "DelayTicks": {
+            "type": "wrapper",
+            "attributes": {
+              "ticks": ""
+            },
+            "children": []
+          },
+          "GeneralOneShot": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "WaitUntilTrue": {
+            "type": "wrapper",
+            "attributes": {
+              "timeout_ms": "3000",
+              "check_interval_ms": "100"
+            },
+            "children": []
+          },
+          "Inverter": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "Timeout": {
+            "type": "wrapper",
+            "attributes": {
+              "msec": "1000"
+            },
+            "children": []
+          },
+          "KeepRunningUntilFailure": {
+            "type": "wrapper",
+            "attributes": {},
+            "children": []
+          },
+          "Repeat": {
+            "type": "wrapper",
+            "attributes": {
+              "num_cycles": "1"
+            },
+            "children": []
+          },
+          "Delay": {
+            "type": "wrapper",
+            "attributes": {
+              "delay_msec": "1000"
+            },
+            "children": []
+          },
+          "RetryUntilSuccessful": {
+            "type": "wrapper",
+            "attributes": {
+              "num_attempts": "3"
+            },
+            "children": []
+          },
+          "ForceSuccess": {
+            "type": "wrapper",
+            "attributes": {}
+          },
+          "ForceFailure": {
+            "type": "wrapper",
+            "attributes": {}
+          }
+        }
+      }
+    },
+    "motion": {
+      "display_name": "Motion",
+      "description": "Robot motion planning and execution",
+      "nodes": {
+        "Action": {
+          "PilzCircPlanner": {
+            "type": "leaf",
+            "attributes": {
+              "start_name": "",
+              "goal_name": "",
+              "interim_name": "",
+              "velocity": "",
+              "acceleration": ""
+            }
+          },
+          "PilzFramePlanner": {
+            "type": "leaf",
+            "attributes": {
+              "frame": "",
+              "planner_id": "",
+              "max_vel": "0.1",
+              "max_acc": "0.1",
+              "x": "0.0",
+              "y": "0.0",
+              "z": "0.0",
+              "r": "0.0",
+              "p": "0.0",
+              "w": "0.0"
+            }
+          },
+          "PilzPointsPlanner": {
+            "type": "leaf",
+            "attributes": {
+              "pose_goal": "",
+              "planner_id": "PTP",
+              "speed_factor": "0.5",
+              "acceleration": "0.5"
+            }
+          },
+          "PlanAndExecute": {
+            "type": "leaf",
+            "attributes": {
+              "pose_goal": "",
+              "cart": "false",
+              "speed_factor": "0.1",
+              "acceleration": "0.1"
+            }
+          },
+          "RunPath": {
+            "type": "leaf",
+            "attributes": {
+              "path_name": "",
+              "speed_scale": ""
+            }
+          },
+          "WeavingMotionPlanner": {
+            "type": "leaf",
+            "attributes": {
+              "start_weld": "",
+              "end_weld": "",
+              "weave_shape": "sine",
+              "amplitude_mm": "1.0",
+              "weave_pitch_mm": "1.5",
+              "forward_speed": "0.02",
+              "vel_scale": "0.15",
+              "accel_scale": "0.15"
+            }
+          }
+        }
+      }
+    }
+  }
+}

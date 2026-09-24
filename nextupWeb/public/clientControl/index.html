@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Control</title>
+    <link rel="stylesheet" href="../media/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/slider.css" />
+    <link rel="stylesheet" href="style/di_status.css">
+    <link rel="stylesheet" href="style/do_control.css">
+    <link rel="stylesheet" href="style/setup_robot_cnc.css">
+    <link rel="stylesheet" href="style/cycle_counters.css">
+    <link rel="stylesheet" href="style/cycle_times.css">
+    <link rel="stylesheet" href="style/robot_control.css">
+    <link rel="stylesheet" href="style/countdown.css">
+    <link rel="stylesheet" href="style/emergency_manager.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="mac-header">
+            <div class="traffic-lights">
+                <span class="red"></span>
+                <span class="yellow"></span>
+                <span class="green"></span>
+            </div>
+            <h1>CLIENT CONTROL</h1>
+            <button id="emergency-config-btn" title="Emergency Manager Config">
+                <i class="fa-solid fa-triangle-exclamation"></i> Emergency Config
+            </button>
+
+
+
+        </header>
+
+        <!-- Main layout -->
+        <main class="main-layout">
+            <!-- Left Vertical Division -->
+            <div class="left-division">
+                <!-- Top Section -->
+                <section class="panel setup-robot-cnc" id="setup-robot-cnc">
+                    <!-- <h2>Setup Robot and CNC</h2> -->
+
+                    <!-- MODE SELECTION -->
+                    <div class="mode-selection">
+                        <div class="mode-header">
+                            <span class="section-title">Mode Selection</span>
+                        </div>
+
+                        <div class="mode-buttons">
+                            <button id="mode-low" class="mode-btn active">Low Speed Test</button>
+                            <button id="mode-high" class="mode-btn">High Speed Test</button>
+                            <button id="mode-production" class="mode-btn">Production</button>
+                        </div>
+
+                        <div class="speed-slider-container">
+                            <label for="speed-slider" style="font-weight: lighter; font-size: 14px; 
+                            border: 1px solid #c6c7c09d; border-radius: 10px; padding: 2px 8px;">
+                                Speed Scale : <span id="speed-value">0.20</span></label>
+                            <input type="range" id="speed-slider" min="0.01" max="0.20" step="0.01" value="0.20">
+                        </div>
+                    </div>
+
+                    <!-- CNC SELECTION -->
+                    <div class="cnc-selection">
+                        <div class="cnc-header">
+                            <span class="section-title">CNC Selection</span>
+                        </div>
+                        <div class="cnc-buttons">
+                            <button class="cnc-btn" id="cnc1">cnc1</button>
+                            <button class="cnc-btn" id="cnc2">cnc2</button>
+                            <button class="cnc-btn" id="cnc-both">both</button>
+                        </div>
+                    </div>
+                    <!-- CYCLE COUNTERS SECTION -->
+                    <div class="cycle-counters">
+                        <div class="cycle-header">
+                            <span class="section-title">Cycle Counters</span>
+                            <button id="reset-total" class="reset-btn" title="Reset Total">
+                                <i class="fa-solid fa-rotate"></i>
+                            </button>
+                        </div>
+
+                        <div class="cycle-grid">
+                            <div class="cycle-box">
+                                <span class="cycle-label">Current Operation</span>
+                                <span id="current-operation" class="cycle-value">0</span>
+                            </div>
+                            <div class="cycle-box">
+                                <span class="cycle-label">Last Session</span>
+                                <span id="last-session" class="cycle-value">0</span>
+                            </div>
+                            <div class="cycle-box">
+                                <span class="cycle-label">Total Operation</span>
+                                <span id="total-operation" class="cycle-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CYCLE TIME ANALYTICS SECTION -->
+                    <div class="cycle-times">
+                        <div class="cycle-times-header">
+                            <span class="section-title">Cycle Time Analytics</span>
+                        </div>
+
+                        <div class="cycle-times-grid">
+                            <div class="cycle-time-box">
+                                <span class="cycle-label">Last Cycle Time</span>
+                                <span id="last-cycle-time" class="cycle-value small">--</span>
+                            </div>
+                            <div class="cycle-time-box">
+                                <span class="cycle-label">5 Cycle Avg</span>
+                                <span id="avg-5" class="cycle-value small">--</span>
+                            </div>
+                            <div class="cycle-time-box">
+                                <span class="cycle-label">15 Cycle Avg</span>
+                                <span id="avg-15" class="cycle-value small">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </section>
+
+                <!-- Bottom Section -->
+                <!-- ROBOT CONTROL SECTION -->
+                <section class="panel robot-control" id="robot-control">
+                    <div class="robot-control-header">
+                        <span class="section-title" style="font-size: larger;text-align: left;">Robot Control</span>
+                        <div class="process-toggle" title="Process Control">
+                            <div class="process-toggle-thumb"></div>
+                        </div>
+
+                        <!-- PROCESS STATUS INDICATOR -->
+                        <div class="process-status-indicator" title="Process Control BT Status"></div>
+                        <button class="settings-btn" onclick="openOverrideModal()">⚙️</button>
+
+                    </div>
+
+                    <div class="robot-control-buttons">
+                        <button id="start-btn" class="control-btn start">START</button>
+                        <button id="stop-btn" class="control-btn exit">STOP</button>
+                        <button id="exit-btn" class="control-btn runonce">EXIT </button>
+                    </div>
+                    <svg height="2" width="100%" style="margin-top:0.2rem;margin-bottom:0.2rem;">
+                        <line x1="0" y1="0" x2="100%" y2="0" style="stroke:#a5a5a5; stroke-width:2;" />
+                    </svg>
+                    <div class="card" style="display: block;">
+                        <div class="card-header">
+                            <span class="card-title">speed scale</span>
+                            <div style="display:flex;align-items:baseline;gap:5px">
+                                <span class="value-big" id="val-display">100</span>
+                                <span class="value-max">/ 100</span>
+                            </div>
+                        </div>
+
+                        <div class="slider-area" id="slider-area">
+                            <div class="track-bg"></div>
+                            <div class="track-fill" id="track-fill"></div>
+                            <div class="thumb" id="thumb" tabindex="0" role="slider" aria-label="Speed scale"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Right Vertical Division -->
+            <div class="right-division">
+                <div style="display: none;flex-direction: row; gap: 1rem;">
+                    <section class="panel joints-status" style="display: block;">
+                        <div class="section-header-do">
+                            <span style="font-weight: 700; font-size: larger;"> ROBOT STATUS</span>
+                            <div id="joint-overall-indicator" class="indicator red" title="Offline"></div>
+                        </div>
+
+                        <div class="joint-grid">
+                            <div class="joint-cell">
+                                <span>Joint 1</span>
+                                <div class="indicator red" id="joint1"></div>
+                            </div>
+                            <div class="joint-cell">
+                                <span>Joint 2</span>
+                                <div class="indicator red" id="joint2"></div>
+                            </div>
+                            <div class="joint-cell">
+                                <span>Joint 3</span>
+                                <div class="indicator red" id="joint3"></div>
+                            </div>
+                            <div class="joint-cell">
+                                <span>Joint 4</span>
+                                <div class="indicator red" id="joint4"></div>
+                            </div>
+                            <div class="joint-cell">
+                                <span>Joint 5</span>
+                                <div class="indicator red" id="joint5"></div>
+                            </div>
+                            <div class="joint-cell">
+                                <span>Joint 6</span>
+                                <div class="indicator red" id="joint6"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="card" style="display: block;">
+                        <div class="card-header">
+                            <span class="card-title">speed scale</span>
+                            <div style="display:flex;align-items:baseline;gap:5px">
+                                <span class="value-big" id="val-display">100</span>
+                                <span class="value-max">/ 100</span>
+                            </div>
+                        </div>
+
+                        <div class="slider-area" id="slider-area">
+                            <div class="track-bg"></div>
+                            <div class="track-fill" id="track-fill"></div>
+                            <div class="thumb" id="thumb" tabindex="0" role="slider" aria-label="Speed scale"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- DI STATUS SECTION -->
+                <section class="panel di-status" id="di-status">
+                    <div class="section-header-do">
+                        <span style="font-weight: 700; font-size: larger;"> DI STATUS</span>
+                        <span class="item-counter" id="di-counter">(0 items)</span>
+
+                        <button id="refresh-di" class="refresh-btn">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                    <div id="di-container" class="di-container"></div>
+                </section>
+
+                <!-- DO CONTROL SECTION -->
+                <section class="panel do-control" id="do-control">
+                    <div class="section-header-do">
+                        <span style="font-weight: 700; font-size: larger;"> DO CONTROL</span>
+                        <span class="item-counter" id="do-counter">(0 items)</span>
+
+                        <button id="refresh-do" class="refresh-btn">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                    <div id="do-container" class="do-container"></div>
+                </section>
+
+            </div>
+
+        </main>
+    </div>
+
+    <div id="start-blocked-modal" class="modal">
+        <div class="modal-content">
+            <h3>🚫 Robot Start Blocked</h3>
+            <ul id="start-blocked-list"></ul>
+            <button class="modal-button" onclick="closeStartBlockedModal()">OK</button>
+        </div>
+    </div>
+
+    <div id="override-modal" class="modal">
+        <div class="modal-content">
+            <h3>⚙️ Start Condition Override</h3>
+
+            <label>
+                <input type="checkbox" id="override-enable">
+                Enable Override Mode
+            </label>
+
+            <hr>
+
+            <label>
+                <input type="checkbox" id="override-joints">
+                All Joints Operational
+            </label>
+
+            <label>
+                <input type="checkbox" id="override-fault">
+                CNC Fault Active
+            </label>
+
+            <label>
+                <input type="checkbox" id="override-auto">
+                CNC Auto Mode
+            </label>
+
+            <div style="margin-top:15px;">
+                <button onclick="applyOverrides()">Apply</button>
+                <button onclick="closeOverrideModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div id="rc_overlay">
+        <div class="rc_card">
+            <svg class="rc_ring" viewBox="0 0 376 376">
+                <circle class="rc_ring_bg" cx="188" cy="188" r="186" />
+                <circle class="rc_ring_progress" cx="188" cy="188" r="186" id="rc_ringPath" />
+            </svg>
+            <div class="rc_subtitle">Robot Starting</div>
+            <div class="rc_dots"></div>
+            <div id="rc_number"></div>
+            <div class="rc_footer" id="rc_footer">Please stand clear</div>
+        </div>
+    </div>
+
+
+       <!-- Emergency Manager Modal -->
+    <div id="emergency-modal-overlay">
+        <div class="em-modal-card">
+            <div class="em-modal-header">
+                <h2 class="em-modal-title">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Emergency Manager Config
+                </h2>
+                <button id="emergency-modal-close">×</button>
+            </div>
+ 
+            <!-- Emergency DI -->
+            <label class="em-section-label">Emergency DI</label>
+            <div class="em-di-row">
+                <div class="em-di-col">
+                    <label class="em-field-label">Driver (1–6)</label>
+                    <select id="em-driver" class="em-select">
+                        <option value="1">Driver 1</option>
+                        <option value="2">Driver 2</option>
+                        <option value="3">Driver 3</option>
+                        <option value="4">Driver 4</option>
+                        <option value="5">Driver 5</option>
+                        <option value="6">Driver 6</option>
+                    </select>
+                </div>
+                <div class="em-di-col">
+                    <label class="em-field-label">DI (1–5)</label>
+                    <select id="em-di" class="em-select">
+                        <option value="1">DI 1</option>
+                        <option value="2">DI 2</option>
+                        <option value="3">DI 3</option>
+                        <option value="4">DI 4</option>
+                        <option value="5">DI 5</option>
+                    </select>
+                </div>
+            </div>
+ 
+            <!-- Bool Topics -->
+            <div class="em-topics-header">
+                <label class="em-section-label" style="margin:0;">Bool Topics</label>
+                <button id="em-add-topic">+ Add</button>
+            </div>
+            <div id="em-topics-list"></div>
+            <p id="em-topics-limit">Max 5 topics</p>
+ 
+            <!-- Footer -->
+            <div class="em-modal-footer">
+                <button id="emergency-modal-cancel">Cancel</button>
+                <button id="emergency-modal-save">Save &amp; Reload</button>
+            </div>
+ 
+            <p id="em-status"></p>
+        </div>
+    </div>
+
+
+
+    <script src="script/script.js"></script>
+    <script src="script/slider.js"></script>
+    <script src="script/countdown.js"></script>
+    <script src="script/emergency_manager.js"></script>
+    <!-- <script src="script/joint_status.js"></script>
+    <script src="script/di_status.js"></script>
+    <script src="script/do_control.js"></script>
+    <script src="script/setup_robot_cnc.js"></script>
+    <script src="script/cycle_counters.js"></script>
+    <script src="script/cycle_times.js"></script>
+    <script src="script/robot_control.js"></script>
+    <script src="script/robot_control_popup.js"></script> -->
+
+</body>
+
+</html>

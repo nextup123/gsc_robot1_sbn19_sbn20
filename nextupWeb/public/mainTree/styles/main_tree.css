@@ -1,0 +1,156 @@
+
+/* 🌿 Title background box */
+.main_tree_title_box {
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #8e8e93;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ✅ Color states */
+.main_tree_title_box.active {
+  background-color: #34c759;
+  /* macOS green */
+}
+
+.main_tree_title_box.inactive {
+  background-color: #8e8e93;
+  /* macOS gray */
+}
+
+
+
+
+
+.btn-secondary {
+  position: absolute;
+  background-color: #7130da;
+  width: 100px;
+  left: 170px;
+}
+.xml-btn {
+  width: fit-content;
+  min-width: fit-content;
+  padding: 4px 8px;   /* adjust as needed */
+  white-space: nowrap; /* prevents text wrapping */
+  background-color: #49494bd7;
+}
+
+/* ================= MAIN TREE XML MODAL ================= */
+
+.main_tree_modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+}
+
+.main_tree_modal-content {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: main_tree_modalSlideIn 0.25s ease-out;
+}
+
+.main_tree_xml-modal-content {
+  max-width: 1000px;
+}
+
+/* Header */
+.main_tree_modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main_tree_modal-title {
+  font-weight: 600;
+  font-size: 20px;
+  color: #1d1d1f;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Font + Close Controls */
+.main_tree_font-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.main_tree_btn-font {
+  background: #7c9ad5;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.main_tree_btn-font:hover {
+  background: #5672a9;
+}
+
+.main_tree_modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.main_tree_modal-close:hover {
+  color: #ef4444;
+}
+
+/* Body */
+.main_tree_modal-body {
+  margin: 16px 0;
+}
+
+/* XML Viewer */
+.main_tree_xml-content {
+  background: #15141a;
+  color: #f9f3f3;
+  padding: 14px;
+  border-radius: 10px;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.35;
+  max-height: 62vh;
+  min-height: 52vh;
+  overflow: auto;
+  white-space: pre;
+}
+
+/* Footer */
+.main_tree_modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Animation */
+@keyframes main_tree_modalSlideIn {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

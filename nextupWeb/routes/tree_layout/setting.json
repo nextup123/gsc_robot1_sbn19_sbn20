@@ -1,0 +1,138 @@
+{
+  "name": "setting",
+  "nodes": [
+    {
+      "id": "home",
+      "label": "home",
+      "x": 0,
+      "y": -156
+    },
+    {
+      "id": "point2",
+      "label": "point2",
+      "x": 0,
+      "y": 80,
+      "metadata": {
+        "coordinates": [
+          0.9223717044348828,
+          -0.19910202093681773
+        ]
+      }
+    },
+    {
+      "id": "point3",
+      "label": "point3",
+      "x": 0,
+      "y": -80,
+      "metadata": {
+        "coordinates": [
+          0.9179884396674494,
+          -0.0803682882090717
+        ]
+      }
+    },
+    {
+      "id": "point4",
+      "label": "point4",
+      "x": 0,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          1.5745997466860442,
+          -0.17609231580079468
+        ]
+      }
+    },
+    {
+      "id": "point5",
+      "label": "point5",
+      "x": 0,
+      "y": 160,
+      "metadata": {
+        "coordinates": [
+          1.5471490477597611,
+          -0.09974087169549335
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "home",
+      "to": "point2",
+      "label": "home_point2",
+      "type": "joint",
+      "waypoints": 17,
+      "coordinates": [
+        0.9223717044348828,
+        -0.19910202093681773
+      ]
+    },
+    {
+      "from": "point2",
+      "to": "point3",
+      "label": "point2_point3",
+      "type": "cartesian",
+      "waypoints": 14,
+      "coordinates": [
+        0.9179884396674494,
+        -0.0803682882090717
+      ]
+    },
+    {
+      "from": "point3",
+      "to": "point2",
+      "label": "point3_point2",
+      "type": "cartesian",
+      "waypoints": 14,
+      "coordinates": [
+        0.92245223909707,
+        -0.19900716639913726
+      ]
+    },
+    {
+      "from": "point2",
+      "to": "point4",
+      "label": "point2_point4",
+      "type": "cartesian",
+      "waypoints": 15,
+      "coordinates": [
+        1.5745997466860442,
+        -0.17609231580079468
+      ]
+    },
+    {
+      "from": "point4",
+      "to": "point5",
+      "label": "point4_point5",
+      "type": "cartesian",
+      "waypoints": 13,
+      "coordinates": [
+        1.5471490477597611,
+        -0.09974087169549335
+      ]
+    },
+    {
+      "from": "point5",
+      "to": "point4",
+      "label": "point5_point4",
+      "type": "cartesian",
+      "waypoints": 13,
+      "coordinates": [
+        1.574599744548031,
+        -0.17609207291533868
+      ]
+    },
+    {
+      "from": "point4",
+      "to": "home",
+      "label": "point4_home",
+      "type": "joint",
+      "waypoints": 22,
+      "coordinates": [
+        0.00007766023906891145,
+        0.00008360098470001068
+      ]
+    }
+  ]
+}

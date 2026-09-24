@@ -1,0 +1,3977 @@
+{
+  "@attributes": {
+    "BTCPP_format": "4",
+    "_uid": "uid_5ea46ef13a47_mhsstpja"
+  },
+  "@children": [
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "complete_s_run_path",
+          "name": "complete_run_path_5739",
+          "_uid": "uid_0c33b2391cfc_mhsstpja"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point_main-point_6789",
+                "_uid": "uid_e923a908173d_mhsstpja"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6527",
+                      "_uid": "uid_794acec6a6f3_mhsstpja"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point_main-point_1981",
+                            "_uid": "uid_e5685ccfce14_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point_main-point",
+                                  "ID": "homing-point_main-point_8986",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_89498696850a_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point_main-point_2185",
+                                  "msg_log": "homing-point_main-point success",
+                                  "_uid": "uid_2f3f37e5d71c_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point_main-point_5823",
+                            "_uid": "uid_3163c3fb9b93_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point_main-point_6715",
+                                  "msg_log": "homing-point_main-point failed",
+                                  "_uid": "uid_d3c185fbbbcb_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point_main-point_9030",
+                                  "msg": "homing-point_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_b5d30adc3aa4_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_5bff82384f16_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_go-inside-left-station_7507",
+                "_uid": "uid_795cae2aba0a_mhsstpja"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8140",
+                      "_uid": "uid_df86ed769c33_mhsstpja"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_go-inside-left-station_8642",
+                            "_uid": "uid_271ba117442b_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_go-inside-left-station",
+                                  "ID": "main-point_go-inside-left-station_5492",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_4cdeca983298_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_go-inside-left-station_7035",
+                                  "msg_log": "main-point_go-inside-left-station success",
+                                  "_uid": "uid_34690fd4dbbd_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_go-inside-left-station_5319",
+                            "_uid": "uid_5e3bae68ded2_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_go-inside-left-station_3083",
+                                  "msg_log": "main-point_go-inside-left-station failed",
+                                  "_uid": "uid_0ad94ddbccd2_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_go-inside-left-station_5798",
+                                  "msg": "main-point_go-inside-left-station path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_cb36bbd8e62c_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_5d02cc6509fb_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_go-inside-left-station_pick-point-glass_2213",
+                "_uid": "uid_870e30786540_mhsstpja"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8663",
+                      "_uid": "uid_8842e7ffabd7_mhsstpja"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_go-inside-left-station_pick-point-glass_3352",
+                            "_uid": "uid_14788298289d_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "go-inside-left-station_pick-point-glass",
+                                  "ID": "go-inside-left-station_pick-point-glass_8746",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_59f275b161c4_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_go-inside-left-station_pick-point-glass_1013",
+                                  "msg_log": "go-inside-left-station_pick-point-glass success",
+                                  "_uid": "uid_49209d99a1f6_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_go-inside-left-station_pick-point-glass_2489",
+                            "_uid": "uid_dc3939998f8a_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_go-inside-left-station_pick-point-glass_7357",
+                                  "msg_log": "go-inside-left-station_pick-point-glass failed",
+                                  "_uid": "uid_0c7b34cff2ed_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_go-inside-left-station_pick-point-glass_3450",
+                                  "msg": "go-inside-left-station_pick-point-glass path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_bd3a5b916db9_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_b06a742f3610_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_pick-point-glass_main-point_7007",
+                "_uid": "uid_305c2febe821_mhsstpja"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8228",
+                      "_uid": "uid_8ba4cf052bd1_mhsstpja"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_pick-point-glass_main-point_5947",
+                            "_uid": "uid_17a2e90e5c7a_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "pick-point-glass_main-point",
+                                  "ID": "pick-point-glass_main-point_8009",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_91274e3f9741_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_pick-point-glass_main-point_8444",
+                                  "msg_log": "pick-point-glass_main-point success",
+                                  "_uid": "uid_c66ff405e088_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_pick-point-glass_main-point_1254",
+                            "_uid": "uid_13e375f171a1_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_pick-point-glass_main-point_6488",
+                                  "msg_log": "pick-point-glass_main-point failed",
+                                  "_uid": "uid_3714f1745639_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_pick-point-glass_main-point_3262",
+                                  "msg": "pick-point-glass_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_9e2d154f3eb8_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_74e6d6449c34_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_after-pickup_9071",
+                "_uid": "uid_3f3a854ae7c3_mhsstpja"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_3134",
+                      "_uid": "uid_37c9138c7050_mhsstpja"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_after-pickup_8977",
+                            "_uid": "uid_fa7c2e053298_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_after-pickup",
+                                  "ID": "main-point_after-pickup_9475",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_dffd58cadb71_mhsstpja"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_after-pickup_6679",
+                                  "msg_log": "main-point_after-pickup success",
+                                  "_uid": "uid_d10594a06f3e_mhsstpja"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_after-pickup_7359",
+                            "_uid": "uid_8691873bea37_mhsstpja"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_after-pickup_3262",
+                                  "msg_log": "main-point_after-pickup failed",
+                                  "_uid": "uid_725bc5ea0bad_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_after-pickup_5254",
+                                  "msg": "main-point_after-pickup path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_d6bc5aa88463_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_54867b21a656_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_after-pickup_abover-convery_2729",
+                "_uid": "uid_5caf65938b9b_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6591",
+                      "_uid": "uid_c3b36322244e_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_after-pickup_abover-convery_9949",
+                            "_uid": "uid_c43a28813bb1_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "after-pickup_abover-convery",
+                                  "ID": "after-pickup_abover-convery_7579",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_22aaa058388f_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_after-pickup_abover-convery_7017",
+                                  "msg_log": "after-pickup_abover-convery success",
+                                  "_uid": "uid_6c3545e16019_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_after-pickup_abover-convery_8142",
+                            "_uid": "uid_88a900406e5e_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_after-pickup_abover-convery_5636",
+                                  "msg_log": "after-pickup_abover-convery failed",
+                                  "_uid": "uid_484081bb3583_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_after-pickup_abover-convery_4289",
+                                  "msg": "after-pickup_abover-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_5e0800545530_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_bcdb94e1d563_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_abover-convery_main-point_2362",
+                "_uid": "uid_c63fd8a4606b_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2531",
+                      "_uid": "uid_dd3ca80ec1f0_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_abover-convery_main-point_8099",
+                            "_uid": "uid_6393ad749a89_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "abover-convery_main-point",
+                                  "ID": "abover-convery_main-point_1380",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_949fa24995f4_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_abover-convery_main-point_8341",
+                                  "msg_log": "abover-convery_main-point success",
+                                  "_uid": "uid_6eb54208c382_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_abover-convery_main-point_7133",
+                            "_uid": "uid_15f11102184b_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_abover-convery_main-point_2027",
+                                  "msg_log": "abover-convery_main-point failed",
+                                  "_uid": "uid_f7bbc142547b_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_abover-convery_main-point_4664",
+                                  "msg": "abover-convery_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_0871c0da765f_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_e6589f4792aa_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_place-glass-convery_8946",
+                "_uid": "uid_d93916f759b2_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6492",
+                      "_uid": "uid_c477a822f0f3_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_place-glass-convery_4404",
+                            "_uid": "uid_d9654d5fdc08_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_place-glass-convery",
+                                  "ID": "main-point_place-glass-convery_5791",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_e903335fbc34_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_place-glass-convery_4649",
+                                  "msg_log": "main-point_place-glass-convery success",
+                                  "_uid": "uid_af3084ea3953_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point_main-point_2098",
+                            "_uid": "uid_9e8179e36b5c_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point_main-point_4695",
+                                  "msg_log": "homing-point_main-point failed",
+                                  "_uid": "uid_b4e5172b345e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point_main-point_7875",
+                                  "msg": "homing-point_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_31862843c067_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_999c580c487c_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_place-glass-convery_2281",
+                            "_uid": "uid_54d015f78263_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_place-glass-convery_3623",
+                                  "msg_log": "main-point_place-glass-convery failed",
+                                  "_uid": "uid_0445058d6d06_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_place-glass-convery_2028",
+                                  "msg": "main-point_place-glass-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_6a8dc6d6ffd7_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_7bd30142d290_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_place-glass-convery_p8_4435",
+                "_uid": "uid_848335db9839_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_4026",
+                      "_uid": "uid_66a510b56a04_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_place-glass-convery_p8_1377",
+                            "_uid": "uid_873822ebdf12_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "place-glass-convery_p8",
+                                  "ID": "place-glass-convery_p8_1932",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_86e93c3975e0_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_place-glass-convery_p8_7889",
+                                  "msg_log": "place-glass-convery_p8 success",
+                                  "_uid": "uid_bd7a25aae96d_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_place-glass-convery_p8_6024",
+                            "_uid": "uid_59e5cf8bcfb1_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_place-glass-convery_p8_5821",
+                                  "msg_log": "place-glass-convery_p8 failed",
+                                  "_uid": "uid_0034442c3d84_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_place-glass-convery_p8_5045",
+                                  "msg": "place-glass-convery_p8 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_50939e5b5b60_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_a558c4a46dda_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p8_main-point_9843",
+                "_uid": "uid_71d0f5d4d2de_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2367",
+                      "_uid": "uid_8dfd846a4693_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p8_main-point_3331",
+                            "_uid": "uid_df27f09385a8_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p8_main-point",
+                                  "ID": "p8_main-point_2237",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_ce970ecbc0e3_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p8_main-point_2098",
+                                  "msg_log": "p8_main-point success",
+                                  "_uid": "uid_f3ce48173a47_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p8_main-point_5487",
+                            "_uid": "uid_e5ff6abae2e9_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p8_main-point_3836",
+                                  "msg_log": "p8_main-point failed",
+                                  "_uid": "uid_643da920652b_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p8_main-point_6793",
+                                  "msg": "p8_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_07e88361df16_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_fa18cce5b780_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_p9_6299",
+                "_uid": "uid_5f0f2e01823a_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8953",
+                      "_uid": "uid_0668e105676a_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_p9_3161",
+                            "_uid": "uid_c1abe82143a6_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_p9",
+                                  "ID": "main-point_p9_5383",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_7ac887d48c4e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_p9_5019",
+                                  "msg_log": "main-point_p9 success",
+                                  "_uid": "uid_1db6ae4bded9_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_p9_8990",
+                            "_uid": "uid_1d24af5fc0ec_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_p9_2720",
+                                  "msg_log": "main-point_p9 failed",
+                                  "_uid": "uid_75cb2ef96cb1_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_p9_1506",
+                                  "msg": "main-point_p9 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_2fe0244a7df8_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_87ec355f2c95_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p9_homing-point-2_6114",
+                "_uid": "uid_759c8bb474ca_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2857",
+                      "_uid": "uid_b6d14feec039_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p9_homing-point-2_9696",
+                            "_uid": "uid_11f95d854c47_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p9_homing-point-2",
+                                  "ID": "p9_homing-point-2_6165",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_93be296ba7ed_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p9_homing-point-2_1678",
+                                  "msg_log": "p9_homing-point-2 success",
+                                  "_uid": "uid_3014ab338e1b_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p9_homing-point-2_1210",
+                            "_uid": "uid_338a92cb7ff7_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p9_homing-point-2_4512",
+                                  "msg_log": "p9_homing-point-2 failed",
+                                  "_uid": "uid_535dd3f40747_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p9_homing-point-2_4935",
+                                  "msg": "p9_homing-point-2 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_6d9d35146132_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_1fed39147390_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point-2_main-point_6029",
+                "_uid": "uid_1b91874b6c59_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_3437",
+                      "_uid": "uid_b05674da3c0e_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point-2_main-point_7321",
+                            "_uid": "uid_893a4f9c50a2_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point-2_main-point",
+                                  "ID": "homing-point-2_main-point_2662",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_9092241ea913_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point-2_main-point_3169",
+                                  "msg_log": "homing-point-2_main-point success",
+                                  "_uid": "uid_d874c750e450_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point-2_main-point_3200",
+                            "_uid": "uid_9012f16c1ae3_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point-2_main-point_7545",
+                                  "msg_log": "homing-point-2_main-point failed",
+                                  "_uid": "uid_78001be7a855_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point-2_main-point_7577",
+                                  "msg": "homing-point-2_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_99c2c8f235c0_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_5a0a73a90359_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "homing-point_main-point",
+          "name": "homing-point_main-point_4489",
+          "_uid": "uid_217edb55155d_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point_main-point_9888",
+                "_uid": "uid_52eeec2e4f16_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_7978",
+                      "_uid": "uid_3908dd7f6525_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point_main-point_1487",
+                            "_uid": "uid_3f8c8d8eab63_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point_main-point",
+                                  "ID": "homing-point_main-point_6332",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_74e895933cb4_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point_main-point_1121",
+                                  "msg_log": "homing-point_main-point success",
+                                  "_uid": "uid_93703ecf61a2_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point_main-point_2098",
+                            "_uid": "uid_e25734120c25_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point_main-point_4695",
+                                  "msg_log": "homing-point_main-point failed",
+                                  "_uid": "uid_482250e98b96_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point_main-point_7875",
+                                  "msg": "homing-point_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_9929114a0913_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_92abb61236aa_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "main-point_go-inside-left-station",
+          "name": "main-point_go-inside-left-station_8426",
+          "_uid": "uid_3ed8eca1da4b_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_go-inside-left-station_1997",
+                "_uid": "uid_0e6a5846f5f6_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6222",
+                      "_uid": "uid_cb2aa36c0527_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_go-inside-left-station_7277",
+                            "_uid": "uid_7ae125da1f44_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_go-inside-left-station",
+                                  "ID": "main-point_go-inside-left-station_3996",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_5783027839da_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_go-inside-left-station_7834",
+                                  "msg_log": "main-point_go-inside-left-station success",
+                                  "_uid": "uid_f06117d5f89a_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_go-inside-left-station_5079",
+                            "_uid": "uid_5ded2390f975_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_go-inside-left-station_5105",
+                                  "msg_log": "main-point_go-inside-left-station failed",
+                                  "_uid": "uid_73cb13d0f07e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_go-inside-left-station_1108",
+                                  "msg": "main-point_go-inside-left-station path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_dc918ed10c3a_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_ce834e548fce_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "go-inside-left-station_pick-point-glass",
+          "name": "go-inside-left-station_pick-point-glass_3918",
+          "_uid": "uid_6ac040e76ace_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_go-inside-left-station_pick-point-glass_4164",
+                "_uid": "uid_39f7b0e7b9fc_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_7084",
+                      "_uid": "uid_950aa0c81813_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_go-inside-left-station_pick-point-glass_4559",
+                            "_uid": "uid_f829b097d49c_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "go-inside-left-station_pick-point-glass",
+                                  "ID": "go-inside-left-station_pick-point-glass_6987",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_c47abe3bf502_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_go-inside-left-station_pick-point-glass_7844",
+                                  "msg_log": "go-inside-left-station_pick-point-glass success",
+                                  "_uid": "uid_e422c4e3b96c_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_go-inside-left-station_pick-point-glass_3241",
+                            "_uid": "uid_9e5d09abce74_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_go-inside-left-station_pick-point-glass_3702",
+                                  "msg_log": "go-inside-left-station_pick-point-glass failed",
+                                  "_uid": "uid_389e56cd140e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_go-inside-left-station_pick-point-glass_7168",
+                                  "msg": "go-inside-left-station_pick-point-glass path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_856df568ae8e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_146b92fd7d27_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "pick-point-glass_main-point",
+          "name": "pick-point-glass_main-point_8871",
+          "_uid": "uid_28893a23871b_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_pick-point-glass_main-point_4747",
+                "_uid": "uid_313b8769ccd6_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_1390",
+                      "_uid": "uid_5b4c54a0b52d_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_pick-point-glass_main-point_4810",
+                            "_uid": "uid_ed992585ccbe_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "pick-point-glass_main-point",
+                                  "ID": "pick-point-glass_main-point_6248",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_f9d1bc6393fc_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_pick-point-glass_main-point_1442",
+                                  "msg_log": "pick-point-glass_main-point success",
+                                  "_uid": "uid_15c7d5185fdb_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_pick-point-glass_main-point_3933",
+                            "_uid": "uid_7ce8ea978501_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_pick-point-glass_main-point_1321",
+                                  "msg_log": "pick-point-glass_main-point failed",
+                                  "_uid": "uid_ddad6835657c_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_pick-point-glass_main-point_2341",
+                                  "msg": "pick-point-glass_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_93d215839d3e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_04f600194fa2_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "main-point_after-pickup",
+          "name": "main-point_after-pickup_3604",
+          "_uid": "uid_7fa8a2720b67_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_after-pickup_8991",
+                "_uid": "uid_f3904aad19f5_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6700",
+                      "_uid": "uid_7bcd542bb55a_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_after-pickup_8352",
+                            "_uid": "uid_1b5969cef890_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_after-pickup",
+                                  "ID": "main-point_after-pickup_8349",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_5e7207178fc6_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_after-pickup_2982",
+                                  "msg_log": "main-point_after-pickup success",
+                                  "_uid": "uid_e74e87321df0_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_after-pickup_6063",
+                            "_uid": "uid_b134e83c6e4e_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_after-pickup_9252",
+                                  "msg_log": "main-point_after-pickup failed",
+                                  "_uid": "uid_7fa8f6072dd3_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_after-pickup_8973",
+                                  "msg": "main-point_after-pickup path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_04fec8f3096e_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_80decc51af99_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "after-pickup_abover-convery",
+          "name": "after-pickup_abover-convery_6527",
+          "_uid": "uid_4766ea851410_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_after-pickup_abover-convery_2676",
+                "_uid": "uid_8632a8ad3737_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_9761",
+                      "_uid": "uid_7dd1a34c7144_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_after-pickup_abover-convery_5046",
+                            "_uid": "uid_4df12c820eee_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "after-pickup_abover-convery",
+                                  "ID": "after-pickup_abover-convery_8117",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_2b3189324b38_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_after-pickup_abover-convery_3582",
+                                  "msg_log": "after-pickup_abover-convery success",
+                                  "_uid": "uid_42917148a6f2_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_after-pickup_abover-convery_7307",
+                            "_uid": "uid_c1aa286d07bc_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_after-pickup_abover-convery_9933",
+                                  "msg_log": "after-pickup_abover-convery failed",
+                                  "_uid": "uid_5c15fb25c826_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_after-pickup_abover-convery_6270",
+                                  "msg": "after-pickup_abover-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_4c7ce068a1ef_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_68673f9738fa_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "abover-convery_main-point",
+          "name": "abover-convery_main-point_6943",
+          "_uid": "uid_dfe1c61a24b4_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_abover-convery_main-point_7751",
+                "_uid": "uid_0ade56114fd6_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2193",
+                      "_uid": "uid_141183bf3527_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_abover-convery_main-point_6810",
+                            "_uid": "uid_e8f76ba241fe_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "abover-convery_main-point",
+                                  "ID": "abover-convery_main-point_9611",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_080a57f8a771_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_abover-convery_main-point_5506",
+                                  "msg_log": "abover-convery_main-point success",
+                                  "_uid": "uid_7cad696bcdc7_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_abover-convery_main-point_1827",
+                            "_uid": "uid_653f914c6a92_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_abover-convery_main-point_5370",
+                                  "msg_log": "abover-convery_main-point failed",
+                                  "_uid": "uid_596a2d6b2066_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_abover-convery_main-point_8487",
+                                  "msg": "abover-convery_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_405f98340622_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_322cbc43b8ff_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "main-point_place-glass-convery",
+          "name": "main-point_place-glass-convery_5745",
+          "_uid": "uid_e4d6e8a084f6_mhsstpjb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_place-glass-convery_2328",
+                "_uid": "uid_e4199240cd59_mhsstpjb"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_9505",
+                      "_uid": "uid_52e72153aa2b_mhsstpjb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_place-glass-convery_6118",
+                            "_uid": "uid_fb1c3f5962d0_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_place-glass-convery",
+                                  "ID": "main-point_place-glass-convery_2811",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_d475e77331a0_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_place-glass-convery_1729",
+                                  "msg_log": "main-point_place-glass-convery success",
+                                  "_uid": "uid_935a7b082495_mhsstpjb"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_place-glass-convery_9500",
+                            "_uid": "uid_3ca6c70af144_mhsstpjb"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_place-glass-convery_1300",
+                                  "msg_log": "main-point_place-glass-convery failed",
+                                  "_uid": "uid_055889ca9731_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_place-glass-convery_5961",
+                                  "msg": "main-point_place-glass-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_803845224dd5_mhsstpjb"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_2dc5fae8313c_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "place-glass-convery_p8",
+          "name": "place-glass-convery_p8_5902",
+          "_uid": "uid_47d03bd7137f_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_place-glass-convery_p8_2589",
+                "_uid": "uid_eb6c8623eda7_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_3265",
+                      "_uid": "uid_18f80cc02a4e_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_place-glass-convery_p8_9728",
+                            "_uid": "uid_656c109817a5_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "place-glass-convery_p8",
+                                  "ID": "place-glass-convery_p8_4630",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_b9104ba994d0_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_place-glass-convery_p8_7295",
+                                  "msg_log": "place-glass-convery_p8 success",
+                                  "_uid": "uid_ade18ee003ee_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_place-glass-convery_p8_9444",
+                            "_uid": "uid_4568bd8c5efe_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_place-glass-convery_p8_2060",
+                                  "msg_log": "place-glass-convery_p8 failed",
+                                  "_uid": "uid_c9cdf1beef0c_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_place-glass-convery_p8_8001",
+                                  "msg": "place-glass-convery_p8 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_6439764571c1_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_643a9f0b24ca_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "p8_main-point",
+          "name": "p8_main-point_1250",
+          "_uid": "uid_d7f585a6ccd7_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p8_main-point_2036",
+                "_uid": "uid_0e9b74fff7d6_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8470",
+                      "_uid": "uid_c934c49bc1a3_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p8_main-point_6658",
+                            "_uid": "uid_4d0138b1f729_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p8_main-point",
+                                  "ID": "p8_main-point_7848",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_f7111200de74_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p8_main-point_6907",
+                                  "msg_log": "p8_main-point success",
+                                  "_uid": "uid_fbfe50fb52ec_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p8_main-point_8066",
+                            "_uid": "uid_e8e7cc83ab97_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p8_main-point_4283",
+                                  "msg_log": "p8_main-point failed",
+                                  "_uid": "uid_68c71960307b_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p8_main-point_2936",
+                                  "msg": "p8_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_ec9180580a70_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_b880aa5a8cb2_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "main-point_p9",
+          "name": "main-point_p9_1880",
+          "_uid": "uid_b6e7e5598154_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_p9_8060",
+                "_uid": "uid_7f6ef18da050_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2330",
+                      "_uid": "uid_efddc91fbae7_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_p9_2553",
+                            "_uid": "uid_d70c4e9221e7_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_p9",
+                                  "ID": "main-point_p9_4941",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_24f4679355e4_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_p9_2981",
+                                  "msg_log": "main-point_p9 success",
+                                  "_uid": "uid_e1311341c317_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_p9_8337",
+                            "_uid": "uid_a6684192dbb5_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_p9_7763",
+                                  "msg_log": "main-point_p9 failed",
+                                  "_uid": "uid_cad1d24757ce_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_p9_1969",
+                                  "msg": "main-point_p9 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_aabe244f94a3_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_0137fa96c3f8_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "p9_homing-point-2",
+          "name": "p9_homing-point-2_9683",
+          "_uid": "uid_5aa2ee5b4066_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p9_homing-point-2_4494",
+                "_uid": "uid_1f49176a1490_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_4651",
+                      "_uid": "uid_cd4afad44478_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p9_homing-point-2_2935",
+                            "_uid": "uid_f167262ad0de_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p9_homing-point-2",
+                                  "ID": "p9_homing-point-2_1461",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_77589c75ddd2_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p9_homing-point-2_6904",
+                                  "msg_log": "p9_homing-point-2 success",
+                                  "_uid": "uid_31ce23cc87ae_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p9_homing-point-2_3994",
+                            "_uid": "uid_738f5426e327_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p9_homing-point-2_8285",
+                                  "msg_log": "p9_homing-point-2 failed",
+                                  "_uid": "uid_373edfa81a22_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p9_homing-point-2_9549",
+                                  "msg": "p9_homing-point-2 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_fb82f03ad791_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_cc4f6b797253_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "homing-point-2_main-point",
+          "name": "homing-point-2_main-point_4440",
+          "_uid": "uid_3e76f68226f4_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point-2_main-point_5609",
+                "_uid": "uid_19487c39f506_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_6832",
+                      "_uid": "uid_d96088ba03f2_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point-2_main-point_5553",
+                            "_uid": "uid_33e99883c6e8_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point-2_main-point",
+                                  "ID": "homing-point-2_main-point_3827",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_b67553150599_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point-2_main-point_3398",
+                                  "msg_log": "homing-point-2_main-point success",
+                                  "_uid": "uid_b5b8cebaf72f_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point-2_main-point_9576",
+                            "_uid": "uid_5767e6c39760_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point-2_main-point_7193",
+                                  "msg_log": "homing-point-2_main-point failed",
+                                  "_uid": "uid_fee96ec0fbcc_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point-2_main-point_1420",
+                                  "msg": "homing-point-2_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_0c291d49c817_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_cf2d01b50503_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "group_1_2849",
+          "_uid": "uid_377f0364f41e_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point_main-point_7916",
+                "_uid": "uid_d3b3ecce86ce_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_3572",
+                      "_uid": "uid_6272f01f46fb_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point_main-point_6953",
+                            "_uid": "uid_76928507a829_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point_main-point",
+                                  "ID": "homing-point_main-point_8225",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_c22dd6f28645_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point_main-point_3435",
+                                  "msg_log": "homing-point_main-point success",
+                                  "_uid": "uid_1bd73f239bff_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point_main-point_8484",
+                            "_uid": "uid_54524c69b939_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point_main-point_2133",
+                                  "msg_log": "homing-point_main-point failed",
+                                  "_uid": "uid_8304e18de6f4_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point_main-point_4022",
+                                  "msg": "homing-point_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_4f56f421e1af_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_2e57d198c917_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "group_2_8170",
+          "_uid": "uid_fa47fac04eb3_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_go-inside-left-station_2408",
+                "_uid": "uid_174bcef0ff14_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8727",
+                      "_uid": "uid_e11bfcec53d1_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_go-inside-left-station_2896",
+                            "_uid": "uid_6fb8de105c25_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_go-inside-left-station",
+                                  "ID": "main-point_go-inside-left-station_2315",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_e50f328c5e48_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_go-inside-left-station_1105",
+                                  "msg_log": "main-point_go-inside-left-station success",
+                                  "_uid": "uid_ed93dc04aa10_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_go-inside-left-station_5198",
+                            "_uid": "uid_8e27bb2322ce_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_go-inside-left-station_6858",
+                                  "msg_log": "main-point_go-inside-left-station failed",
+                                  "_uid": "uid_3d693f4e5eb3_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_go-inside-left-station_4163",
+                                  "msg": "main-point_go-inside-left-station path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_b45684008b77_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_aa0f0dd8b1e5_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_go-inside-left-station_pick-point-glass_4127",
+                "_uid": "uid_47a1493725e5_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_8058",
+                      "_uid": "uid_f77d1d183bf8_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_go-inside-left-station_pick-point-glass_4014",
+                            "_uid": "uid_c0e9531ac606_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "go-inside-left-station_pick-point-glass",
+                                  "ID": "go-inside-left-station_pick-point-glass_1897",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_c3e35b448230_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_go-inside-left-station_pick-point-glass_2153",
+                                  "msg_log": "go-inside-left-station_pick-point-glass success",
+                                  "_uid": "uid_0c6f0d805733_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_go-inside-left-station_pick-point-glass_2887",
+                            "_uid": "uid_72b1c0cbb5ad_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_go-inside-left-station_pick-point-glass_5173",
+                                  "msg_log": "go-inside-left-station_pick-point-glass failed",
+                                  "_uid": "uid_ef8f68e7a0c1_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_go-inside-left-station_pick-point-glass_4467",
+                                  "msg": "go-inside-left-station_pick-point-glass path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_e8af23389b6d_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_a1acf8e68446_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_pick-point-glass_main-point_7710",
+                "_uid": "uid_5529e9cccfaa_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_9043",
+                      "_uid": "uid_512a522e3a58_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_pick-point-glass_main-point_6173",
+                            "_uid": "uid_8a93f4a1cc7a_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "pick-point-glass_main-point",
+                                  "ID": "pick-point-glass_main-point_7310",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_47e0c0b006fe_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_pick-point-glass_main-point_4361",
+                                  "msg_log": "pick-point-glass_main-point success",
+                                  "_uid": "uid_f0f1bb671117_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_pick-point-glass_main-point_7996",
+                            "_uid": "uid_6b16cc6def58_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_pick-point-glass_main-point_2963",
+                                  "msg_log": "pick-point-glass_main-point failed",
+                                  "_uid": "uid_f62db4fe356a_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_pick-point-glass_main-point_4880",
+                                  "msg": "pick-point-glass_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_2a6cf46c4b7c_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_905f3910c12a_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "group_3_5437",
+          "_uid": "uid_9ba5f03417f7_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_after-pickup_6114",
+                "_uid": "uid_299465b1da68_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_1643",
+                      "_uid": "uid_42169086ad32_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_after-pickup_7556",
+                            "_uid": "uid_05653853348c_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_after-pickup",
+                                  "ID": "main-point_after-pickup_1749",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_0b868d211c4a_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_after-pickup_2944",
+                                  "msg_log": "main-point_after-pickup success",
+                                  "_uid": "uid_b3d59852b32b_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_after-pickup_1954",
+                            "_uid": "uid_94d115036fa4_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_after-pickup_1646",
+                                  "msg_log": "main-point_after-pickup failed",
+                                  "_uid": "uid_90a24820c110_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_after-pickup_6743",
+                                  "msg": "main-point_after-pickup path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_3527756b7637_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_025bfa453398_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_after-pickup_abover-convery_9680",
+                "_uid": "uid_c07c4f040085_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_7216",
+                      "_uid": "uid_072f281b937b_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_after-pickup_abover-convery_4575",
+                            "_uid": "uid_e95151f323f6_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "after-pickup_abover-convery",
+                                  "ID": "after-pickup_abover-convery_8217",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_03b661926eff_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_after-pickup_abover-convery_1501",
+                                  "msg_log": "after-pickup_abover-convery success",
+                                  "_uid": "uid_f0221d5febee_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_after-pickup_abover-convery_6530",
+                            "_uid": "uid_875a48a0b9e1_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_after-pickup_abover-convery_6457",
+                                  "msg_log": "after-pickup_abover-convery failed",
+                                  "_uid": "uid_8f62f4ff8335_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_after-pickup_abover-convery_4820",
+                                  "msg": "after-pickup_abover-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_13eb348be1c3_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_39a2de8bb1e5_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_abover-convery_main-point_4042",
+                "_uid": "uid_6d99983f3a2f_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_7221",
+                      "_uid": "uid_a8340f16519b_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_abover-convery_main-point_4717",
+                            "_uid": "uid_7d089cde0217_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "abover-convery_main-point",
+                                  "ID": "abover-convery_main-point_4999",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_a1d24df76423_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_abover-convery_main-point_4733",
+                                  "msg_log": "abover-convery_main-point success",
+                                  "_uid": "uid_af2351340f0f_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_abover-convery_main-point_5232",
+                            "_uid": "uid_663fd4adce98_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_abover-convery_main-point_1821",
+                                  "msg_log": "abover-convery_main-point failed",
+                                  "_uid": "uid_2df3e87b5f36_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_abover-convery_main-point_1193",
+                                  "msg": "abover-convery_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_bf50bca9a78c_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_4429958cb5d0_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "group_4_5060",
+          "_uid": "uid_72cef6b925f5_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_place-glass-convery_8987",
+                "_uid": "uid_aabfd6b56d5b_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_1741",
+                      "_uid": "uid_b0a57646b231_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_place-glass-convery_3150",
+                            "_uid": "uid_e2762b5643f8_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_place-glass-convery",
+                                  "ID": "main-point_place-glass-convery_4582",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_88de624d85a0_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_place-glass-convery_7851",
+                                  "msg_log": "main-point_place-glass-convery success",
+                                  "_uid": "uid_2d43e3dcde2e_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_place-glass-convery_3842",
+                            "_uid": "uid_b26ac9e2c5d8_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_place-glass-convery_5508",
+                                  "msg_log": "main-point_place-glass-convery failed",
+                                  "_uid": "uid_701c5cc5a70e_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_place-glass-convery_3388",
+                                  "msg": "main-point_place-glass-convery path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_132c1eafd497_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_370e5fda76ea_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_place-glass-convery_p8_8666",
+                "_uid": "uid_9cf7aa3ab28f_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_3930",
+                      "_uid": "uid_17287061f1ea_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_place-glass-convery_p8_7575",
+                            "_uid": "uid_0be9a5ccf9f7_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "place-glass-convery_p8",
+                                  "ID": "place-glass-convery_p8_9407",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_6c0df74722c6_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_place-glass-convery_p8_5127",
+                                  "msg_log": "place-glass-convery_p8 success",
+                                  "_uid": "uid_6cd47701ba3c_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_place-glass-convery_p8_8982",
+                            "_uid": "uid_04bb5395a0ae_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_place-glass-convery_p8_3965",
+                                  "msg_log": "place-glass-convery_p8 failed",
+                                  "_uid": "uid_ba17109819c0_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_place-glass-convery_p8_4282",
+                                  "msg": "place-glass-convery_p8 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_42f821865645_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_e05b981f705e_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p8_main-point_8659",
+                "_uid": "uid_fab5da44a151_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2982",
+                      "_uid": "uid_96ee96ecb348_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p8_main-point_9627",
+                            "_uid": "uid_3df898cb347d_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p8_main-point",
+                                  "ID": "p8_main-point_3377",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_7921c54d622b_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p8_main-point_6493",
+                                  "msg_log": "p8_main-point success",
+                                  "_uid": "uid_2feb2cb998f8_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p8_main-point_8948",
+                            "_uid": "uid_88141792755a_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p8_main-point_3972",
+                                  "msg_log": "p8_main-point failed",
+                                  "_uid": "uid_6874e0320e43_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p8_main-point_8288",
+                                  "msg": "p8_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_69f8ce104751_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_bc7b01d074b3_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "group_5_3982",
+          "_uid": "uid_f91c2d6cd507_mhsstpjc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_main-point_p9_4921",
+                "_uid": "uid_8c631058a657_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_1203",
+                      "_uid": "uid_52d39f1736a4_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_main-point_p9_7864",
+                            "_uid": "uid_6b7da1b9cdf1_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "main-point_p9",
+                                  "ID": "main-point_p9_9861",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_aaed8c129341_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_main-point_p9_5186",
+                                  "msg_log": "main-point_p9 success",
+                                  "_uid": "uid_b66b3dea09c4_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_main-point_p9_7004",
+                            "_uid": "uid_1ba2e0ab270e_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_main-point_p9_6090",
+                                  "msg_log": "main-point_p9 failed",
+                                  "_uid": "uid_a77b020ba088_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_main-point_p9_7296",
+                                  "msg": "main-point_p9 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_1c1c50e7387c_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_7635c246ba82_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_p9_homing-point-2_7734",
+                "_uid": "uid_99d7a9c83ded_mhsstpjc"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2688",
+                      "_uid": "uid_a7e704accd0b_mhsstpjc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_p9_homing-point-2_8167",
+                            "_uid": "uid_553e0753ec23_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "p9_homing-point-2",
+                                  "ID": "p9_homing-point-2_3311",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_9a7fd676404f_mhsstpjc"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_p9_homing-point-2_6471",
+                                  "msg_log": "p9_homing-point-2 success",
+                                  "_uid": "uid_e6c8023310ee_mhsstpjc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_p9_homing-point-2_1055",
+                            "_uid": "uid_81fc64042a7d_mhsstpjc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_p9_homing-point-2_3970",
+                                  "msg_log": "p9_homing-point-2 failed",
+                                  "_uid": "uid_4d870ccaf3a4_mhsstpjd"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_p9_homing-point-2_6446",
+                                  "msg": "p9_homing-point-2 path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_16c22576526d_mhsstpjd"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_39a6c0afb8ab_mhsstpjd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_homing-point-2_main-point_4338",
+                "_uid": "uid_a8d4165a02ee_mhsstpjd"
+              },
+              "@children": [
+                {
+                  "tagName": "Fallback",
+                  "content": {
+                    "@attributes": {
+                      "ID": "fallback_2509",
+                      "_uid": "uid_da1d516148b1_mhsstpjd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_success_homing-point-2_main-point_7771",
+                            "_uid": "uid_e678036c0ba9_mhsstpjd"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "RunPath",
+                              "content": {
+                                "@attributes": {
+                                  "path_name": "homing-point-2_main-point",
+                                  "ID": "homing-point-2_main-point_7375",
+                                  "speed_scale": "1",
+                                  "_uid": "uid_5d70fa2b3b2b_mhsstpjd"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_success_homing-point-2_main-point_4045",
+                                  "msg_log": "homing-point-2_main-point success",
+                                  "_uid": "uid_38e18307029e_mhsstpjd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_failure_homing-point-2_main-point_8766",
+                            "_uid": "uid_46860cad2207_mhsstpjd"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_fail_homing-point-2_main-point_9270",
+                                  "msg_log": "homing-point-2_main-point failed",
+                                  "_uid": "uid_67e74700c77d_mhsstpjd"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "PopupMsg",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "popup_homing-point-2_main-point_4162",
+                                  "msg": "homing-point-2_main-point path failed",
+                                  "type": "failure",
+                                  "timeout": "0",
+                                  "_uid": "uid_0c607014e1e1_mhsstpjd"
+                                }
+                              }
+                            },
+                            {
+                              "tagName": "AlwaysFailure",
+                              "content": {
+                                "@attributes": {
+                                  "_uid": "uid_cf64c1cc66f9_mhsstpjd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

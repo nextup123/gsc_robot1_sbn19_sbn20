@@ -1,0 +1,1083 @@
+{
+  "failure": [
+    {
+      "message": "joint2 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:46.020Z"
+    },
+    {
+      "message": "joint4 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:46.049Z"
+    },
+    {
+      "message": "joint5 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:46.057Z"
+    },
+    {
+      "message": "joint6 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:46.058Z"
+    },
+    {
+      "message": "joint3 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:46.751Z"
+    },
+    {
+      "message": "joint4 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:47.735Z"
+    },
+    {
+      "message": "joint5 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:48.718Z"
+    },
+    {
+      "message": "joint6 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:49.695Z"
+    },
+    {
+      "message": "joint1 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.670Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.863Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.864Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.864Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.865Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.865Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:50.866Z"
+    },
+    {
+      "message": "joint2 fault",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:23:51.650Z"
+    },
+    {
+      "message": "homing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:23:57.681Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:27.901Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:27.903Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:28.053Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:28.054Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:28.054Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:24:28.055Z"
+    },
+    {
+      "message": "SUCTION1[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:25:28.870Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.553Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.554Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.556Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.559Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.560Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T09:26:27.561Z"
+    },
+    {
+      "message": "SUCTION1[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:30:23.834Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:04.834Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:04.944Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:05.054Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:21.726Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:21.834Z"
+    },
+    {
+      "message": "AUTOMODE[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:32:21.944Z"
+    },
+    {
+      "message": "SUCTION1[DI] sensing failed",
+      "duration": 0,
+      "timestamp": "2026-09-17T09:47:45.314Z"
+    },
+    {
+      "message": "cnc2LSoutside Planning Failed",
+      "duration": 3,
+      "timestamp": "2026-09-17T10:10:54.403Z"
+    },
+    {
+      "message": "cnc2LSoutside Target Failed",
+      "duration": 3,
+      "timestamp": "2026-09-17T10:10:54.485Z"
+    },
+    {
+      "message": "cnc2LSPPickup Target Failed",
+      "duration": 3,
+      "timestamp": "2026-09-17T10:19:48.813Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.301Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.309Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.310Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.310Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.311Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T10:29:47.311Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.373Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.374Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.375Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.375Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.389Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-17T11:02:18.397Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.161Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.162Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.163Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.168Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.168Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T05:53:37.169Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.440Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.442Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.589Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.590Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.591Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:26:42.591Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.845Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.846Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.847Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.847Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.848Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:30:53.848Z"
+    },
+    {
+      "message": "station1downoutside Planning Failed",
+      "duration": 3,
+      "timestamp": "2026-09-18T07:02:30.618Z"
+    },
+    {
+      "message": "station1downoutside Target Failed",
+      "duration": 3,
+      "timestamp": "2026-09-18T07:02:30.698Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.117Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.118Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.119Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.119Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.120Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:58.120Z"
+    },
+    {
+      "message": "afterpickupoutsideupper Target Failed",
+      "duration": 3,
+      "timestamp": "2026-09-18T07:05:58.242Z"
+    },
+    {
+      "message": "cnc2RSdown Planning Failed",
+      "duration": 3,
+      "timestamp": "2026-09-18T07:28:23.150Z"
+    },
+    {
+      "message": "cnc2RSdown Target Failed",
+      "duration": 3,
+      "timestamp": "2026-09-18T07:28:23.231Z"
+    },
+    {
+      "message": "joint1 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.525Z"
+    },
+    {
+      "message": "joint6 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.526Z"
+    },
+    {
+      "message": "joint2 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.677Z"
+    },
+    {
+      "message": "joint3 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.678Z"
+    },
+    {
+      "message": "joint4 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.678Z"
+    },
+    {
+      "message": "joint5 operational false",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:19:05.679Z"
+    },
+    {
+      "message": "joint1 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.126Z"
+    },
+    {
+      "message": "joint2 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.127Z"
+    },
+    {
+      "message": "joint3 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.128Z"
+    },
+    {
+      "message": "joint4 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.128Z"
+    },
+    {
+      "message": "joint5 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.128Z"
+    },
+    {
+      "message": "joint6 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:08.129Z"
+    },
+    {
+      "message": "joint1 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:54.334Z"
+    },
+    {
+      "message": "joint2 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:55.318Z"
+    },
+    {
+      "message": "joint3 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:56.302Z"
+    },
+    {
+      "message": "joint4 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:36:57.290Z"
+    },
+    {
+      "message": "joint5 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:37:03.261Z"
+    },
+    {
+      "message": "joint6 fault",
+      "duration": 10,
+      "timestamp": "2026-09-18T09:37:09.238Z"
+    }
+  ],
+  "success": [
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:00.549Z"
+    },
+    {
+      "message": "Emergency released",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:00.550Z"
+    },
+    {
+      "message": "Operation enabled verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:00.949Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:01.173Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:01.373Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:01.575Z"
+    },
+    {
+      "message": "RESET + MODE VERIFIED",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:27:01.576Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:55.487Z"
+    },
+    {
+      "message": "Emergency released",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:55.490Z"
+    },
+    {
+      "message": "Operation enabled verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:55.886Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:56.093Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:56.293Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:56.293Z"
+    },
+    {
+      "message": "RESET + MODE VERIFIED",
+      "duration": 10,
+      "timestamp": "2026-09-18T06:59:56.295Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:07.973Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:08.173Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:09.175Z"
+    },
+    {
+      "message": "homing done",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:34.901Z"
+    },
+    {
+      "message": "PrePickupConv PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:00:40.320Z"
+    },
+    {
+      "message": "PrePickupConv Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:00:40.321Z"
+    },
+    {
+      "message": "PrePickupConv Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:47.525Z"
+    },
+    {
+      "message": "PickupConv LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:00:53.849Z"
+    },
+    {
+      "message": "PickupConv Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:00:53.851Z"
+    },
+    {
+      "message": "PickupConv Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:00:56.053Z"
+    },
+    {
+      "message": "AfterPickupConv LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:00.641Z"
+    },
+    {
+      "message": "AfterPickupConv Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:00.642Z"
+    },
+    {
+      "message": "AfterPickupConv Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:01:02.997Z"
+    },
+    {
+      "message": "PrePickupConv LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:22.959Z"
+    },
+    {
+      "message": "PrePickupConv Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:22.961Z"
+    },
+    {
+      "message": "PrePickupConv Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:01:25.365Z"
+    },
+    {
+      "message": "AfterPickupConv LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:38.383Z"
+    },
+    {
+      "message": "AfterPickupConv Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:38.384Z"
+    },
+    {
+      "message": "AfterPickupConv Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:01:40.791Z"
+    },
+    {
+      "message": "AfterConvSafe LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:48.846Z"
+    },
+    {
+      "message": "AfterConvSafe Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:01:48.847Z"
+    },
+    {
+      "message": "AfterConvSafe Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:02:00.559Z"
+    },
+    {
+      "message": "towardsstation1 PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:07.583Z"
+    },
+    {
+      "message": "towardsstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:07.585Z"
+    },
+    {
+      "message": "towardsstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:02:24.493Z"
+    },
+    {
+      "message": "station1downoutside PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:36.470Z"
+    },
+    {
+      "message": "station1downoutside Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:36.471Z"
+    },
+    {
+      "message": "station1downoutside Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:02:46.181Z"
+    },
+    {
+      "message": "station1downoutside2 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:51.594Z"
+    },
+    {
+      "message": "station1downoutside2 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:02:51.598Z"
+    },
+    {
+      "message": "station1downoutside2 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:02:55.357Z"
+    },
+    {
+      "message": "prepickupstation1 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:02.982Z"
+    },
+    {
+      "message": "prepickupstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:02.983Z"
+    },
+    {
+      "message": "prepickupstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:03:11.045Z"
+    },
+    {
+      "message": "pickupstation1 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:18.175Z"
+    },
+    {
+      "message": "pickupstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:18.176Z"
+    },
+    {
+      "message": "pickupstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:03:18.733Z"
+    },
+    {
+      "message": "afterpickupstation1 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:22.438Z"
+    },
+    {
+      "message": "afterpickupstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:22.439Z"
+    },
+    {
+      "message": "afterpickupstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:03:23.045Z"
+    },
+    {
+      "message": "prepickupstation1 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:32.622Z"
+    },
+    {
+      "message": "prepickupstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:03:32.623Z"
+    },
+    {
+      "message": "prepickupstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:03:32.886Z"
+    },
+    {
+      "message": "afterpickupstation1 LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:04:09.394Z"
+    },
+    {
+      "message": "afterpickupstation1 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:04:09.396Z"
+    },
+    {
+      "message": "afterpickupstation1 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:04:09.655Z"
+    },
+    {
+      "message": "afterpickupoutsidedown LIN",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:04:15.381Z"
+    },
+    {
+      "message": "afterpickupoutsidedown Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:04:15.382Z"
+    },
+    {
+      "message": "afterpickupoutsidedown Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:04:23.541Z"
+    },
+    {
+      "message": "afterpickupoutsidedown2 PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:05:39.498Z"
+    },
+    {
+      "message": "afterpickupoutsidedown2 Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:05:39.500Z"
+    },
+    {
+      "message": "afterpickupoutsidedown2 Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:05:43.303Z"
+    },
+    {
+      "message": "afterpickupoutsideupper PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:05:49.256Z"
+    },
+    {
+      "message": "afterpickupoutsideupper Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:05:49.257Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:11.693Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:11.893Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:12.095Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:20.567Z"
+    },
+    {
+      "message": "Emergency released",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:20.571Z"
+    },
+    {
+      "message": "Operation enabled verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:20.967Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:21.173Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:21.373Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:21.374Z"
+    },
+    {
+      "message": "RESET + MODE VERIFIED",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:21.374Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:31.613Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:31.813Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:32.813Z"
+    },
+    {
+      "message": "homing done",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:06:59.165Z"
+    },
+    {
+      "message": "AfterConvSafe PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:27:41.312Z"
+    },
+    {
+      "message": "AfterConvSafe Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:27:41.313Z"
+    },
+    {
+      "message": "AfterConvSafe Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:28:17.518Z"
+    },
+    {
+      "message": "cnc2RSdown PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:28:26.506Z"
+    },
+    {
+      "message": "cnc2RSdown Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T07:28:26.508Z"
+    },
+    {
+      "message": "cnc2RSdown Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T07:28:48.221Z"
+    },
+    {
+      "message": "cnc2RSdown PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:09:34.639Z"
+    },
+    {
+      "message": "cnc2RSdown Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:09:34.640Z"
+    },
+    {
+      "message": "cnc2RSdown Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:09:34.798Z"
+    },
+    {
+      "message": "AfterConvSafe PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:09:44.053Z"
+    },
+    {
+      "message": "AfterConvSafe Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:09:44.055Z"
+    },
+    {
+      "message": "AfterConvSafe Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:10:05.766Z"
+    },
+    {
+      "message": "cnc2RSdown PTP",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:10:08.714Z"
+    },
+    {
+      "message": "cnc2RSdown Motion Started",
+      "duration": 5,
+      "timestamp": "2026-09-18T08:10:08.715Z"
+    },
+    {
+      "message": "cnc2RSdown Reached",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:10:30.424Z"
+    },
+    {
+      "message": "Servo idle verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:10:35.973Z"
+    },
+    {
+      "message": "NaN trajectory verified",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:10:36.272Z"
+    },
+    {
+      "message": "MODE VERIFIED FROM FEEDBACK",
+      "duration": 10,
+      "timestamp": "2026-09-18T08:10:36.473Z"
+    }
+  ],
+  "warn": [
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-08-24T10:51:21.711Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-08-24T10:51:53.868Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-08-24T10:52:06.085Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-08-26T09:33:58.785Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-01T09:56:54.825Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-01T09:57:03.267Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-01T09:57:17.158Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-10T10:38:51.994Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-10T10:38:58.287Z"
+    },
+    {
+      "message": "homing is in progress",
+      "duration": 5,
+      "timestamp": "2026-09-10T11:02:01.134Z"
+    },
+    {
+      "message": "homing is in progress",
+      "duration": 5,
+      "timestamp": "2026-09-10T11:02:05.798Z"
+    },
+    {
+      "message": "homing is in progress",
+      "duration": 5,
+      "timestamp": "2026-09-10T11:02:12.766Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-17T07:16:49.018Z"
+    },
+    {
+      "message": "Motion in progress",
+      "duration": 3,
+      "timestamp": "2026-09-17T07:17:08.508Z"
+    },
+    {
+      "message": "homing is in progress",
+      "duration": 5,
+      "timestamp": "2026-09-17T07:17:43.692Z"
+    }
+  ]
+}

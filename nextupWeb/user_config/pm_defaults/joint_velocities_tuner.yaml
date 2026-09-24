@@ -1,0 +1,23 @@
+joint_enable:
+  joint1: true
+  joint2: true
+  joint3: true
+  joint4: true
+  joint5: true
+  joint6: true
+
+manual joint velocities:
+  joint1: 1.23
+  joint2: 1.22
+  joint3: 1.04
+  joint4: 1.56
+  joint5: 1.89
+  joint6: 1.22
+
+production joint velocities:
+  joint1: 0.23
+  joint2: 0.45
+  joint3: 0.55
+  joint4: 0.78
+  joint5: 0.80
+  joint6: 0.89

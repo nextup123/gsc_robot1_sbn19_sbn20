@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="gripper1[DO]">
+    <Sequence ID="seq_1">
+      <MsgLoggerNode ID="msg_1" msg_log="gripper1[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="gripper1[DO]" driver_id="1" do_id="1" control_name="gripper1[DO]" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLoggerNode ID="msg_2" msg_log="gripper1"/>
+      </Sequence>
+      <MsgPopup ID="pop_1" msg="gripper1[DO] action successful" type="success" timeout="3"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

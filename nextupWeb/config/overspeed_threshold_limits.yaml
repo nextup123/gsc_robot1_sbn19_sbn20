@@ -1,0 +1,29 @@
+imotor_overspeed_threshold_limits:
+  motor: "innovance"
+  index: 0x200A
+  subindex: 0x09
+  type: "uint16"
+
+  auto:
+    joint1: 6000
+    joint2: 6000
+    joint3: 6000
+    joint4: 6000
+    joint5: 6000
+    joint6: 6000
+
+  safeauto:
+    joint1: 1000
+    joint2: 1000
+    joint3: 1000
+    joint4: 1000
+    joint5: 1000
+    joint6: 1000
+
+  jog:
+    joint1: 600
+    joint2: 600
+    joint3: 600
+    joint4: 600
+    joint5: 600
+    joint6: 600

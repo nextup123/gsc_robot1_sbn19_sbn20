@@ -1,0 +1,150 @@
+/* Popup base */
+.auto-gen-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup box */
+.auto-gen-popup-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: auto-gen-fadeIn 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+}
+
+/* Sections side by side */
+.auto-gen-popup-sections {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.auto-gen-popup-section {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Buttons styled */
+.auto-gen-btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auto-gen-btn-primary {
+  background: #007aff;
+  color: white;
+}
+
+.auto-gen-btn-success {
+  background: #34c759;
+  color: white;
+}
+
+.auto-gen-btn-danger {
+  background: #ff3b30;
+  color: white;
+}
+
+.auto-gen-btn-secondary {
+  background: #8e8e93;
+  color: white;
+}
+
+.auto-gen-btn:hover {
+  opacity: 0.9;
+}
+
+/* Input style */
+#auto-gen-sequence-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Popup message */
+.auto-gen-popup-message {
+  margin-top: 12px;
+  font-weight: 500;
+  color: #28a745;
+}
+
+/* Fade animation */
+@keyframes auto-gen-fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* YAML Modal Styles (same as provided) */
+.yaml-modal-content {
+  max-width: 90%;
+  min-width: 500px;
+  width: 70%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.yaml-content {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: #1b1a1a;
+  color: rgb(252, 252, 242);
+  padding: 15px;
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 50vh;
+  line-height: 1.5;
+}
+
+.font-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-font {
+  background: #e0e0e0;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+
+.btn-font:hover {
+  background: #d0d0d0;
+}

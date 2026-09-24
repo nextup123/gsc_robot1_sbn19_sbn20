@@ -1,0 +1,150 @@
+/* tf_visual.css - Compact HUD version */
+.tf-orient-root {
+  --bg: #eef0f3;
+  --panel: #ffffff;
+  --panel-border: #dde1e7;
+  --text: #262b33;
+  --text-dim: #8b9099;
+  --canvas-bg: #f7f8fa;
+  --axis-x: #c4453b;
+  --axis-y: #2f9e6e;
+  --axis-z: #3578b5;
+  font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+  background: var(--bg);
+  padding: 6px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+.tf-orient-root * { box-sizing: border-box; }
+
+.tf-canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;   /* was 220px */
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--canvas-bg);
+  border: 1px solid var(--panel-border);
+}
+#tfMainCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+#tfMainCanvas.dragging { cursor: grabbing; }
+#tfMainCanvas.locked { cursor: default; }
+
+.tf-hud {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  display: flex;
+  gap: 4px;
+  pointer-events: none; /* let drag pass through the empty parts of the HUD */
+}
+.tf-hud-top {
+  top: 4px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.tf-hud-bottom {
+  bottom: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
+.tf-point-select {
+  pointer-events: auto;
+  max-width: 58%;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tf-point-select:focus { outline: none; border-color: var(--axis-z); }
+
+.tf-hud-buttons {
+  pointer-events: auto;
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.tf-hud-buttons button {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 5px;
+  cursor: pointer;
+  color: var(--text-dim);
+}
+.tf-hud-buttons button:hover { border-color: var(--axis-z); color: var(--axis-z); }
+.tf-hud-buttons button.active {
+  background: var(--axis-x);
+  border-color: var(--axis-x);
+  color: #fff;
+}
+.tf-hud-buttons button:disabled { opacity: .4; cursor: not-allowed; }
+
+.tf-hud-bottom span {
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--panel-border);
+  white-space: nowrap;
+}
+.tf-hud-bottom b { color: var(--text); font-weight: 600; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 320px) {
+  .tf-orient-root { padding: 4px; }
+  .tf-canvas-container { max-width: 260px; }
+  .tf-point-select { font-size: 9px; padding: 1px 3px; }
+  .tf-hud-buttons button { font-size: 9px; padding: 2px 4px; }
+  .tf-hud-bottom { font-size: 9px; }
+  .tf-hud-bottom span { padding: 1px 4px; }
+    .tf-legend-hint { font-size: 9px; } /* add this line */
+
+}
+
+@media (max-width: 220px) {
+  .tf-canvas-container { max-width: 180px; }
+  .tf-point-select { max-width: 48%; }
+  .tf-hud-buttons button { padding: 1px 3px; }
+  .tf-hud-bottom span { padding: 0 3px; }
+}
+
+.tf-legend-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.tf-legend-hint .swatch {
+  display: inline-block;
+  width: 14px;
+  height: 0;
+  border-top: 2px solid var(--text-dim);
+}
+.tf-legend-hint .swatch.dashed {
+  border-top-style: dashed;
+}

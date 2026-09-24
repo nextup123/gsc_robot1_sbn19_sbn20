@@ -1,0 +1,264 @@
+
+/* ---------------- Run Path Modal Styling ---------------- */
+.runpath-section {
+  flex: 1;
+  max-height: 35%;
+  overflow-y: auto;
+  padding-right: 8px;
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  background: #f9f9fb;
+}
+
+.runpath-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.runpath-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.runpath-section::-webkit-scrollbar-thumb {
+  background: #c7c7cc;
+  border-radius: 3px;
+}
+
+.runpath-section::-webkit-scrollbar-thumb:hover {
+  background: #aeaeb2;
+}
+
+#runpath-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.runpath-modal-content {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 16px;
+  padding: 24px;
+  width: 320px;
+  color: #111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(-20px);
+  animation: modal-slide-in 0.25s ease forwards;
+}
+
+@keyframes modal-slide-in {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.runpath-modal-content h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.runpath-subtitle {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.runpath-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.rp-btn {
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rp-btn.primary {
+  background: linear-gradient(145deg, #007aff, #005ce6);
+  color: white;
+  font-weight: 500;
+}
+
+.rp-btn.primary:hover {
+  background: linear-gradient(145deg, #1a84ff, #0060ff);
+}
+
+.rp-btn.secondary {
+  background: rgba(240, 240, 240, 0.8);
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rp-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.rp-btn.cancel {
+  background: transparent;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.rp-btn.cancel:hover {
+  color: #000;
+}
+
+
+/* ---------------- DO/DI Modal Styling ---------------- */
+#dodi-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.dodi-modal-content {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 16px;
+  padding: 24px;
+  width: 340px;
+  color: #111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(-20px);
+  animation: dodi-slide-in 0.25s ease forwards;
+}
+
+@keyframes dodi-slide-in {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.dodi-modal-content h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dodi-subtitle {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+/* Options */
+.dodi-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dodi-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.dodi-option input {
+  accent-color: #007aff;
+}
+
+/* Extra attributes section */
+.dodi-extra {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.dodi-extra-label {
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.dodi-extra-options label {
+  margin-right: 12px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.dodi-extra-options input {
+  accent-color: #007aff;
+}
+
+/* Buttons */
+.dodi-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dodi-btn {
+  flex: 1;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dodi-btn.primary {
+  background: linear-gradient(145deg, #007aff, #005ce6);
+  color: white;
+  font-weight: 500;
+}
+
+.dodi-btn.primary:hover {
+  background: linear-gradient(145deg, #1a84ff, #0060ff);
+}
+
+.dodi-btn.cancel {
+  background: rgba(240, 240, 240, 0.8);
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dodi-btn.cancel:hover {
+  background: rgba(255, 255, 255, 0.9);
+}

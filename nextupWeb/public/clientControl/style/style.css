@@ -1,0 +1,389 @@
+
+
+@import url('joint_status.css');
+
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../media/fonts/inter-4.1/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../media/fonts/inter-4.1/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.1s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #dde5f0, #f7f9fc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.app-container {
+  width: 98%;
+  /* max-width: 1400px; */
+  margin-top: 15px;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Mac header */
+.mac-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 4.5rem;
+}
+
+.traffic-lights span {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 20px;
+  gap: 20px;
+  height: 90vh;
+}
+
+/* Left and right vertical divisions */
+.left-division {
+  flex: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-division {
+  flex: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Left-side height distribution */
+.setup-robot-cnc {
+  flex: 55%;
+}
+
+.robot-control {
+  flex: 45%;
+}
+
+/* Right-side height distribution */
+.joints-status {
+  flex: 30%;
+}
+
+.di-status {
+  flex: 35%;
+}
+
+.do-control {
+  flex: 35%;
+}
+
+/* Shared panel styling */
+.panel {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel h2 {
+  /* margin: 0 0 10px 0; */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.reserved {
+  color: #888;
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Smooth hover effect */
+.panel:hover {
+  transform: scale(1.001);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+.refresh-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 5px;
+  color: #007aff;
+  transition: 0.2s ease;
+}
+
+.refresh-btn:hover {
+  color: #0051a8;
+}
+.refresh-btn:active {
+    transform: rotate(90deg);
+
+}
+
+
+/* ==========================================================
+   GPIO STATUS PANEL
+   ========================================================== */
+
+.gpio-status {
+    width: 100%;
+    padding: 8px;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow-y: hidden;
+}
+
+.gp-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    width: 100%;
+}
+
+/* ==========================================================
+   MATRIX CARD
+   ========================================================== */
+
+.gp-matrix-wrap {
+    width: 100%;
+    background: linear-gradient(180deg,#ffffff,#f8fbff);
+    border: 1px solid #dfe7ef;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.05),
+        inset 0 1px rgba(255,255,255,.9);
+}
+
+.gp-matrix-head {
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #2f4157;
+    background: linear-gradient(90deg,#edf4ff,#f8fbff);
+    border-bottom: 1px solid #dfe7ef;
+}
+
+/* ==========================================================
+   TABLE
+   ========================================================== */
+
+.gp-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.gp-matrix-table thead th {
+    background: #f3f7fb;
+    color: #65707d;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px;
+    border-bottom: 1px solid #e7edf4;
+}
+
+.gp-matrix-table tbody tr:nth-child(even) {
+    background: rgba(245,248,252,.55);
+}
+
+.gp-matrix-table tbody tr:hover {
+    background: rgba(226,238,255,.55);
+}
+
+.gp-matrix-table td {
+    text-align: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #eef3f8;
+}
+
+.gp-matrix-table td:first-child {
+    width: 140px;
+    text-align: left;
+    padding-left: 18px;
+    font-weight: 600;
+    color: #2d3d50;
+}
+
+/* ==========================================================
+   DIGITAL INPUT LED
+   ========================================================== */
+
+.di-indicator-light {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #d7d7d7;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.85),
+        inset 0 -2px 5px rgba(0,0,0,.18);
+
+    transition: .2s;
+}
+
+.di-indicator-light.on {
+    background: #22d86d;
+
+    box-shadow:
+        0 0 4px #22d86d,
+        0 0 10px #22d86d,
+        0 0 20px rgba(34,216,109,.35),
+        inset 0 0 3px white;
+}
+
+.di-indicator-light.stale {
+    background: #ffbb33;
+
+    box-shadow:
+        0 0 8px rgba(255,187,51,.45);
+}
+
+/* ==========================================================
+   OUTPUT SWITCH
+   ========================================================== */
+
+.do-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.do-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 46px;
+    height: 24px;
+
+    background: #d5dce4;
+
+    border-radius: 30px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.do-toggle::before {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    top: 3px;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+
+    transition: .25s;
+}
+
+.do-toggle:checked {
+    background: linear-gradient(180deg,#30d158,#21b54b);
+}
+
+.do-toggle:checked::before {
+    transform: translateX(22px);
+}
+
+/* ==========================================================
+   OUTPUT LED
+   ========================================================== */
+
+.do-indicator {
+    display: none;
+}
+
+/* ==========================================================
+   EMPTY STATE
+   ========================================================== */
+
+.gp-empty {
+    padding: 35px;
+    text-align: center;
+    color: #8b95a5;
+    border: 2px dashed #ccd6df;
+    border-radius: 12px;
+    background: rgba(250,252,255,.7);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+.gpio-status {
+    overflow-x: auto;
+}
+
+.gp-matrix-wrap {
+    min-width: 900px;
+}
+
+@media (max-width:1200px) {
+
+    .gp-matrix-wrap {
+        min-width: 760px;
+    }
+
+    .gp-matrix-table th,
+    .gp-matrix-table td {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+
+    .gp-matrix-table td:first-child {
+        width: 110px;
+    }
+}

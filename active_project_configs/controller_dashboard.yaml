@@ -1,0 +1,141 @@
+system_status:
+  active_controllers: 14
+  inactive_controllers: 0
+  digital_outputs: 0/6 active
+  last_update: 2026-03-25 16:16:14
+  active_list:
+    - joint_state_broadcaster
+    - robot_manipulator_controller
+    - modeofoperation_command_controller
+    - nextup_digital_input_broadcaster
+    - nextup_reset_fault_controller
+    - nextup_driver_status_broadcaster
+    - nextup_emergency_trigger_controller
+    - robot_manipulator_velocity_controller
+    - nextup_digital_output_controller_1
+    - nextup_digital_output_controller_2
+    - nextup_digital_output_controller_3
+    - nextup_digital_output_controller_4
+    - nextup_digital_output_controller_5
+    - nextup_digital_output_controller_6
+controller_details:
+  joint_state_broadcaster:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: none
+    uptime: 00m 00s
+    claimed_hardware: none
+  robot_manipulator_controller:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: position
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  modeofoperation_command_controller:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: modeofoperation
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  nextup_digital_input_broadcaster:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: none
+    uptime: 00m 00s
+    claimed_hardware: none
+  nextup_reset_fault_controller:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: reset_fault
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  nextup_driver_status_broadcaster:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: none
+    uptime: 00m 00s
+    claimed_hardware: none
+  nextup_emergency_trigger_controller:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: emergency_trigger
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  robot_manipulator_velocity_controller:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: jogvelocity
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  nextup_digital_output_controller_1:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint1
+  nextup_digital_output_controller_2:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint2
+  nextup_digital_output_controller_3:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint3
+  nextup_digital_output_controller_4:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint4
+  nextup_digital_output_controller_5:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint5
+  nextup_digital_output_controller_6:
+    state: active
+    last_state_change: 2026-03-25 16:16:14
+    claimed_interfaces: dos
+    uptime: 00m 00s
+    claimed_hardware:
+      - joint6

@@ -1,0 +1,45 @@
+/* === Cycle Times Section === */
+.cycle-times {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px double rgba(168, 163, 163, 0.753);
+}
+
+.cycle-times-header {
+  width: 100%;
+  text-align: center;
+}
+
+.cycle-times-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.cycle-time-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cycle-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cycle-value.small {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #007aff;
+}

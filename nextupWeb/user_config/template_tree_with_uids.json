@@ -1,0 +1,250 @@
+{
+  "@attributes": {
+    "BTCPP_format": "4",
+    "_uid": "uid_f726971e96be_mnsqcyde"
+  },
+  "@children": [
+    {
+      "tagName": "include",
+      "content": {
+        "@attributes": {
+          "path": "do_di_tree.xml",
+          "_uid": "uid_f5ab4555b5c8_mnsqcydf"
+        }
+      }
+    },
+    {
+      "tagName": "include",
+      "content": {
+        "@attributes": {
+          "path": "run_path.xml",
+          "_uid": "uid_ccaca3ba28ef_mnsqcydf"
+        }
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "main_tree",
+          "_uid": "uid_9c7181b342c3_mnsqcydf"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "jhckjdf",
+                "name": "main_tree_sequennce(dont_delete_it)",
+                "_uid": "uid_87de2fc27fd8_mnsqcydf"
+              },
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "root_sequence_9053",
+                      "_uid": "uid_77b7aaef2f7b_mnsqcydf"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_home_p2_5134",
+                            "_uid": "uid_c93a1628c219_mnsqcydf"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "Fallback",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "fallback_7147",
+                                  "_uid": "uid_9ab99f4f99bf_mnsqcydf"
+                                },
+                                "@children": [
+                                  {
+                                    "tagName": "Sequence",
+                                    "content": {
+                                      "@attributes": {
+                                        "ID": "seq_success_home_p2_3714",
+                                        "_uid": "uid_12f758ae292b_mnsqcydf"
+                                      },
+                                      "@children": [
+                                        {
+                                          "tagName": "RunPath",
+                                          "content": {
+                                            "@attributes": {
+                                              "path_name": "home_p2",
+                                              "ID": "home_p2_3992",
+                                              "speed_scale": "0.75",
+                                              "_uid": "uid_561e7397d720_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "MsgLoggerNode",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "msg_success_home_p2_1307",
+                                              "msg_log": "home_p2 success",
+                                              "_uid": "uid_030d429bfb21_mnsqcydf"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "tagName": "Sequence",
+                                    "content": {
+                                      "@attributes": {
+                                        "ID": "seq_failure_home_p2_4188",
+                                        "_uid": "uid_a1932db228cb_mnsqcydf"
+                                      },
+                                      "@children": [
+                                        {
+                                          "tagName": "MsgLoggerNode",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "msg_fail_home_p2_4476",
+                                              "msg_log": "home_p2 failed",
+                                              "_uid": "uid_1c705aab1001_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "PopupMsg",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "popup_home_p2_4865",
+                                              "msg": "home_p2 path failed",
+                                              "type": "failure",
+                                              "timeout": "0",
+                                              "_uid": "uid_1bbda72c9e22_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "AlwaysFailure",
+                                          "content": {
+                                            "@attributes": {
+                                              "_uid": "uid_678383b3f8b7_mnsqcydf"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_p2_home_8973",
+                            "_uid": "uid_be48b150ddee_mnsqcydf"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "Fallback",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "fallback_9401",
+                                  "_uid": "uid_52ed1026db4c_mnsqcydf"
+                                },
+                                "@children": [
+                                  {
+                                    "tagName": "Sequence",
+                                    "content": {
+                                      "@attributes": {
+                                        "ID": "seq_success_p2_home_4421",
+                                        "_uid": "uid_0529cf94e4b7_mnsqcydf"
+                                      },
+                                      "@children": [
+                                        {
+                                          "tagName": "RunPath",
+                                          "content": {
+                                            "@attributes": {
+                                              "path_name": "p2_home",
+                                              "ID": "p2_home_5287",
+                                              "speed_scale": "0.75",
+                                              "_uid": "uid_98a56fad05f3_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "MsgLoggerNode",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "msg_success_p2_home_1557",
+                                              "msg_log": "p2_home success",
+                                              "_uid": "uid_207750bcc806_mnsqcydf"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "tagName": "Sequence",
+                                    "content": {
+                                      "@attributes": {
+                                        "ID": "seq_failure_p2_home_9469",
+                                        "_uid": "uid_45a8bad63c35_mnsqcydf"
+                                      },
+                                      "@children": [
+                                        {
+                                          "tagName": "MsgLoggerNode",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "msg_fail_p2_home_4836",
+                                              "msg_log": "p2_home failed",
+                                              "_uid": "uid_acbbe51f4362_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "PopupMsg",
+                                          "content": {
+                                            "@attributes": {
+                                              "ID": "popup_p2_home_1667",
+                                              "msg": "p2_home path failed",
+                                              "type": "failure",
+                                              "timeout": "0",
+                                              "_uid": "uid_94e352551cd1_mnsqcydf"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "tagName": "AlwaysFailure",
+                                          "content": {
+                                            "@attributes": {
+                                              "_uid": "uid_271399b67223_mnsqcydf"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

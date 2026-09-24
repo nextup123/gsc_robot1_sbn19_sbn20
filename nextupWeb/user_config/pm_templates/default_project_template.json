@@ -1,0 +1,38 @@
+{
+  "directories": [
+    "planning_data",
+    "control_data",
+    "debuggers"
+  ],
+  "files": {
+    "planning_data": {
+      "points.yaml": "defaults/points.yaml",
+      "paths.yaml": "defaults/paths.yaml",
+      "plan_path.xml": "defaults/plan_path.xml",
+      "points_undo.yaml": "defaults/points_undo.yaml",
+      "plan_path_undo.xml": "defaults/plan_path_undo.xml"
+    },
+    "control_data": {
+      "run_path.xml": "defaults/run_path.xml",
+      "do_di.xml": "defaults/do_di.xml",
+      "do_di_undo.xml": "defaults/do_di_undo.xml",
+      "template.xml": "defaults/template.xml",
+      "main_tree.xml": "defaults/main_tree.xml",
+      "group_run_path.xml": "defaults/group_run_path.xml",
+      "nodes.json": "defaults/nodes.json"
+    },
+    "debuggers": {
+      "description_error.txt": "defaults/description_error.txt",
+      "error_logs.yaml": "defaults/error_logs.yaml",
+      "commands.json": "defaults/commands.json",
+      "reset_logs.yaml": "defaults/reset_logs.yaml",
+      "always_on_top_terminal.sh": "defaults/always_on_top_terminal.sh"
+    },
+    "root": {
+      "emergency_manager.yaml": "defaults/emergency_manager.yaml",
+      "joint_velocities_tuner.yaml": "defaults/joint_velocities_tuner.yaml",
+      "controller_dashboard.yaml": "defaults/controller_dashboard.yaml",
+      "logs.json":"defaults/logs.json"
+    }
+  }
+}

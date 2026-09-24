@@ -1,0 +1,1920 @@
+{
+  "@attributes": {
+    "BTCPP_format": "4",
+    "_uid": "uid_d629c67f40d3_mu6oj7qy"
+  },
+  "@children": [
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION1[DI]",
+          "_uid": "uid_579194033822_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_f7f4e5e1601c_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "SUCTION1[DI] subtree starting...",
+                            "_uid": "uid_bf88b983b034_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "SUCTION1[DI]",
+                            "driver_id": "1",
+                            "di_id": "1",
+                            "status_name": "SUCTION1[DI]",
+                            "expected_status": "{expected_status}",
+                            "wait_time": "500",
+                            "_uid": "uid_632d2996a2c8_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_993217e3eb95_mu6oj7qy"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLogger",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "SUCTION 1",
+                                  "_uid": "uid_1afb5adff339_mu6oj7qy"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_9809b532fb93_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgPopup",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "SUCTION1[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_fb57291427c9_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "SUCTION1[DI] sensing failed",
+                            "_uid": "uid_43be1ac10fae_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_4997ae8fff78_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_b641c04d2d3d_mu6oj7qy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION2[DI]",
+          "_uid": "uid_f5e307600527_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_40f36823688b_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION2[DI] subtree starting...",
+                      "_uid": "uid_bb52cbd6e284_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION2[DI]",
+                      "driver_id": "1",
+                      "di_id": "2",
+                      "status_name": "SUCTION2[DI]",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "500",
+                      "_uid": "uid_14e43acefbf8_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_e6736c5b9b50_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "SUCTION 2",
+                            "_uid": "uid_0bb62701b6fe_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "AUTOMODE[DI]",
+          "_uid": "uid_9b05fd75ad49_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_01db557f2cc4_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "AUTOMODE[DI] subtree starting...",
+                            "_uid": "uid_8d264b9dced4_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "AUTOMODE[DI]",
+                            "driver_id": "1",
+                            "di_id": "3",
+                            "status_name": "AUTOMODE[DI]",
+                            "expected_status": "{expected_status}",
+                            "wait_time": "100",
+                            "_uid": "uid_4e21e58bdb17_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_290a346a1489_mu6oj7qy"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLogger",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "AUTO MODE CNC",
+                                  "_uid": "uid_cb60109eb23e_mu6oj7qy"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_8c58614fb869_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgPopup",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "AUTOMODE[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_5d9d3891d991_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "AUTOMODE[DI] sensing failed",
+                            "_uid": "uid_bcea7ff0b416_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_cda7c77edb54_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_f0ee973c3a68_mu6oj7qy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "STATION1RUNNING[DI]",
+          "_uid": "uid_ab45fb4dfc5c_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_cbce22dfa15d_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "STATION1RUNNING[DI] subtree starting...",
+                            "_uid": "uid_aeff30cbe4c6_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "STATION1RUNNING[DI]",
+                            "driver_id": "2",
+                            "di_id": "1",
+                            "status_name": "STATION1RUNNING[DI]",
+                            "expected_status": "{expected_status}",
+                            "wait_time": "2500000",
+                            "_uid": "uid_c5b960c14753_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_be51d128122b_mu6oj7qy"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLogger",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "STATION 1 RUNNING",
+                                  "_uid": "uid_eebb733b6a06_mu6oj7qy"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_60f8443c40bc_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgPopup",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "STATION1RUNNING[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_4e7364a6663f_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "STATION1RUNNING[DI] sensing failed",
+                            "_uid": "uid_f07389e545d0_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_5f6d40e9e2f4_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_edd2e311f0dd_mu6oj7qy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "STATION2RUNNING[DI]",
+          "_uid": "uid_8dfd968271c0_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_b09fe8b9e11e_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "STATION2RUNNING[DI] subtree starting...",
+                            "_uid": "uid_8689013e8857_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "STATION2RUNNING[DI]",
+                            "driver_id": "2",
+                            "di_id": "2",
+                            "status_name": "STATION2RUNNING[DI]",
+                            "expected_status": "{expected_status}",
+                            "wait_time": "2500000",
+                            "_uid": "uid_1e2e29c8d736_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_99e7684e3dde_mu6oj7qy"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLogger",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "STATION 2 RUNNING",
+                                  "_uid": "uid_93c14f438ef9_mu6oj7qy"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_a9009cda33ac_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgPopup",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "STATION2RUNNING[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_b13f72bb1dd4_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "STATION2RUNNING[DI] sensing failed",
+                            "_uid": "uid_fcb1e7e4e8c3_mu6oj7qy"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_4d5a927f7010_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_ebb1f2d06a6e_mu6oj7qy"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCFAULT[DI]",
+          "_uid": "uid_6436eec81df1_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_a82c7e97c02c_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCFAULT[DI] subtree starting...",
+                      "_uid": "uid_6563dc653e8d_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCFAULT[DI]",
+                      "driver_id": "2",
+                      "di_id": "3",
+                      "status_name": "CNCFAULT[DI]",
+                      "expected_status": "{expected_status}",
+                      "_uid": "uid_23760c72e558_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c5915c9994eb_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC FAULT",
+                            "_uid": "uid_61a85678a5ae_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION1[DO]",
+          "_uid": "uid_ec3feefa0dea_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_281f9f3d20a5_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION1[DO] subtree starting...",
+                      "_uid": "uid_5b96803b59a0_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION1[DO]",
+                      "driver_id": "2",
+                      "do_id": "1",
+                      "control_name": "SUCTION1[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_3f520e33026e_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_6be18b76691f_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "SUCTION1",
+                            "_uid": "uid_7afe9c9c042f_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION2[DO]",
+          "_uid": "uid_ca74a1452fd0_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_8e7aa2e2e4a5_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION2[DO] subtree starting...",
+                      "_uid": "uid_4225a4e7f219_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION2[DO]",
+                      "driver_id": "2",
+                      "do_id": "3",
+                      "control_name": "SUCTION2[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_e3204a0d9251_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_b32b1db7bf6f_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "SUCTION 2 DO",
+                            "_uid": "uid_9d8eb1d4a6a2_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CYCLESTART[DO]",
+          "_uid": "uid_b1dea9c3cfc7_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_3a76ac511ace_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CYCLESTART[DO] subtree starting...",
+                      "_uid": "uid_bcc8189a2278_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CYCLESTART[DO]",
+                      "driver_id": "3",
+                      "do_id": "1",
+                      "control_name": "CYCLESTART[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_83e5ced0dea3_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_75354175de47_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CYCLE START",
+                            "_uid": "uid_24ea6718d2f3_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCEMERGENCY[DO]",
+          "_uid": "uid_2923e17ba722_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_1741b6eee509_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCEMERGENCY[DO] subtree starting...",
+                      "_uid": "uid_cde79ff4689b_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCEMERGENCY[DO]",
+                      "driver_id": "3",
+                      "do_id": "3",
+                      "control_name": "CNCEMERGENCY[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_958c449bd6ea_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_69a09eb60eac_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC EMERGENCY",
+                            "_uid": "uid_c6e36e65673c_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "GRIPPERSUCTION[DO]",
+          "_uid": "uid_3be2e2e095c6_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_d4eed6047783_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "GRIPPERSUCTION[DO] subtree starting...",
+                      "_uid": "uid_f0b9abbe386b_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "GRIPPERSUCTION[DO]",
+                      "driver_id": "4",
+                      "do_id": "1",
+                      "control_name": "GRIPPERSUCTION[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_b73aa1ee5676_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_7d110c44f6b4_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "Gipper Suction",
+                            "_uid": "uid_8a615d637010_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "GLASSADJUSTOR[DO]",
+          "_uid": "uid_d145ea8b13b2_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_acef61cef6c6_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "GLASSADJUSTOR[DO] subtree starting...",
+                      "_uid": "uid_2c738305ae9f_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "GLASSADJUSTOR[DO]",
+                      "driver_id": "5",
+                      "do_id": "1",
+                      "control_name": "GLASSADJUSTOR[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_afb259e3dd88_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_7302a3d6c271_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "GLASS ADJUST KARTA HU",
+                            "_uid": "uid_9624d5d08c24_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "GLASSPULLER[DO]",
+          "_uid": "uid_c8f81155bda6_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_9a05912de873_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "GLASSPULLER[DO] subtree starting...",
+                      "_uid": "uid_83dbd3efe163_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "GLASSPULLER[DO]",
+                      "driver_id": "4",
+                      "do_id": "3",
+                      "control_name": "GLASSPULLER[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_86f51dbf79bb_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_3182f2763f42_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "GLASS PULLER",
+                            "_uid": "uid_fb336d60ff6c_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "GLASSLIFTER[DO]",
+          "_uid": "uid_9b1a79a5a2b4_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_372df9c734d8_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "GLASSLIFTER[DO] subtree starting...",
+                      "_uid": "uid_b3b34bfad1d8_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "GLASSLIFTER[DO]",
+                      "driver_id": "1",
+                      "do_id": "2",
+                      "control_name": "GLASSLIFTER[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_fa2e197cb434_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_4bb12bd9e3e2_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "GLASS LIFTER",
+                            "_uid": "uid_b6b5898d5bc3_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "conv1[DO]",
+          "_uid": "uid_fa83126b20c3_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_7376b90116aa_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "conv1[DO] subtree starting...",
+                      "_uid": "uid_2f51917e5608_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "conv1[DO]",
+                      "driver_id": "5",
+                      "do_id": "3",
+                      "control_name": "conv1[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_a87b70735ca9_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_b0a752dda756_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "1",
+                            "_uid": "uid_466d9b92a1be_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "glasspresent[DI]",
+          "_uid": "uid_fd403b4aeaed_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_9588b530a0b1_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "glasspresent[DI] subtree starting...",
+                      "_uid": "uid_5c63c38cc7c5_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "glasspresent[DI]",
+                      "driver_id": "4",
+                      "di_id": "2",
+                      "status_name": "glasspresent[DI]",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "2500000",
+                      "_uid": "uid_3c716e037dd0_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_77bab6949ef2_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "waiting for glass on conveyor",
+                            "_uid": "uid_7071ddd3b6d2_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION3[DI]",
+          "_uid": "uid_892b70d11b10_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_f5521573f912_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION3[DI] subtree starting...",
+                      "_uid": "uid_2e0284322eb5_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION3[DI]",
+                      "driver_id": "5",
+                      "di_id": "1",
+                      "status_name": "SUCTION3[DI]",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "250",
+                      "_uid": "uid_350981d8deac_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_891b14d01c91_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "suction3 means left station",
+                            "_uid": "uid_e95b4cf2248a_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION4[DI]",
+          "_uid": "uid_4b74a14fc152_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_ac93803e659a_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION4[DI] subtree starting...",
+                      "_uid": "uid_d08ac0589039_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION4[DI]",
+                      "driver_id": "5",
+                      "di_id": "2",
+                      "status_name": "SUCTION4[DI]",
+                      "expected_status": "{expected_status}",
+                      "_uid": "uid_dcc2e5df50c8_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_1926eff179fe_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "suction4 means right station of cnc2",
+                            "_uid": "uid_0e14c393426e_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "AUTOMODE2[DI]",
+          "_uid": "uid_3d088de10d55_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_71e230cb79dd_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "AUTOMODE2[DI] subtree starting...",
+                      "_uid": "uid_f7f9446bdf97_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "AUTOMODE2[DI]",
+                      "driver_id": "5",
+                      "di_id": "3",
+                      "status_name": "AUTOMODE2[DI]",
+                      "expected_status": "{expected_status}",
+                      "_uid": "uid_89070896e22a_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_60f58be5f055_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "AUTO MODE OF CNC2",
+                            "_uid": "uid_ec603e7269d0_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "STATION3RUNNING[DI]",
+          "_uid": "uid_5965585c4423_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_c85096eeaafd_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "STATION3RUNNING[DI] subtree starting...",
+                      "_uid": "uid_9bfb42645e20_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "STATION3RUNNING[DI]",
+                      "driver_id": "6",
+                      "di_id": "1",
+                      "status_name": "STATION3RUNNING[DI]",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "2500000",
+                      "_uid": "uid_8094cb79747a_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c877dc66c7b7_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "STATION 3 RUNNING SIGNAL MEANS CNC2 LEFT STATION",
+                            "_uid": "uid_4c527638f459_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "STATION4RUNNING[DI]",
+          "_uid": "uid_436307d40da2_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_160a220f8ed8_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "STATION4RUNNING[DI] subtree starting...",
+                      "_uid": "uid_bfef40df9a20_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "STATION4RUNNING[DI]",
+                      "driver_id": "6",
+                      "di_id": "2",
+                      "status_name": "STATION4RUNNING[DI]",
+                      "expected_status": "{expected_status}",
+                      "wait_time": "2500000",
+                      "_uid": "uid_f7888adc8032_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c18054ff6e95_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "STATION 4 RUNNING STATUS MEANS CNC2 RIGHT STATION",
+                            "_uid": "uid_35b240957399_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCFAULT2[DI]",
+          "_uid": "uid_a3baa9f56f3f_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "success_seq",
+                "_uid": "uid_fd32c663a59f_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCFAULT2[DI] subtree starting...",
+                      "_uid": "uid_9d784c512784_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DIControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCFAULT2[DI]",
+                      "driver_id": "6",
+                      "di_id": "3",
+                      "status_name": "CNCFAULT2[DI]",
+                      "expected_status": "{expected_status}",
+                      "_uid": "uid_e442e07b3f90_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_ea470ae17030_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC 2 FAULT STATUS",
+                            "_uid": "uid_a06775946239_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION3[DO]",
+          "_uid": "uid_5d8374f477f8_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_274014c891ec_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION3[DO] subtree starting...",
+                      "_uid": "uid_0b857ed0c6f6_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION3[DO]",
+                      "driver_id": "5",
+                      "do_id": "1",
+                      "control_name": "SUCTION3[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_634e44a24e7e_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_c66d6cc2a9a0_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "SUCNTION 3 DO MEANS LEFT STATION",
+                            "_uid": "uid_418ba56ac125_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "SUCTION4[DO]",
+          "_uid": "uid_e484449f64c3_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_6478eb264ec2_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "SUCTION4[DO] subtree starting...",
+                      "_uid": "uid_5c385956d462_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "SUCTION4[DO]",
+                      "driver_id": "6",
+                      "do_id": "1",
+                      "control_name": "SUCTION4[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_d0addf1a9312_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_d56907b6fcb8_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "SUCTION 4 DO MEANS RIGHT STATION DO",
+                            "_uid": "uid_3ce7d7d7473f_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CYCLESTARTCNC2[DO]",
+          "_uid": "uid_d111ca504e05_mu6oj7qy"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_e7c2bcd090c5_mu6oj7qy"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLogger",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CYCLESTARTCNC2[DO] subtree starting...",
+                      "_uid": "uid_799f2fa5704c_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CYCLESTARTCNC2[DO]",
+                      "driver_id": "6",
+                      "do_id": "3",
+                      "control_name": "CYCLESTARTCNC2[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_e7d53adcfc19_mu6oj7qy"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_e70a69f97422_mu6oj7qy"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLogger",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CYCLE START OF CNC2 ",
+                            "_uid": "uid_fca9e83310cb_mu6oj7qy"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

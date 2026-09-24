@@ -1,0 +1,100 @@
+/* ====== EDIT MODE ====== */
+.di-container,
+.do-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 250px;        /* 👈 gives initial area for few items */
+  padding-top: 12px;
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px 25px;
+  transition: all 0.3s ease;
+}
+
+.editable-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.editable-container.edit-mode {
+  background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  cursor: move;
+}
+
+.edit-mode {
+  display: block !important;      /* switch from grid to block */
+  position: relative;
+  min-height: 400px;              /* 👈 more workspace for dragging */
+  background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  cursor: default;
+  overflow: hidden;
+}
+
+/* Items inside edit mode */
+.edit-mode .movable {
+  position: absolute !important;  /* 👈 free positioning */
+  cursor: grab;
+  z-index: 10;
+}
+
+/* Optional: slightly fade background when editing */
+.edit-mode::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+.editable-container .movable {
+  position: absolute;
+  cursor: grab;
+  border-radius: 10px;
+  user-select: none;
+}
+
+.editable-container.edit-mode .movable {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+}
+
+/* Add/Del button styles */
+.edit-controls {
+  display: flex;
+  gap: 8px;
+}
+.edit-btn, .save-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.edit-btn { background: #007aff; color: #fff; }
+.save-btn { background: #27c93f; color: #fff; }
+.edit-btn:disabled, .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* label or section appearance */
+.custom-label {
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.custom-section {
+  background: rgba(0, 120, 255, 0.15);
+  border: 2px dashed #007aff;
+  border-radius: 16px;
+}
+
+

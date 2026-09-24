@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Dashboard</title>
+    <link rel="stylesheet" href="mainWeb/styles.css">
+    <link rel="stylesheet" href="mainWeb/system_info/system_info.css">
+    <link rel="stylesheet" href="mainWeb/power_options/power_options.css">
+    <link rel="stylesheet" href="mainWeb/ros_code/ros_control.css">
+    <link rel="stylesheet" href="mainWeb/ros_code/ros_status.css">
+    <link rel="stylesheet" href="mainWeb/toastify/toastify.css">
+    <link rel="stylesheet" href="media/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="mainWeb/toastify/toastify.min.css">
+    <link rel="stylesheet" href="mainWeb/project_manager/project_manager.css">
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <button class="nav-button nav-button-pm active" onclick="switchPage('page0'); refreshActiveProjectName()">
+            <span>Project Manager</span>
+            <span class="active-project-label" id="navActiveProjectName">—</span>
+        </button>
+
+        <div class="nav-button-page-container">
+
+            <button class="nav-button active" onclick="switchPage('page1')">
+                <i class="fa-solid fa-location-dot"></i> <span>Point Planning</span>
+            </button>
+            <button class="nav-button" onclick="switchPage('page2')">
+                <i class="fa-solid fa-route"></i><span>Path Planning</span>
+            </button>
+            <!-- <button class="nav-button" onclick="switchPage('page3')">
+                <i class="fa-solid fa-draw-polygon"></i><span>Path Testing</span>
+            </button> -->
+            <button class="nav-button" onclick="switchPage('page5')">
+                <i class="fa-solid fa-wave-square"></i><span>IO Control</span>
+            </button>
+            <button class="nav-button" onclick="switchPage('page7')">
+                <i class="fa-solid fa-code-branch"></i><span>Main Tree</span>
+            </button>
+            <button class="nav-button" onclick="switchPage('page8')">
+                <i class="fa-solid fa-user"></i>
+                <span>Client Control</span>
+            </button>
+
+            <button class="nav-button" onclick="switchPage('page6')">
+                <i class="fa-solid fa-bug"></i><span>Error Handling</span>
+            </button>
+        </div>
+        <div class="ros-control-container">
+            <div class="operational-status-container">
+                <div class="operational-status-header">OPERATIONAL STATUS</div>
+                <div id="robot-led-op" class="led-op">
+                    <div id="joint1-led-op" class="joint-indicator"></div>
+                    <div id="joint2-led-op" class="joint-indicator"></div>
+                    <div id="joint3-led-op" class="joint-indicator"></div>
+                    <div id="joint4-led-op" class="joint-indicator"></div>
+                    <div id="joint5-led-op" class="joint-indicator"></div>
+                    <div id="joint6-led-op" class="joint-indicator"></div>
+                </div>
+            </div>
+
+            <!-- fault Status -->
+            <div class="status-container">
+                <div class="status-header">FAULT STATUS</div>
+                <div id="robot-led-fault" class="led-status">
+                    <div id="joint1-led-fault" class="joint-indicator"></div>
+                    <div id="joint2-led-fault" class="joint-indicator"></div>
+                    <div id="joint3-led-fault" class="joint-indicator"></div>
+                    <div id="joint4-led-fault" class="joint-indicator"></div>
+                    <div id="joint5-led-fault" class="joint-indicator"></div>
+                    <div id="joint6-led-fault" class="joint-indicator"></div>
+                </div>
+            </div>
+
+            <div class="homing-status-container">
+                <div class="homing-status-header">HOMING STATUS</div>
+                <div id="robot-led-homing" class="led-homing">
+                    <div id="joint1-led-homing" class="joint-indicator"></div>
+                    <div id="joint2-led-homing" class="joint-indicator"></div>
+                    <div id="joint3-led-homing" class="joint-indicator"></div>
+                    <div id="joint4-led-homing" class="joint-indicator"></div>
+                    <div id="joint5-led-homing" class="joint-indicator"></div>
+                    <div id="joint6-led-homing" class="joint-indicator"></div>
+                </div>
+            </div>
+
+
+
+            <!-- Emergency Status -->
+            <div class="status-container">
+                <div class="status-header">EMERGENCY STATUS</div>
+                <div id="robot-led-emergency" class="led-status">
+                    <div id="joint1-led-emergency" class="joint-indicator"></div>
+                    <div id="joint2-led-emergency" class="joint-indicator"></div>
+                    <div id="joint3-led-emergency" class="joint-indicator"></div>
+                    <div id="joint4-led-emergency" class="joint-indicator"></div>
+                    <div id="joint5-led-emergency" class="joint-indicator"></div>
+                    <div id="joint6-led-emergency" class="joint-indicator"></div>
+                </div>
+            </div>
+
+
+            <div class="home-reset-button-container">
+                <button id="homeButton" class="control-button control-button-home">HOME</button>
+                <button id="resetButton" class="control-button control-button-reset">RESET</button>
+            </div>
+            
+            <div>
+                <button id="resetButtonMod" style="background-color:rgb(101, 116, 255);width:95%;" class="btn-emergency">MOTION RESET</button>
+                <button class="btn-emergency" id="emergency-button">EMERGENCY STOP</button>
+            </div>
+
+        </div>
+
+        <div id="homeResetPopup"
+            style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -30%); background:#fff; border:1px solid #ccc; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:9999;">
+            <p id="popupMessage"></p>
+            <button onclick="closeHomeResetPopup()">OK</button>
+        </div>
+
+        <div id="system-status-sidebar" class="sys-status-compact">
+            <div class="sys-status-time" id="sys-status-current-time"></div>
+            <div class="sys-status-uptime" id="sys-status-uptime"></div>
+            <div class="sys-status-load" id="sys-status-load-avg"></div>
+        </div>
+
+        <button class="shutdown-button" onclick="openModal()">
+            Power Menu
+        </button>
+
+
+    </div>
+
+    <!-- Iframes (Load All Pages) -->
+    <div class="iframe-container">
+        <iframe id="page0"></iframe>
+        <iframe id="page1" class="active"></iframe>
+        <iframe id="page2"></iframe>
+        <iframe id="page3"></iframe>
+        <iframe id="page9"></iframe>
+        <iframe id="page5"></iframe>
+        <iframe id="page6"></iframe>
+        <iframe id="page7"></iframe>
+        <iframe id="page8"></iframe>
+
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-container" id="loadingScreen">
+        <img src="media/nextup_logo.png" style="height: 300px;" alt="">
+        <h2>Loading...</h2>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="loading-text" id="loadingText">0%</p>
+        <p class="loading-text" id="loadingCount">0 / 0</p>
+
+
+        <button id="loadingBypass">Bypass Loading</button>
+    </div>
+
+    <!-- power menu popup -->
+    <div class="modal" id="powerModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2>Select Action</h2>
+            <div class="modal-buttons">
+                <button class="option-button shutdown" onclick="confirmAction('shutdown')">Shutdown</button>
+                <button class="option-button reboot" onclick="confirmAction('reboot')">Reboot</button>
+                <button class="option-button force" onclick="confirmAction('force shutdown')">Force Shutdown</button>
+            </div>
+
+            <div class="confirm" id="confirmSection">
+                <p id="confirmText">Are you sure you want to shutdown?</p>
+                <p id="countdown">System will automatically shutdown in <span id="timer">15</span> seconds</p>
+                <div class="confirm-buttons">
+                    <button class="yes" onclick="executeAction()">Yes</button>
+                    <button class="no" onclick="cancelConfirm()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bt-toast-container"></div>
+
+    <!-- Drawer Toggle Button -->
+    <button id="drawerToggle" class="drawer-toggle">
+        <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <!-- Drawer Panel -->
+    <div id="leftDrawer" class="drawer">
+        <div class="drawer-header">
+            <h3>System Logs</h3>
+            <div style="display: flex;flex-flow: row;">
+                <button id="refreshBtn"><i class="fa-solid fa-refresh"></i> </button>
+                <button onclick="toggleDrawer()">✖</button>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="drawer-controls">
+            <select id="filterType">
+                <option value="all">All</option>
+                <option value="error">Error</option>
+                <option value="warn">Warn</option>
+                <option value="success">Success</option>
+            </select>
+
+            <select id="sortOrder">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+            <button class="clear-btn" onclick="clearLogs()">Clear</button>
+        </div>
+
+        <!-- Logs -->
+        <div class="drawer-content" id="drawerContent"></div>
+    </div>
+
+    <script src="mainWeb/scripts.js"></script>
+    <script src="mainWeb/pm_page_reloader.js"></script>
+    <!-- <script src="mainWeb/toastify/toastify.js"></Script>
+    <script src="mainWeb/toastify/toastify.min.js"></script> -->
+
+</body>
+
+</html>

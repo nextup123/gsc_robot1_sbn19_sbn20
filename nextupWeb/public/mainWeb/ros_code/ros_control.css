@@ -1,0 +1,30 @@
+
+.home-reset-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-button {
+    background: #860d09;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    color: rgb(230, 227, 227);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.control-button-home{
+    background: #066435;
+}
+
+.control-button-reset{
+    background: #036970;
+}
+
+.control-button:hover {
+    background: #ac1a07;
+    transform: scale(0.98);
+}

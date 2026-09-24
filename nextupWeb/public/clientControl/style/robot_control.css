@@ -1,0 +1,162 @@
+/* === Robot Control Section === */
+.robot-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  border-top: 1px double rgba(168, 163, 163, 0.753);
+}
+
+.robot-control-header {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.robot-control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  min-width: 120px;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Button Variants */
+.control-btn.start {
+  background: linear-gradient(145deg, #2ecc71, #27ae60);
+}
+.control-btn.start:hover {
+  background: linear-gradient(145deg, #27ae60, #2ecc71);
+  transform: translateY(-2px);
+}
+
+.control-btn.exit {
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+}
+.control-btn.exit:hover {
+  background: linear-gradient(145deg, #c0392b, #e74c3c);
+  transform: translateY(-2px);
+}
+
+.control-btn.runonce {
+  background: linear-gradient(145deg, #f1c40f, #f39c12);
+  color: #333;
+}
+.control-btn.runonce:hover {
+  background: linear-gradient(145deg, #f39c12, #f1c40f);
+  transform: translateY(-2px);
+}
+
+/* Subtle pressed animation */
+.control-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-disabled {
+  opacity: 0.45;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.process-toggle {
+  width: 34px;
+  height: 18px;
+  border-radius: 18px;
+  background: #c7c7cc; /* inactive */
+  position: relative;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.process-toggle-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  transition: transform 0.25s ease;
+}
+
+/* ACTIVE (RUNNING) */
+.process-toggle.active {
+  background: #34c759; /* green */
+}
+
+.process-toggle.active .process-toggle-thumb {
+  transform: translateX(14px);
+}
+.process-status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #583232; /* blue = stopped */
+  box-shadow: 0 0 4px rgba(0,0,0,0.15);
+  transition: background 0.25s ease;
+}
+
+.process-status-indicator.running {
+  background: #34c759; /* green */
+}
+
+
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #dfd9d9;
+  color: #1a0d0d;
+  padding: 20px;
+  border-radius: 6px;
+  min-width: 300px;
+}
+
+.modal-content ul {
+  margin: 10px 0;
+  padding-left: 18px;
+}
+
+.modal-button{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.section-title{
+  font-size: 1rem;
+}

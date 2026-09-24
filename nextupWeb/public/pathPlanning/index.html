@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Motion Planning BT - Path Editor</title>
+    <link rel="stylesheet" href="../media/fontawesome-free/css/all.min.css">
+    <!-- <link rel="stylesheet" href="style/fontawesome-free/css/all.min.css"> -->
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/actions.css">
+    <link rel="stylesheet" href="style/auto_gen_paths.css">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-route logo-icon"></i>
+                <h1>Motion Planning Behavior Tree</h1>
+
+            </div>
+            <div class="header-actions">
+
+                <button class="btn btn-secondary" onclick="openXMLModal()">
+                    <i class="fas fa-code"></i> View XML
+                </button>
+
+                <button class="btn btn-primary" onclick="openPathsYAMLModal()">
+                    <i class="fas fa-code"></i> View Paths YAML
+                </button>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <div class="control-panel">
+                <div class="path-editor">
+                    <div class="section-title">
+                        <i class="fas fa-plus-circle"></i>
+
+                        <span class="path-editor-title-container">
+                            <h2>Path Editor</h2>
+                            <button class="btn-reload-points" onclick="reloadPoints()">
+                                <i class="fas fa-sync-alt"></i> Reload Points
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="startPoint"><i class="fas fa-play-circle"></i> Start Point</label>
+                            <select id="startPoint"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goalPoint"><i class="fas fa-flag-checkered"></i> Goal Point</label>
+                            <select id="goalPoint"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="planSpace"><i class="fas fa-space-shuttle"></i> Plan Space</label>
+                            <select id="planSpace">
+                                <option value="cartesian">Cartesian Space</option>
+                                <option value="joint">Joint Space</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pathName"><i class="fas fa-signature"></i> Path Name</label>
+                            <input type="text" id="pathName" readonly value="start...goal" style="color: #000000c0;">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="intermediateGoal"><i class="fas fa-dot-circle"></i> Intermediate Points
+                                <button class="btn btn-primary" onclick="openIntermediateModal()">
+                                    <i class="fas fa-plus"></i> Select Points
+                                </button>
+                            </label>
+
+                            <div id="intermediateDisplay" class="intermediate-display">No points selected</div>
+
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="addPath()">
+                            <i class="fas fa-plus"></i> Add Path
+                        </button>
+                        <button class="btn btn-warning" onclick="updatePath()" id="updateBtn" disabled>
+                            <i class="fas fa-edit"></i> Update Path
+                        </button>
+                        <button class="btn btn-secondary" onclick="autoGenOpenPopup()" id="auto-gen-trigger">
+                            <i class="fa-solid fa-wand-sparkles"></i> Auto Generate Paths
+                            <i class="fa-solid fa-robot"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="motion-planning-container">
+                    <div class="motion-header">
+                        <div class="motion-title">
+                            <i class="fas fa-route"></i> Motion Planning
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="motionToggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot status-stopped" id="statusDot"></div>
+                            <span id="statusText">Stopped</span>
+                        </div>
+                    </div>
+
+                    <div class="toggle-container">
+
+                        <button class="plan-control-button" id="startPlanningBtn" onclick="startMotionBtFun()" disabled>
+                            <i class="fas fa-play-circle"></i> Start Planning
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="sequence-panel">
+                <div class="sequence-header">
+                    <div class="section-title">
+                        <i class="fas fa-project-diagram"></i>
+                        <h2>Plan Sequences</h2>
+
+                    </div>
+                    <div class="sequence-count">
+                        <span class="origin-point-file-name">
+                            <span id="sequenceCount">0</span> paths
+                        </span>
+                        <button class="btn-reload-points" onclick="checkPathStatus()">
+                            <i class="fas fa-check-circle"></i> Check Path
+                        </button>
+                        <button class="btn-reload-points" onclick="reloadPaths()">
+                            <i class="fas fa-redo"></i> Reload Paths
+                        </button>
+                        <button id="undoBtn" class="btn-reload-points btn-warning" onclick="performUndo()" disabled>
+                            <i class="fas fa-undo"></i> Undo
+                        </button>
+                        <button class="btn-reload-points btn-danger" onclick="deleteAll()">
+                            <i class="fas fa-broom"></i> Delete All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sequence-list" id="sequenceList">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No paths added yet</p>
+                        <small>Start by creating a path using the editor</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intermediate Points Modal -->
+    <div id="intermediateModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-dot-circle"></i> Intermediate Points</h3>
+                <button class="modal-close" onclick="closeIntermediateModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Select and reorder intermediate points for your path</p>
+
+                <div class="form-group">
+                    <label>Add Point</label>
+                    <select id="pointSelect"></select>
+                    <button class="btn btn-primary" onclick="addIntermediatePoint()" style="margin-top: 8px">
+                        <i class="fas fa-plus"></i> Add Point
+                    </button>
+                </div>
+
+                <label>Selected Points (Drag to reorder)</label>
+                <div class="point-list" id="selectedPoints"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveIntermediatePoints()">
+                    <i class="fas fa-save"></i> Save Points
+                </button>
+                <button class="btn btn-danger" onclick="closeIntermediateModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- XML Modal -->
+    <div id="xmlModal" class="modal">
+        <div class="modal-content xml-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-code"></i> Generated XML</h3>
+
+                <!-- Font size controls -->
+                <div class="font-controls">
+
+                    <button class="btn-font" onclick="changeFontSize(-1)">A-</button>
+                    <button class="btn-font" onclick="changeFontSize(1)">A+</button>
+                    <button class="modal-close" onclick="closeXMLModal()">&times;</button>
+
+                </div>
+
+            </div>
+            <div class="modal-body">
+                <pre id="xmlOutput" class="xml-content"></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="reloadXML()">
+                    <i class='bx bx-refresh'></i> Reload XML
+                </button>
+                <button class="btn btn-success" onclick="copyXML()">
+                    <i class="fas fa-copy"></i> Copy to Clipboard
+                </button>
+                <button class="btn btn-danger" onclick="closeXMLModal()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="auto-gen-popup" class="auto-gen-popup-overlay">
+        <div class="auto-gen-popup-content">
+            <h3>Auto Generate Options</h3>
+            <div class="auto-gen-popup-sections">
+                <!-- Left Section -->
+                <div class="auto-gen-popup-section">
+                    <p>Generate using default method</p>
+                    <button class="btn btn-primary" onclick="autoGenPublishDefault()">Auto Generate
+                        Paths</button>
+                </div>
+
+                <!-- Right Section -->
+                <div class="auto-gen-popup-section">
+                    <p>Generate with custom sequence</p>
+                    <input type="text" id="auto-gen-sequence-input" placeholder="Enter seq: (04,56,01)">
+                    <button class="btn btn-success" onclick="autoGenPublishSequence()">Generate Path Sequence</button>
+
+                </div>
+            </div>
+            <div id="auto-gen-popup-message" class="auto-gen-popup-message"></div>
+            <button class="auto-gen-btn auto-gen-btn-danger auto-gen-close-btn"
+                onclick="autoGenClosePopup()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Paths YAML Modal -->
+    <div id="pathsYAMLModal" class="modal">
+        <div class="modal-content yaml-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-code"></i> Paths YAML</h3>
+                <!-- Font size controls -->
+                <div class="font-controls">
+                    <button class="btn btn-primary btn-view" onclick="showFullPathsYAML()">Full YAML</button>
+                    <button class="btn btn-primary btn-view" onclick="showNamesOnlyYAML()">Names Only</button>
+                    <button class="btn-font" onclick="changePathsYAMLFontSize(-1)">A-</button>
+                    <button class="btn-font" onclick="changePathsYAMLFontSize(1)">A+</button>
+                    <button class="modal-close" onclick="closePathsYAMLModal()">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <pre id="pathsYAMLOutput" class="yaml-content"></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="reloadPathsYAML()">
+                    <i class='bx bx-refresh'></i> Reload YAML
+                </button>
+                <button class="btn btn-success" onclick="copyPathsYAML()">
+                    <i class="fas fa-copy"></i> Copy to Clipboard
+                </button>
+                <button class="btn btn-danger" onclick="closePathsYAMLModal()">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Confirm Delete Modal -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content" style="max-width: 420px;">
+        <div class="modal-header" style="gap: 12px; align-items: flex-start;">
+            <div class="confirm-modal-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div style="flex: 1;">
+                <h3 class="modal-title" id="confirmModalTitle">Delete?</h3>
+                <p id="confirmModalMessage" class="confirm-modal-message"></p>
+            </div>
+            <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeConfirmModal()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+            <button class="btn btn-danger" id="confirmModalOkBtn">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Status Modal -->
+    <div id="statusModal" class="modal"></div>
+    <script src="script/script.js"></script>
+    <script src="script/js-yaml-min.js"></script>
+</body>
+
+</html>

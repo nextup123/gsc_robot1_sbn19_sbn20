@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="SUCTION1[DI]">
+    <Fallback>
+      <Sequence ID="success_seq">
+        <MsgLogger ID="msg_1" msg_log="SUCTION1[DI] subtree starting..."/>
+        <DIControl ID="ctrl_1" name="SUCTION1[DI]" driver_id="1" di_id="1" status_name="SUCTION1[DI]" expected_status="{expected_status}" wait_time="500"/>
+        <Sequence ID="seq_2">
+          <MsgLogger ID="msg_2" msg_log="SUCTION 1"/>
+        </Sequence>
+      </Sequence>
+      <Sequence ID="failure_seq">
+        <MsgPopup ID="pop_fail" msg="SUCTION1[DI] sensing failed" type="failure" timeout="0"/>
+        <MsgLogger ID="msg_fail" msg_log="SUCTION1[DI] sensing failed"/>
+        <AlwaysFailure/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION2[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="SUCTION2[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="SUCTION2[DI]" driver_id="1" di_id="2" status_name="SUCTION2[DI]" expected_status="{expected_status}" wait_time="500"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="SUCTION 2"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="AUTOMODE[DI]">
+    <Fallback>
+      <Sequence ID="success_seq">
+        <MsgLogger ID="msg_1" msg_log="AUTOMODE[DI] subtree starting..."/>
+        <DIControl ID="ctrl_1" name="AUTOMODE[DI]" driver_id="1" di_id="3" status_name="AUTOMODE[DI]" expected_status="{expected_status}" wait_time="100"/>
+        <Sequence ID="seq_2">
+          <MsgLogger ID="msg_2" msg_log="AUTO MODE CNC"/>
+        </Sequence>
+      </Sequence>
+      <Sequence ID="failure_seq">
+        <MsgPopup ID="pop_fail" msg="AUTOMODE[DI] sensing failed" type="failure" timeout="0"/>
+        <MsgLogger ID="msg_fail" msg_log="AUTOMODE[DI] sensing failed"/>
+        <AlwaysFailure/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+  <BehaviorTree ID="STATION1RUNNING[DI]">
+    <Fallback>
+      <Sequence ID="success_seq">
+        <MsgLogger ID="msg_1" msg_log="STATION1RUNNING[DI] subtree starting..."/>
+        <DIControl ID="ctrl_1" name="STATION1RUNNING[DI]" driver_id="1" di_id="4" status_name="STATION1RUNNING[DI]" expected_status="{expected_status}" wait_time="2500000"/>
+        <Sequence ID="seq_2">
+          <MsgLogger ID="msg_2" msg_log="STATION 1 RUNNING"/>
+        </Sequence>
+      </Sequence>
+      <Sequence ID="failure_seq">
+        <MsgPopup ID="pop_fail" msg="STATION1RUNNING[DI] sensing failed" type="failure" timeout="0"/>
+        <MsgLogger ID="msg_fail" msg_log="STATION1RUNNING[DI] sensing failed"/>
+        <AlwaysFailure/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+  <BehaviorTree ID="STATION2RUNNING[DI]">
+    <Fallback>
+      <Sequence ID="success_seq">
+        <MsgLogger ID="msg_1" msg_log="STATION2RUNNING[DI] subtree starting..."/>
+        <DIControl ID="ctrl_1" name="STATION2RUNNING[DI]" driver_id="2" di_id="1" status_name="STATION2RUNNING[DI]" expected_status="{expected_status}" wait_time="2500000"/>
+        <Sequence ID="seq_2">
+          <MsgLogger ID="msg_2" msg_log="STATION 2 RUNNING"/>
+        </Sequence>
+      </Sequence>
+      <Sequence ID="failure_seq">
+        <MsgPopup ID="pop_fail" msg="STATION2RUNNING[DI] sensing failed" type="failure" timeout="0"/>
+        <MsgLogger ID="msg_fail" msg_log="STATION2RUNNING[DI] sensing failed"/>
+        <AlwaysFailure/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+  <BehaviorTree ID="CNCFAULT[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="CNCFAULT[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="CNCFAULT[DI]" driver_id="2" di_id="2" status_name="CNCFAULT[DI]" expected_status="{expected_status}"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CNC FAULT"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="glasspresent[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="glasspresent[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="glasspresent[DI]" driver_id="4" di_id="4" status_name="glasspresent[DI]" expected_status="{expected_status}" wait_time="2500000"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="waiting for glass on conveyor"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION3[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="SUCTION3[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="SUCTION3[DI]" driver_id="2" di_id="4" status_name="SUCTION3[DI]" expected_status="{expected_status}" wait_time="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="suction3 means left station"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION4[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="SUCTION4[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="SUCTION4[DI]" driver_id="3" di_id="1" status_name="SUCTION4[DI]" expected_status="{expected_status}"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="suction4 means right station of cnc2"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="AUTOMODE2[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="AUTOMODE2[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="AUTOMODE2[DI]" driver_id="3" di_id="2" status_name="AUTOMODE2[DI]" expected_status="{expected_status}"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="AUTO MODE OF CNC2"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="STATION3RUNNING[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="STATION3RUNNING[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="STATION3RUNNING[DI]" driver_id="3" di_id="3" status_name="STATION3RUNNING[DI]" expected_status="{expected_status}" wait_time="2500000"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="STATION 3 RUNNING SIGNAL MEANS CNC2 LEFT STATION"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="STATION4RUNNING[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="STATION4RUNNING[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="STATION4RUNNING[DI]" driver_id="3" di_id="4" status_name="STATION4RUNNING[DI]" expected_status="{expected_status}" wait_time="2500000"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="STATION 4 RUNNING STATUS MEANS CNC2 RIGHT STATION"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="CNCFAULT2[DI]">
+    <Sequence ID="success_seq">
+      <MsgLogger ID="msg_1" msg_log="CNCFAULT2[DI] subtree starting..."/>
+      <DIControl ID="ctrl_1" name="CNCFAULT2[DI]" driver_id="2" di_id="3" status_name="CNCFAULT2[DI]" expected_status="{expected_status}"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CNC 2 FAULT STATUS"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION1[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="SUCTION1[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="SUCTION1[DO]" driver_id="5" do_id="3" control_name="SUCTION1[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="SUCTION1"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION2[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="SUCTION2[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="SUCTION2[DO]" driver_id="2" do_id="3" control_name="SUCTION2[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="SUCTION 2 DO"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="CYCLESTART[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="CYCLESTART[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="CYCLESTART[DO]" driver_id="3" do_id="1" control_name="CYCLESTART[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CYCLE START"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="CNCEMERGENCY[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="CNCEMERGENCY[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="CNCEMERGENCY[DO]" driver_id="3" do_id="3" control_name="CNCEMERGENCY[DO]" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CNC EMERGENCY"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="GRIPPERSUCTION[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="GRIPPERSUCTION[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="GRIPPERSUCTION[DO]" driver_id="4" do_id="1" control_name="GRIPPERSUCTION[DO]" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="Gipper Suction"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="GLASSADJUSTOR[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="GLASSADJUSTOR[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="GLASSADJUSTOR[DO]" driver_id="5" do_id="1" control_name="GLASSADJUSTOR[DO]" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="GLASS ADJUST KARTA HU"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION3[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="SUCTION3[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="SUCTION3[DO]" driver_id="1" do_id="2" control_name="SUCTION3[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="SUCNTION 3 DO MEANS LEFT STATION"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="SUCTION4[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="SUCTION4[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="SUCTION4[DO]" driver_id="1" do_id="3" control_name="SUCTION4[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="SUCTION 4 DO MEANS RIGHT STATION DO"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="CYCLESTARTCNC2[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="CYCLESTARTCNC2[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="CYCLESTARTCNC2[DO]" driver_id="2" do_id="1" control_name="CYCLESTARTCNC2[DO]" type_of_control="push" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CYCLE START OF CNC2 "/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+  <BehaviorTree ID="CNCEMERGENCY2[DO]">
+    <Sequence ID="seq_1">
+      <MsgLogger ID="msg_1" msg_log="CNCEMERGENCY2[DO] subtree starting..."/>
+      <DoControl ID="ctrl_1" name="CNCEMERGENCY2[DO]" driver_id="1" do_id="1" control_name="CNCEMERGENCY2[DO]" type_of_control="switch" expected_action="{expected_action}" push_wait="250"/>
+      <Sequence ID="seq_2">
+        <MsgLogger ID="msg_2" msg_log="CNC2 EMERGENCY TRIGGER"/>
+      </Sequence>
+    </Sequence>
+  </BehaviorTree>
+</root>

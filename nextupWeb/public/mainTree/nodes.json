@@ -1,0 +1,165 @@
+{
+  "default": {
+    "Control": {
+      "Sequence": {
+        "type": "wrapper",
+        "children": []
+      },
+      "Fallback": {
+        "type": "wrapper",
+        "children": [
+          {
+            "type": "Sequence",
+            "name": "Sequence1"
+          },
+          {
+            "type": "Sequence",
+            "name": "Sequence2"
+          }
+        ]
+      },
+      "Parallel": {
+        "type": "wrapper",
+        "children": [
+          {
+            "type": "Sequence",
+            "name": "Sequence1"
+          },
+          {
+            "type": "Sequence",
+            "name": "Sequence2"
+          }
+        ]
+      },
+      "WhileDoElse": {
+        "type": "wrapper",
+        "children": [
+          {
+            "type": "Sequence",
+            "name": "ConditionSeq"
+          },
+          {
+            "type": "Sequence",
+            "name": "DoSeq"
+          },
+          {
+            "type": "Sequence",
+            "name": "ElseSeq"
+          }
+        ]
+      }
+    },
+    "Decorator": {
+      "Invertor": {
+        "type": "wrapper",
+        "children": []
+      },
+      "ForceFailure": {
+        "type": "wrapper",
+        "children": []
+      },
+      "ForceSuccess": {
+        "type": "wrapper",
+        "children": []
+      },
+      "Repeat": {
+        "type": "wrapper",
+        "children": [],
+        "attributes": {
+          "num_cycle": ""
+        }
+      },
+      "RetryUntilSuccess": {
+        "type": "wrapper",
+        "children": [],
+        "attributes": {
+          "num_attempt": ""
+        }
+      },
+      "KeepRunningUntilFailure": {
+        "type": "wrapper",
+        "children": []
+      },
+      "Timeout": {
+        "type": "wrapper",
+        "children": [],
+        "attributes": {
+          "msec": ""
+        }
+      },
+      "WaitUntilTrue": {
+        "type": "wrapper",
+        "children": [],
+        "attributes": {
+          "timeout_ms": ""
+        }
+      }
+    },
+    "Action": {
+      "AlwaysFailure": {
+        "type": "leaf"
+      },
+      "AlwaysSuccess": {
+        "type": "leaf"
+      },
+      "Sleep": {
+        "type": "leaf",
+        "attributes": {
+          "msec": ""
+        }
+      },
+      "FailureAfterTimeout": {
+        "type": "leaf",
+        "attributes": {
+          "timeout_ms": ""
+        }
+      }
+    }
+  },
+  "custom": {
+    "Action": {
+      "Trigger": {
+        "type": "leaf",
+        "attributes": {}
+      },
+      "MsgLogger": {
+        "type": "leaf",
+        "attributes": {
+          "msg": ""
+        }
+      },
+      "CheckPosition": {
+        "type": "leaf",
+        "attributes": {
+          "point_name": "",
+          "accuracy": ""
+        }
+      }
+    },
+    "Decorator": {
+      "WaitForTrue": {
+        "type": "wrapper",
+        "attributes": {
+          "time": ""
+        },
+        "children": []
+      },
+      "custom_parellel": {
+        "type": "wrapper",
+        "attributes": {
+          "min_seq": "1",
+          "max_seq": "4"
+        },
+        "children": []
+      },
+      "hgjg": {
+        "type": "wrapper",
+        "attributes": {
+          "dfhtfhf": "1",
+          "fghfjg": "2"
+        },
+        "children": []
+      }
+    }
+  }
+}

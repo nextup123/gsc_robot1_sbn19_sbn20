@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "nodes": [
+    {
+      "id": "p1",
+      "label": "p1",
+      "x": -40,
+      "y": 0
+    },
+    {
+      "id": "p2",
+      "label": "p2",
+      "x": 40,
+      "y": 0,
+      "metadata": {
+        "coordinates": [
+          10,
+          20
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "p1",
+      "to": "p2",
+      "label": "p1_p2",
+      "type": "cartesian",
+      "waypoints": 10,
+      "coordinates": [
+        10,
+        20
+      ]
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Manager | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="pm-page">
+
+    <!-- Header -->
+    <div class="pm-header">
+      <div class="header-brand">
+        <div class="brand-icon">📁</div>
+        <div>
+          <h1>Project Manager</h1>
+          <p class="brand-sub">Workspace Dashboard</p>
+        </div>
+      </div>
+      <div class="header-actions">
+
+        <div class="header-status" id="sseStatus" title="Stream status">
+          <span class="status-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Project Banner -->
+    <div class="active-project-section" id="activeProjectSection">
+      <div class="active-label">
+        <span class="pin-icon">📌</span>
+        <span>ACTIVE PROJECT</span>
+      </div>
+      <div id="projectDetails" class="project-details-grid">
+        <div class="no-project-msg">No active project selected</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="project-actions">
+      <div class="crud_buttons">
+        <button class="action-btns primary create-project-btn">
+          <div class="icon">＋</div>
+          <div class="text">
+            <div class="title">New Project</div>
+            <div class="subtitle">Custom setup</div>
+          </div>
+        </button>
+        <button class="action-btns default-project-btn">
+          <div class="icon">📄</div>
+          <div class="text">
+            <div class="title">Default Project</div>
+            <div class="subtitle">Standard template</div>
+          </div>
+        </button>
+        <button class="action-btns blank-project-btn">
+          <div class="icon">📁</div>
+          <div class="text">
+            <div class="title">Blank Project</div>
+            <div class="subtitle">Start from scratch</div>
+          </div>
+        </button>
+      </div>
+      <div class="save_buttons">
+        <button class="action-btns primary save-project-btn">
+          <div class="icon">💾</div>
+          <div class="text">
+            <div class="title">Save Project</div>
+            <div class="subtitle">Persist changes</div>
+          </div>
+        </button>
+        <button class="action-btns save-as-btn">
+          <div class="icon">📝</div>
+          <div class="text">
+            <div class="title">Save As</div>
+            <div class="subtitle">New project copy</div>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="pm-actions">
+      <div class="left-actions">
+        <div class="sort-group">
+          <span>Sort:</span>
+          <button data-sort="name" class="sort-btn active">Name</button>
+          <button data-sort="date" class="sort-btn">Modified</button>
+          <button data-sort="created" class="sort-btn">Created</button>
+        </div>
+      </div>
+      <div class="right-actions">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="searchInput" class="pm-search" placeholder="Search projects…" autocomplete="off" />
+          <button class="search-clear hidden" id="searchClear">✕</button>
+        </div>
+        <span id="projectCount" class="count-badge">0 projects</span>
+        <div class="view-toggle">
+          <button class="view-btn active" id="viewGrid" title="Grid view">⊞</button>
+          <button class="view-btn" id="viewList" title="List view">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Grid -->
+    <div id="projectGrid" class="pm-grid">
+      <div id="projectList" class="projectListContainer">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>No projects yet</p>
+          <span>Click "New Project" to get started</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CREATE PROJECT MODAL ===== -->
+  <div class="modal-overlay" id="createProjectModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Create New Project</h3>
+        <button class="modal-close-x" id="closeModal">✕</button>
+      </div>
+      <form id="createProjectForm">
+        <div class="form-group">
+          <label>Project Name <span class="req">*</span></label>
+          <input type="text" id="projectName" placeholder="My Awesome Project" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Owner</label>
+            <input type="text" id="projectOwner" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label>Project Type</label>
+            <select id="projectType">
+              <option value="standard">Standard</option>
+              <option value="blank">Blank</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="projectDescription" placeholder="What is this project about?"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="closeModalCancel">Cancel</button>
+          <button type="submit" class="btn-primary">Create Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== UNIVERSAL CONFIRM MODAL ===== -->
+  <div class="modal-overlay" id="confirmDefaultModal">
+    <div class="modal-box confirm-box">
+      <div class="confirm-header">
+        <span class="confirm-icon">⚠️</span>
+        <h3 id="confirmTitle">Confirm Action</h3>
+      </div>
+      <p id="confirmMessage" class="confirm-message">Are you sure?</p>
+      <div class="modal-actions" id="confirmActions">
+        <button id="confirmCancel" class="btn-cancel">Cancel</button>
+        <button id="confirmOk" class="btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INPUT MODAL ===== -->
+  <div class="modal-overlay" id="inputModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="inputTitle">Enter Value</h3>
+        <button class="modal-close-x" id="inputModalClose">✕</button>
+      </div>
+      <div class="form-group" style="margin-top:0.5rem">
+        <label>Name <span class="req">*</span></label>
+        <input type="text" id="inputField" class="modal-input" placeholder="Enter name..." />
+      </div>
+      <div class="form-group">
+        <label>Owner</label>
+        <input type="text" id="inputOwnerField" class="modal-input" placeholder="Enter owner name..." />
+      </div>
+      <div class="form-group" id="inputDescGroup" style="display:none">
+        <label>Description</label>
+        <input type="text" id="inputDescField" class="modal-input" placeholder="Enter description..." />
+      </div>
+      <div class="modal-actions">
+        <button id="inputCancel" class="btn-cancel">Cancel</button>
+        <button id="inputOk" class="btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VERSION HISTORY MODAL ===== -->
+  <div class="modal-overlay" id="versionModal">
+    <div class="modal-box version-modal-box">
+      <div class="modal-header">
+        <div>
+          <h3>Version History</h3>
+          <p class="version-project-name" id="versionProjectLabel">—</p>
+        </div>
+        <button class="modal-close-x" id="versionModalClose">✕</button>
+      </div>
+      <div id="versionList" class="version-list">
+        <div class="version-loading">Loading versions…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RENAME MODAL ===== -->
+  <div class="modal-overlay" id="renameModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Rename Project</h3>
+        <button class="modal-close-x" id="renameModalClose">✕</button>
+      </div>
+      <div class="form-group" style="margin-top:0.5rem">
+        <label>New Name <span class="req">*</span></label>
+        <input type="text" id="renameField" class="modal-input" placeholder="Enter new name..." />
+      </div>
+      <div class="modal-actions">
+        <button id="renameCancel" class="btn-cancel">Cancel</button>
+        <button id="renameOk" class="btn-primary">Rename</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="api.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+{
+  "sequences": [
+    {
+      "id": "seq_1768974771007",
+      "name": "sequence_2026-01-21",
+      "createdAt": "2026-01-21T05:52:51.008Z",
+      "start": "home",
+      "current": "p2",
+      "totalSteps": 8,
+      "steps": [
+        {
+          "order": 1,
+          "path": "home_p1",
+          "type": "J",
+          "from": "home",
+          "to": "p1",
+          "velocity": 0.11
+        },
+        {
+          "order": 2,
+          "path": "p1_p2",
+          "type": "C",
+          "from": "p1",
+          "to": "p2",
+          "velocity": 0.11
+        },
+        {
+          "order": 3,
+          "path": "p2_p3",
+          "type": "C",
+          "from": "p2",
+          "to": "p3",
+          "velocity": 0.11
+        },
+        {
+          "order": 4,
+          "path": "p3_p4",
+          "type": "C",
+          "from": "p3",
+          "to": "p4",
+          "velocity": 0.11
+        },
+        {
+          "order": 5,
+          "path": "p4_p5",
+          "type": "C",
+          "from": "p4",
+          "to": "p5",
+          "velocity": 0.11
+        },
+        {
+          "order": 6,
+          "path": "p5_p4",
+          "type": "C",
+          "from": "p5",
+          "to": "p4",
+          "velocity": 0.11
+        },
+        {
+          "order": 7,
+          "path": "p4_p3",
+          "type": "C",
+          "from": "p4",
+          "to": "p3",
+          "velocity": 0.11
+        },
+        {
+          "order": 8,
+          "path": "p3_p2",
+          "type": "C",
+          "from": "p3",
+          "to": "p2",
+          "velocity": 0.11
+        }
+      ]
+    }
+  ]
+}

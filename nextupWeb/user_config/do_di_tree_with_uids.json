@@ -1,0 +1,1988 @@
+{
+  "@attributes": {
+    "BTCPP_format": "4",
+    "_uid": "uid_72e3d4cbcf8f_mnn3nnhb"
+  },
+  "@children": [
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "RobotGripper1[DO]",
+          "_uid": "uid_a45e5d1b3b06_mnn3nnhb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_0ab72a47833f_mnn3nnhb"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "RobotGripper1[DO] subtree starting...",
+                      "_uid": "uid_019b40f59b22_mnn3nnhb"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "RobotGripper1[DO]",
+                      "driver_id": "1",
+                      "do_id": "1",
+                      "control_name": "RobotGripper1[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_9b5eaf4ebaf2_mnn3nnhb"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_046d95870f79_mnn3nnhb"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "Robot Gripper 1",
+                            "_uid": "uid_48fbdc66c7a8_mnn3nnhb"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "RobotGripper2[DO]",
+          "_uid": "uid_2507588b4d90_mnn3nnhb"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_e2ad2e6a74cd_mnn3nnhb"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "RobotGripper2[DO] subtree starting...",
+                      "_uid": "uid_f35353766683_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "RobotGripper2[DO]",
+                      "driver_id": "1",
+                      "do_id": "3",
+                      "control_name": "RobotGripper2[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_bf9cf135943b_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_fd55264e2eb9_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "Robot Gripper 2",
+                            "_uid": "uid_9fc8820c9c3e_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCCycleTrigger[DO]",
+          "_uid": "uid_32515c7f6472_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_0f370158915b_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCCycleTrigger[DO] subtree starting...",
+                      "_uid": "uid_7a3b11586783_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCCycleTrigger[DO]",
+                      "driver_id": "2",
+                      "do_id": "1",
+                      "control_name": "CNCCycleTrigger[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_ddb83249105d_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_80d0c3edf12b_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC Cycle Start Trigger for Operation",
+                            "_uid": "uid_6b066c586fd2_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCEmergencyTrigger[DO]",
+          "_uid": "uid_130fdce5e65f_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_407d9860e7e0_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCEmergencyTrigger[DO] subtree starting...",
+                      "_uid": "uid_16d054d26658_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCEmergencyTrigger[DO]",
+                      "driver_id": "2",
+                      "do_id": "3",
+                      "control_name": "CNCEmergencyTrigger[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_47b0ef22accc_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_e36f80211e53_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC Emergency Trigger for Fault",
+                            "_uid": "uid_cb132837b698_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCResetTrigger[DO]",
+          "_uid": "uid_b8c7defe9f3d_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_681a61d09ebe_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCResetTrigger[DO] subtree starting...",
+                      "_uid": "uid_cb0b3c7f7287_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCResetTrigger[DO]",
+                      "driver_id": "3",
+                      "do_id": "1",
+                      "control_name": "CNCResetTrigger[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_a13c152ec1a3_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_2bcb5fd38dae_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC Reset Trigger !",
+                            "_uid": "uid_9612a3e7287d_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CNCHoldTrigger[DO]",
+          "_uid": "uid_992eea0ea3c3_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_edf831f2e890_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "CNCHoldTrigger[DO] subtree starting...",
+                      "_uid": "uid_53aea6510add_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "CNCHoldTrigger[DO]",
+                      "driver_id": "3",
+                      "do_id": "3",
+                      "control_name": "CNCHoldTrigger[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_5c4db5d93758_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_abde44a1b7eb_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "CNC Hold Trigger",
+                            "_uid": "uid_095a03f154c3_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "ConStartTrigger[DO]",
+          "_uid": "uid_ce4ab1564f06_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_af2968be25b1_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "ConStartTrigger[DO] subtree starting...",
+                      "_uid": "uid_4aecd4985ca0_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "ConStartTrigger[DO]",
+                      "driver_id": "4",
+                      "do_id": "1",
+                      "control_name": "ConStartTrigger[DO]",
+                      "type_of_control": "push",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_bb07fcd91d0d_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_a6e4658a29d1_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "Conveyor Start Trigger",
+                            "_uid": "uid_4c5c4da961d5_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "ConvAdjustor[DO]",
+          "_uid": "uid_398cb701c139_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Sequence",
+            "content": {
+              "@attributes": {
+                "ID": "seq_1",
+                "_uid": "uid_d6fd7676fcee_mnn3nnhc"
+              },
+              "@children": [
+                {
+                  "tagName": "MsgLoggerNode",
+                  "content": {
+                    "@attributes": {
+                      "ID": "msg_1",
+                      "msg_log": "ConvAdjustor[DO] subtree starting...",
+                      "_uid": "uid_0cb4e31818a4_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "DoControl",
+                  "content": {
+                    "@attributes": {
+                      "ID": "ctrl_1",
+                      "name": "ConvAdjustor[DO]",
+                      "driver_id": "4",
+                      "do_id": "3",
+                      "control_name": "ConvAdjustor[DO]",
+                      "type_of_control": "switch",
+                      "expected_action": "{expected_action}",
+                      "push_wait": "250",
+                      "_uid": "uid_b2b888eb72f9_mnn3nnhc"
+                    }
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "seq_2",
+                      "_uid": "uid_cdc17c375170_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_2",
+                            "msg_log": "Conveyor Adjustor Control",
+                            "_uid": "uid_7b9c78910e56_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "VaccumSensor1[DI]",
+          "_uid": "uid_db30594715bf_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_99e3a00dee5b_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "VaccumSensor1[DI] subtree starting...",
+                            "_uid": "uid_8a26e6b158c6_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "VaccumSensor1[DI]",
+                            "driver_id": "5",
+                            "di_id": "1",
+                            "status_name": "VaccumSensor1[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_79d0fbe98af3_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_ec4d0806eea6_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Vaccum Sensor 1 Successful",
+                                  "_uid": "uid_e810f2563334_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_5e44cc3d6dc4_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "VaccumSensor1[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_9a1b729d0081_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "VaccumSensor1[DI] sensing failed",
+                            "_uid": "uid_77c5e1fbcd8f_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_55a3e43b6e1c_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_5d6e58c8a507_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "VaccumSensor2[DI]",
+          "_uid": "uid_f9d10f7b1317_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_dd3f085520ed_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "VaccumSensor2[DI] subtree starting...",
+                            "_uid": "uid_fd6f5114e8fa_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "VaccumSensor2[DI]",
+                            "driver_id": "5",
+                            "di_id": "2",
+                            "status_name": "VaccumSensor2[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_681b9afd47f0_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_1ba1a1caa997_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Vaccum Sensor 2 Successful",
+                                  "_uid": "uid_4f08ce01d24e_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_ef65584f6672_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "VaccumSensor2[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_bbac6021c025_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "VaccumSensor2[DI] sensing failed",
+                            "_uid": "uid_e8d58aa60460_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_39c8ac00ec39_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_1b959340edd1_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CncSafetySensor1[DI]",
+          "_uid": "uid_b56eef36207c_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_653c05f964eb_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "CncSafetySensor1[DI] subtree starting...",
+                            "_uid": "uid_2315f8d776dd_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "CncSafetySensor1[DI]",
+                            "driver_id": "5",
+                            "di_id": "3",
+                            "status_name": "CncSafetySensor1[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_c73c2fae8acc_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_440ec191399b_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Cnc safety sensor 1 Successful",
+                                  "_uid": "uid_30a362761bdf_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_2b086e6e68d1_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "CncSafetySensor1[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_84db97ec4cb4_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "CncSafetySensor1[DI] sensing failed",
+                            "_uid": "uid_881295e1dca5_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_e429567f8d53_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_7db0f24ae510_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CncSafetySensor2[DI]",
+          "_uid": "uid_cecc4cfd0c01_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_7c5a653a4784_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "CncSafetySensor2[DI] subtree starting...",
+                            "_uid": "uid_2315b0794b04_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "CncSafetySensor2[DI]",
+                            "driver_id": "5",
+                            "di_id": "4",
+                            "status_name": "CncSafetySensor2[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_665853d150ca_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_555bc5e2237a_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Cnc safety Sensor 2 Successful",
+                                  "_uid": "uid_26468037716c_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_fae863f82901_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "CncSafetySensor2[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_90cf9ae65a9e_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "CncSafetySensor2[DI] sensing failed",
+                            "_uid": "uid_262ff1b51801_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_35148d423609_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_1aa01c5d6cc1_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "Station1CncRunning[DI]",
+          "_uid": "uid_dd32a108f6d6_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_a413a3158acd_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "Station1CncRunning[DI] subtree starting...",
+                            "_uid": "uid_8cc5a0fb9f1a_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "Station1CncRunning[DI]",
+                            "driver_id": "2",
+                            "di_id": "1",
+                            "status_name": "Station1CncRunning[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_f0d6635d9013_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_9e5d050cbb01_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Station1CncRunning",
+                                  "_uid": "uid_ebf90d032f05_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_c3050c5c5787_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "Station1CncRunning[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_d65fba7f033a_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "Station1CncRunning[DI] sensing failed",
+                            "_uid": "uid_554bf80721ac_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_23c3e2e197df_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_c66ff82fef59_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "Station2CncRunning[DI]",
+          "_uid": "uid_fc5d89f16e5b_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_2d021602a257_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "Station2CncRunning[DI] subtree starting...",
+                            "_uid": "uid_68cc004b7a36_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "Station2CncRunning[DI]",
+                            "driver_id": "2",
+                            "di_id": "2",
+                            "status_name": "Station2CncRunning[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_ccc5a11a7b64_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_190c4cc31f76_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Station2 Cnc Running",
+                                  "_uid": "uid_7a3cdac88551_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_1",
+                            "msg": "Station2CncRunning[DI] sensing successful",
+                            "type": "success",
+                            "timeout": "3",
+                            "_uid": "uid_e8b0d93aa1c2_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_7436e9280bca_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "Station2CncRunning[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_e0c80208d736_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "Station2CncRunning[DI] sensing failed",
+                            "_uid": "uid_3b9aba22ec88_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_8798b148e828_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_34dbb238157a_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CncAlarm[DI]",
+          "_uid": "uid_d782368b41e6_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_e6c638e56ef2_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "CncAlarm[DI] subtree starting...",
+                            "_uid": "uid_313324451237_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "CncAlarm[DI]",
+                            "driver_id": "2",
+                            "di_id": "3",
+                            "status_name": "CncAlarm[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_6e9287b4b50a_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_bce174f58921_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Cnc Alarm Detected Successfully",
+                                  "_uid": "uid_22f1287c5d87_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_7305bdc2c3c7_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "CncAlarm[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_5314f113fdf4_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "CncAlarm[DI] sensing failed",
+                            "_uid": "uid_4b9149a6f89d_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_3d1731e668a8_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_c3cddd39144a_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "CncAuto[DI]",
+          "_uid": "uid_831a81fb5e8e_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_86d83f2c16ea_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "CncAuto[DI] subtree starting...",
+                            "_uid": "uid_f5da418b8928_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "CncAuto[DI]",
+                            "driver_id": "2",
+                            "di_id": "4",
+                            "status_name": "CncAuto[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_210ad4c553cf_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_9f32fadf732d_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Cnc Auto mode Done Successfully",
+                                  "_uid": "uid_a3923fad4ada_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_2911885ab040_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "CncAuto[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_50ae182f4eb9_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "CncAuto[DI] sensing failed",
+                            "_uid": "uid_715e0735b3e5_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_fbdc9f998f41_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_ee3283de910e_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "HoldStatus[DI]",
+          "_uid": "uid_0f19f9f79d88_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_3d8a40ce49e6_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "HoldStatus[DI] subtree starting...",
+                            "_uid": "uid_af63eae66fe0_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "HoldStatus[DI]",
+                            "driver_id": "3",
+                            "di_id": "1",
+                            "status_name": "HoldStatus[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_d39c15faf165_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_3eb9ff932e53_mnn3nnhc"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Hold Status found Successfully",
+                                  "_uid": "uid_d47b7c4121be_mnn3nnhc"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_3ae9513512dc_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "HoldStatus[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_911aef29910d_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "HoldStatus[DI] sensing failed",
+                            "_uid": "uid_d10871b58f7c_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_1106d7cfc252_mnn3nnhc"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_1316770d5b3c_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "Sensor1Conveyor[DI]",
+          "_uid": "uid_3c93c38ab2a7_mnn3nnhc"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_95adc904ab22_mnn3nnhc"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "Sensor1Conveyor[DI] subtree starting...",
+                            "_uid": "uid_fc81836b931e_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "Sensor1Conveyor[DI]",
+                            "driver_id": "3",
+                            "di_id": "2",
+                            "status_name": "Sensor1Conveyor[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_1a13faf67a53_mnn3nnhc"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_470023b86f6c_mnn3nnhd"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Sensor1 converyor detected successfully",
+                                  "_uid": "uid_9c4ee62ab819_mnn3nnhd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_817b3a3d1ee4_mnn3nnhd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "Sensor1Conveyor[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_2c26a9c13c8f_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "Sensor1Conveyor[DI] sensing failed",
+                            "_uid": "uid_56384fefd4b1_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_dc8d09946985_mnn3nnhd"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_b2bd64cd1c28_mnn3nnhc"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "Sensor2Conveyor[DI]",
+          "_uid": "uid_19a5eb9f5c3b_mnn3nnhd"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_52716739180a_mnn3nnhd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "Sensor2Conveyor[DI] subtree starting...",
+                            "_uid": "uid_5380e927bd6c_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "Sensor2Conveyor[DI]",
+                            "driver_id": "3",
+                            "di_id": "3",
+                            "status_name": "Sensor2Conveyor[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_16f1d782149d_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_06138a073dfd_mnn3nnhd"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Sensor 2 Conveyor detected successfully",
+                                  "_uid": "uid_f72a302b958e_mnn3nnhd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_dd94c9dfac95_mnn3nnhd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "Sensor2Conveyor[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_2bf36ddbd6c4_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "Sensor2Conveyor[DI] sensing failed",
+                            "_uid": "uid_74e9b714a048_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_e4f8e691c8c0_mnn3nnhd"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_b6db64e99c2a_mnn3nnhd"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tagName": "BehaviorTree",
+      "content": {
+        "@attributes": {
+          "ID": "Sensor3Conveyor[DI]",
+          "_uid": "uid_66403933cf41_mnn3nnhd"
+        },
+        "@children": [
+          {
+            "tagName": "Fallback",
+            "content": {
+              "@children": [
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "success_seq",
+                      "_uid": "uid_f7e95731e7ed_mnn3nnhd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_1",
+                            "msg_log": "Sensor3Conveyor[DI] subtree starting...",
+                            "_uid": "uid_621be3fe39b9_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "DIControl",
+                        "content": {
+                          "@attributes": {
+                            "ID": "ctrl_1",
+                            "name": "Sensor3Conveyor[DI]",
+                            "driver_id": "3",
+                            "di_id": "4",
+                            "status_name": "Sensor3Conveyor[DI]",
+                            "expected_status": "{expected_status}",
+                            "_uid": "uid_c206c497f833_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "Sequence",
+                        "content": {
+                          "@attributes": {
+                            "ID": "seq_2",
+                            "_uid": "uid_fd63df1b811f_mnn3nnhd"
+                          },
+                          "@children": [
+                            {
+                              "tagName": "MsgLoggerNode",
+                              "content": {
+                                "@attributes": {
+                                  "ID": "msg_2",
+                                  "msg_log": "Sensor 3 Converyor detected successfully",
+                                  "_uid": "uid_3269e45cec6c_mnn3nnhd"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "tagName": "Sequence",
+                  "content": {
+                    "@attributes": {
+                      "ID": "failure_seq",
+                      "_uid": "uid_8a07acd89e5f_mnn3nnhd"
+                    },
+                    "@children": [
+                      {
+                        "tagName": "PopupMsg",
+                        "content": {
+                          "@attributes": {
+                            "ID": "pop_fail",
+                            "msg": "Sensor3Conveyor[DI] sensing failed",
+                            "type": "failure",
+                            "timeout": "0",
+                            "_uid": "uid_b49df87ca5c1_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "MsgLoggerNode",
+                        "content": {
+                          "@attributes": {
+                            "ID": "msg_fail",
+                            "msg_log": "Sensor3Conveyor[DI] sensing failed",
+                            "_uid": "uid_6b73f79ac799_mnn3nnhd"
+                          }
+                        }
+                      },
+                      {
+                        "tagName": "AlwaysFailure",
+                        "content": {
+                          "@attributes": {
+                            "_uid": "uid_f4b4febc3ff0_mnn3nnhd"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "@attributes": {
+                "_uid": "uid_28926c5b8ddb_mnn3nnhd"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

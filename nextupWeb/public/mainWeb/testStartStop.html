@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Service Controller</title>
+</head>
+<body>
+  <h1>Service Control Panel</h1>
+  <div>
+    <button onclick="controlService('ethercat.service', 'start')">Start EtherCAT</button>
+    <button onclick="controlService('ethercat.service', 'stop')">Stop EtherCAT</button>
+  </div>
+  <div>
+    <button onclick="controlService('rosbridge.service', 'start')">Start ROSBridge</button>
+    <button onclick="controlService('rosbridge.service', 'stop')">Stop ROSBridge</button>
+  </div>
+
+    <div>
+    <button onclick="controlService('run_my_app.service', 'start')">Start run_my_app</button>
+    <button onclick="controlService('run_my_app.service', 'stop')">Stop run_my_app</button>
+  </div>
+
+    <div>
+    <button onclick="controlService('everything.service', 'start')">Start everything</button>
+    <button onclick="controlService('everything.service', 'stop')">Stop everything</button>
+  </div>
+
+    <div>
+    <button onclick="controlService('nextupweb.service', 'start')">Start nextupweb</button>
+    <button onclick="controlService('nextupweb.service', 'stop')">Stop nextupweb</button>
+  </div>
+
+    <div>
+    <button onclick="controlService('motion_planning_backend.service', 'start')">Start motion_planning_backend</button>
+    <button onclick="controlService('motion_planning_backend.service', 'stop')">Stop motion_planning_backend</button>
+  </div>
+  <!-- Add more services similarly -->
+
+  <script>
+    function controlService(service, action) {
+      fetch(`/${action}/${service}`, { method: 'POST' })
+        .then(res => res.text())
+        .then(msg => alert(msg))
+        .catch(err => alert('Error: ' + err));
+    }
+  </script>
+</body>
+</html>

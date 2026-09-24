@@ -70,7 +70,7 @@
         <inertial>
             <origin
                 xyz="0.18631 1.6653E-15 0.14306"
-                rpy="0 0 0" />
+                rpy="0 0 -1.57" />
             <mass
                 value="21.096" />
             <inertia
@@ -84,7 +84,7 @@
         <visual>
             <origin
                 xyz="0 0 0"
-                rpy="0 0 0" />
+                rpy="0 0 -1.57" />
             <geometry>
                 <mesh
                     filename="package://nextup_moveit_config/meshes/robot1/Link1.STL" />
@@ -98,7 +98,7 @@
         <collision>
             <origin
                 xyz="0 0 0"
-                rpy="0 0 0" />
+                rpy="0 0 -1.57" />
             <geometry>
                 <mesh
                     filename="package://nextup_moveit_config/meshes/robot1/Link1.STL" />
@@ -110,7 +110,7 @@
         type="revolute">
         <origin
             xyz="0 0 0.593"
-            rpy="0 0 0" />
+            rpy="0 0 1.57" />
         <parent
             link="base_link" />
         <child
@@ -167,8 +167,8 @@
         name="joint2"
         type="revolute">
         <origin
-            xyz="0.0772577082457715 0 0.18"
-            rpy="-1.5707963267949 0.40214795034629 1.5707963267949" />
+            xyz="0.0 -0.02 0.18"
+            rpy="-1.5707963267949 -0.38324021305116 0.0" />
         <parent
             link="link1" />
         <child
@@ -226,7 +226,7 @@
         type="revolute">
         <origin
       xyz="-0.383049008063237 -0.923728021347067 0.00200000000000033"
-      rpy="3.14159265358979 0 -0.40214795034629" />
+      rpy="3.14159265358979 0 -2.5837540138" />
         <parent
             link="link2" />
         <child
@@ -284,7 +284,7 @@
         type="revolute">
         <origin
       xyz="0 0.6 0"
-      rpy="3.14159265358979 0 1.5707963267949" />
+      rpy="3.14159265358979 0 0" />
         <parent
             link="link3" />
         <child
@@ -342,7 +342,7 @@
         type="revolute">
         <origin
       xyz="0.180000001578827 0 0.105999997318973"
-      rpy="1.57079634168949 0 1.5707963267949" />
+      rpy="1.57079634168949 -1.570796326949 1.5707963267949" />
         <parent
             link="link4" />
         <child

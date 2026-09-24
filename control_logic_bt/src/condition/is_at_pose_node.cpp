@@ -165,7 +165,7 @@ BT::NodeStatus IsAtPose::tick()
         return BT::NodeStatus::FAILURE;
     }
 
-    double tolerance = 0.05;
+    double tolerance = 0.08;
     getInput("tolerance", tolerance);
     if (tolerance <= 0.0)
         tolerance = 0.05;

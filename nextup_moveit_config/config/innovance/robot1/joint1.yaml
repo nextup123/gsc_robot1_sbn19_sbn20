@@ -25,7 +25,7 @@ rpdo:  # RxPDO = receive PDO Mapping
       - {index: 0x6060, sub_index: 0, type: int8, command_interface: modeofoperation, default: 9}  # Mode of operation
       - {index: 0x200D, sub_index: 0x06, type: int16, command_interface: emergency_trigger, default: 0}  # Mode of operation
       - {index: 0x60fe, sub_index: 1, type: int32, command_interface: dos, default: 0}  # digital output  de//65536-on  //0-off  17 th bit for D01 -- 60fe 01
-      - {index: 0x60fe, sub_index: 2, type: int32, default: 67436544}  # digital output  de//65536-on  //0-off  17 th bit for D01 -- 60fe 01
+      - {index: 0x60fe, sub_index: 2, type: int32, default: 67567616}  # digital output  de//65536-on  //0-off  17 th bit for D01 -- 60fe 01
 tpdo:  # TxPDO = transmit PDO Mapping
   - index: 0x1a00
     channels:

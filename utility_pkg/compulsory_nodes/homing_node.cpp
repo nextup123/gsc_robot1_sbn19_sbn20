@@ -150,7 +150,7 @@ private:
             {
                 auto node_ptr = this->shared_from_this();
                 move_group_ = std::make_unique<moveit::planning_interface::MoveGroupInterface>(node_ptr, "robot_manipulator");
-                move_group_->setMaxVelocityScalingFactor(0.1);
+                move_group_->setMaxVelocityScalingFactor(0.05);
                 move_group_->setMaxAccelerationScalingFactor(0.05);
                 publish_log("MoveGroupInterface initialized for group 'robot_manipulator'");
                 timer_->cancel();

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file vendor:=innovance product:=cobot">
+  <xacro:macro name="robot_nextup_ros2_control" params="initial_positions_file vendor:=innovance product:=robot1">
     <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
     <xacro:property name="slave_config_dir" value="$(find nextup_moveit_config)/config/${vendor}/${product}"/>
 
@@ -8,7 +8,7 @@
       <hardware>
         <plugin>ethercat_driver/EthercatDriver</plugin>
         <param name="master_id">0</param>
-        <param name="control_frequency">200</param>
+        <param name="control_frequency">125</param>
       </hardware>
 
       <joint name="joint1">
